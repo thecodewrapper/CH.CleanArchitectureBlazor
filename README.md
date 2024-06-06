@@ -1,4 +1,4 @@
-# Clean Architecture
+# Clean Architecture (Blazor Server)
 My personal take on Clean Architecture. Please read my post at [Implementing a Clean Architecture in ASP.NET Core 8](https://thecodewrapper.com/dev/tcw-clean-achitecture) for more information.
 
 This is the Blazor version of my Clean Architecture solution. The original ASP.NET Core MVC version can be found [here](https://github.com/thecodewrapper/CH.CleanArchitecture)
@@ -9,7 +9,8 @@ This is the Blazor version of my Clean Architecture solution. The original ASP.N
 - MassTransit
 - AutoMapper
 - Razor Components
-- ASP.NET Core MVC
+- Blazor
+- MudBlazor
 - GuardClauses
 - xUnit
 - Moq
@@ -27,7 +28,7 @@ The features of this particular solution are summarized briefly below, in no par
 - Data operation auditing built-in (for entities which are not using the EventStore)
 - Local user management with ASP.NET Core Identity
 - Clean separation of data entities and domain objects and mapping between them for persistence/retrieval using AutoMapper
-- ASP.NET Core MVC with Razor Components used for presentation
+- Blazor Server w/ MudBlazor components used for presentation
 - CQRS using handler abstractions to support MassTransit or MediatR with very little change
 - Service bus abstractions to support message-broker solutions like MassTransit or MediatR (default implementation uses MassTransit’s mediator)
 - Unforcefully promoting Domain-Driven Design with aggregates, entities and domain event abstractions.
