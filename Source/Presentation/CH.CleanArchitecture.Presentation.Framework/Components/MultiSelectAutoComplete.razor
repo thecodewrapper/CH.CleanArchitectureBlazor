@@ -1,0 +1,26 @@
+﻿@typeparam TItem
+@typeparam TId
+@using CH.CleanArchitecture.Presentation.Framework.Components.Input
+
+<AutoComplete @ref="_autoComplete" 
+              Label="@Label"
+              T="@TItem"
+              @bind-Value="@Value"
+              SearchFunc="SearchAsync"
+              ToStringFunc="@GetNameFunc"
+              ShowProgressIndicator="true"
+              DebounceInterval="600"
+              Dense="true"
+              Margin="Margin.Dense"
+              Clearable="true"
+              Immediate="false"
+              Variant="Variant.Text"
+              CoerceValue="true"
+              ResetValueOnEmptyText="true" />
+
+<MudChipSet AllClosable="true" OnClose="RemoveValue">
+    @foreach (var val in _selectedValues)
+    {
+        <MudChip Size=Size.Small @key="@GetIdFunc(val)" Text="@GetNameFunc(val)" />
+    }
+</MudChipSet>

@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "/Pages/Shared/Layout/_Layout.cshtml";
+}
+
+<div class="container login-container" style="position:relative; top:60px;">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+    <script src="~/lib/zxcvbn/zxcvbn.js" asp-append-version="true"></script>
+    <script src="~/js/pwstrength-bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/register.js" asp-append-version="true"></script>
+}

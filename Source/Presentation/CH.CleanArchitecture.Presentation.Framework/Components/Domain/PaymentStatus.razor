@@ -1,0 +1,31 @@
+﻿@using CH.CleanArchitecture.Core.Domain
+<MudChip Size="Size.Small" Label="true" Color="@GetPaymentStatusColor()" Icon="@GetPaymentStatusToMudIcon()" Class="@Class">@Status.ToString()</MudChip>
+@code {
+    [Parameter]
+    public PaymentStatusEnum Status { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    private string GetPaymentStatusToMudIcon() {
+        switch (Status) {
+            case PaymentStatusEnum.New: return Icons.Material.Filled.Info;
+            case PaymentStatusEnum.Processing: return Icons.Material.Filled.Moving;
+            case PaymentStatusEnum.Aborted: return Icons.Material.Filled.StopCircle;
+            case PaymentStatusEnum.Rejected: return Icons.Material.Filled.Close;
+            case PaymentStatusEnum.Confirmed: return Icons.Material.Filled.ThumbUp;
+            default: return string.Empty;
+        }
+    }
+
+    private Color GetPaymentStatusColor() {
+        switch (Status) {
+            case PaymentStatusEnum.New: return Color.Primary;
+            case PaymentStatusEnum.Processing: return Color.Info;
+            case PaymentStatusEnum.Aborted: return Color.Error;
+            case PaymentStatusEnum.Rejected: return Color.Error;
+            case PaymentStatusEnum.Confirmed: return Color.Success;
+            default: return Color.Default;
+        }
+    }
+}

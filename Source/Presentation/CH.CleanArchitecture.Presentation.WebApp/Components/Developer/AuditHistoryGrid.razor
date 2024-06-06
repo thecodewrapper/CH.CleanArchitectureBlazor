@@ -1,0 +1,71 @@
+﻿@using Newtonsoft.Json;
+@using CH.CleanArchitecture.Core.Application.DTOs;
+@inherits BaseComponent
+@attribute [Authorize(Roles = "SuperAdmin")]
+
+<MudGrid>
+    <MudItem Class="pa-4" xs="12" sm="12" md="6">
+        <MudTable ServerData="@(new Func<TableState, Task<TableData<AuditHistoryDTO>>>(ServerReload))"
+                  Dense="true" Hover="true" @ref="table">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Audit History</MudText>
+                <MudSpacer />
+                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(AuditHistoryDTO.Created))" T="AuditHistoryDTO">Created On</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(AuditHistoryDTO.TableName))" T="AuditHistoryDTO">Table</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(AuditHistoryDTO.Kind))" T="AuditHistoryDTO">Kind</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(AuditHistoryDTO.Username))" T="AuditHistoryDTO">Username</MudTableSortLabel></MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Created On">@context.Created</MudTd>
+                <MudTd DataLabel="Table">@context.TableName</MudTd>
+                <MudTd DataLabel="Kind">@context.Kind</MudTd>
+                <MudTd DataLabel="Username">@context.Username</MudTd>
+                <MudTd DataLabel="Details">
+                    <MudStack Row Spacing="0" Justify="Justify.FlexEnd">
+                         <CRUDButton Type="CRUDButtonType.Details" OnClick="@(async () => await ShowAuditHistoryDetails(context.Id))" />
+                     </MudStack>
+                 </MudTd>
+             </RowTemplate>
+             <NoRecordsContent>
+                 <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_NoRecordsFound)</MudText>
+             </NoRecordsContent>
+             <LoadingContent>
+                 <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_Loading)</MudText>
+             </LoadingContent>
+             <PagerContent>
+                 <MudTablePager />
+             </PagerContent>
+         </MudTable>
+     </MudItem>
+
+     <MudItem xs="12" sm="12" md="6">
+         @if (_selectedItem != null) {
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="12">
+                    <MudText>Showing details of audit history ' @_selectedItem?.Id '</MudText>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="6">
+                    <MudPaper Class="pa-4 mud-height-full">
+                        <MudText Typo="Typo.subtitle2">@($"Old values: ")</MudText>
+                            <pre>
+                                @JsonConvert.SerializeObject(_selectedItem.AuditHistoryDetails.OldValues, Formatting.Indented)
+                                    </pre>
+                        </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudPaper Class="pa-4 mud-height-full">
+                            <MudText Typo="Typo.subtitle2">@($"New values: ")</MudText>
+                            <pre>
+                                @JsonConvert.SerializeObject(_selectedItem.AuditHistoryDetails.NewValues, Formatting.Indented)
+                                </pre>
+                        </MudPaper>
+                    </MudItem>
+                </MudGrid>
+        }
+    </MudItem>
+</MudGrid>

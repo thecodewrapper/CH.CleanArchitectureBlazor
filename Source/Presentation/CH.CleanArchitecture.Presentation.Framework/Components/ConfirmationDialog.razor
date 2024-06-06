@@ -1,0 +1,46 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="2">
+            <MudText>@ContentText</MudText>
+            @if (!string.IsNullOrEmpty(ConfirmationPhrase)) {
+                <MudInput @bind-Value="_enteredConfirmationPhrase" Placeholder=@($"Type '{ConfirmationPhrase}' here")></MudInput>
+            }
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        @if (ShowCancelButton) {
+            <CRUDButton OnClick="Cancel" Type="CRUDButtonType.Cancel"/>
+        }
+        <MudButton Color="@Color" Variant="Variant.Filled" OnClick="Submit" Disabled="!IsConfirmationPhraseCorrect()">@ButtonText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+
+    [Parameter] public string ButtonText { get; set; }
+
+    [Parameter] public string ConfirmationPhrase { get; set; }
+
+    [Parameter] public Color Color { get; set; }
+
+    [Parameter] public bool ShowCancelButton { get; set; } = true;
+
+    private string _enteredConfirmationPhrase;
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    
+    void Cancel() => MudDialog.Cancel();
+
+    bool IsConfirmationPhraseCorrect() {
+        if (string.IsNullOrEmpty(ConfirmationPhrase)) {
+            return true;
+        }
+
+        return _enteredConfirmationPhrase == ConfirmationPhrase;
+    }
+}
+
+

@@ -1,0 +1,19 @@
+﻿@inherits BaseComponent;
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@_formModel" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Required="true" @bind-Value="@_formModel.Id" Disabled="@(!isNew)" Label="ID" For="@(() => _formModel.Id)" />
+                    <MudTextField @bind-Value="@_formModel.Value" Label="Value" Required="true" For="@(() => _formModel.Value)" />
+                    <MudTextField @bind-Value="@_formModel.Description" Label="Description" For="@(() => _formModel.Description)" />
+                    <MudCheckBox @bind-Checked="@_formModel.IsEncrypted" Label="Is Encrypted" />
+                </MudCardContent>
+                <MudCardActions>
+                    <CRUDButton Type="CRUDButtonType.SubmitForm" />
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

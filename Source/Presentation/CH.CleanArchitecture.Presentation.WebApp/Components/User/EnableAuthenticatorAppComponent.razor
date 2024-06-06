@@ -1,0 +1,42 @@
+﻿@inherits BaseComponent
+<MudPaper Elevation="0" Class="pa-6">
+    <p>To use an authenticator app go through the following steps:</p>
+    <ol class="list">
+        <li>
+            <p>
+                Download a two-factor authenticator app like Microsoft Authenticator for
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a> and
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a> or
+                Google Authenticator for
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a> and
+                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
+            </p>
+        </li>
+        <li>
+            <p>Scan the QR Code or enter this key <kbd>@_sharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
+            <div id="qrCode"></div>
+            <div id="qrCodeData" data-url="@_authenticatorUri"></div>
+        </li>
+        <li>
+            <p>
+                Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
+                with a unique code. Enter the code in the confirmation box below.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+                        <DataAnnotationsValidator />
+                        <MudCard>
+                            <MudCardContent>
+                                <MudTextField Label="Verification Code" Class="mt-3" @bind-Value="model.Code" For="@(() => model.Code)" InputType="MudBlazor.InputType.Text" />
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton ButtonType="ButtonType.Submit" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Verify</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </EditForm>
+                </div>
+            </div>
+        </li>
+    </ol>
+</MudPaper>

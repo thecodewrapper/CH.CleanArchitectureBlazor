@@ -1,0 +1,58 @@
+﻿@using CH.CleanArchitecture.Infrastructure.Resources;
+@{
+    switch (Type) {
+        case CRUDButtonType.New: {
+                <MudTooltip Text="Add New">
+                    @if (string.IsNullOrEmpty(Text)) {
+                        <MudIconButton Disabled="Disabled" Icon="@Icons.Material.Filled.Add" Size="Size.Small" Variant="Variant.Filled" Color="Color.Success" OnClick="@OnClick" Style="@Style" />
+                    }
+                    else {
+                        <MudButton Disabled="Disabled" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Variant="Variant.Filled" Color="Color.Success" OnClick="@OnClick" Style="@Style">@Text</MudButton>
+                    }
+                </MudTooltip>
+                break;
+            }
+        case CRUDButtonType.Details: {
+                <MudTooltip Text="Details">
+                    <MudIconButton Disabled="Disabled" Icon="@Icons.Material.Sharp.Info" Size="Size.Small" OnClick="@OnClick" Color="Color.Info" Variant="Variant.Filled" Style="@Style"/>
+                </MudTooltip>
+                break;
+            }
+        case CRUDButtonType.Edit: {
+                <MudTooltip Text="Edit">
+                    <MudIconButton Disabled="Disabled" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" Color="Color.Warning" OnClick="@OnClick" Variant="Variant.Filled" Style="@Style"/>
+                </MudTooltip>
+                break;
+            }
+        case CRUDButtonType.Delete: {
+                <MudTooltip Text="Delete">
+                    <MudIconButton Disabled="Disabled" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="@OnClick" Variant="Variant.Filled" Style="@Style" />
+                </MudTooltip>
+                break;
+            }
+        case CRUDButtonType.SubmitForm: {
+                <MudButton Disabled="Disabled" Icon="@Icons.Material.Filled.Save" OnClick="@OnClick" ButtonType="ButtonType.Submit" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" Style="@Style">@LocalizationService.GetLocalizedString(ResourceKeys.Buttons_Save)</MudButton>
+                break;
+            }
+        case CRUDButtonType.Save: {
+                <MudButton Disabled="Disabled" Icon="@Icons.Material.Filled.Save" OnClick="@OnClick" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" Style="@Style">@LocalizationService.GetLocalizedString(ResourceKeys.Buttons_Save)</MudButton>
+                break;
+            }
+        case CRUDButtonType.Cancel: {
+                <MudButton Disabled="Disabled" Size="Size.Small" OnClick="@OnClick" Style="@Style">@LocalizationService.GetLocalizedString(ResourceKeys.Buttons_Cancel)</MudButton>
+                break;
+            }
+        case CRUDButtonType.Success: {
+                <MudButton Disabled="Disabled" Size="Size.Small" Variant="Variant.Filled" Color="Color.Success" OnClick="@OnClick" Style="@Style">@Text</MudButton>
+                break;
+            }
+        case CRUDButtonType.Error: {
+                <MudButton Disabled="Disabled" Size="Size.Small" Variant="Variant.Filled" Color="Color.Error" OnClick="@OnClick" Style="@Style">@Text</MudButton>
+                break;
+            }
+        case CRUDButtonType.Warning: {
+                <MudButton Disabled="Disabled" Size="Size.Small" Variant="Variant.Filled" Color="Color.Warning" OnClick="@OnClick" Style="@Style">@Text</MudButton>
+                break;
+            }
+    }
+}

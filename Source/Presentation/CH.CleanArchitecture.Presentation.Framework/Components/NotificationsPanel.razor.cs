@@ -1,0 +1,46 @@
+﻿using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using CH.CleanArchitecture.Common.Extensions;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Presentation.Framework.ViewModels;
+
+namespace CH.CleanArchitecture.Presentation.Framework.Components
+{
+    public partial class NotificationsPanel : BaseComponent
+    {
+        [Parameter]
+        public List<NotificationViewModel> Notifications { get; set; } = new();
+
+        [Inject]
+        public INotificationService NotificationService { get; set; }
+
+        [Inject]
+        public ILocalizationService LocalizationService { get; set; }
+
+        public bool _isOpen;
+
+        public NotificationsPanel() {
+        }
+
+        public void ToggleOpen() {
+            if (_isOpen)
+                _isOpen = false;
+            else
+                _isOpen = true;
+        }
+
+        private async Task MarkAllAsRead() {
+            foreach (var notification in Notifications) {
+                notification.IsNew = false;
+                await NotificationService.MarkAsReadAsync(notification.Id);
+            }
+        }
+
+        private async Task MarkAsRead(NotificationViewModel notification) {
+            notification.IsNew = false;
+            await NotificationService.MarkAsReadAsync(notification.Id);
+        }
+    }
+}

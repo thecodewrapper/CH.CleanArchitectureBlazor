@@ -1,0 +1,76 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>CH.CleanArchitecture</PageTitle>
+
+<MudLayout Class="mud-layout-custom">
+    <NavMenu SideBarOpen="_sidebarOpen" />
+    <MudMainContent>
+        <CascadingValue Value="@_mudThemeProvider" Name="ThemeProvider">
+            <AppBar OnSidebarToggled="ToggleSidebar" OnDarkModeToggled="ToggleDarkMode" />
+        </CascadingValue>
+        <LoaderComponent />
+        <MudContainer MaxWidth="MaxWidth.False">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_defaultTheme" />
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.Large"
+                   CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="false"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true" />
+<MudSnackbarProvider />
+<BlazoredToasts Position="ToastPosition.BottomRight"
+                Timeout="10"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
+
+@code {
+    MudTheme _defaultTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = "#224430",
+                Success = "#7AB893",
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = "#7AB893",
+                Error = "#EE625C",
+                Warning = "#D5782D"
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#224430",
+                Success = "#7AB893",
+                Error = "#EE625C",
+                Warning = "#D5782D"
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            },
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new[] { "Noto Sans", "Segoe UI", "sans-serif" }
+                }
+            }
+        };
+
+    private MudThemeProvider _mudThemeProvider;
+    private bool _sidebarOpen = true;
+    private bool _isDarkMode = false;
+    private void ToggleSidebar() => _sidebarOpen = !_sidebarOpen;
+
+    private void ToggleDarkMode() {
+        _isDarkMode = !_isDarkMode;
+        StateHasChanged();
+    }
+}

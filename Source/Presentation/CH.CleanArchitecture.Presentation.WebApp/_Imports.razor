@@ -1,0 +1,37 @@
+﻿@attribute [Authorize]
+
+@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using CH.CleanArchitecture.Infrastructure.Resources
+@using CH.CleanArchitecture.Common
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using System.Text.Encodings.Web
+@using CH.CleanArchitecture.Presentation.Framework
+@using CH.CleanArchitecture.Presentation.Framework.Components
+@using CH.CleanArchitecture.Presentation.Framework.Components.Domain
+@using CH.CleanArchitecture.Presentation.Framework.Components.Input
+@using CH.CleanArchitecture.Core.Application
+@using CH.CleanArchitecture.Core.Application.ReadModels
+@using CH.CleanArchitecture.Core.Application.Commands
+@using CH.CleanArchitecture.Core.Application.Authorization
+@using Blazored.Toast
+@using Blazored.Toast.Configuration
+@using AutoMapper
+@using CH.CleanArchitecture.Core.Domain
+@using CH.CleanArchitecture.Infrastructure.Models
+@using MudBlazor
+@using CH.CleanArchitecture.Presentation.WebApp.Components
+@using CH.CleanArchitecture.Presentation.WebApp.Models
+@using CH.CleanArchitecture.Presentation.WebApp.Components.User
+@using CH.CleanArchitecture.Presentation.WebApp.Constants
+@using CH.CleanArchitecture.Presentation.WebApp.Helpers
+@using CH.CleanArchitecture.Common.Helpers
+@using Microsoft.AspNetCore.Components.Sections
+
+@inject ILocalizationService L

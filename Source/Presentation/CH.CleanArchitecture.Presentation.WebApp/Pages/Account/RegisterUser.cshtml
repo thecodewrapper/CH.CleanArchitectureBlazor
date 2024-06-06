@@ -1,0 +1,104 @@
+﻿@page
+@model RegisterUserModel
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger" role="alert"></div>
+    <div>Register as a user.</div>
+    <hr />
+    <div class="row" style="width:100%;padding:5px">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Name" class="form-control" aria-required="true" placeholder="John" />
+                <label asp-for="Input.Name">Name</label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Surname" class="form-control" aria-required="true" placeholder="Clarkson" />
+                <label asp-for="Input.Surname">Surname</label>
+                <span asp-validation-for="Input.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Phone" type="tel" class="form-control" aria-required="true" placeholder="99666666" />
+                <label asp-for="Input.Phone">Phone</label>
+                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Description" class="form-control" />
+                <label asp-for="Input.Description">Description</label>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ProfilePicture.FormFile" type="file" class="form-control" aria-required="true" />
+                <label asp-for="Input.ProfilePicture.FormFile">Profile picture</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h6>Address</h6>
+            <div style="margin-left: 20px;">
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressStreet1" class="form-control" aria-required="true" placeholder="Street 1" />
+                    <label asp-for="Input.AddressStreet1">Street 1</label>
+                    <span asp-validation-for="Input.AddressStreet1" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressStreet2" class="form-control" aria-required="true" placeholder="Street 2" />
+                    <label asp-for="Input.AddressStreet2">Street 2</label>
+                    <span asp-validation-for="Input.AddressStreet2" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressStreetNumber" class="form-control" aria-required="true" placeholder="Street number" />
+                    <label asp-for="Input.AddressStreetNumber">Street number</label>
+                    <span asp-validation-for="Input.AddressStreetNumber" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressArea" class="form-control" aria-required="true" placeholder="Area" />
+                    <label asp-for="Input.AddressArea">Area</label>
+                    <span asp-validation-for="Input.AddressArea" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressCity" class="form-control" aria-required="true" placeholder="City" />
+                    <label asp-for="Input.AddressCity">City</label>
+                    <span asp-validation-for="Input.AddressCity" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressCountry" class="form-control" aria-required="true" placeholder="Country" />
+                    <label asp-for="Input.AddressCountry">Country</label>
+                    <span asp-validation-for="Input.AddressCountry" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.AddressFlatNumber" class="form-control" aria-required="true" placeholder="Flat number" />
+                    <label asp-for="Input.AddressFlatNumber">Flat number</label>
+                    <span asp-validation-for="Input.AddressFlatNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="frm-reg-pass" asp-for="Input.Password" autocomplete="new-password" placeholder="Password (Min. length: 12, requires 1 special character)">
+                <span toggle="#frm-reg-pass" class="fa fa-lg fa-eye field-icon toggle-password"></span>
+                <meter max="4" id="password-strength-meter"></meter>
+                <p id="password-strength-text"></p>
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

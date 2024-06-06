@@ -1,0 +1,5 @@
+﻿@page "/notifications"
+@inherits BaseComponent
+@attribute [Authorize(Roles = "User,Admin")]
+<PageHeader Title="My Notifications" Icon="@IconConstants.MY_NOTIFICATIONS" Description="View your notifications" />
+<UserNotificationsGrid/>

@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Components.Web;
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+@using CH.CleanArchitecture.Presentation.WebApp;
+@using CH.CleanArchitecture.Presentation.WebApp.Pages.Shared;
+@inject IWebHostEnvironment Environment
+@inject ICompositeViewEngine Engine
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+          content="">
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="CH.CleanArchitecture.Presentation.WebApp.styles.css" rel="stylesheet">
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body>
+    <header class="mud-appbar mud-appbar-dense mud-elevation-3 mud-appbar-fixed-top mud-login-header-custom">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-bg">
+            <div class="container-fluid">
+                <!-- Logo on the left -->
+                <a class="navbar-brand" asp-page="/">
+                    @* <img src="~/images/logo_transparent_white.png" alt="Logo" width="30" height="30" class="d-inline-block align-top"> *@
+                    CH.CleanArchitecture
+                </a>
+
+                @{
+                    var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
+                }
+                @if (result.Success) {
+                    await Html.RenderPartialAsync("_LoginPartial");
+                }
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
+    <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/lib//qrcodejs/qrcode.min.js"></script>
+    <script type="text/javascript" src="~/js/qr.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="_content/MudBlazor/MudBlazor.min.js" asp-append-version="true"></script>
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>

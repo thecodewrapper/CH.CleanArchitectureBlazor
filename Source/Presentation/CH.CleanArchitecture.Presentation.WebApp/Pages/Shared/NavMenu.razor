@@ -1,0 +1,36 @@
+﻿@inherits BaseComponent
+@using CH.CleanArchitecture.Presentation.WebApp.Constants;
+@using CH.CleanArchitecture.Presentation.Framework.Interfaces;
+<MudDrawer @bind-Open="SideBarOpen" Elevation="1" Variant="DrawerVariant.Mini">
+    <MudNavMenu>
+        <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@IconConstants.DASHBOARD">Dashboard</MudNavLink>
+        <AuthorizeView Roles="User">
+            <MudNavLink Href="/userprofile" Match="NavLinkMatch.All" Icon="@IconConstants.USER_PROFILE">User Profile</MudNavLink>
+            <MudNavLink Href="/notifications" Match="NavLinkMatch.All" Icon="@IconConstants.MY_NOTIFICATIONS">My Notifications</MudNavLink>
+        </AuthorizeView>
+        <AuthorizeView Roles="SuperAdmin">
+            <MudNavGroup Title="Developer" Icon="@IconConstants.DEVELOPER" Expanded="true">
+                <MudNavLink Icon="@IconConstants.APPLICATION_CONFIG" Match="NavLinkMatch.Prefix" Href="/dev/appconfigs">Application Config</MudNavLink>
+                <MudNavLink Icon="@IconConstants.AUDIT" Match="NavLinkMatch.Prefix" Href="/dev/audit">Audit</MudNavLink>
+                <MudNavLink Icon="@IconConstants.JOBS" Match="NavLinkMatch.Prefix" Href="/dev/jobs">Jobs</MudNavLink>
+            </MudNavGroup>
+        </AuthorizeView>
+    </MudNavMenu>
+</MudDrawer>
+@code {
+    [Parameter]
+    public bool SideBarOpen { get; set; }
+
+    [Inject]
+    public IAuthorizationStateProvider AuthorizationStateProvider { get; set; }
+
+    private bool _agentReadAuthorized;
+    private bool _customerCardListAuthorized;
+    private bool _recipeListAuthorized;
+    private bool _presetMealPlanListAuthorized;
+    private bool _mealPlanRequestListAuthorized;
+
+    protected override async Task OnInitializedAsync() {
+        await base.OnInitializedAsync();
+    }
+} 

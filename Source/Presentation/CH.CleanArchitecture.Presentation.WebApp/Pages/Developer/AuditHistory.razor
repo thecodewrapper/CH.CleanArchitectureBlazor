@@ -1,0 +1,5 @@
+﻿@page "/dev/audit"
+@using CH.CleanArchitecture.Presentation.WebApp.Components.Developer
+@attribute [Authorize(Roles = "SuperAdmin")]
+<PageHeader Title="Audit History" Icon="@IconConstants.AUDIT" Description="View application audit history" />
+<AuditHistoryGrid/>

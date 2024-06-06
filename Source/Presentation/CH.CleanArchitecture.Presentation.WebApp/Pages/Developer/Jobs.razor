@@ -1,0 +1,38 @@
+﻿@attribute [Authorize(Roles = "SuperAdmin")]
+@page "/dev/jobs"
+@using CH.CleanArchitecture.Infrastructure.Services;
+<PageHeader Title="Jobs" Icon="@IconConstants.JOBS" Description="View and enroll to jobs" />
+
+<MudStack>
+    <MudButton Variant="Variant.Filled" OnClick="OpenHangfireDashboard">Open Hangfire Dashboard</MudButton>
+    <MudButton Variant="Variant.Filled" OnClick="EnrollAuditHistoryPurgeJob">Enroll Audit History Purge Job</MudButton>
+    <MudButton Variant="Variant.Filled" OnClick="EnrollNorificationsPurgeJob">Enroll Notifications Purge Job</MudButton>
+</MudStack>
+@code {
+    [Inject] private IJSRuntime _jSRuntime { get; set; }
+    [Inject] private IScheduledJobService _scheduledJobService { get; set; }
+    [Inject] private IToastService _toastService { get; set; }
+    private void OpenHangfireDashboard() {
+        _jSRuntime.InvokeVoidAsync("open", "/hangfire", "_blank");
+    }
+
+    private void EnrollAuditHistoryPurgeJob() {
+        var result = _scheduledJobService.EnrollAuditPurgingJob();
+        if (result.IsSuccessful) {
+            _toastService.ShowSuccess("Audit History purge job enrolled successfully");
+        }
+        else {
+            _toastService.ShowError(result.MessageWithErrors);
+        }
+    }
+
+    private void EnrollNorificationsPurgeJob() {
+        var result = _scheduledJobService.EnrollNotificationsPurgingJob();
+        if (result.IsSuccessful) {
+            _toastService.ShowSuccess("Notifications purge job enrolled successfully");
+        }
+        else {
+            _toastService.ShowError(result.MessageWithErrors);
+        }
+    }
+}

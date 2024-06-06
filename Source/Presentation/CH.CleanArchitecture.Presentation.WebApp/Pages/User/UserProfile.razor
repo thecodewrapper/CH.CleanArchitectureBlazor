@@ -1,0 +1,20 @@
+﻿@page "/userprofile"
+<PageHeader Title="User Profile" Icon="@IconConstants.USER_PROFILE" Description="View and modify your user profile details" />
+<MudTabs Outlined="false" Position="Position.Top" Rounded="true" Border="true" ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
+    <MudTabPanel Text="Details">
+        <MudText Typo="Typo.h5" Class="inner-component-title">Manage your profile details</MudText>
+        <UserDetailsForm />
+    </MudTabPanel>
+    <MudTabPanel Text="Change Password">
+        <MudText Typo="Typo.h5" Class="inner-component-title">Change your password</MudText>
+        <ChangePasswordComponent />
+    </MudTabPanel>
+    <MudTabPanel Text="Personal Data">
+        <MudText Typo="Typo.h5" Class="inner-component-title">Personal data</MudText>
+        <PersonalDataComponent />
+    </MudTabPanel>
+    <MudTabPanel Text="Two-Factor Authentication">
+        <MudText Typo="Typo.h5" Class="inner-component-title">Authenticator app</MudText>
+        <TwoFactorAuthenticationComponent/>
+    </MudTabPanel>
+</MudTabs>

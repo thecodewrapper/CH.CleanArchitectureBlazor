@@ -1,0 +1,56 @@
+﻿<MudStack AlignItems="AlignItems.Start" Spacing="0" Class="pb-2 mb-5" Style="border-bottom:1px solid lightgray">
+    <MudGrid Spacing="2">
+        <MudItem>
+            <MudStack Row Spacing="1" AlignItems="AlignItems.Center">
+                 <MudIcon Icon="@Icon" Size="Size.Large" Style="font-size: 2.55rem" />
+                 <MudText Typo="Typo.h4">
+                     <strong>@Title</strong>
+                     </MudText>
+             </MudStack>
+         </MudItem>
+         @if (!string.IsNullOrEmpty(Subtitle)) {
+            <MudItem>
+                <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                     <MudText Typo="Typo.h4" Style="font-weight:100">|</MudText>
+                     @if (OnSubtitleClick.HasDelegate) {
+                        <MudLink OnClick="@(() => OnSubtitleClick.InvokeAsync())" Typo="Typo.h4" Style="font-weight:100">@Subtitle</MudLink>
+                    }
+                    else {
+                        <MudText Typo="Typo.h4" Style="font-weight:100">@Subtitle</MudText>
+                    }
+                 </MudStack>
+             </MudItem>
+        }
+
+        @if (!string.IsNullOrEmpty(Subtitle2)) {
+            <MudItem>
+                <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                     <MudText Typo="Typo.h4" Style="font-weight:100">|</MudText>
+                     @if (OnSubtitle2Click.HasDelegate) {
+                        <MudLink OnClick="@(() => OnSubtitle2Click.InvokeAsync())" Typo="Typo.h4" Style="font-weight:100">@Subtitle2</MudLink>
+                    }
+                    else {
+                        <MudText Typo="Typo.h4" Style="font-weight:100">@Subtitle2</MudText>
+                    }
+                    </MudStack>
+            </MudItem>
+        }
+
+        @if (!string.IsNullOrEmpty(Subtitle3)) {
+            <MudItem>
+                <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                     <MudText Typo="Typo.h4" Style="font-weight:100">|</MudText>
+                     @if (OnSubtitle3Click.HasDelegate) {
+                        <MudLink OnClick="@(() => OnSubtitle3Click.InvokeAsync())" Typo="Typo.h4" Style="font-weight:100">@Subtitle3</MudLink>
+                    }
+                    else {
+                        <MudText Typo="Typo.h4" Style="font-weight:100">@Subtitle3</MudText>
+                    }
+                </MudStack>
+            </MudItem>
+        }
+    </MudGrid>
+    @if (!string.IsNullOrEmpty(Description)) {
+        <MudText Typo="Typo.body1">@Description</MudText>
+    }
+</MudStack>

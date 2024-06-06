@@ -1,0 +1,36 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="2">
+            <MudText>@ContentText</MudText>
+            <MudInput InputType="InputType.Text" @bind-Value="_input" Placeholder=@InputDescriptionText></MudInput>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        @if (ShowCancelButton) {
+            <CRUDButton OnClick="Cancel" Type="CRUDButtonType.Cancel" />
+        }
+        <MudButton Color="@Color" Variant="Variant.Filled" OnClick="Submit" Disabled="@(string.IsNullOrEmpty(_input))">@ButtonText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+    
+    [Parameter] public string InputDescriptionText { get; set; }
+
+    [Parameter] public string ButtonText { get; set; }
+
+    [Parameter] public Color Color { get; set; }
+
+    [Parameter] public bool ShowCancelButton { get; set; } = true;
+
+    private string _input;
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(_input));
+
+    void Cancel() => MudDialog.Cancel();
+}
+
+

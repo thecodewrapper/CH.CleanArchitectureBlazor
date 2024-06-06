@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "qrcodejs@1.0.0",
+      "destination": "wwwroot/lib/qrcodejs/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "zxcvbn@4.4.2",
+      "destination": "wwwroot/lib/zxcvbn/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+trigger:
+- develop
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 8 SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+    includePreviewVersions: true
+- task: NuGetToolInstaller@1
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore'
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: Test
+#   inputs:
+#     command: test
+#     projects: '**/*Tests/*.csproj'
+#     arguments: '--configuration $(buildConfiguration)'

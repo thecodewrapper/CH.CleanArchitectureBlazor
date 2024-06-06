@@ -1,0 +1,72 @@
+﻿@using CH.CleanArchitecture.Infrastructure.Resources;
+@using CH.CleanArchitecture.Presentation.Framework.ViewModels;
+@inherits BaseComponent;
+<MudMenu id="notifications" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopLeft" LockScroll="true" MaxHeight="700">
+    <ActivatorContent>
+        @if (Notifications.Any(n => n.IsNew)) {
+            <MudBadge Content="@Notifications.Count(n => n.IsNew)" Overlap="true" Color="Color.Error" Origin="Origin.TopRight">
+                <MudIconButton id="notifications" Icon="@Icons.Material.Filled.Notifications" OnClick="ToggleOpen"></MudIconButton>
+            </MudBadge>
+        }
+        else {
+            <MudIconButton id="notifications" Icon="@Icons.Material.Filled.Notifications" OnClick="ToggleOpen"></MudIconButton>
+        }
+    </ActivatorContent>
+    <ChildContent>
+        <MudPaper Width="365px" Style="overflow-x: hidden;" Elevation="0">
+            <MudPaper Class="d-flex justify-space-between flex-grow-1 gap-4 pr-4 pl-4 pt-4" Elevation="0">
+                <MudPaper Elevation="0">
+                    <MudText Style="font-weight: 700; font-size: 1.05rem;" Color="Color.Secondary">@LocalizationService.GetLocalizedString(ResourceKeys.Titles_Notifications)</MudText>
+                </MudPaper>
+                <MudPaper Elevation="0">
+                </MudPaper>
+                <MudPaper Elevation="0">
+                    @if (Notifications.Any(n => n.IsNew)) {
+                        <MudText @onclick="MarkAllAsRead" Typo="Typo.subtitle2" Color="Color.Primary" Style="cursor: pointer; text-transform: uppercase;">@LocalizationService.GetLocalizedString(ResourceKeys.Notifications_MarkAllAsRead)</MudText>
+                    }
+                </MudPaper>
+            </MudPaper>
+            <MudList>
+                @if (!Notifications.Any()) {
+                    <MudListItem Style="height: 625px">
+                        <MudPaper Class="d-flex justify-center flex-grow-1" Elevation="0">
+                            <MudPaper Class="d-flex align-center justify-start" Elevation="0">
+                                <MudCardMedia Image="_content/Hyperio.Layout.Web/images/sleep-alarm.svg" Height="80" Style="width: 80px;" />
+                            </MudPaper>
+                        </MudPaper>
+                        <MudPaper Class="d-flex justify-center flex-grow-1" Elevation="0">
+                            <MudPaper Class="d-flex align-center justify-start" Elevation="0">
+                                <MudText Typo="Typo.h5">@LocalizationService.GetLocalizedString(ResourceKeys.Notifications_NoNewNotifications)</MudText>
+                            </MudPaper>
+                        </MudPaper>
+                    </MudListItem>
+                }
+                else {
+                    <MudListSubheader Class="pb-2">
+                        <MudPaper Class="d-flex flex-grow-1" Elevation="0">
+                            <MudPaper Class="d-flex align-center justify-start" Elevation="0">
+                            </MudPaper>
+                        </MudPaper>
+                    </MudListSubheader>
+                    @foreach (var notification in Notifications) {
+                        <MudListItem>
+                            <MudPaper Class="d-flex justify-space-between flex-grow-1" Elevation="0">
+                                <MudPaper Elevation="0">
+                                    <MudText Typo="Typo.subtitle1">@notification.Title</MudText>
+                                </MudPaper>
+                                <MudPaper Elevation="0">
+                                </MudPaper>
+                                <MudPaper Elevation="0">
+                                    @if (notification.IsNew) {
+                                        <MudIcon Class="cursor-pointer" @onclick="(() => MarkAsRead(notification))" Icon="@Icons.Material.Filled.Circle" Color="Color.Primary" Size="Size.Small" />
+                                    }
+                                </MudPaper>
+                            </MudPaper>
+                            <MudText Typo="Typo.subtitle2">@notification.Description</MudText>
+                        </MudListItem>
+                    }
+                }
+            </MudList>
+        </MudPaper>
+    </ChildContent>
+</MudMenu>

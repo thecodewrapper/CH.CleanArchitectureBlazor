@@ -1,0 +1,21 @@
+﻿<LayoutView Layout="@typeof(EmailLayout)">
+    <SectionContent SectionName="header-title">
+        Welcome to CH.CleanArchitecture!
+    </SectionContent>
+    <p style="margin:0 0 16px">Γεια σου @Model.Payload.Name,</p>
+    <p style="margin:0 0 16px">
+        Ευχαριστούμε που δημιούργησες λογαριασμό στο CH.CleanArchitecture. Ως υπενθύμιση, το καταχωρημένο email σου είναι <strong>@Model.Payload.Email</strong>
+        Επιβεβαίωσε τον λογαριασμό σου κάνοντας κλικ <strong><a href="@Model.Payload.ConfirmationUrl">εδώ</a></strong>.
+    </p>
+
+    Μετά την επαλήθευση του email σου, ο λογαριασμός σου θα υποβληθεί στον διαχειριστή του συστήματος για έλεγχο.
+    Μετά τον επιτυχή ελεγχο του προφίλ σου θα μπορείς να ενεργοποιήσεις την συνδρομή σου και να αποκτήσεις πρόσβαση σε όλες τις λειτουργίες του συστήματος.
+</LayoutView>
+
+@code {
+    [Parameter]
+    public EmailViewModel<ConfirmAccountDTO> Model { get; set; }
+
+    [Inject]
+    private ILocalizationService _localization { get; set; }
+}

@@ -1,0 +1,5 @@
+﻿@page "/dev/appconfigs"
+@using CH.CleanArchitecture.Presentation.WebApp.Components.Developer
+@attribute [Authorize(Roles = "SuperAdmin")]
+<PageHeader Title="Application Configurations" Icon="@IconConstants.APPLICATION_CONFIG" Description="View and manage application-wide configurations" />
+<ApplicationConfigurationsGrid/>

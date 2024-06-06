@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CH.CleanArchitecture.Infrastructure.Models;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav ml-auto">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                <button style="color:#D5782D" id="logout" type="submit" class="nav-link"><strong>Logout</strong></button>
+        </form>
+    </li>
+}
+</ul>

@@ -1,0 +1,36 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@inherits BaseComponent;
+<MudPaper Style="width:100%">
+    <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <MudCard>
+            <MudCardContent>
+                <MudStack Spacing="0">
+                    <MudTextField Label="Name" Class="mt-3" @bind-Value="model.Name" For="@(() => model.Name)" />
+                    <MudTextField Label="Surname" Class="mt-3" @bind-Value="model.Surname" For="@(() => model.Surname)" />
+                    <MudTextField Label="Email" Class="mt-3" For="@(() => model.Email)" Value="@model.Email" InputType="MudBlazor.InputType.Email" Disabled />
+                    <MudTextField Label="Primary Phone" HelperText="Max. 8 characters" @bind-Value="model.PhoneNumber" For="@(() => model.PhoneNumber)" InputType="MudBlazor.InputType.Telephone" />
+                    <MudTextField Label="Secondary Phone" HelperText="Max. 8 characters" @bind-Value="model.SecondaryPhoneNumber" For="@(() => model.SecondaryPhoneNumber)" InputType="MudBlazor.InputType.Telephone" />
+                    <MudRadioGroup T="string" @bind-Value="model.LanguagePreference">
+                        <MudRadio Value="@("en")" Color="Color.Primary" UnCheckedColor="Color.Default">English</MudRadio>
+                        <MudRadio Value="@("el")" Color="Color.Secondary" UnCheckedColor="Color.Default">Ελληνικά</MudRadio>
+                    </MudRadioGroup>
+                </MudStack>
+
+                <MudStack Class="mt-7" Spacing="0">
+                    <MudText Class="mb-0" Typo="Typo.h6">Address</MudText>
+                    <MudTextField Label="Street 1" Class="mt-3" @bind-Value="model.Address.Line1" For="@(() => model.Address.Line1)" />
+                    <MudTextField Label="Street 2" Class="mt-3" @bind-Value="model.Address.Line2" For="@(() => model.Address.Line2)" />
+                    <MudTextField Label="Street Number" Class="mt-3" @bind-Value="model.Address.PostCode" For="@(() => model.Address.PostCode)" />
+                    <MudTextField Label="Country" Class="mt-3" @bind-Value="model.Address.Country" For="@(() => model.Address.Country)" />
+                    <MudTextField Label="City" Class="mt-3" @bind-Value="model.Address.City" For="@(() => model.Address.City)" />
+                    <MudTextField Label="Area" Class="mt-3" @bind-Value="model.Address.Area" For="@(() => model.Address.Area)" />
+                    <MudTextField Label="Flat Number" Class="mt-3" @bind-Value="model.Address.FlatNumber" For="@(() => model.Address.FlatNumber)" />
+                </MudStack>
+            </MudCardContent>
+            <MudCardActions>
+                <CRUDButton Type="CRUDButtonType.SubmitForm" />
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+</MudPaper>

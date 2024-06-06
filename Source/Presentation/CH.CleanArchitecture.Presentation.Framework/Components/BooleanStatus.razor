@@ -1,0 +1,16 @@
+﻿@if (StatusValue) {
+    <MudChip Size="Size.Small" Color="Color.Success" IconColor="Color.Default">@TrueText</MudChip>
+}
+else {
+    <MudChip Size="Size.Small" Color="Color.Error" IconColor="Color.Default">@FalseText</MudChip>
+}
+@code {
+    [Parameter]
+    public bool StatusValue { get; set; }
+
+    [Parameter]
+    public string TrueText { get; set; }
+
+    [Parameter]
+    public string FalseText { get; set; }
+}
