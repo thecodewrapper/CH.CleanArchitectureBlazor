@@ -1,4 +1,4 @@
-# Clean Architecture
+# Clean Architecture (Blazor Server)
 My personal take on Clean Architecture. Please read my post at [Implementing a Clean Architecture in ASP.NET Core 8](https://thecodewrapper.com/dev/tcw-clean-achitecture) for more information.
 
 This is the Blazor version of my Clean Architecture solution. The original ASP.NET Core MVC version can be found [here](https://github.com/thecodewrapper/CH.CleanArchitecture)
