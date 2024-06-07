@@ -1,0 +1,51 @@
+﻿@using Newtonsoft.Json;
+@using CH.CleanArchitecture.Core.Application.ReadModels;
+@inherits BaseComponent
+@attribute [Authorize(Roles = "Admin")]
+
+<MudGrid>
+    <MudItem Class="pa-4" xs="12" sm="12" md="12">
+        <MudTable ServerData="@(new Func<TableState, Task<TableData<UserReadModel>>>(ServerReload))"
+                  Dense="true" Hover="true" @ref="_table">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Users</MudText>
+                <MudSpacer />
+                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                <CRUDButton Type="CRUDButtonType.New" OnClick="@(async () => await AddNewAsync())" />
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.Name))" T="UserReadModel">Id</MudTableSortLabel></MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Surname</MudTh>
+                <MudTh>Email</MudTh>
+                <MudTh>Roles</MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.IsActive))" T="UserReadModel">Is Active</MudTableSortLabel></MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Id">@context.Id</MudTd>
+                <MudTd DataLabel="Name">@context.Name</MudTd>
+                <MudTd DataLabel="Surname">@context.Surname</MudTd>
+                <MudTd DataLabel="Email">@context.Email</MudTd>
+                <MudTd DataLabel="Roles">@context.Roles</MudTd>
+                <MudTd DataLabel="Is Active"><ActivityStatus IsActive="@context.IsActive" /></MudTd>
+                <MudTd DataLabel="Details">
+                    <MudStack Row Spacing="1" Justify="Justify.FlexEnd">
+                         <CRUDButton Type="CRUDButtonType.Details" OnClick="@(() => ShowUser(context.Id))" />
+                         <CRUDButton Type="CRUDButtonType.Delete" OnClick="@(() => DeleteUser(context))" />
+                     </MudStack>
+                 </MudTd>
+             </RowTemplate>
+             <NoRecordsContent>
+                 <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_NoRecordsFound)</MudText>
+             </NoRecordsContent>
+             <LoadingContent>
+                 <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_Loading)</MudText>
+             </LoadingContent>
+             <PagerContent>
+                 <MudTablePager />
+             </PagerContent>
+         </MudTable>
+     </MudItem>
+ </MudGrid>

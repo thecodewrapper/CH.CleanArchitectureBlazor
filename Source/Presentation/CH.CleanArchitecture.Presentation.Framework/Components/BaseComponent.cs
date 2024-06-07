@@ -74,7 +74,11 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         #endregion
 
         #region Protected Methods
-
+        protected virtual void LogExceptionError(Exception ex, string area) {
+            Guid exceptionId = Guid.NewGuid();
+            Logger.LogError($"Exception occured on {area} ({GetType().FullName}) - ExceptionId: {exceptionId}: {ex}");
+            ModalService.ShowInfoModal("An error occured", $"Incident code: '{exceptionId}'. Please contact your administrator and provide the incident code.");
+        }
 
         protected async Task<TResponse> SendRequestAsync<TResponse>(IRequest<TResponse> request, bool showLoader = true, CancellationToken cancellationToken = default) where TResponse : class {
             if (showLoader)

@@ -1,0 +1,7 @@
+﻿@page "/admin/users"
+@using CH.Messaging.Abstractions;
+@using CH.CleanArchitecture.Core.Application.Commands;
+@using CH.CleanArchitecture.Presentation.WebApp.Components.Admin
+@attribute [Authorize(Roles = "Admin")]
+<PageHeader Title="User Management" Icon="@IconConstants.USERS" Description="View and configure all system users" />
+<UsersGrid/>

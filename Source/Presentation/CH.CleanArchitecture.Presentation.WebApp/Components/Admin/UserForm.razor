@@ -1,0 +1,27 @@
+﻿@inherits FormComponent<UserFormModel, CreateUserCommand>
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@_formModel" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
+                    <MudStack Spacing="0">
+                        <MudTextField Label="Username" Class="mt-3" @bind-Value="_formModel.Username" For="@(() => _formModel.Username)" />
+                        <MudTextField Label="Name" Class="mt-3" @bind-Value="_formModel.Name" For="@(() => _formModel.Name)" />
+                        <MudTextField Label="Surname" Class="mt-3" @bind-Value="_formModel.Surname" For="@(() => _formModel.Surname)" />
+                        <MudTextField Label="Email" Class="mt-3" For="@(() => _formModel.Email)" @bind-Value="_formModel.Email" InputType="MudBlazor.InputType.Email" Required/>
+                        <MudSelect @ref="_rolesMultiSelect" MultiSelection T="string" Label="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)" SelectedValues="_formModel.Roles" SelectedValuesChanged="SelectedRolesChanged" Required>
+                            @foreach (RoleEnum item in Enum.GetValues(typeof(RoleEnum))) {
+                                <MudSelectItem T="string" Value="@item.ToString()">@item</MudSelectItem>
+                            }
+                        </MudSelect>
+                        <MudTextField Label="Password" HelperText="Min. 12 characters" @bind-Value="_formModel.Password" For="@(() => _formModel.Password)" InputType="MudBlazor.InputType.Password" Required />
+                    </MudStack>
+                </MudCardContent>
+                <MudCardActions>
+                    <CRUDButton Type="CRUDButtonType.SubmitForm" />
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

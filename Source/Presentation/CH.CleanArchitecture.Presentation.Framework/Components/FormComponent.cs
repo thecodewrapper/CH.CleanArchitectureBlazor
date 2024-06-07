@@ -4,6 +4,7 @@ using MudBlazor;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
+using System;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {
@@ -36,21 +37,28 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         protected async Task HandleValidSubmit() {
             Loader.Show();
             Result result;
-            if (isNew) {
-                result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+
+            try {
+                if (isNew) {
+                    result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+                }
+                else {
+                    result = await SendRequestAsync(Mapper.Map<TUpdateCommand>(_formModel));
+                }
             }
-            else {
-                result = await SendRequestAsync(Mapper.Map<TUpdateCommand>(_formModel));
+            catch (Exception ex) {
+                LogExceptionError(ex, nameof(HandleValidSubmit));
+                return;
             }
 
             Loader.Hide();
             if (result.IsSuccessful) {
                 ToastService.ShowSuccess(result.Message);
+                MudDialog.Close(DialogResult.Ok(result));
             }
             else {
                 ToastService.ShowError(result.MessageWithErrors);
             }
-            MudDialog.Close(DialogResult.Ok(result));
         }
     }
 
@@ -66,16 +74,23 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         protected async Task HandleValidSubmit() {
             Loader.Show();
             Result result;
-            result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+
+            try {
+                result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+            }
+            catch (Exception ex) {
+                LogExceptionError(ex, nameof(HandleValidSubmit));
+                return;
+            }
 
             Loader.Hide();
             if (result.IsSuccessful) {
                 ToastService.ShowSuccess(result.Message);
+                MudDialog.Close(DialogResult.Ok(result));
             }
             else {
                 ToastService.ShowError(result.MessageWithErrors);
             }
-            MudDialog.Close(DialogResult.Ok(result));
         }
     }
 
@@ -91,16 +106,23 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         protected async Task HandleValidSubmit() {
             Loader.Show();
             Result result;
-            result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+            try {
+                result = await SendRequestAsync(Mapper.Map<TCreateCommand>(_formModel));
+            }
+            catch (Exception ex) {
+                LogExceptionError(ex, nameof(HandleValidSubmit));
+                return;
+            }
+
 
             Loader.Hide();
             if (result.IsSuccessful) {
                 ToastService.ShowSuccess(result.Message);
+                MudDialog.Close(DialogResult.Ok(result));
             }
             else {
                 ToastService.ShowError(result.MessageWithErrors);
             }
-            MudDialog.Close(DialogResult.Ok(result));
         }
     }
 }

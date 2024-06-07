@@ -6,8 +6,27 @@ using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {
-    public record CreateUserCommand(string Username, string Name, string Surname, string Email, string Password, List<string> Roles) : IRequest<Result>, ICommand
+    public class CreateUserCommand : BaseCommand<Result>
     {
+        public string Username { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public List<string> Roles { get; set; }
+
+        public CreateUserCommand() {
+
+        }
+
+        public CreateUserCommand(string username, string name, string surname, string email, string password, List<string> roles) {
+            Username = username;
+            Name = name;
+            Surname = surname;
+            Email = email;
+            Password = password;
+            Roles = roles;
+        }
     }
 
     /// <summary>

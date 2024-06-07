@@ -8,6 +8,5 @@ namespace CH.CleanArchitecture.Core.Application.Queries
     public class GetAllUsersQuery : IRequest<Result<IEnumerable<UserReadModel>>>, IQuery
     {
         public QueryOptions Options { get; set; }
-        public bool ApplyRoleFilter { get; set; } = true;
     }
 }

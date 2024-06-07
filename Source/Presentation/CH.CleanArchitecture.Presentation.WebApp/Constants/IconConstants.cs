@@ -13,5 +13,6 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Constants
         public const string APPLICATION_CONFIG = Icons.Material.Filled.List;
         public const string AUDIT = Icons.Material.Filled.MonitorHeart;
         public const string JOBS = Icons.Material.Filled.Schedule;
+        public const string USERS = Icons.Material.Filled.SupervisedUserCircle;
     }
 }

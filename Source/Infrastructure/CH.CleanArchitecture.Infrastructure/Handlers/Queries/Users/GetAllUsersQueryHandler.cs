@@ -31,13 +31,9 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
             else {
                 var data = _mapper.Map<IEnumerable<UserReadModel>>(getUsersResult.Data);
 
-                if (query.ApplyRoleFilter) {
-                    var currentUserHighestRole = _authenticatedUserService.Roles.Max();
-                    data = data.Where(u => u.Roles.Max() <= currentUserHighestRole);
-                }
-
                 result.Succeed().WithData(data);
                 result.AddMetadata("RecordCount", data.Count());
+                result.AddMetadata("AllRecordCount", data.Count());
             }
 
             return result;
