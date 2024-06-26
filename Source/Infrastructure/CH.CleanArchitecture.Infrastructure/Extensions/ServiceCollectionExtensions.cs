@@ -25,6 +25,7 @@ using System.Linq;
 using CH.CleanArchitecture.Presentation.EmailTemplates.Extensions;
 using CH.CleanArchitecture.Core.Application.Interfaces.Storage;
 using CH.CleanArchitecture.Infrastructure.Services.Storage;
+using CH.CleanArchitecture.Infrastructure.DbContexts.Factories;
 
 namespace CH.CleanArchitecture.Infrastructure.Extensions
 {
@@ -57,21 +58,20 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("ApplicationDb"));
             }
             else {
-                services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
-                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
+                services.AddIdentityDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+                services.AddApplicationDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
             }
-            services.AddScoped<IDbInitializerService, DbInitializerService>();
-            services.AddScoped<IAuthenticatedUserService, DefaultAuthenticatedUserService>();
+            services.AddTransient<IDbInitializerService, DbInitializerService>();
+            services.AddTransient<IAuthenticatedUserService, DefaultAuthenticatedUserService>();
         }
 
         private static void AddRepositories(this IServiceCollection services) {
-            services.AddScoped(typeof(IEntityRepository<,>), typeof(DataEntityRepository<,>));
-            services.AddScoped(typeof(IESRepository<,>), typeof(ESRepository<,>));
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddTransient(typeof(IEntityRepository<,>), typeof(DataEntityRepository<,>));
+            services.AddTransient(typeof(IESRepository<,>), typeof(ESRepository<,>));
+            services.AddTransient<IOrderRepository, OrderRepository>();
         }
 
         private static void AddServiceBusMediator(this IServiceCollection services, List<Type> consumerTypes = default) {
-            services.AddScoped<IServiceBus, ServiceBusMediator>();
             services.AddMediator(x =>
             {
                 if (consumerTypes != null && consumerTypes.Any()) {
@@ -82,6 +82,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                     x.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
                 }
             });
+            services.AddSingleton<IServiceBus, ServiceBusMediator>();
+            services.AddSingleton<IEventBus, ServiceBusMediator>();
         }
 
         private static void AddMapping(this IServiceCollection services) {
@@ -98,18 +100,18 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         private static void AddScheduledJobs(this IServiceCollection services, IConfiguration configuration) {
             services.AddHangfire(x => x.UseSqlServerStorage(configuration.GetConnectionString("ApplicationConnection")));
             services.AddHangfireServer();
-            services.AddScoped<IScheduledJobService, ScheduledJobService>();
+            services.AddTransient<IScheduledJobService, ScheduledJobService>();
         }
 
         private static void AddAuthServices(this IServiceCollection services) {
-            services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
-            services.AddScoped<IApplicationUserService, ApplicationUserService>();
+            services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
         }
 
         private static void AddSharedServices(this IServiceCollection services) {
 
-            services.AddScoped<IApplicationConfigurationService, ApplicationConfigurationService>();
-            services.AddScoped<IAuditHistoryService, AuditHistoryService>();
+            services.AddTransient<IApplicationConfigurationService, ApplicationConfigurationService>();
+            services.AddTransient<IAuditHistoryService, AuditHistoryService>();
 
             services.AddHtmlRenderingServices();
             services.AddTransient<INotificationService, NotificationService>();
@@ -117,8 +119,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         }
 
         private static void AddLocalizationServices(this IServiceCollection services) {
-            services.AddScoped<ILocalizationService, LocalizationService>();
-            services.AddScoped<ILocalizationKeyProvider, LocalizationKeyProvider>();
+            services.AddTransient<ILocalizationService, LocalizationService>();
+            services.AddTransient<ILocalizationKeyProvider, LocalizationKeyProvider>();
         }
 
         /// <summary>
@@ -142,19 +144,19 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         private static void AddCommunicationServices(this IServiceCollection services, IConfiguration configuration) {
             var emailSenderOptions = GetEmailSenderOptions(configuration);
             if (emailSenderOptions.UseSendGrid) {
-                services.AddScoped<IEmailService, EmailSendGridService>();
+                services.AddTransient<IEmailService, EmailSendGridService>();
             }
             else {
-                services.AddScoped<IEmailService, EmailSMTPService>();
+                services.AddTransient<IEmailService, EmailSMTPService>();
             }
 
-            services.AddScoped<ISMSService, SMSService>();
+            services.AddTransient<ISMSService, SMSService>();
         }
 
         private static void AddCryptoServices(this IServiceCollection services) {
-            services.AddScoped<IJWTService, JWTService>();
-            services.AddScoped<IUrlTokenService, UrlTokenService>();
-            services.AddScoped<IPasswordGeneratorService, PasswordGeneratorIdentityService>();
+            services.AddTransient<IJWTService, JWTService>();
+            services.AddTransient<IUrlTokenService, UrlTokenService>();
+            services.AddTransient<IPasswordGeneratorService, PasswordGeneratorIdentityService>();
         }
 
         private static void AddIdentity(this IServiceCollection services) {
@@ -182,6 +184,32 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 options.Password = passwordOptions;
 
             });
+        }
+
+        private static IServiceCollection AddApplicationDbContextFactory(this IServiceCollection services, Action<DbContextOptionsBuilder>? options) {
+            services.AddDbContext<ApplicationDbContext>(options);
+            services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(serviceProvider =>
+            {
+                using var scope = serviceProvider.CreateScope();
+                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IAuthenticatedUserService>();
+
+                return new ApplicationDbContextFactory(options, authenticatedUserService);
+            });
+
+            return services;
+        }
+
+        private static IServiceCollection AddIdentityDbContextFactory(this IServiceCollection services, Action<DbContextOptionsBuilder>? options) {
+            services.AddDbContext<IdentityDbContext>(options);
+            services.AddSingleton<IDbContextFactory<IdentityDbContext>>(serviceProvider =>
+            {
+                using var scope = serviceProvider.CreateScope();
+                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IAuthenticatedUserService>();
+
+                return new IdentityDbContextFactory(options, authenticatedUserService);
+            });
+
+            return services;
         }
 
         private static StorageOptions GetStorageOptions(IConfiguration configuration) {

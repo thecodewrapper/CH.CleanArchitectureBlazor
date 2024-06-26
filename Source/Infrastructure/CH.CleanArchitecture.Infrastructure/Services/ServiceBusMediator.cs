@@ -9,7 +9,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     /// Abstraction over the implementation specifics of a message broker transmission
     /// Concrete implementation of <see cref="IServiceBus"/> which uses MassTransit's <see cref="IMediator"/>
     /// </summary>
-    public class ServiceBusMediator : IServiceBus
+    public class ServiceBusMediator : IServiceBus, IEventBus
     {
         private readonly IMediator _mediator;
 
@@ -22,6 +22,10 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             cancellationToken.ThrowIfCancellationRequested();
             var response = await client.GetResponse<TResponse>(request, cancellationToken);
             return response.Message;
+        }
+
+        public async Task SendAsync(IRequest request, CancellationToken cancellationToken = default) {
+            await _mediator.Send(request);
         }
     }
 }

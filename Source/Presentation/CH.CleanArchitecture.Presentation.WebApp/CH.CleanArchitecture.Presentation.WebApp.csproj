@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>e479abb7-8c16-4006-9da9-23bbd2f3fb6e</UserSecretsId>
+    <UserSecretsId>8018e338-382a-47fc-b6e7-540e5506ae3d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
     <StartupObject>CH.CleanArchitecture.Presentation.WebApp.Program</StartupObject>

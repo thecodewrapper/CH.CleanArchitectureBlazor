@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.EntityTypeConfigurations;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.Data.Abstractions;
@@ -14,8 +15,13 @@ namespace CH.CleanArchitecture.Infrastructure.DbContexts
         IUnitOfWork
     {
         private const string SCHEMA = "Identity";
+        private readonly IAuthenticatedUserService _authenticatedUser;
 
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options) {
+        }
+
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IAuthenticatedUserService authenticatedUser) : base(options) {
+            _authenticatedUser = authenticatedUser;
         }
 
         protected override void OnModelCreating(ModelBuilder builder) {
