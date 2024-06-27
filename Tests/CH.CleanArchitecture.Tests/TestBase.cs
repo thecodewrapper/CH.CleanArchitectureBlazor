@@ -7,6 +7,7 @@ using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Tests.Mocks;
 using CH.EventStore.EntityFramework;
 using CH.Messaging.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -61,6 +62,8 @@ namespace CH.CleanArchitecture.Tests
             services.AddScoped<IdentityDbContext>(_ => identityDbContext);
             services.AddScoped<EventStoreDbContext>(_ => eventStoreDbContext);
 
+            services.AddApplicationAuthorization();
+            services.AddScoped<IAuthorizationService, MockAuthorizationService>();
             services.AddSingleton<ILoggerFactory, NullLoggerFactory>();
             services.AddLogging();
 
