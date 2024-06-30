@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.Resources;
+using CH.CleanArchitecture.Resources;
 using CH.CleanArchitecture.Presentation.Framework;
 
 namespace CH.CleanArchitecture.Presentation.Web.Services

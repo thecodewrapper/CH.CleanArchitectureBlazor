@@ -41,7 +41,6 @@
     <ProjectReference Include="..\..\Core\CH.CleanArchitecture.Core.Domain\CH.CleanArchitecture.Core.Domain.csproj" />
     <ProjectReference Include="..\..\Presentation\CH.CleanArchitecture.Presentation.EmailTemplates\CH.CleanArchitecture.Presentation.EmailTemplates.csproj" />
     <ProjectReference Include="..\CH.CleanArchitecture.Infrastructure.Auditing\CH.CleanArchitecture.Infrastructure.Auditing.csproj" />
-    <ProjectReference Include="..\CH.CleanArchitecture.Infrastructure.Resources\CH.CleanArchitecture.Infrastructure.Resources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

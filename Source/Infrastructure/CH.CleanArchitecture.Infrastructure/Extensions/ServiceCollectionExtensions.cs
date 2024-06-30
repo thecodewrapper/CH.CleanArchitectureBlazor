@@ -10,7 +10,6 @@ using CH.CleanArchitecture.Infrastructure.Mappings;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Infrastructure.Options;
 using CH.CleanArchitecture.Infrastructure.Repositories;
-using CH.CleanArchitecture.Infrastructure.Resources;
 using CH.CleanArchitecture.Infrastructure.Services;
 using CH.Data.Abstractions;
 using CH.EventStore.EntityFramework.Extensions;

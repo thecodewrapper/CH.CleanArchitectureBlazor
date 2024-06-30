@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CH.CleanArchitecture.Infrastructure.Resources {
+namespace CH.CleanArchitecture.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CH.CleanArchitecture.Infrastructure.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CH.CleanArchitecture.Infrastructure.Resources.SharedResources", typeof(SharedResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CH.CleanArchitecture.Resources.SharedResources", typeof(SharedResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

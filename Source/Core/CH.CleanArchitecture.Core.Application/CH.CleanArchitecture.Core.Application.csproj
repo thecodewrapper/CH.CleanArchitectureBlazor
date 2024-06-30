@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CH.CleanArchitecture.Common\CH.CleanArchitecture.Common.csproj" />
+    <ProjectReference Include="..\..\CH.CleanArchitecture.Resources\CH.CleanArchitecture.Resources.csproj" />
     <ProjectReference Include="..\CH.CleanArchitecture.Core.Domain\CH.CleanArchitecture.Core.Domain.csproj" />
   </ItemGroup>
 

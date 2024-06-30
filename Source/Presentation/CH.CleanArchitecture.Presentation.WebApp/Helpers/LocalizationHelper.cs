@@ -1,5 +1,5 @@
 ﻿using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.Resources;
+using CH.CleanArchitecture.Resources;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Helpers
 {

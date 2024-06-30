@@ -1,7 +1,8 @@
 ﻿using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Resources;
 
-namespace CH.CleanArchitecture.Infrastructure.Resources
+namespace CH.CleanArchitecture.Infrastructure.Services
 {
     public class LocalizationKeyProvider : ILocalizationKeyProvider
     {

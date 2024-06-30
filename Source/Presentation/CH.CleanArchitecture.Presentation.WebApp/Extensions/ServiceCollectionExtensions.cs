@@ -11,7 +11,6 @@ using CH.CleanArchitecture.Core.Application.Extensions;
 using CH.CleanArchitecture.Core.Domain;
 using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;
-using CH.CleanArchitecture.Infrastructure.Resources;
 using CH.CleanArchitecture.Presentation.Framework;
 using CH.CleanArchitecture.Presentation.Framework.Interfaces;
 using CH.CleanArchitecture.Presentation.Framework.Services;

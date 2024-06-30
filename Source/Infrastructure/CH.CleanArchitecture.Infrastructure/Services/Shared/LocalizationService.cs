@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Resources;
 using Microsoft.Extensions.Localization;
 
-namespace CH.CleanArchitecture.Infrastructure.Resources
+namespace CH.CleanArchitecture.Infrastructure.Services
 {
     public class LocalizationService : ILocalizationService
     {

@@ -15,7 +15,7 @@ COPY ["Core/CH.CleanArchitecture.Core.Domain/CH.CleanArchitecture.Core.Domain.cs
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure/CH.CleanArchitecture.Infrastructure.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Shared/CH.CleanArchitecture.Infrastructure.Shared.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Shared/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/CH.CleanArchitecture.Infrastructure.Auditing.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/"]
-COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Resources/CH.CleanArchitecture.Infrastructure.Resources.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Resources/"]
+COPY ["CH.CleanArchitecture.Resources/CH.CleanArchitecture.Resources.csproj", "CH.CleanArchitecture.Resources/"]
 COPY ["CH.CleanArchitecture.Common/CH.CleanArchitecture.Common.csproj", "CH.CleanArchitecture.Common/"]
 RUN dotnet restore "Presentation/CH.CleanArchitecture.Presentation.Web/CH.CleanArchitecture.Presentation.Web.csproj"
 COPY . .
