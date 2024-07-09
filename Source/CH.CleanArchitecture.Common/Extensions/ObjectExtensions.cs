@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CH.CleanArchitecture.Common.Extensions
+namespace CH.CleanArchitecture.Common
 {
     public static class ObjectExtensions
     {

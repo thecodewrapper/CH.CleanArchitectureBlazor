@@ -1,4 +1,4 @@
-﻿namespace CH.CleanArchitecture.Common.Extensions
+﻿namespace CH.CleanArchitecture.Common
 {
     public static class DoubleExtensions
     {

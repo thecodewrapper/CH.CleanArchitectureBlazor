@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Common.Extensions;
+﻿using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.Framework.Components;
 using CH.CleanArchitecture.Presentation.WebApp.Models;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
 {

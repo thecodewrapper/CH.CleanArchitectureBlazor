@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
-using System.Security.Claims;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CH.CleanArchitecture.Common.Extensions;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.Framework.ViewModels;
+using Microsoft.AspNetCore.Components;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {

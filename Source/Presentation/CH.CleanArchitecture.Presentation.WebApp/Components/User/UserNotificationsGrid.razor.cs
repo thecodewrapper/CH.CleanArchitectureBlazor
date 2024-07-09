@@ -1,11 +1,10 @@
-﻿using MudBlazor;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Common.Extensions;
+﻿using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Queries;
 using CH.CleanArchitecture.Core.Application.ReadModels;
 using CH.CleanArchitecture.Presentation.Framework.Components;
 using CH.CleanArchitecture.Presentation.WebApp.Helpers;
+using MudBlazor;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
 {

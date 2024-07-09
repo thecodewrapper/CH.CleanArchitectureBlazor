@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using Newtonsoft.Json;
-using System.Text;
+﻿using System.Text;
 using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Common.Extensions;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.Framework.Components;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using Newtonsoft.Json;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
 {

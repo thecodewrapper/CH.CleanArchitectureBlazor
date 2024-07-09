@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CH.CleanArchitecture.Common.Extensions
+namespace CH.CleanArchitecture.Common
 {
     public static class StreamExtensions
     {

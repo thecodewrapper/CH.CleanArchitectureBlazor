@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Common.Extensions;
+﻿using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.Framework.Components;
+using Microsoft.AspNetCore.Components;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
 {
