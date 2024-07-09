@@ -15,13 +15,13 @@ namespace CH.CleanArchitecture.Infrastructure.DbContexts
         IUnitOfWork
     {
         private const string SCHEMA = "Identity";
-        private readonly IAuthenticatedUserService _authenticatedUser;
+        private readonly IIdentityProvider _identityProvider;
 
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options) {
         }
 
-        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IAuthenticatedUserService authenticatedUser) : base(options) {
-            _authenticatedUser = authenticatedUser;
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IIdentityProvider identityProvider) : base(options) {
+            _identityProvider = identityProvider;
         }
 
         protected override void OnModelCreating(ModelBuilder builder) {

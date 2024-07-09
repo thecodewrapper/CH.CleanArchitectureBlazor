@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Common.Extensions;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Domain;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace CH.CleanArchitecture.Presentation.Web.Services
 {
-    public class AuthenticatedUserService : IAuthenticatedUserService
+    public class IdentityProvider : IIdentityProvider
     {
         private const string FALLBACK_USERNAME = "SystemUser";
-        private readonly ILogger<AuthenticatedUserService> _logger;
+        private readonly ILogger<IdentityProvider> _logger;
 
-        public AuthenticatedUserService(ILogger<AuthenticatedUserService> logger, AuthenticationStateProvider authStateProvider, IHttpContextAccessor httpContextAccessor) {
+        public IdentityProvider(ILogger<IdentityProvider> logger, AuthenticationStateProvider authStateProvider, IHttpContextAccessor httpContextAccessor) {
             _logger = logger;
             try {
 
@@ -34,7 +33,7 @@ namespace CH.CleanArchitecture.Presentation.Web.Services
                     Roles = roles.Select(r => r.Value.ToEnum<RoleEnum>());
             }
             catch (Exception ex) {
-                _logger.LogWarning($"Error while instantiating {nameof(AuthenticatedUserService)}", ex);
+                _logger.LogWarning($"Error while instantiating {nameof(IdentityProvider)}", ex);
                 Username = FALLBACK_USERNAME;
             }
         }

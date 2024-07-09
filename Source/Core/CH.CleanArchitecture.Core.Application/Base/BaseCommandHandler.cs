@@ -15,13 +15,13 @@ namespace CH.CleanArchitecture.Core.Application
         where TResponse : class, IResult
     {
         private readonly IAuthorizationService _authorizationService;
-        private readonly IAuthenticatedUserService _authenticatedUserService;
+        private readonly IIdentityProvider _identityProvider;
         private readonly ILogger _logger;
         private readonly IValidator<TRequest> _validator;
 
         public BaseCommandHandler(IServiceProvider serviceProvider) {
             _authorizationService = serviceProvider.GetRequiredService<IAuthorizationService>();
-            _authenticatedUserService = serviceProvider.GetRequiredService<IAuthenticatedUserService>();
+            _identityProvider = serviceProvider.GetRequiredService<IIdentityProvider>();
             _logger = serviceProvider.GetRequiredService<ILogger<TRequest>>();
             _validator = serviceProvider.GetService<IValidator<TRequest>>();
         }
@@ -31,7 +31,7 @@ namespace CH.CleanArchitecture.Core.Application
 
             // Checking authorization requirements
             if (requirements.Any()) {
-                var user = _authenticatedUserService.User;
+                var user = _identityProvider.User;
                 var authorizationResult = await _authorizationService.AuthorizeAsync(user, null, requirements);
 
                 if (!authorizationResult.Succeeded) {

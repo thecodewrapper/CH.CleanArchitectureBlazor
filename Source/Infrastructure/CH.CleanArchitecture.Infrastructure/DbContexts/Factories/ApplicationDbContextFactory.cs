@@ -6,10 +6,10 @@ namespace CH.CleanArchitecture.Infrastructure.DbContexts.Factories
 {
     internal class ApplicationDbContextFactory : IDbContextFactory<ApplicationDbContext>
     {
-        private readonly IAuthenticatedUserService _authenticatedUserService;
+        private readonly IIdentityProvider _authenticatedUserService;
         private readonly Action<DbContextOptionsBuilder> _configureDbContext;
 
-        public ApplicationDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext, IAuthenticatedUserService authenticatedUserService) {
+        public ApplicationDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext, IIdentityProvider authenticatedUserService) {
             _authenticatedUserService = authenticatedUserService;
             _configureDbContext = configureDbContext;
         }

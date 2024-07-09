@@ -33,7 +33,7 @@ namespace CH.CleanArchitecture.Tests
             var eventStoreDbContextOptions = new DbContextOptionsBuilder<EventStoreDbContext>().UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
             // Create a new instance of your DbContext using the in-memory options
-            ApplicationContext = new ApplicationDbContext(appDbContextOptions, new MockAuthenticatedUserService());
+            ApplicationContext = new ApplicationDbContext(appDbContextOptions, new MockIdentityProvider());
             IdentityContext = new IdentityDbContext(identityDbContextOptions);
             EventStoreContext = new EventStoreDbContext(eventStoreDbContextOptions);
 
@@ -53,7 +53,7 @@ namespace CH.CleanArchitecture.Tests
             IServiceCollection services = new ServiceCollection();
             services.AddInfrastructureLayer(configuration);
             services.AddApplicationLayer();
-            services.AddTransient<IAuthenticatedUserService, MockAuthenticatedUserService>();
+            services.AddTransient<IIdentityProvider, MockIdentityProvider>();
 
             services.AddScoped<SignInManager<ApplicationUser>>(_ => InitializeSignInManager(identityDbContext));
             services.AddScoped<UserManager<ApplicationUser>>(_ => InitializeUserManager(identityDbContext));

@@ -5,7 +5,7 @@ using CH.CleanArchitecture.Core.Domain;
 
 namespace CH.CleanArchitecture.Tests.Mocks
 {
-    internal class MockAuthenticatedUserService : IAuthenticatedUserService
+    internal class MockIdentityProvider : IIdentityProvider
     {
         public string UserId => "TestingUser";
 

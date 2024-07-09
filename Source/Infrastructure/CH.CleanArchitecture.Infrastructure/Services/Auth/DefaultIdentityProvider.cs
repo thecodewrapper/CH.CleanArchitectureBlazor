@@ -7,7 +7,7 @@ using CH.CleanArchitecture.Core.Domain;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {
-    internal class DefaultAuthenticatedUserService : IAuthenticatedUserService
+    internal class DefaultIdentityProvider : IIdentityProvider
     {
         public string UserId => string.Empty;
         public string Username => string.Empty;

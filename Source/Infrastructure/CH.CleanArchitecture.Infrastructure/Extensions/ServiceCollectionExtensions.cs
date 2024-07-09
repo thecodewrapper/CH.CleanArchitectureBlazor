@@ -61,7 +61,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 services.AddApplicationDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
             }
             services.AddTransient<IDbInitializerService, DbInitializerService>();
-            services.AddTransient<IAuthenticatedUserService, DefaultAuthenticatedUserService>();
+            services.AddTransient<IIdentityProvider, DefaultIdentityProvider>();
         }
 
         private static void AddRepositories(this IServiceCollection services) {
@@ -190,7 +190,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(serviceProvider =>
             {
                 using var scope = serviceProvider.CreateScope();
-                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IAuthenticatedUserService>();
+                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IIdentityProvider>();
 
                 return new ApplicationDbContextFactory(options, authenticatedUserService);
             });
@@ -203,7 +203,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddSingleton<IDbContextFactory<IdentityDbContext>>(serviceProvider =>
             {
                 using var scope = serviceProvider.CreateScope();
-                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IAuthenticatedUserService>();
+                var authenticatedUserService = scope.ServiceProvider.GetRequiredService<IIdentityProvider>();
 
                 return new IdentityDbContextFactory(options, authenticatedUserService);
             });

@@ -12,10 +12,10 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
     public class GetAllUsersQueryHandler : BaseMessageHandler<GetAllUsersQuery, Result<IEnumerable<UserReadModel>>>
     {
         private readonly IApplicationUserService _applicationUserService;
-        private readonly IAuthenticatedUserService _authenticatedUserService;
+        private readonly IIdentityProvider _authenticatedUserService;
         private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IApplicationUserService applicationUserService, IMapper mapper, IAuthenticatedUserService authenticatedUserService) {
+        public GetAllUsersQueryHandler(IApplicationUserService applicationUserService, IMapper mapper, IIdentityProvider authenticatedUserService) {
             _applicationUserService = applicationUserService;
             _mapper = mapper;
             _authenticatedUserService = authenticatedUserService;

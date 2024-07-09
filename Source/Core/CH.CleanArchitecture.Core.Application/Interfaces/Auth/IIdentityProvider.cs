@@ -5,7 +5,7 @@ using CH.CleanArchitecture.Core.Domain;
 
 namespace CH.CleanArchitecture.Core.Application
 {
-    public interface IAuthenticatedUserService
+    public interface IIdentityProvider
     {
         string UserId { get; }
         public string Username { get; }
