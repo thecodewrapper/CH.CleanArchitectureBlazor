@@ -53,7 +53,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
             }
         }
 
-        private void ShowUser(Guid userId) {
+        private void ShowUser(string userId) {
             NavigationManager.NavigateTo($"/admin/users/{userId}", false);
         }
 
@@ -61,7 +61,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
             bool confirmDelete = await ModalService.ShowConfirmationModalWithPhraseAsync("Delete user", $"Are you sure you want to delete user with id '{user.Id}'? This action cannot be undone and may result in unexpected system behaviour. Please consult with your administrator before proceeding.", "Delete", $"delete {user.Id}", Color.Error);
 
             if (confirmDelete) {
-                var deleteResult = await SendRequestAsync(new DeleteUserCommand(user.Id.ToString()));
+                var deleteResult = await SendRequestAsync(new DeleteUserCommand(user.Id));
 
                 if (deleteResult != null && deleteResult.IsSuccessful) {
                     ToastService.ShowSuccess($"User with id '{user.Id}' deleted successfully.");

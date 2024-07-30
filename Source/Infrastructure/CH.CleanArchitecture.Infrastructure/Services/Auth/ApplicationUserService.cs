@@ -59,7 +59,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                             serviceResult.Fail().WithErrors(_mapper.Map<List<ResultError>>(identityResult.Errors));
                     }
                     else
-                        serviceResult.Succeed();
+                        serviceResult.Succeed().WithMessage($"User '{user.Username}' created succesfully");
 
                     transaction.Complete();
                 }

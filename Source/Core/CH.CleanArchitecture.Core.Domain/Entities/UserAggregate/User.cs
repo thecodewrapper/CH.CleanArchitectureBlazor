@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ardalis.GuardClauses;
 using CH.CleanArchitecture.Core.Domain.Events.User;
 using CH.Domain.Abstractions;
@@ -36,6 +37,7 @@ namespace CH.CleanArchitecture.Core.Domain.Entities.UserAggregate
         }
 
         void IDomainEventHandler<UserCreatedEvent>.Apply(UserCreatedEvent @event) {
+            Id = Guid.NewGuid().ToString();
             Username = @event.Username;
             Name = @event.Name;
             Email = @event.Email;
