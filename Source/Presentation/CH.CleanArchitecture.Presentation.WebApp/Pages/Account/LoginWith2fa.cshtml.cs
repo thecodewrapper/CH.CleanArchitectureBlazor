@@ -2,22 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.CleanArchitecture.Core.Application.Commands;
+using CH.Messaging.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {
         private readonly ILogger<LoginWith2faModel> _logger;
+        private readonly IServiceBus _serviceBus;
         private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public LoginWith2faModel(ILogger<LoginWith2faModel> logger, IUserAuthenticationService userAuthenticationService) {
+        public LoginWith2faModel(ILogger<LoginWith2faModel> logger, IServiceBus serviceBus, IUserAuthenticationService userAuthenticationService) {
             _logger = logger;
+            _serviceBus = serviceBus;
             _userAuthenticationService = userAuthenticationService;
         }
 
@@ -61,10 +64,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
 
             string authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
-            var loginResult = await _userAuthenticationService.LoginWith2fa(new Login2FARequest()
-            {
-                Code = authenticatorCode
-            });
+            var loginResult = await _serviceBus.SendAsync(new LoginUser2FACommand(authenticatorCode, false));
 
             if (loginResult.IsFailed) {
                 return RedirectToPage("/Error");

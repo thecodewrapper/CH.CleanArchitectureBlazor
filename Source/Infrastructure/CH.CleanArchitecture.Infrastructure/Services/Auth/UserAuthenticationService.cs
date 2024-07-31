@@ -42,7 +42,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return serviceResult;
         }
 
-        public async Task<Result<LoginResponseDTO>> LoginWith2fa(Login2FARequest login2FARequest) {
+        public async Task<Result<LoginResponseDTO>> LoginWith2fa(Login2FARequestDTO login2FARequest) {
             var serviceResult = new Result<LoginResponseDTO>();
             try {
                 var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -58,7 +58,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return serviceResult;
         }
 
-        public async Task<Result<LoginResponseDTO>> LoginWithRecoveryCode(Login2FARequest login2FARequest) {
+        public async Task<Result<LoginResponseDTO>> LoginWithRecoveryCode(Login2FARequestDTO login2FARequest) {
             var serviceResult = new Result<LoginResponseDTO>();
             try {
                 var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -121,7 +121,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return serviceResult;
         }
 
-        private async Task<Result<LoginResponseDTO>> SignInUser2fa(ApplicationUser applicationUser, Login2FARequest login2faRequest) {
+        private async Task<Result<LoginResponseDTO>> SignInUser2fa(ApplicationUser applicationUser, Login2FARequestDTO login2faRequest) {
             var serviceResult = new Result<LoginResponseDTO>();
             var loginResult = await _signInManager.TwoFactorAuthenticatorSignInAsync(login2faRequest.Code, login2faRequest.IsPersisted, login2faRequest.RememberClient);
 
@@ -129,7 +129,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return serviceResult;
         }
 
-        private async Task<Result<LoginResponseDTO>> SignInUserRecoveryCode(ApplicationUser applicationUser, Login2FARequest login2faRequest) {
+        private async Task<Result<LoginResponseDTO>> SignInUserRecoveryCode(ApplicationUser applicationUser, Login2FARequestDTO login2faRequest) {
             var serviceResult = new Result<LoginResponseDTO>();
             var loginResult = await _signInManager.TwoFactorRecoveryCodeSignInAsync(login2faRequest.Code);
 
