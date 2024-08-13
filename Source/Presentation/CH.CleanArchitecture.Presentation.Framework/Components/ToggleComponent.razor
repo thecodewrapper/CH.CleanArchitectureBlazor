@@ -1,0 +1,12 @@
+﻿@inherits BaseComponent
+
+@if (State) {
+    <MudButton Size="Size.Small" Variant="Variant.Filled" Color="Color.Error" OnClick="@OnToggleOffClicked">
+        @ToggleOffText
+    </MudButton>
+}
+else{
+    <MudButton Size="Size.Small" Variant="Variant.Filled" Color="Color.Success" OnClick="@OnToggleOnClicked">
+        @ToggleOnText
+    </MudButton>
+}

@@ -1,6 +1,6 @@
 ﻿namespace CH.CleanArchitecture.Core.Application.DTOs
 {
-    public class Login2FARequest
+    public class Login2FARequestDTO
     {
         public string Code { get; set; }
         public bool IsPersisted { get; set; }

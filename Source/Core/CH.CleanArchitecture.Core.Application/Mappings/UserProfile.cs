@@ -10,6 +10,8 @@ namespace CH.CleanArchitecture.Core.Application
     {
         public UserProfile() {
             CreateMap<UpdateUserDetailsCommand, UpdateUserDetailsDTO>();
+            CreateMap<LoginUserCommand, LoginRequestDTO>();
+            CreateMap<LoginUser2FACommand, Login2FARequestDTO>();
             CreateMap<User, UserReadModel>().ForMember(target => target.Roles, opt => opt.Ignore());
         }
     }

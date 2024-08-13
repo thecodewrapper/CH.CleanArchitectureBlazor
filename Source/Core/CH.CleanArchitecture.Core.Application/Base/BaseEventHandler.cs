@@ -17,7 +17,7 @@ namespace CH.CleanArchitecture.Core.Application
         }
 
         public virtual async Task Consume(ConsumeContext<TRequest> context) {
-            HandleAsync(context.Message);
+            await HandleAsync(context.Message);
         }
 
         ///// <summary>

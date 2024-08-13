@@ -10,16 +10,18 @@ using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.Messaging.Abstractions;
+using CH.CleanArchitecture.Core.Application.Commands;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly IUserAuthenticationService _userAuthenticationService;
+        private readonly IServiceBus _serviceBus;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(IUserAuthenticationService userAuthenticationService, ILogger<LoginModel> logger) {
-            _userAuthenticationService = userAuthenticationService;
+        public LoginModel(IServiceBus serviceBus, ILogger<LoginModel> logger) {
+            _serviceBus = serviceBus;
             _logger = logger;
         }
 
@@ -64,12 +66,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
             if (ModelState.IsValid) {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var loginResult = await _userAuthenticationService.Login(new LoginRequestDTO()
-                {
-                    Username = Input.Email,
-                    Password = Input.Password,
-                    RememberMe = Input.RememberMe
-                });
+                var loginResult = await _serviceBus.SendAsync(new LoginUserCommand(Input.Email, Input.Password, Input.RememberMe));
 
                 if (loginResult.IsFailed) {
                     ModelState.AddModelError(string.Empty, "Username or password is incorrect. Please try again.");

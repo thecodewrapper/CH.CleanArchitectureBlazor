@@ -2,22 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.CleanArchitecture.Core.Application.Commands;
+using CH.Messaging.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {
     public class LoginWithRecoveryCodeModel : PageModel
     {
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
+        private readonly IServiceBus _serviceBus;
         private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public LoginWithRecoveryCodeModel(ILogger<LoginWithRecoveryCodeModel> logger, IUserAuthenticationService userAuthenticationService) {
+        public LoginWithRecoveryCodeModel(ILogger<LoginWithRecoveryCodeModel> logger, IServiceBus serviceBus, IUserAuthenticationService userAuthenticationService) {
             _logger = logger;
+            _serviceBus = serviceBus;
             _userAuthenticationService = userAuthenticationService;
         }
 
@@ -53,10 +56,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
             }
 
             var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
-            var loginResult = await _userAuthenticationService.LoginWithRecoveryCode(new Login2FARequest()
-            {
-                Code = recoveryCode
-            });
+            var loginResult = await _serviceBus.SendAsync(new LoginUser2FACommand(recoveryCode, true));
 
             if (loginResult.IsFailed) {
                 return RedirectToPage("/Error");
