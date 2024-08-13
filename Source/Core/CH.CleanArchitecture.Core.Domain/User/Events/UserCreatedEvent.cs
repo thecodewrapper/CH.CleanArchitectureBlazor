@@ -1,6 +1,6 @@
 ﻿using CH.Domain.Abstractions;
 
-namespace CH.CleanArchitecture.Core.Domain
+namespace CH.CleanArchitecture.Core.Domain.User.Events
 {
     /// <summary>
     /// User Created domain event
@@ -15,10 +15,12 @@ namespace CH.CleanArchitecture.Core.Domain
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal UserCreatedEvent() {
+        internal UserCreatedEvent()
+        {
         }
 
-        public UserCreatedEvent(string username, string email, string name, string surname) {
+        public UserCreatedEvent(string username, string email, string name, string surname)
+        {
             Username = username;
             Email = email;
             Name = name;
@@ -26,14 +28,16 @@ namespace CH.CleanArchitecture.Core.Domain
         }
 
         public UserCreatedEvent(string aggregateId, int aggregateVersion, string username, string email, string name, string surname)
-            : base(aggregateId, aggregateVersion) {
+            : base(aggregateId, aggregateVersion)
+        {
             Username = username;
             Email = email;
             Name = name;
             Surname = surname;
         }
 
-        public override IDomainEvent<string> WithAggregate(string aggregateId, int aggregateVersion) {
+        public override IDomainEvent<string> WithAggregate(string aggregateId, int aggregateVersion)
+        {
             return new UserCreatedEvent(aggregateId, aggregateVersion, Username, Email, Name, Surname);
         }
     }

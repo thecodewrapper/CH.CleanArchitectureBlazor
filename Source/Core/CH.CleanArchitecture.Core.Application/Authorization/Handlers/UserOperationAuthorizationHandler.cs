@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application.Extensions;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CH.CleanArchitecture.Core.Application.Authorization

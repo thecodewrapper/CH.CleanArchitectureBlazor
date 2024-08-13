@@ -1,7 +1,7 @@
 ﻿using System.Text.Encodings.Web;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Services
 {

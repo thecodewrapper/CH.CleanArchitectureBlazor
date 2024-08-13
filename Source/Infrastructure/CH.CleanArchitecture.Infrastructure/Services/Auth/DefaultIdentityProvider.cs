@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {

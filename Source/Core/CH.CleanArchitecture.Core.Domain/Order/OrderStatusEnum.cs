@@ -1,4 +1,4 @@
-﻿namespace CH.CleanArchitecture.Core.Domain
+﻿namespace CH.CleanArchitecture.Core.Domain.Order
 {
     public enum OrderStatusEnum
     {

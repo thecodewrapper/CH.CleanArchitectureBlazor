@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application
 {

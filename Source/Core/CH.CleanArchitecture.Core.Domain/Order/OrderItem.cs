@@ -1,7 +1,7 @@
 ﻿using System;
 using CH.Domain.Abstractions;
 
-namespace CH.CleanArchitecture.Core.Domain.Entities.OrderAggregate
+namespace CH.CleanArchitecture.Core.Domain.Order
 {
     public class OrderItem : IEntity<Guid>
     {

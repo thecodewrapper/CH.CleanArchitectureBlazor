@@ -2,7 +2,7 @@
 using CH.CleanArchitecture.Core.Application.Commands;
 using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Application.ReadModels;
-using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application
 {

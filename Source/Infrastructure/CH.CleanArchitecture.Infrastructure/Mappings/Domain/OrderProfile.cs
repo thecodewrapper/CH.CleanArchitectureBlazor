@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CH.CleanArchitecture.Core.Application.ReadModels;
-using CH.CleanArchitecture.Core.Domain.Entities.OrderAggregate;
+using CH.CleanArchitecture.Core.Domain.Order;
 using CH.CleanArchitecture.Infrastructure.Models;
 
 namespace CH.CleanArchitecture.Infrastructure.Mappings

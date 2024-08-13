@@ -1,6 +1,6 @@
 ﻿using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Extensions;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 using CH.CleanArchitecture.Infrastructure.DbContexts;
 using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;

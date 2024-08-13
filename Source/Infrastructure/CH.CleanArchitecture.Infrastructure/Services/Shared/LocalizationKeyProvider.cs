@@ -1,5 +1,5 @@
 ﻿using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 using CH.CleanArchitecture.Resources;
 
 namespace CH.CleanArchitecture.Infrastructure.Services

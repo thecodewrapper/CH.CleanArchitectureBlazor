@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application.ReadModels;
-using CH.CleanArchitecture.Core.Domain;
-using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
+using CH.CleanArchitecture.Core.Domain.User;
 using CH.CleanArchitecture.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 

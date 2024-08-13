@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Ardalis.GuardClauses;
-using CH.CleanArchitecture.Core.Domain.Events.User;
+using CH.CleanArchitecture.Core.Domain.User.Events;
 using CH.Domain.Abstractions;
 
-namespace CH.CleanArchitecture.Core.Domain.Entities.UserAggregate
+namespace CH.CleanArchitecture.Core.Domain.User
 {
     /// <summary>
     /// The User aggregate, representing a user.
@@ -22,11 +22,13 @@ namespace CH.CleanArchitecture.Core.Domain.Entities.UserAggregate
         public bool IsActive { get; private set; }
         public string UICulture { get; private set; }
 
-        private User() {
+        private User()
+        {
 
         }
 
-        public User(string username, string email, string name, string surname) {
+        public User(string username, string email, string name, string surname)
+        {
             Guard.Against.NullOrWhiteSpace(username, nameof(username));
             Guard.Against.NullOrWhiteSpace(email, nameof(email));
             Guard.Against.NullOrWhiteSpace(name, nameof(name));
@@ -35,7 +37,8 @@ namespace CH.CleanArchitecture.Core.Domain.Entities.UserAggregate
             RaiseEvent(new UserCreatedEvent(username, email, name, surname));
         }
 
-        void IDomainEventHandler<UserCreatedEvent>.Apply(UserCreatedEvent @event) {
+        void IDomainEventHandler<UserCreatedEvent>.Apply(UserCreatedEvent @event)
+        {
             Username = @event.Username;
             Name = @event.Name;
             Email = @event.Email;
@@ -43,36 +46,38 @@ namespace CH.CleanArchitecture.Core.Domain.Entities.UserAggregate
             UICulture = "en";
         }
 
-        public void ChangeDetails(string email, string phoneNumber, string name, string surname) {
+        public void ChangeDetails(string email, string phoneNumber, string name, string surname)
+        {
             RaiseEvent(new UserDetailsChangedEvent(email, phoneNumber, name, surname));
         }
 
-        void IDomainEventHandler<UserDetailsChangedEvent>.Apply(UserDetailsChangedEvent @event) {
-            if (!string.IsNullOrEmpty(Email) && Email != @event.Email) {
+        void IDomainEventHandler<UserDetailsChangedEvent>.Apply(UserDetailsChangedEvent @event)
+        {
+            if (!string.IsNullOrEmpty(Email) && Email != @event.Email)
                 Email = @event.Email;
-            }
 
-            if (!string.IsNullOrEmpty(Name) && Name != @event.Name) {
+            if (!string.IsNullOrEmpty(Name) && Name != @event.Name)
                 Name = @event.Name;
-            }
 
-            if (!string.IsNullOrEmpty(Surname) && Surname != @event.Surname) {
+            if (!string.IsNullOrEmpty(Surname) && Surname != @event.Surname)
                 Surname = @event.Surname;
-            }
 
             if (!string.IsNullOrEmpty(@event.PhoneNumber))
                 PhoneNumber = new PhoneNumber(@event.PhoneNumber);
         }
 
-        public void ChangeAddress(string line1, string line2, string city, string postCode, string country) {
+        public void ChangeAddress(string line1, string line2, string city, string postCode, string country)
+        {
             Address = new Address(line1, line2, city, postCode, country);
         }
 
-        public void Activate() {
+        public void Activate()
+        {
             IsActive = true;
         }
 
-        public void Deactivate() {
+        public void Deactivate()
+        {
             IsActive = false;
         }
     }

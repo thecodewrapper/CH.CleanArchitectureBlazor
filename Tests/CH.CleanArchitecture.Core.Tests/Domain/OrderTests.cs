@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
-using CH.CleanArchitecture.Core.Domain.Entities.OrderAggregate;
+using CH.CleanArchitecture.Core.Domain.Order;
 using Xunit;
 
-namespace CH.CleanArchitecture.Core.Domain.Tests
+namespace CH.CleanArchitecture.Core.Tests.Domain
 {
     public class OrderTests
     {

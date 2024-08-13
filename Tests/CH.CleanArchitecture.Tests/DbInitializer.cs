@@ -1,4 +1,4 @@
-﻿using CH.CleanArchitecture.Core.Domain;
+﻿using CH.CleanArchitecture.Core.Domain.User;
 using CH.CleanArchitecture.Infrastructure.Constants;
 using CH.CleanArchitecture.Infrastructure.DbContexts;
 using CH.CleanArchitecture.Infrastructure.Models;

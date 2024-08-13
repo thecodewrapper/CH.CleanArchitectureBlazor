@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Extensions;
-using CH.CleanArchitecture.Core.Domain;
 using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Presentation.Framework;
@@ -17,6 +16,7 @@ using CH.CleanArchitecture.Presentation.Framework.Services;
 using CH.CleanArchitecture.Presentation.Web.Services;
 using CH.CleanArchitecture.Presentation.WebApp.Mappings;
 using CH.CleanArchitecture.Presentation.WebApp.Services;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Extensions
 {

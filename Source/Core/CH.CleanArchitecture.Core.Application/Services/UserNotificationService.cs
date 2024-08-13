@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
-using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
+using CH.CleanArchitecture.Core.Domain.User;
 using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Core.Application.Services

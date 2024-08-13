@@ -1,7 +1,7 @@
 ﻿using System;
 using CH.Domain.Abstractions;
 
-namespace CH.CleanArchitecture.Core.Domain
+namespace CH.CleanArchitecture.Core.Domain.Order.Events
 {
     public class OrderItemQuantityUpdatedEvent : DomainEventBase<Guid>
     {
@@ -11,21 +11,25 @@ namespace CH.CleanArchitecture.Core.Domain
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal OrderItemQuantityUpdatedEvent() {
+        internal OrderItemQuantityUpdatedEvent()
+        {
         }
 
-        public OrderItemQuantityUpdatedEvent(Guid orderItemId, int quantity) {
+        public OrderItemQuantityUpdatedEvent(Guid orderItemId, int quantity)
+        {
             OrderItemId = orderItemId;
             Quantity = quantity;
         }
 
         public OrderItemQuantityUpdatedEvent(Guid aggregateId, int aggregateVersion, Guid orderItemId, int quantity)
-            : base(aggregateId, aggregateVersion) {
+            : base(aggregateId, aggregateVersion)
+        {
             OrderItemId = orderItemId;
             Quantity = quantity;
         }
 
-        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion) {
+        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion)
+        {
             return new OrderItemQuantityUpdatedEvent(aggregateId, aggregateVersion, OrderItemId, Quantity);
         }
     }

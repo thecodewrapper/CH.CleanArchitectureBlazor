@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Domain;
-using CH.CleanArchitecture.Core.Domain.Entities.OrderAggregate;
+using CH.CleanArchitecture.Core.Domain.Order;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {

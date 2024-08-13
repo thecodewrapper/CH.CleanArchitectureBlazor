@@ -1,7 +1,7 @@
 ﻿using System;
 using CH.Domain.Abstractions;
 
-namespace CH.CleanArchitecture.Core.Domain
+namespace CH.CleanArchitecture.Core.Domain.Order.Events
 {
     public class OrderCreatedEvent : DomainEventBase<Guid>
     {
@@ -10,19 +10,23 @@ namespace CH.CleanArchitecture.Core.Domain
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal OrderCreatedEvent() {
+        internal OrderCreatedEvent()
+        {
         }
 
-        public OrderCreatedEvent(string trackingNumber) : base(Guid.NewGuid()) {
+        public OrderCreatedEvent(string trackingNumber) : base(Guid.NewGuid())
+        {
             TrackingNumber = trackingNumber;
         }
 
         public OrderCreatedEvent(Guid aggregateId, int aggregateVersion, string trackingNumber)
-            : base(aggregateId, aggregateVersion) {
+            : base(aggregateId, aggregateVersion)
+        {
             TrackingNumber = trackingNumber;
         }
 
-        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion) {
+        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion)
+        {
             return new OrderCreatedEvent(aggregateId, aggregateVersion, TrackingNumber);
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CH.CleanArchitecture.Core.Application.Commands;
-using CH.CleanArchitecture.Core.Domain;
+using CH.CleanArchitecture.Core.Domain.User;
 using CH.CleanArchitecture.Tests;
 using FluentAssertions;
 using Xunit;

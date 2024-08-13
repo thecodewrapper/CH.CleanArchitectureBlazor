@@ -1,8 +1,7 @@
-﻿using CH.Messaging.Abstractions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Domain.Entities.UserAggregate;
+using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {

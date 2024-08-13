@@ -1,4 +1,4 @@
-﻿using CH.CleanArchitecture.Core.Domain;
+﻿using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application
 {
