@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/chadjiantoniou/CleanArchitectureBlazor/_apis/build/status%2Fthecodewrapper.CH.CleanArchitectureBlazor?branchName=main)](https://dev.azure.com/chadjiantoniou/CleanArchitectureBlazor/_build/latest?definitionId=5&branchName=main)
+
 # Clean Architecture (Blazor Server)
 My personal take on Clean Architecture. Please read my post at [Implementing a Clean Architecture in ASP.NET Core 8](https://thecodewrapper.com/dev/tcw-clean-achitecture) for more information.
 
