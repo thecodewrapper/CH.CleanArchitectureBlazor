@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,7 +16,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IIdentityProvider _authenticatedUserService;
         private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IApplicationUserService applicationUserService, IMapper mapper, IIdentityProvider authenticatedUserService) {
+        public GetAllUsersQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper, IIdentityProvider authenticatedUserService) :base(serviceProvider) {
             _applicationUserService = applicationUserService;
             _mapper = mapper;
             _authenticatedUserService = authenticatedUserService;

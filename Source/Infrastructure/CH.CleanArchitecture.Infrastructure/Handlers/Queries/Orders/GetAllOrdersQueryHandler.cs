@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using CH.CleanArchitecture.Common;
@@ -13,7 +14,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
 
-        public GetAllOrdersQueryHandler(IMapper mapper, IOrderRepository orderRepository) {
+        public GetAllOrdersQueryHandler(IServiceProvider serviceProvider, IMapper mapper, IOrderRepository orderRepository) :base(serviceProvider) {
             _orderRepository = orderRepository;
             _mapper = mapper;
         }

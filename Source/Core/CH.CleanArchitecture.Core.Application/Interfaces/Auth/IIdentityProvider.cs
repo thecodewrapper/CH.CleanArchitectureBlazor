@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Domain.User;
@@ -15,5 +16,7 @@ namespace CH.CleanArchitecture.Core.Application
         public IEnumerable<RoleEnum> Roles { get; }
         public ThemeEnum Theme { get; }
         public ClaimsPrincipal User { get; }
+
+        void Initialize(ClaimsPrincipal user);
     }
 }

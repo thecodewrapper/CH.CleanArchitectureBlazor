@@ -1,4 +1,4 @@
-﻿using CH.Messaging.Abstractions;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
@@ -6,18 +6,25 @@ using CH.CleanArchitecture.Core.Application.DTOs;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {
-    public record AddRolesCommand(string UserId, List<string> Roles) : IRequest<Result>, ICommand
+    public class AddRolesCommand : BaseCommand<Result>
     {
+        public string UserId { get; }
+        public List<string> Roles { get; }
+
+        public AddRolesCommand(string userId, List<string> roles) {
+            UserId = userId;
+            Roles = roles ?? new List<string>();
+        }
     }
 
     /// <summary>
     /// Add roles to user command handler
     /// </summary>
-    public class AddRolesCommandHandler : BaseMessageHandler<AddRolesCommand, Result>
+    public class AddRolesCommandHandler : BaseCommandHandler<AddRolesCommand, Result>
     {
         private readonly IApplicationUserService _applicationUserService;
 
-        public AddRolesCommandHandler(IApplicationUserService applicationUserService) {
+        public AddRolesCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService) : base(serviceProvider) {
             _applicationUserService = applicationUserService;
         }
 

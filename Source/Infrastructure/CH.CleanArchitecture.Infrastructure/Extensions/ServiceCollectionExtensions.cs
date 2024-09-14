@@ -81,8 +81,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                     x.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
                 }
             });
-            services.AddSingleton<IServiceBus, ServiceBusMediator>();
-            services.AddSingleton<IEventBus, ServiceBusMediator>();
+            services.AddScoped<IServiceBus, ServiceBusMediator>();
+            services.AddScoped<IEventBus, ServiceBusMediator>();
         }
 
         private static void AddMapping(this IServiceCollection services) {

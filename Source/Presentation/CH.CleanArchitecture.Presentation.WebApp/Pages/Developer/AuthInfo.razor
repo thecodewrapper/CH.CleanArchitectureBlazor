@@ -1,0 +1,57 @@
+﻿@page "/dev/authinfo"
+@inject IIdentityProvider IdentityProvider;
+@using CH.CleanArchitecture.Presentation.Framework.Components;
+@using System.Security.Claims
+@attribute [Authorize(Roles = "SuperAdmin")]
+<PageHeader Title="Authentication Info" Icon="@IconConstants.AUTH_STATE" Description="View authentication state" />
+
+<MudText Typo="Typo.h5">Identity Provider</MudText>
+<MudStack Spacing="0">
+    <MudText Typo="Typo.body1">UserId: <strong>@IdentityProvider.UserId</strong></MudText>
+    <MudText Typo="Typo.body1">Username: <strong>@IdentityProvider.Username</strong></MudText>
+    <MudText Typo="Typo.body1"></MudText>
+</MudStack>
+
+<MudTable Items="IdentityProvider.User.Claims" Dense="true" Striped="true" >
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Claims</MudText>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Type</MudTh>
+        <MudTh>Value</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Type">@context.Type</MudTd>
+        <MudTd DataLabel="Value">@context.Value</MudTd>
+    </RowTemplate>
+</MudTable>
+
+<MudText Typo="Typo.h5">Authentication State</MudText>
+<MudTable Items="_authStateClaims" Dense="true" Striped="true">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Claims</MudText>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Type</MudTh>
+        <MudTh>Value</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Type">@context.Type</MudTd>
+        <MudTd DataLabel="Value">@context.Value</MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    public List<Claim> _authStateClaims = new List<Claim>();
+
+    protected override async Task OnInitializedAsync() {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated) {
+            _authStateClaims = user.Claims.ToList();
+        }
+    }
+}

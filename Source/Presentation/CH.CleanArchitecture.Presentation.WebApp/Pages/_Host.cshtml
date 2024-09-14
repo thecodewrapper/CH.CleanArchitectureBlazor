@@ -28,4 +28,14 @@
 </div>
 
 
-<component type="typeof(App)" render-mode="ServerPrerendered" />
+@{
+    var userClaims = new
+    {
+        IsAuthenticated = User.Identity.IsAuthenticated,
+        Name = User.Identity.Name,
+        Claims = User.Claims.Select(c => new { c.Type, c.Value }).ToList()
+    };
+    var serializedUserClaims = System.Text.Json.JsonSerializer.Serialize(userClaims);
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" param-UserClaims="@serializedUserClaims" />

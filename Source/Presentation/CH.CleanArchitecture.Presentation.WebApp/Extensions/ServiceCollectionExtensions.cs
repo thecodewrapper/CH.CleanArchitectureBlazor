@@ -56,9 +56,9 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Extensions
             });
 
             services.AddTransient<IAuthorizationStateProvider, AuthorizationStateProvider>();
-            services.AddTransient<IIdentityProvider, IdentityProvider>();
-
-            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+            services.AddScoped<IIdentityProvider, IdentityProvider>();
+            services.AddScoped<AuthenticationStateProvider, AuthStateProvider<ApplicationUser>>();
+            services.AddScoped<IAuthenticationStateService, AuthenticationStateService>();
             services.AddTransient<IHostUrlProvider, HostUrlProvider>();
         }
 

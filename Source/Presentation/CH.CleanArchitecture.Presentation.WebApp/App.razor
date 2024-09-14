@@ -1,5 +1,7 @@
 ﻿@using CH.CleanArchitecture.Presentation.WebApp.Pages.Shared.Layout;
+@using System.Security.Claims
 @inject NavigationManager Navigation
+@inject IAuthenticationStateService AuthenticationStateService;
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
@@ -19,3 +21,40 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+@code {
+    public class UserInfo
+    {
+        public bool IsAuthenticated { get; set; }
+        public string Name { get; set; }
+        public List<ClaimInfo> Claims { get; set; } = new List<ClaimInfo>();
+
+        public ClaimsPrincipal ToClaimsPrincipal() {
+            var claims = Claims.Select(c => new Claim(c.Type, c.Value)).ToList();
+            var identity = new ClaimsIdentity(claims, IsAuthenticated ? "AppHost" : null);
+            return new ClaimsPrincipal(identity);
+        }
+    }
+
+    public class ClaimInfo
+    {
+        public string Type { get; set; }
+        public string Value { get; set; }
+    }
+
+    [Parameter]
+    public string UserClaims { get; set; }
+
+    private UserInfo _userInfo;
+
+    protected override async Task OnInitializedAsync() {
+        if (!string.IsNullOrEmpty(UserClaims)) {
+            _userInfo = System.Text.Json.JsonSerializer.Deserialize<UserInfo>(UserClaims);
+            await InitializeUser(_userInfo);
+        }
+    }
+
+    private async Task InitializeUser(UserInfo userInfo) {
+        await AuthenticationStateService.SetCurrentUserAsync(userInfo.ToClaimsPrincipal());
+    }
+}

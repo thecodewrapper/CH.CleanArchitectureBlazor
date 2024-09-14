@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using CH.Messaging.Abstractions;
 using CH.CleanArchitecture.Common;
+using System;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {
-    public class UpdateUserRolesCommand : IRequest<Result>, ICommand
+    public class UpdateUserRolesCommand : BaseCommand<Result>
     {
         public UpdateUserRolesCommand()
         {
@@ -19,11 +20,11 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     /// <summary>
     /// Update user roles command handler
     /// </summary>
-    public class UpdateUserRolesCommandHandler : BaseMessageHandler<UpdateUserRolesCommand, Result>
+    public class UpdateUserRolesCommandHandler : BaseCommandHandler<UpdateUserRolesCommand, Result>
     {
         private readonly IApplicationUserService _applicationUserService;
 
-        public UpdateUserRolesCommandHandler(IApplicationUserService applicationUserService) {
+        public UpdateUserRolesCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService):base(serviceProvider) {
             _applicationUserService = applicationUserService;
         }
 

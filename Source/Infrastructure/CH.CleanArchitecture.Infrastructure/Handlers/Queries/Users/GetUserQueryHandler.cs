@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
@@ -12,7 +13,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IApplicationUserService _applicationUserService;
         private readonly IMapper _mapper;
 
-        public GetUserQueryHandler(IApplicationUserService applicationUserService, IMapper mapper) {
+        public GetUserQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper) :base(serviceProvider) {
             _applicationUserService = applicationUserService;
             _mapper = mapper;
         }

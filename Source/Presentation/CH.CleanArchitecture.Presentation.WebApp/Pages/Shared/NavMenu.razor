@@ -16,6 +16,7 @@
                 <MudNavLink Icon="@IconConstants.APPLICATION_CONFIG" Match="NavLinkMatch.Prefix" Href="/dev/appconfigs">Application Config</MudNavLink>
                 <MudNavLink Icon="@IconConstants.AUDIT" Match="NavLinkMatch.Prefix" Href="/dev/audit">Audit</MudNavLink>
                 <MudNavLink Icon="@IconConstants.JOBS" Match="NavLinkMatch.Prefix" Href="/dev/jobs">Jobs</MudNavLink>
+                <MudNavLink Icon="@IconConstants.AUTH_STATE" Match="NavLinkMatch.Prefix" Href="/dev/authinfo">Authentication Info</MudNavLink>
             </MudNavGroup>
         </AuthorizeView>
     </MudNavMenu>
@@ -23,9 +24,6 @@
 @code {
     [Parameter]
     public bool SideBarOpen { get; set; }
-
-    [Inject]
-    public IAuthorizationStateProvider AuthorizationStateProvider { get; set; }
 
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();

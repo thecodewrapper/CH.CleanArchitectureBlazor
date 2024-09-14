@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CH.Messaging.Abstractions;
 using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CH.CleanArchitecture.Core.Application
 {
@@ -13,10 +15,15 @@ namespace CH.CleanArchitecture.Core.Application
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>
     public abstract class BaseMessageHandler<TRequest, TResponse> : IHandler<TRequest, TResponse>, IConsumer<TRequest>
-        where TRequest : class, IRequest<TResponse>
+        where TRequest : BaseMessage<TResponse>
         where TResponse : class
     {
+        protected BaseMessageHandler(IServiceProvider serviceProvider) {
+            IdentityProvider = serviceProvider.GetRequiredService<IIdentityProvider>();
+        }
+
         public virtual async Task Consume(ConsumeContext<TRequest> context) {
+            IdentityProvider.Initialize(context.Message.IdentityProvider.User);
             var messageResult = await HandleAsync(context.Message);
             await context.RespondAsync(messageResult);
         }
@@ -26,5 +33,7 @@ namespace CH.CleanArchitecture.Core.Application
         ///// </summary>
         ///// <returns></returns>
         public abstract Task<TResponse> HandleAsync(TRequest request);
+
+        protected IIdentityProvider IdentityProvider { get; set; }
     }
 }

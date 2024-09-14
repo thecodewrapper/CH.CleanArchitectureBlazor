@@ -9,6 +9,7 @@ using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Application.Queries;
 using CH.CleanArchitecture.Core.Application.ReadModels;
+using System;
 
 namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
 {
@@ -17,7 +18,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IMapper _mapper;
         private readonly INotificationService _notificationService;
 
-        public GetAllNotificationsQueryHandler(IMapper mapper, INotificationService notificationService) {
+        public GetAllNotificationsQueryHandler(IServiceProvider serviceProvider, IMapper mapper, INotificationService notificationService) :base(serviceProvider) {
             _mapper = mapper;
             _notificationService = notificationService;
         }

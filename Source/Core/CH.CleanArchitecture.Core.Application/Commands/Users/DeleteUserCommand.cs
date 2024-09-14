@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application.Authorization;
 
@@ -18,11 +19,11 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     /// <summary>
     /// Delete User Command Handler
     /// </summary>
-    public class DeleteUserCommandHandler : BaseMessageHandler<DeleteUserCommand, Result>
+    public class DeleteUserCommandHandler : BaseCommandHandler<DeleteUserCommand, Result>
     {
         private readonly IApplicationUserService _applicationUserService;
 
-        public DeleteUserCommandHandler(IApplicationUserService applicationUserService) {
+        public DeleteUserCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService) : base(serviceProvider) {
             _applicationUserService = applicationUserService;
         }
 

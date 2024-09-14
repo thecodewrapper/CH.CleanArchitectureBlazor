@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Domain.User;
@@ -15,10 +16,10 @@ namespace CH.CleanArchitecture.Core.Application.Commands
         public List<string> Roles { get; set; }
 
         public CreateUserCommand() {
-
         }
 
-        public CreateUserCommand(string username, string name, string surname, string email, string password, List<string> roles) {
+        public CreateUserCommand(string username, string name, string surname, string email, string password, List<string> roles)
+            : this() {
             Username = username;
             Name = name;
             Surname = surname;
@@ -31,11 +32,11 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     /// <summary>
     /// Create User Command Handler
     /// </summary>
-    public class CreateUserCommandHandler : BaseMessageHandler<CreateUserCommand, Result>
+    public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Result>
     {
         private readonly IApplicationUserService _applicationUserService;
 
-        public CreateUserCommandHandler(IApplicationUserService applicationUserService) {
+        public CreateUserCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService) : base(serviceProvider) {
             _applicationUserService = applicationUserService;
         }
 
