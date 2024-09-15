@@ -25,6 +25,7 @@ namespace CH.CleanArchitecture.Core.Application
         }
 
         public override async Task Consume(ConsumeContext<TRequest> context) {
+            IdentityProvider.Initialize(context.Message.IdentityProvider.User);
             var requirements = context.Message.Requirements;
 
             // Checking authorization requirements
