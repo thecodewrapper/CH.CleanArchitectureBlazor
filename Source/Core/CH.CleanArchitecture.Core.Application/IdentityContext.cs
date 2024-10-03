@@ -7,10 +7,10 @@ using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Core.Application
 {
-    public class IdentityProvider : IIdentityProvider
+    public class IdentityContext : IIdentityContext
     {
         private const string FALLBACK_USERNAME = "SystemUser";
-        private readonly ILogger<IdentityProvider> _logger;
+        private readonly ILogger<IdentityContext> _logger;
 
         public string UserId { get; private set; }
         public string Username { get; private set; }
@@ -22,12 +22,16 @@ namespace CH.CleanArchitecture.Core.Application
         public ThemeEnum Theme { get; private set; }
         public ClaimsPrincipal User { get; private set; }
 
-        public IdentityProvider(ILogger<IdentityProvider> logger) {
+        public IdentityContext(ILogger<IdentityContext> logger) {
             _logger = logger;
             Username = FALLBACK_USERNAME;
         }
 
         public void Initialize(ClaimsPrincipal user) {
+            if (user == null) {
+                return;
+            }
+
             User = user;
             UserId = user.FindId() ?? null;
             Username = user.FindFullName() ?? null;

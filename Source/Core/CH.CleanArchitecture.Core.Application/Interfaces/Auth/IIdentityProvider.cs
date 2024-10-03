@@ -6,7 +6,7 @@ using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application
 {
-    public interface IIdentityProvider
+    public interface IIdentityContext
     {
         string UserId { get; }
         public string Username { get; }

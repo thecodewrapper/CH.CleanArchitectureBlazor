@@ -25,12 +25,12 @@ namespace CH.CleanArchitecture.Core.Application
         }
 
         public override async Task Consume(ConsumeContext<TRequest> context) {
-            IdentityProvider.Initialize(context.Message.IdentityProvider.User);
+            IdentityContext.Initialize(context.Message.IdentityContext.User);
             var requirements = context.Message.Requirements;
 
             // Checking authorization requirements
             if (requirements.Any()) {
-                var user = IdentityProvider.User;
+                var user = IdentityContext.User;
                 var authorizationResult = await _authorizationService.AuthorizeAsync(user, null, requirements);
 
                 if (!authorizationResult.Succeeded) {

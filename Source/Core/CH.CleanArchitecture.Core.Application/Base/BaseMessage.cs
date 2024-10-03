@@ -4,6 +4,6 @@ namespace CH.CleanArchitecture.Core.Application
 {
     public abstract class BaseMessage<TResponse> : IRequest<TResponse> where TResponse : class
     {
-        public IIdentityProvider IdentityProvider { get; set; }
+        public IIdentityContext IdentityContext { get; set; }
     }
 }

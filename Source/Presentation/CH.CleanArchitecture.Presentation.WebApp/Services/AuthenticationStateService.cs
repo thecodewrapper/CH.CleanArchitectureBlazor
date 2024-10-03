@@ -6,15 +6,15 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Services
     public class AuthenticationStateService : IAuthenticationStateService
     {
         private readonly ILogger<AuthenticationStateService> _logger;
-        private readonly IIdentityProvider _identityProvider;
+        private readonly IIdentityContext _identityContext;
         private ClaimsPrincipal? _currentUser;
         private SemaphoreSlim _consistencySemaphore = new SemaphoreSlim(1, 1);
 
         public event CurrentUserChangedHandler CurrentUserChanged;
 
-        public AuthenticationStateService(ILogger<AuthenticationStateService> logger, IIdentityProvider identityProvider) {
+        public AuthenticationStateService(ILogger<AuthenticationStateService> logger, IIdentityContext identityContext) {
             _logger = logger;
-            _identityProvider = identityProvider;
+            _identityContext = identityContext;
         }
 
         public async Task<ClaimsPrincipal> GetCurrentUserAsync() {
@@ -42,12 +42,12 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Services
                     return;
                 }
 
-                _identityProvider.Initialize(_currentUser); //update identity provider state
+                _identityContext.Initialize(_currentUser); //update identity provider state
 
             }
             finally {
                 _consistencySemaphore.Release();
-                //await CurrentUserChanged.Invoke();
+                await CurrentUserChanged.Invoke();
             }
         }
     }
