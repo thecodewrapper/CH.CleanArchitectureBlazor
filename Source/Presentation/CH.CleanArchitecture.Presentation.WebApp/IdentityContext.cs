@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Domain.User;
-using Microsoft.Extensions.Logging;
 
-namespace CH.CleanArchitecture.Core.Application
+namespace CH.CleanArchitecture.Presentation.WebApp
 {
     public class IdentityContext : IIdentityContext
     {
