@@ -13,18 +13,18 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     public class ServiceBusMediator : IServiceBus, IEventBus
     {
         private readonly IMediator _mediator;
-        private readonly IIdentityProvider _identityProvider;
+        private readonly IIdentityContext _identityContext;
 
-        public ServiceBusMediator(IMediator mediator, IIdentityProvider identityProvider) {
+        public ServiceBusMediator(IMediator mediator, IIdentityContext identityContext) {
             _mediator = mediator;
-            _identityProvider = identityProvider;
+            _identityContext = identityContext;
         }
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse : class {
             var client = _mediator.CreateRequestClient<IRequest<TResponse>>();
             cancellationToken.ThrowIfCancellationRequested();
             var baseMessage = request as BaseMessage<TResponse>;
-            baseMessage.IdentityProvider = _identityProvider;
+            baseMessage.IdentityContext = _identityContext;
             var response = await client.GetResponse<TResponse>(baseMessage, cancellationToken);
             return response.Message;
         }

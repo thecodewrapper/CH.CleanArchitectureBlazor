@@ -25,6 +25,8 @@ namespace CH.CleanArchitecture.Presentation.WebApp
             _authenticationStateService = authenticationStateService;
             _logger = logger;
             _options = optionsAccessor.Value;
+
+            _authenticationStateService.CurrentUserChanged += CurrentUserChanged;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync() {

@@ -1,18 +1,18 @@
 ﻿@page "/dev/authinfo"
-@inject IIdentityProvider IdentityProvider;
+@inject IIdentityContext IdentityContext;
 @using CH.CleanArchitecture.Presentation.Framework.Components;
 @using System.Security.Claims
 @attribute [Authorize(Roles = "SuperAdmin")]
 <PageHeader Title="Authentication Info" Icon="@IconConstants.AUTH_STATE" Description="View authentication state" />
 
-<MudText Typo="Typo.h5">Identity Provider</MudText>
+<MudText Typo="Typo.h5">Identity Context</MudText>
 <MudStack Spacing="0">
-    <MudText Typo="Typo.body1">UserId: <strong>@IdentityProvider.UserId</strong></MudText>
-    <MudText Typo="Typo.body1">Username: <strong>@IdentityProvider.Username</strong></MudText>
+    <MudText Typo="Typo.body1">UserId: <strong>@IdentityContext.UserId</strong></MudText>
+    <MudText Typo="Typo.body1">Username: <strong>@IdentityContext.Username</strong></MudText>
     <MudText Typo="Typo.body1"></MudText>
 </MudStack>
 
-<MudTable Items="IdentityProvider.User.Claims" Dense="true" Striped="true" >
+<MudTable Items="IdentityContext.User.Claims" Dense="true" Striped="true">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Claims</MudText>
     </ToolBarContent>

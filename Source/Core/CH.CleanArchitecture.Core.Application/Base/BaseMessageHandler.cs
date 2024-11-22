@@ -19,11 +19,11 @@ namespace CH.CleanArchitecture.Core.Application
         where TResponse : class
     {
         protected BaseMessageHandler(IServiceProvider serviceProvider) {
-            IdentityProvider = serviceProvider.GetRequiredService<IIdentityProvider>();
+            IdentityContext = serviceProvider.GetRequiredService<IIdentityContext>();
         }
 
         public virtual async Task Consume(ConsumeContext<TRequest> context) {
-            IdentityProvider.Initialize(context.Message.IdentityProvider.User);
+            IdentityContext.Initialize(context.Message.IdentityContext.User);
             var messageResult = await HandleAsync(context.Message);
             await context.RespondAsync(messageResult);
         }
@@ -34,6 +34,6 @@ namespace CH.CleanArchitecture.Core.Application
         ///// <returns></returns>
         public abstract Task<TResponse> HandleAsync(TRequest request);
 
-        protected IIdentityProvider IdentityProvider { get; set; }
+        protected IIdentityContext IdentityContext { get; set; }
     }
 }

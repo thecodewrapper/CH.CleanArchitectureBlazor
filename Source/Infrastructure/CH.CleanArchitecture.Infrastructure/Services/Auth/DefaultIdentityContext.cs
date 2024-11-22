@@ -8,7 +8,7 @@ using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {
-    internal class DefaultIdentityProvider : IIdentityProvider
+    internal class DefaultIdentityContext : IIdentityContext
     {
         public string UserId => string.Empty;
         public string Username => string.Empty;

@@ -13,13 +13,13 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
     public class GetAllUsersQueryHandler : BaseMessageHandler<GetAllUsersQuery, Result<IEnumerable<UserReadModel>>>
     {
         private readonly IApplicationUserService _applicationUserService;
-        private readonly IIdentityProvider _authenticatedUserService;
+        private readonly IIdentityContext _identityContext;
         private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper, IIdentityProvider authenticatedUserService) :base(serviceProvider) {
+        public GetAllUsersQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper, IIdentityContext identityContext) :base(serviceProvider) {
             _applicationUserService = applicationUserService;
             _mapper = mapper;
-            _authenticatedUserService = authenticatedUserService;
+            _identityContext = identityContext;
         }
 
         public override async Task<Result<IEnumerable<UserReadModel>>> HandleAsync(GetAllUsersQuery query) {

@@ -37,7 +37,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         public ILocalizationService LocalizationService { get; set; }
 
         [Inject]
-        public IIdentityProvider AuthenticatedUserService { get; set; }
+        public IIdentityContext IdentityContext { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -64,7 +64,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         #region Public Methods
 
         public Task<ClaimsPrincipal> GetCurrentUserAsync() {
-            return Task.FromResult(AuthenticatedUserService.User);
+            return Task.FromResult(IdentityContext.User);
         }
 
         public async Task StateHasChangedAsync() {
