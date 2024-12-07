@@ -253,3 +253,12 @@ meter {
 .navbar-bg{
     background-color:#224430 !important;
 }
+
+.footer {
+    border-top: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    position: absolute;
+    bottom: 55px;
+    padding-left: 15px;
+}
