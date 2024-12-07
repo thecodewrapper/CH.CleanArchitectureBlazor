@@ -3,7 +3,7 @@ using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Resources;
 using CH.CleanArchitecture.Presentation.Framework;
 
-namespace CH.CleanArchitecture.Presentation.Web.Services
+namespace CH.CleanArchitecture.Presentation.WebApp.Services
 {
     public class ToastService : IToastService
     {

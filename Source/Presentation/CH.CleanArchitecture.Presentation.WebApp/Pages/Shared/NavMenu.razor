@@ -1,6 +1,8 @@
 ﻿@inherits BaseComponent
 @using CH.CleanArchitecture.Presentation.WebApp.Constants;
 @using CH.CleanArchitecture.Presentation.Framework.Interfaces;
+@using CH.CleanArchitecture.Presentation.WebApp.Services
+@inject VersionService VersionService;
 <MudDrawer @bind-Open="SideBarOpen" Elevation="1" Variant="DrawerVariant.Mini">
     <MudNavMenu>
         <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@IconConstants.DASHBOARD">Dashboard</MudNavLink>
@@ -20,12 +22,20 @@
             </MudNavGroup>
         </AuthorizeView>
     </MudNavMenu>
+    <MudContainer Gutters="false" MaxWidth="MaxWidth.False" Class="footer">
+        <MudText Align="Align.Left" Typo="Typo.caption">
+            @_version
+        </MudText>
+    </MudContainer>
 </MudDrawer>
 @code {
     [Parameter]
     public bool SideBarOpen { get; set; }
 
+    private static string _version;
+
     protected override async Task OnInitializedAsync() {
+        _version = VersionService.GetCurrentVersion();
         await base.OnInitializedAsync();
     }
 } 
