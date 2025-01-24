@@ -15,7 +15,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         where TFormModel : class, new()
     {
         [CascadingParameter]
-        protected MudDialogInstance MudDialog { get; set; }
+        protected IMudDialogInstance MudDialog { get; set; }
 
         [Parameter]
         public TReadModel Model { get; set; }
@@ -67,7 +67,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
     where TFormModel : class, new()
     {
         [CascadingParameter]
-        protected MudDialogInstance MudDialog { get; set; }
+        protected IMudDialogInstance MudDialog { get; set; }
 
         protected TFormModel _formModel = new TFormModel();
 
@@ -99,7 +99,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
     where TFormModel : class, new()
     {
         [CascadingParameter]
-        protected MudDialogInstance MudDialog { get; set; }
+        protected IMudDialogInstance MudDialog { get; set; }
 
         protected TFormModel _formModel = new TFormModel();
 

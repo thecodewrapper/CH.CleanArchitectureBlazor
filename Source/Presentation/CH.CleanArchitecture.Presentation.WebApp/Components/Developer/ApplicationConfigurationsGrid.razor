@@ -4,8 +4,7 @@
 
 <MudGrid>
     <MudItem Class="pa-4" xs="12" sm="12" md="12">
-        <MudTable ServerData="@(new Func<TableState, Task<TableData<ApplicationConfigurationDTO>>>(ServerReload))"
-                  Dense="true" Hover="true" @ref="_table">
+        <MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="_table">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Application Configurations</MudText>
                 <MudSpacer />

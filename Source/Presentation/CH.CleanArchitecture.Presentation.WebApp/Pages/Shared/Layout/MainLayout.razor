@@ -18,10 +18,11 @@
 <MudDialogProvider FullWidth="true"
                    MaxWidth="MaxWidth.Large"
                    CloseButton="true"
-                   DisableBackdropClick="true"
+                   BackdropClick="false"
                    NoHeader="false"
                    Position="DialogPosition.Center"
                    CloseOnEscapeKey="true" />
+<MudPopoverProvider />
 <MudSnackbarProvider />
 <BlazoredToasts Position="ToastPosition.BottomRight"
                 Timeout="10"
@@ -33,7 +34,7 @@
 @code {
     MudTheme _defaultTheme = new MudTheme()
         {
-            Palette = new PaletteLight()
+            PaletteLight = new PaletteLight()
             {
                 Primary = "#224430",
                 Success = "#7AB893",
@@ -57,7 +58,7 @@
             },
             Typography = new Typography()
             {
-                Default = new Default()
+                Default = new DefaultTypography()
                 {
                     FontFamily = new[] { "Noto Sans", "Segoe UI", "sans-serif" }
                 }

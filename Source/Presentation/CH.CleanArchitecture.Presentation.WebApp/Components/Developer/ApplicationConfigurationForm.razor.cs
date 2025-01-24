@@ -10,7 +10,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Developer
 {
     public partial class ApplicationConfigurationForm : BaseComponent
     {
-        [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+        [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
 
         [Parameter]
         public ApplicationConfigurationDTO Model { get; set; }

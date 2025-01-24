@@ -1,8 +1,8 @@
 ﻿@if (StatusValue) {
-    <MudChip Size="Size.Small" Color="Color.Success" IconColor="Color.Default">@TrueText</MudChip>
+    <MudChip T="string" Size="Size.Small" Color="Color.Success" IconColor="Color.Default">@TrueText</MudChip>
 }
 else {
-    <MudChip Size="Size.Small" Color="Color.Error" IconColor="Color.Default">@FalseText</MudChip>
+    <MudChip T="string" Size="Size.Small" Color="Color.Error" IconColor="Color.Default">@FalseText</MudChip>
 }
 @code {
     [Parameter]

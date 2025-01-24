@@ -20,7 +20,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Developer
         /// <summary>
         /// Here we simulate getting the paged, filtered and ordered data from the server
         /// </summary>
-        private async Task<TableData<AuditHistoryDTO>> ServerReload(TableState state) {
+        private async Task<TableData<AuditHistoryDTO>> ServerReload(TableState state, CancellationToken cancellationToken) {
             IQueryable<AuditHistoryDTO> data = _auditHistoryService.GetAll().Unwrap();
             await Task.Delay(300);
             if (!string.IsNullOrWhiteSpace(searchString)) {

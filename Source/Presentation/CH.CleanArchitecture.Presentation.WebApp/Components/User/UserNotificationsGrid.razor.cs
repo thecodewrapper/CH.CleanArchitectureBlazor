@@ -15,7 +15,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
         private int _totalItems;
         private string _searchString = null;
 
-        private async Task<TableData<NotificationReadModel>> ServerReload(TableState state) {
+        private async Task<TableData<NotificationReadModel>> ServerReload(TableState state, CancellationToken cancellationToken) {
             var user = await GetCurrentUserAsync();
             QueryOptions options = TableHelper.GetQueryOptionsFromTableState(state, _searchString);
             var query = await SendRequestAsync(new GetAllNotificationsQuery()

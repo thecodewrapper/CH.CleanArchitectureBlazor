@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Presentation.Framework.Components.Input;
+using System.Threading;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {
@@ -55,7 +56,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
             StateHasChanged();
         }
 
-        private void RemoveValue(MudChip chip) {
+        private void RemoveValue(MudChip<TItem> chip) {
             if (_selectedValues.RemoveWhere(x => GetNameFunc(x) == chip.Text) > 0)
                 RefreshBinding();
         }
@@ -68,7 +69,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
             }
         }
 
-        private async Task<IEnumerable<TItem>> SearchAsync(string searchValue) {
+        private async Task<IEnumerable<TItem>> SearchAsync(string searchValue, CancellationToken cancellationToken) {
             var items = (await SearchFunc(searchValue)).ToList();
 
             if (AllowOtherValues) {

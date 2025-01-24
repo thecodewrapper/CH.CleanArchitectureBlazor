@@ -16,7 +16,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
         private int _totalItems;
         private string _searchString = null;
 
-        private async Task<TableData<UserReadModel>> ServerReload(TableState state) {
+        private async Task<TableData<UserReadModel>> ServerReload(TableState state, CancellationToken cancellationToken) {
             QueryOptions options = TableHelper.GetQueryOptionsFromTableState(state, _searchString);
             GetAllUsersQuery getAllUsersQuery = new() { Options = options };
 

@@ -1,5 +1,5 @@
 ﻿@using CH.CleanArchitecture.Core.Domain.Order
-<MudChip Size="Size.Small" Label="true" Color="@GetPaymentStatusColor()" Icon="@GetPaymentStatusToMudIcon()" Class="@Class">@Status.ToString()</MudChip>
+<MudChip T="string" Size="Size.Small" Label="true" Color="@GetPaymentStatusColor()" Icon="@GetPaymentStatusToMudIcon()" Class="@Class">@Status.ToString()</MudChip>
 @code {
     [Parameter]
     public PaymentStatusEnum Status { get; set; }

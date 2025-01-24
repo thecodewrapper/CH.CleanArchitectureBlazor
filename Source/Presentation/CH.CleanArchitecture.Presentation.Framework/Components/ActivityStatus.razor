@@ -1,8 +1,8 @@
 ﻿@if (IsActive) {
-    <MudChip Size="Size.Small" Color="Color.Success" IconColor="Color.Default">Active</MudChip>
+    <MudChip T="string" Size="Size.Small" Color="Color.Success" IconColor="Color.Default">Active</MudChip>
 }
 else {
-    <MudChip Size="Size.Small" Color="Color.Error" IconColor="Color.Default">Inactive</MudChip>
+    <MudChip T="string" Size="Size.Small" Color="Color.Error" IconColor="Color.Default">Inactive</MudChip>
 }
 @code {
     [Parameter]

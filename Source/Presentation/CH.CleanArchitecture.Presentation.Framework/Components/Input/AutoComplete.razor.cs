@@ -70,7 +70,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components.Input
         /// The SearchFunc returns a list of items matching the typed text
         /// </summary>
         [Parameter]
-        public Func<string, Task<IEnumerable<T>>> SearchFunc { get; set; }
+        public Func<string, CancellationToken, Task<IEnumerable<T>>> SearchFunc { get; set; }
 
         [Parameter]
         public Func<string, CancellationToken, Task<IEnumerable<T>>> SearchFuncWithCancel { get; set; }
@@ -135,7 +135,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components.Input
         }
 
         public Task SelectOption(T value) {
-            return _autoComplete.SelectOption(value);
+            return _autoComplete.SelectOptionAsync(value);
         }
     }
 }

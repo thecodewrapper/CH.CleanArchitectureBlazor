@@ -18,9 +18,9 @@
               CoerceValue="true"
               ResetValueOnEmptyText="true" />
 
-<MudChipSet AllClosable="true" OnClose="RemoveValue">
+<MudChipSet T="TItem" AllClosable="true" OnClose="RemoveValue">
     @foreach (var val in _selectedValues)
     {
-        <MudChip Size=Size.Small @key="@GetIdFunc(val)" Text="@GetNameFunc(val)" />
+        <MudChip T="TItem" Size=Size.Small @key="@GetIdFunc(val)" Text="@GetNameFunc(val)" />
     }
 </MudChipSet>

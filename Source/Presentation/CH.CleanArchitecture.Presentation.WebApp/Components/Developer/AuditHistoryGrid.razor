@@ -5,8 +5,7 @@
 
 <MudGrid>
     <MudItem Class="pa-4" xs="12" sm="12" md="6">
-        <MudTable ServerData="@(new Func<TableState, Task<TableData<AuditHistoryDTO>>>(ServerReload))"
-                  Dense="true" Hover="true" @ref="table">
+        <MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="table">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Audit History</MudText>
                 <MudSpacer />

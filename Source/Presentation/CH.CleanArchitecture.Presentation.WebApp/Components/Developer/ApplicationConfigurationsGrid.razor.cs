@@ -15,7 +15,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Developer
         private int _totalItems;
         private string _searchString = null;
 
-        private async Task<TableData<ApplicationConfigurationDTO>> ServerReload(TableState state) {
+        private async Task<TableData<ApplicationConfigurationDTO>> ServerReload(TableState state, CancellationToken cancellationToken) {
             IQueryable<ApplicationConfigurationDTO> data = _appConfigService.GetAll().Unwrap();
             await Task.Delay(300);
             if (!string.IsNullOrWhiteSpace(_searchString)) {
