@@ -110,6 +110,12 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components.Input
         [Parameter]
         public int? MaxItems { get; set; } = default;
 
+        [Parameter]
+        public Adornment Adornment { get; set; } = default;
+
+        [Parameter]
+        public string AdornmentIcon { get; set; } = default;
+
         private MudAutocomplete<T> _autoComplete;
 
         private async Task OnClearButtonClicked(MouseEventArgs args) {

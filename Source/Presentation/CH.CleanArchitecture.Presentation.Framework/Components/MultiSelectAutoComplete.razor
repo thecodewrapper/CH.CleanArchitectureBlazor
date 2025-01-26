@@ -16,7 +16,9 @@
               Immediate="false"
               Variant="Variant.Text"
               CoerceValue="true"
-              ResetValueOnEmptyText="true" />
+              ResetValueOnEmptyText="true"
+              Adornment="@Adornment"
+              AdornmentIcon="@AdornmentIcon" />
 
 <MudChipSet T="TItem" AllClosable="true" OnClose="RemoveValue">
     @foreach (var val in _selectedValues)

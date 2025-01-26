@@ -36,6 +36,12 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         [Parameter]
         public bool AllowOtherValues { get; set; } = false;
 
+        [Parameter]
+        public Adornment Adornment { get; set; } = default;
+
+        [Parameter]
+        public string AdornmentIcon { get; set; } = default;
+
         private HashSet<TItem> _selectedValues = new HashSet<TItem>();
         private AutoComplete<TItem> _autoComplete;
         protected override void OnParametersSet() {
