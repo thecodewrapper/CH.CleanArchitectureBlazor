@@ -13,16 +13,23 @@
       <DependentUpon>ResourceKeys.tt</DependentUpon>
     </Compile>
     <Compile Update="SharedResources.Designer.cs">
-      <DependentUpon>SharedResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="SharedResources.resx">
-      <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="SharedResources.el.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SharedResources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SharedResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+	  <CustomToolNamespace>CH.CleanArchitecture.Resources</CustomToolNamespace>
+	  <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

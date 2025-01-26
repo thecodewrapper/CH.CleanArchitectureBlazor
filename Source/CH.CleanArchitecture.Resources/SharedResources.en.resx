@@ -130,7 +130,7 @@
     <value>Delete</value>
   </data>
   <data name="Buttons_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Personal Details</value>
   </data>
   <data name="Buttons_Edit" xml:space="preserve">
     <value>Edit</value>
@@ -253,22 +253,22 @@
     <value>Error</value>
   </data>
   <data name="Notifications_MarkAllAsRead" xml:space="preserve">
-    <value>Mark all as Read</value>
+    <value>Mark all as read</value>
   </data>
   <data name="Notifications_NoNewNotifications" xml:space="preserve">
-    <value>No New Notifications</value>
+    <value>No new notifications at this time</value>
   </data>
   <data name="Notifications_PasswordChange_Success" xml:space="preserve">
-    <value>Your password has been change succesfully</value>
+    <value>Your password has been change successfully</value>
   </data>
   <data name="Notifications_Success" xml:space="preserve">
     <value>Success</value>
   </data>
   <data name="Notifications_UserCreated_Success" xml:space="preserve">
-    <value>User has been created succesfully</value>
+    <value>User has been created successfully</value>
   </data>
   <data name="Notifications_UserUpdated_Success" xml:space="preserve">
-    <value>User updated succesfully</value>
+    <value>User updated successfully</value>
   </data>
   <data name="Notifications_Warning" xml:space="preserve">
     <value>Warning</value>
@@ -286,10 +286,10 @@
     <value>Loading...</value>
   </data>
   <data name="Search_NoRecordsFound" xml:space="preserve">
-    <value>No records found</value>
+    <value>No matching records found</value>
   </data>
   <data name="Titles_AddNewModal" xml:space="preserve">
-    <value>Add new</value>
+    <value>Add</value>
   </data>
   <data name="Titles_ChangePassword" xml:space="preserve">
     <value>Change Password</value>
@@ -319,16 +319,16 @@
     <value>Field {0} is not a valid email address.</value>
   </data>
   <data name="Validations_FieldLength" xml:space="preserve">
-    <value>Field {0} must be at least {1} characters long</value>
+    <value>Field {0} must be at least {1} characters long.</value>
   </data>
   <data name="Validations_PasswordsDoNotMatch" xml:space="preserve">
-    <value>The passwords do not match</value>
+    <value>The passwords do not match.</value>
   </data>
   <data name="Validations_Required" xml:space="preserve">
-    <value>Field {0} is required</value>
+    <value>Field {0} is required.</value>
   </data>
   <data name="Validations_UseDifferentPassword" xml:space="preserve">
-    <value>Please use a different password</value>
+    <value>Please use a different password.</value>
   </data>
   <data name="Buttons_DeleteAll" xml:space="preserve">
     <value>Delete All</value>

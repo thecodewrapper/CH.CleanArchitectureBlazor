@@ -118,972 +118,972 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Buttons_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Ακύρωση</value>
   </data>
   <data name="Buttons_CreateOrder" xml:space="preserve">
-    <value>Create Order</value>
+    <value>Δημιουργία Παραγγελίας</value>
   </data>
   <data name="Buttons_CreateUser" xml:space="preserve">
-    <value>Create User</value>
+    <value>Δημιουργία Χρήστη</value>
   </data>
   <data name="Buttons_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Διαγραφή</value>
   </data>
   <data name="Buttons_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Προσωπικά Στοιχεία</value>
   </data>
   <data name="Buttons_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Επεξεργασία</value>
   </data>
   <data name="Buttons_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Αποθήκευση</value>
   </data>
   <data name="Common_No" xml:space="preserve">
-    <value>No</value>
+    <value>Όχι</value>
   </data>
   <data name="Common_SomethingWentWrong" xml:space="preserve">
-    <value>Something went wrong</value>
+    <value>Κάτι πήγε λάθος</value>
   </data>
   <data name="Common_Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ναι</value>
   </data>
   <data name="Email_Template_Slogan" xml:space="preserve">
     <value>Clean Architecture (Blazor) by Charalambos Hadjiantoniou.</value>
   </data>
   <data name="Email_Template_ThankYou" xml:space="preserve">
-    <value>Thank you for choosing us!</value>
+    <value>Σας ευχαριστούμε που μας επιλέξατε!</value>
   </data>
   <data name="Labels_Active" xml:space="preserve">
-    <value>Active</value>
+    <value>Ενεργό</value>
   </data>
   <data name="Labels_ChangePassword" xml:space="preserve">
-    <value>Please change your password</value>
+    <value>Παρακαλώ αλλάξτε τον κωδικό πρόσβασης σας</value>
   </data>
   <data name="Labels_Choose" xml:space="preserve">
-    <value>Choose</value>
+    <value>Επιλέξτε</value>
   </data>
   <data name="Labels_ConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>Επιβεβαιώστε τον Κωδικό Πρόσβασης</value>
   </data>
   <data name="Labels_Copyright" xml:space="preserve">
     <value>Clean Architecture by Charalambos Hadjiantoniou</value>
   </data>
   <data name="Labels_Disabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>Απενεργοποιημένο</value>
   </data>
   <data name="Labels_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Ηλεκτρονικό Ταχυδρομείο</value>
   </data>
   <data name="Labels_Enabled" xml:space="preserve">
-    <value>Enabled</value>
+    <value>Ενεργοποιημένο</value>
   </data>
   <data name="Labels_FirstPage" xml:space="preserve">
-    <value>First Page</value>
+    <value>Πρώτη Σελίδα</value>
   </data>
   <data name="Labels_Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Αρχική Σελίδα</value>
   </data>
   <data name="Labels_LastPage" xml:space="preserve">
-    <value>Last Page</value>
+    <value>Τελευταία Σελίδα</value>
   </data>
   <data name="Labels_Loading" xml:space="preserve">
-    <value>Loading</value>
+    <value>Φόρτωση</value>
   </data>
   <data name="Labels_Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Σύνδεση</value>
   </data>
   <data name="Labels_Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Αποσύνδεση</value>
   </data>
   <data name="Labels_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Όνομα</value>
   </data>
   <data name="Labels_NextPage" xml:space="preserve">
-    <value>Next Page</value>
+    <value>Επόμενη Σελίδα</value>
   </data>
   <data name="Labels_NoResults" xml:space="preserve">
-    <value>No results</value>
+    <value>Δεν βρέθηκαν αποτελέσματα</value>
   </data>
   <data name="Labels_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Κωδικός Πρόσβασης</value>
   </data>
   <data name="Labels_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Τηλέφωνο</value>
   </data>
   <data name="Labels_PreviousPage" xml:space="preserve">
-    <value>Previous Page</value>
+    <value>Προηγούμενη Σελίδα</value>
   </data>
   <data name="Labels_Processing" xml:space="preserve">
-    <value>Processing</value>
+    <value>Επεξεργασία</value>
   </data>
   <data name="Labels_Profile" xml:space="preserve">
-    <value>Profile</value>
+    <value>Προφίλ</value>
   </data>
   <data name="Labels_RememberMe" xml:space="preserve">
-    <value>Remember me</value>
+    <value>Να με θυμάσαι</value>
   </data>
   <data name="Labels_Roles" xml:space="preserve">
-    <value>Roles</value>
+    <value>Ρόλοι</value>
   </data>
   <data name="Labels_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Αναζήτηση</value>
   </data>
   <data name="Labels_Searching" xml:space="preserve">
-    <value>Searching...</value>
+    <value>Αναζήτηση...</value>
   </data>
   <data name="Labels_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="Labels_Status" xml:space="preserve">
-    <value>Status</value>
+    <value>Κατάσταση</value>
   </data>
   <data name="Labels_Surname" xml:space="preserve">
-    <value>Surname</value>
+    <value>Επώνυμο</value>
   </data>
   <data name="Labels_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Όνομα Χρήστη</value>
   </data>
   <data name="Labels_Welcome" xml:space="preserve">
-    <value>Welcome</value>
+    <value>Καλώς ήρθατε</value>
   </data>
   <data name="Navigation_Top_Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Χρήστες</value>
   </data>
   <data name="Notifications_Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Σφάλμα</value>
   </data>
   <data name="Notifications_MarkAllAsRead" xml:space="preserve">
-    <value>Mark all as Read</value>
+    <value>Επισήμανση όλων ως διαβασμένων</value>
   </data>
   <data name="Notifications_NoNewNotifications" xml:space="preserve">
-    <value>No New Notifications</value>
+    <value>Δεν υπάρχουν νέες ειδοποιήσεις αυτή τη στιγμή</value>
   </data>
   <data name="Notifications_PasswordChange_Success" xml:space="preserve">
-    <value>Your password has been change succesfully</value>
+    <value>Ο κωδικός πρόσβασής σας έχει αλλάξει με επιτυχία</value>
   </data>
   <data name="Notifications_Success" xml:space="preserve">
-    <value>Success</value>
+    <value>Επιτυχία</value>
   </data>
   <data name="Notifications_UserCreated_Success" xml:space="preserve">
-    <value>User has been created succesfully</value>
+    <value>Ο χρήστης δημιουργήθηκε με επιτυχία</value>
   </data>
   <data name="Notifications_UserUpdated_Success" xml:space="preserve">
-    <value>User updated succesfully</value>
+    <value>Ο χρήστης ενημερώθηκε με επιτυχία</value>
   </data>
   <data name="Notifications_Warning" xml:space="preserve">
-    <value>Warning</value>
+    <value>Προειδοποίηση</value>
   </data>
   <data name="Roles_Admin" xml:space="preserve">
-    <value>Admin</value>
+    <value>Διαχειριστής</value>
   </data>
   <data name="Roles_SuperAdmin" xml:space="preserve">
-    <value>Super-Admin</value>
+    <value>Υπερ-Διαχειριστής</value>
   </data>
   <data name="Roles_User" xml:space="preserve">
-    <value>User</value>
+    <value>Χρήστης</value>
   </data>
   <data name="Search_Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Φόρτωση...</value>
   </data>
   <data name="Search_NoRecordsFound" xml:space="preserve">
-    <value>No records found</value>
+    <value>Δεν βρέθηκαν αποτελέσματα</value>
   </data>
   <data name="Titles_AddNewModal" xml:space="preserve">
-    <value>Add new</value>
+    <value>Προσθήκη</value>
   </data>
   <data name="Titles_ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
+    <value>Αλλαγή Κωδικού Πρόσβασης</value>
   </data>
   <data name="Titles_EditUser" xml:space="preserve">
-    <value>Edit User</value>
+    <value>Επεξεργασία Χρήστη</value>
   </data>
   <data name="Titles_Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Σύνδεση</value>
   </data>
   <data name="Titles_NewUser" xml:space="preserve">
-    <value>New User</value>
+    <value>Νέος Χρήστης</value>
   </data>
   <data name="Titles_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>Ειδοποιήσεις</value>
   </data>
   <data name="Titles_UserDetails" xml:space="preserve">
-    <value>User Details</value>
+    <value>Στοιχεία Χρήστη</value>
   </data>
   <data name="Titles_UserProfile" xml:space="preserve">
-    <value>User Profile</value>
+    <value>Προφίλ Χρήστη</value>
   </data>
   <data name="Titles_Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Χρήστες</value>
   </data>
   <data name="Validations_EmailFormat" xml:space="preserve">
-    <value>Field {0} is not a valid email address.</value>
+    <value>Το πεδίο {0} δεν είναι έγκυρη διεύθυνση email.</value>
   </data>
   <data name="Validations_FieldLength" xml:space="preserve">
-    <value>Field {0} must be at least {1} characters long</value>
+    <value>Το πεδίο {0} πρέπει να περιέχει τουλάχιστον {1} χαρακτήρα/ες.</value>
   </data>
   <data name="Validations_PasswordsDoNotMatch" xml:space="preserve">
-    <value>The passwords do not match</value>
+    <value>Οι κωδικοί πρόσβασης δεν ταιριάζουν.</value>
   </data>
   <data name="Validations_Required" xml:space="preserve">
-    <value>Field {0} is required</value>
+    <value>Το πεδίο {0} είναι υποχρεωτικό.</value>
   </data>
   <data name="Validations_UseDifferentPassword" xml:space="preserve">
-    <value>Please use a different password</value>
+    <value>Παρακαλώ χρησιμοποιήστε διαφορετικό κωδικό πρόσβασης.</value>
   </data>
   <data name="Buttons_DeleteAll" xml:space="preserve">
-    <value>Delete All</value>
+    <value>Διαγραφή Όλων</value>
   </data>
   <data name="Buttons_New" xml:space="preserve">
-    <value>New</value>
+    <value>Νέο</value>
   </data>
   <data name="Labels_Accept" xml:space="preserve">
-    <value>Accept</value>
+    <value>Αποδοχή</value>
   </data>
   <data name="Labels_Accepted" xml:space="preserve">
-    <value>Accepted</value>
+    <value>Αποδεκτό</value>
   </data>
   <data name="Labels_Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Καθαρισμός</value>
   </data>
   <data name="Labels_CreatedOn" xml:space="preserve">
-    <value>Created On</value>
+    <value>Δημιουργήθηκε στις</value>
   </data>
   <data name="Labels_Date" xml:space="preserve">
-    <value>Date</value>
+    <value>Ημερομηνία</value>
   </data>
   <data name="Labels_DateOfBirth" xml:space="preserve">
-    <value>Date Of Birth</value>
+    <value>Ημερομηνία Γέννησης</value>
   </data>
   <data name="Labels_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Περιγραφή</value>
   </data>
   <data name="Labels_Notes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Σημειώσεις</value>
   </data>
   <data name="Labels_Paid" xml:space="preserve">
-    <value>Paid</value>
+    <value>Πληρωμένο</value>
   </data>
   <data name="Labels_Pending" xml:space="preserve">
-    <value>Pending</value>
+    <value>Εκκρεμεί</value>
   </data>
   <data name="Labels_Price" xml:space="preserve">
-    <value>Price</value>
+    <value>Τιμή</value>
   </data>
   <data name="Labels_Quantity" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Ποσότητα</value>
   </data>
   <data name="Labels_Reject" xml:space="preserve">
-    <value>Reject</value>
+    <value>Απόρριψη</value>
   </data>
   <data name="Labels_Rejected" xml:space="preserve">
-    <value>Rejected</value>
+    <value>Απορρίφθηκε</value>
   </data>
   <data name="Titles_Details" xml:space="preserve">
-    <value>Personal Details</value>
+    <value>Προσωπικά</value>
   </data>
   <data name="Labels_Accept_Cap" xml:space="preserve">
-    <value>ACCEPT</value>
+    <value>ΑΠΟΔΟΧΗ</value>
   </data>
   <data name="Labels_Accepted_Cap" xml:space="preserve">
-    <value>ACCEPTED</value>
+    <value>ΑΠΟΔΕΚΤΟ</value>
   </data>
   <data name="Labels_Active_Cap" xml:space="preserve">
-    <value>ACTIVE</value>
+    <value>ΕΝΕΡΓΟ</value>
   </data>
   <data name="Labels_ChangePassword_Cap" xml:space="preserve">
-    <value>PLEASE CHANGE YOUR PASSWORD</value>
+    <value>ΠΑΡΑΚΑΛΩ ΑΛΛΑΞΤΕ ΤΟΝ ΚΩΔΙΚΟ ΠΡΟΣΒΑΣΗΣ ΣΑΣ</value>
   </data>
   <data name="Labels_Choose_Cap" xml:space="preserve">
-    <value>CHOOSE</value>
+    <value>ΕΠΙΛΕΞΤΕ</value>
   </data>
   <data name="Labels_Clear_Cap" xml:space="preserve">
-    <value>CLEAR</value>
+    <value>ΚΑΘΑΡΙΣΜΟΣ</value>
   </data>
   <data name="Labels_ConfirmPassword_Cap" xml:space="preserve">
-    <value>CONFIRM PASSWORD</value>
+    <value>ΕΠΙΒΕΒΑΙΩΣΤΕ ΤΟΝ ΚΩΔΙΚΟ ΠΡΟΣΒΑΣΗΣ</value>
   </data>
   <data name="Labels_Copyright_Cap" xml:space="preserve">
     <value>Clean Architecture by Charalambos Hadjiantoniou</value>
   </data>
   <data name="Labels_CreatedOn_Cap" xml:space="preserve">
-    <value>CREATED ON</value>
+    <value>ΔΗΜΙΟΥΡΓΗΘΗΚΕ ΣΤΙΣ</value>
   </data>
   <data name="Labels_Date_Cap" xml:space="preserve">
-    <value>DATE</value>
+    <value>ΗΜΕΡΟΜΗΝΙΑ</value>
   </data>
   <data name="Labels_DateOfBirth_Cap" xml:space="preserve">
-    <value>DATE OF BIRTH</value>
+    <value>ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ</value>
   </data>
   <data name="Labels_Description_Cap" xml:space="preserve">
-    <value>DESCRIPTION</value>
+    <value>ΠΕΡΙΓΡΑΦΗ</value>
   </data>
   <data name="Labels_Disabled_Cap" xml:space="preserve">
-    <value>DISABLED</value>
+    <value>ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ</value>
   </data>
   <data name="Labels_Email_Cap" xml:space="preserve">
-    <value>EMAIL</value>
+    <value>ΗΛΕΚΤΡΟΝΙΚΟ ΤΑΧΥΔΡΟΜΕΙΟ</value>
   </data>
   <data name="Labels_Enabled_Cap" xml:space="preserve">
-    <value>ENABLED</value>
+    <value>ΕΝΕΡΓΟΠΟΙΗΜΕΝΟ</value>
   </data>
   <data name="Labels_FirstPage_Cap" xml:space="preserve">
-    <value>FIRST PAGE</value>
+    <value>ΠΡΩΤΗ ΣΕΛΙΔΑ</value>
   </data>
   <data name="Labels_Home_Cap" xml:space="preserve">
-    <value>HOME</value>
+    <value>ΑΡΧΙΚΗ ΣΕΛΙΔΑ</value>
   </data>
   <data name="Labels_LastPage_Cap" xml:space="preserve">
-    <value>LAST PAGE</value>
+    <value>ΤΕΛΕΥΤΑΙΑ ΣΕΛΙΔΑ</value>
   </data>
   <data name="Labels_Loading_Cap" xml:space="preserve">
-    <value>LOADING</value>
+    <value>ΦΟΡΤΩΣΗ</value>
   </data>
   <data name="Labels_Login_Cap" xml:space="preserve">
-    <value>LOGIN</value>
+    <value>ΣΥΝΔΕΣΗ</value>
   </data>
   <data name="Labels_Logout_Cap" xml:space="preserve">
-    <value>LOGOUT</value>
+    <value>ΑΠΟΣΥΝΔΕΣΗ</value>
   </data>
   <data name="Labels_Name_Cap" xml:space="preserve">
-    <value>NAME</value>
+    <value>ΟΝΟΜΑ</value>
   </data>
   <data name="Labels_NextPage_Cap" xml:space="preserve">
-    <value>NEXT PAGE</value>
+    <value>ΕΠΟΜΕΝΗ ΣΕΛΙΔΑ</value>
   </data>
   <data name="Labels_NoResults_Cap" xml:space="preserve">
-    <value>NO RESULTS</value>
+    <value>ΔΕΝ ΒΡΕΘΗΚΑΝ ΑΠΟΤΕΛΕΣΜΑΤΑ</value>
   </data>
   <data name="Labels_Notes_Cap" xml:space="preserve">
-    <value>NOTES</value>
+    <value>ΣΗΜΕΙΩΣΕΙΣ</value>
   </data>
   <data name="Labels_Paid_Cap" xml:space="preserve">
-    <value>PAID</value>
+    <value>ΠΛΗΡΩΜΕΝΟ</value>
   </data>
   <data name="Labels_Password_Cap" xml:space="preserve">
-    <value>PASSWORD</value>
+    <value>ΚΩΔΙΚΟΣ ΠΡΟΣΒΑΣΗΣ</value>
   </data>
   <data name="Labels_Pending_Cap" xml:space="preserve">
-    <value>PENDING</value>
+    <value>ΕΚΚΡΕΜΕΙ</value>
   </data>
   <data name="Labels_PreviousPage_Cap" xml:space="preserve">
-    <value>PREVIOUS PAGE</value>
+    <value>ΠΡΟΗΓΟΥΜΕΝΗ ΣΕΛΙΔΑ</value>
   </data>
   <data name="Labels_Price_Cap" xml:space="preserve">
-    <value>PRICE</value>
+    <value>ΤΙΜΗ</value>
   </data>
   <data name="Labels_Processing_Cap" xml:space="preserve">
-    <value>PROCESSING</value>
+    <value>ΕΠΕΞΕΡΓΑΣΙΑ</value>
   </data>
   <data name="Labels_Profile_Cap" xml:space="preserve">
-    <value>PROFILE</value>
+    <value>ΠΡΟΦΙΛ</value>
   </data>
   <data name="Labels_Quantity_Cap" xml:space="preserve">
-    <value>QUANTITY</value>
+    <value>ΠΟΣΟΤΗΤΑ</value>
   </data>
   <data name="Labels_Reject_Cap" xml:space="preserve">
-    <value>REJECT</value>
+    <value>ΑΠΟΡΡΙΨΗ</value>
   </data>
   <data name="Labels_Rejected_Cap" xml:space="preserve">
-    <value>REJECTED</value>
+    <value>ΑΠΟΡΡΙΦΘΗΚΕ</value>
   </data>
   <data name="Labels_RememberMe_Cap" xml:space="preserve">
-    <value>REMEMBER ME</value>
+    <value>ΝΑ ΜΕ ΘΥΜΑΣΑΙ</value>
   </data>
   <data name="Labels_Roles_Cap" xml:space="preserve">
-    <value>ROLES</value>
+    <value>ΡΟΛΟΙ</value>
   </data>
   <data name="Labels_Search_Cap" xml:space="preserve">
-    <value>SEARCH</value>
+    <value>ΑΝΑΖΗΤΗΣΗ</value>
   </data>
   <data name="Labels_Searching_Cap" xml:space="preserve">
-    <value>SEARCHING...</value>
+    <value>ΑΝΑΖΗΤΗΣΗ...</value>
   </data>
   <data name="Labels_Settings_Cap" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>ΡΥΘΜΙΣΕΙΣ</value>
   </data>
   <data name="Labels_Status_Cap" xml:space="preserve">
-    <value>STATUS</value>
+    <value>ΚΑΤΑΣΤΑΣΗ</value>
   </data>
   <data name="Labels_Surname_Cap" xml:space="preserve">
-    <value>SURNAME</value>
+    <value>ΕΠΩΝΥΜΟ</value>
   </data>
   <data name="Labels_Username_Cap" xml:space="preserve">
-    <value>USERNAME</value>
+    <value>ΟΝΟΜΑ ΧΡΗΣΤΗ</value>
   </data>
   <data name="Labels_Welcome_Cap" xml:space="preserve">
-    <value>WELCOME</value>
+    <value>ΚΑΛΩΣ ΗΡΘΑΤΕ</value>
   </data>
   <data name="Buttons_Cancel_Cap" xml:space="preserve">
-    <value>CANCEL</value>
+    <value>ΑΚΥΡΩΣΗ</value>
   </data>
   <data name="Buttons_CreateOrder_Cap" xml:space="preserve">
-    <value>CREATE ORDER</value>
+    <value>ΔΗΜΙΟΥΡΓΙΑ ΠΑΡΑΓΓΕΛΙΑΣ</value>
   </data>
   <data name="Buttons_CreateUser_Cap" xml:space="preserve">
-    <value>CREATE USER</value>
+    <value>ΔΗΜΙΟΥΡΓΙΑ ΧΡΗΣΤΗ</value>
   </data>
   <data name="Buttons_Delete_Cap" xml:space="preserve">
-    <value>DELETE</value>
+    <value>ΔΙΑΓΡΑΦΗ</value>
   </data>
   <data name="Buttons_DeleteAll_Cap" xml:space="preserve">
-    <value>DELETE ALL</value>
+    <value>ΔΙΑΓΡΑΦΗ ΟΛΩΝ</value>
   </data>
   <data name="Buttons_Details_Cap" xml:space="preserve">
-    <value>DETAILS</value>
+    <value>ΛΕΠΤΟΜΕΡΙΕΣ</value>
   </data>
   <data name="Buttons_Edit_Cap" xml:space="preserve">
-    <value>EDIT</value>
+    <value>ΕΠΕΞΕΡΓΑΣΙΑ</value>
   </data>
   <data name="Buttons_New_Cap" xml:space="preserve">
-    <value>NEW</value>
+    <value>ΝΕΟ</value>
   </data>
   <data name="Buttons_Save_Cap" xml:space="preserve">
-    <value>SAVE</value>
+    <value>ΑΠΟΘΗΚΕΥΣΗ</value>
   </data>
   <data name="Titles_AddNewModal_Cap" xml:space="preserve">
-    <value>ADD</value>
+    <value>ΠΡΟΣΘΗΚΗ</value>
   </data>
   <data name="Titles_ChangePassword_Cap" xml:space="preserve">
-    <value>CHANGE PASSWORD</value>
+    <value>ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ ΠΡΟΣΒΑΣΗΣ</value>
   </data>
   <data name="Titles_Details_Cap" xml:space="preserve">
-    <value>DETAILS</value>
+    <value>ΛΕΠΤΟΜΕΡΙΕΣ</value>
   </data>
   <data name="Titles_PersonalDetails_Cap" xml:space="preserve">
-    <value>PERSONAL DETAILS</value>
+    <value>ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ</value>
   </data>
   <data name="Titles_EditUser_Cap" xml:space="preserve">
-    <value>EDIT USER</value>
+    <value>ΕΠΕΞΕΡΓΑΣΙΑ ΧΡΗΣΤΗ</value>
   </data>
   <data name="Titles_Login_Cap" xml:space="preserve">
-    <value>LOGIN</value>
+    <value>ΣΥΝΔΕΣΗ</value>
   </data>
   <data name="Titles_NewUser_Cap" xml:space="preserve">
-    <value>NEW USER</value>
+    <value>ΝΕΟΣ ΧΡΗΣΤΗΣ</value>
   </data>
   <data name="Titles_Notifications_Cap" xml:space="preserve">
-    <value>NOTIFICATIONS</value>
+    <value>ΕΙΔΟΠΟΙΗΣΕΙΣ</value>
   </data>
   <data name="Titles_UserDetails_Cap" xml:space="preserve">
-    <value>USER DETAILS</value>
+    <value>ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ</value>
   </data>
   <data name="Titles_UserProfile_Cap" xml:space="preserve">
-    <value>USER PROFILE</value>
+    <value>ΠΡΟΦΙΛ ΧΡΗΣΤΗ</value>
   </data>
   <data name="Titles_Users_Cap" xml:space="preserve">
-    <value>USERS</value>
+    <value>ΧΡΗΣΤΕΣ</value>
   </data>
   <data name="NavLink_Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Πίνακας Παρουσίασης</value>
   </data>
   <data name="NavLink_UserProfile" xml:space="preserve">
-    <value>User Profile</value>
+    <value>Προφίλ Χρήστη</value>
   </data>
   <data name="NavLink_MyNotifications" xml:space="preserve">
-    <value>My Notifications</value>
+    <value>Οι Ειδοποιήσεις Μου</value>
   </data>
   <data name="NavLink_AllNotifications" xml:space="preserve">
-    <value>All Notifications</value>
+    <value>Όλες Οι Ειδοποιήσεις</value>
   </data>
   <data name="NavLink_Orders" xml:space="preserve">
-    <value>Orders</value>
+    <value>Παραγγελίες</value>
   </data>
   <data name="NavLink_Payments" xml:space="preserve">
-    <value>Payments</value>
+    <value>Πληρωμές</value>
   </data>
   <data name="NavLink_UserManagement" xml:space="preserve">
-    <value>User Management</value>
+    <value>Διαχείριση Χρηστών</value>
   </data>
   <data name="NavLink_ApplicationConfig" xml:space="preserve">
-    <value>Application Configuration</value>
+    <value>Ρυθμίσεις Εφαρμογής</value>
   </data>
   <data name="NavLink_Audit" xml:space="preserve">
-    <value>Audit</value>
+    <value>Έλεγχος</value>
   </data>
   <data name="NavLink_Jobs" xml:space="preserve">
-    <value>Jobs</value>
+    <value>Εργασίες</value>
   </data>
   <data name="NavLink_Dashboard_Cap" xml:space="preserve">
-    <value>DASHBOARD</value>
+    <value>ΠΙΝΑΚΑΣ ΠΑΡΟΥΣΙΑΣΗΣ</value>
   </data>
   <data name="NavLink_UserProfile_Cap" xml:space="preserve">
-    <value>USER PROFILE</value>
+    <value>ΠΡΟΦΙΛ ΧΡΗΣΤΗ</value>
   </data>
   <data name="NavLink_MyNotifications_Cap" xml:space="preserve">
-    <value>MY NOTIFICATIONS</value>
+    <value>ΟΙ ΕΙΔΟΠΟΙΗΣΕΙΣ ΜΟΥ</value>
   </data>
   <data name="NavLink_AllNotifications_Cap" xml:space="preserve">
-    <value>ALL NOTIFICATIONS</value>
+    <value>ΟΛΕΣ ΟΙ ΕΙΔΟΠΟΙΗΣΕΙΣ</value>
   </data>
   <data name="NavLink_Orders_Cap" xml:space="preserve">
-    <value>ORDERS</value>
+    <value>ΠΑΡΑΓΓΕΛΙΕΣ</value>
   </data>
   <data name="NavLink_Payments_Cap" xml:space="preserve">
-    <value>PAYMENTS</value>
+    <value>ΠΛΗΡΩΜΕΣ</value>
   </data>
   <data name="NavLink_UserManagement_Cap" xml:space="preserve">
-    <value>USER MANAGEMENT</value>
+    <value>ΔΙΑΧΕΙΡΙΣΗ ΧΡΗΣΤΩΝ</value>
   </data>
   <data name="NavLink_ApplicationConfig_Cap" xml:space="preserve">
-    <value>APPLICATION CONFIGURATION</value>
+    <value>ΡΥΘΜΙΣΕΙΣ ΕΦΑΡΜΟΓΗΣ</value>
   </data>
   <data name="NavLink_Audit_Cap" xml:space="preserve">
-    <value>AUDIT</value>
+    <value>ΕΛΕΓΧΟΣ</value>
   </data>
   <data name="NavLink_Jobs_Cap" xml:space="preserve">
-    <value>JOBS</value>
+    <value>ΕΡΓΑΣΙΕΣ</value>
   </data>
   <data name="Labels_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Λεπτομέρειες</value>
   </data>
   <data name="Labels_Download" xml:space="preserve">
-    <value>Download</value>
+    <value>Λήψη</value>
   </data>
   <data name="Labels_Download_Cap" xml:space="preserve">
-    <value>DOWNLOAD</value>
+    <value>ΛΗΨΗ</value>
   </data>
   <data name="Descriptions_ViewAndModifyUserProfileDetails" xml:space="preserve">
-    <value>View and modify your user profile details</value>
+    <value>Προβολή και τροποποίηση των στοιχείων του προφίλ σας</value>
   </data>
   <data name="Descriptions_ManageProfileDetails" xml:space="preserve">
-    <value>Manage your profile details</value>
+    <value>Διαχείριση των στοιχείων του προφίλ σας</value>
   </data>
   <data name="Descriptions_ChangeYourPassword" xml:space="preserve">
-    <value>Change your password</value>
+    <value>Αλλαγή του κωδικόυ πρόσβασής σας</value>
   </data>
   <data name="Descriptions_PersonalData" xml:space="preserve">
-    <value>Personal data</value>
+    <value>Προσωπικά δεδομένα</value>
   </data>
   <data name="Titles_PersonalData_Cap" xml:space="preserve">
-    <value>PERSONAL DATA</value>
+    <value>ΠΡΟΣΩΠΙΚΑ ΔΕΔΟΜΕΝΑ</value>
   </data>
   <data name="Titles_MyNotifications" xml:space="preserve">
-    <value>My Notifications</value>
+    <value>Οι Ειδοποιήσεις Μου</value>
   </data>
   <data name="Descriptions_ViewNotifications" xml:space="preserve">
-    <value>View your notifications</value>
+    <value>Προβολή των ειδοποιήσεων σας</value>
   </data>
   <data name="Labels_PrimaryPhone" xml:space="preserve">
-    <value>Primary Phone</value>
+    <value>Κύριο Τηλέφωνο</value>
   </data>
   <data name="Labels_SecondaryPhone" xml:space="preserve">
-    <value>Secondary Phone</value>
+    <value>Δευτερεύον Τηλέφωνο</value>
   </data>
   <data name="Labels_Address" xml:space="preserve">
-    <value>Address</value>
+    <value>Διεύθυνση</value>
   </data>
   <data name="Labels_Street1" xml:space="preserve">
-    <value>Street 1</value>
+    <value>Οδός 1</value>
   </data>
   <data name="Labels_Street2" xml:space="preserve">
-    <value>Street 2</value>
+    <value>Οδός 2</value>
   </data>
   <data name="Labels_StreetNumber" xml:space="preserve">
-    <value>Street Number</value>
+    <value>Αριθμός Οδού</value>
   </data>
   <data name="Labels_Area" xml:space="preserve">
-    <value>Area</value>
+    <value>Περιοχή</value>
   </data>
   <data name="Labels_OldPassword" xml:space="preserve">
-    <value>Old Password</value>
+    <value>Παλιός Κωδικός Πρόσβασης</value>
   </data>
   <data name="Labels_NewPassword" xml:space="preserve">
-    <value>New Password</value>
+    <value>Νέος Κωδικός Πρόσβασης</value>
   </data>
   <data name="HelperText_ChooseStrongPassword" xml:space="preserve">
-    <value>Choose a strong password</value>
+    <value>Επιλέξτε έναν ισχυρό κωδικό πρόσβασης</value>
   </data>
   <data name="HelperText_RepeatPassword" xml:space="preserve">
-    <value>Repeat the password</value>
+    <value>Επαναλάβετε τον κωδικό πρόσβασης</value>
   </data>
   <data name="Descriptions_PersonalDataInfo" xml:space="preserve">
-    <value>Your account contains personal data that you have given us. This page allows you to download that data.</value>
+    <value>Ο λογαριασμός σας περιέχει προσωπικά δεδομένα που μας έχετε δώσει. Αυτή η σελίδα σας επιτρέπει να κατεβάσετε αυτά τα δεδομένα.</value>
   </data>
   <data name="Labels_ProfilePicture" xml:space="preserve">
-    <value>Profile picture</value>
+    <value>Εικόνα προφίλ</value>
   </data>
   <data name="Labels_Reason" xml:space="preserve">
-    <value>Reason</value>
+    <value>Λόγος</value>
   </data>
   <data name="Messages_UnableToUpdateUserProfile" xml:space="preserve">
-    <value>Unable to update user profile</value>
+    <value>Αδυναμία ενημέρωσης του προφίλ χρήστη</value>
   </data>
   <data name="Messages_PasswordChangedSuccessfully" xml:space="preserve">
-    <value>Password changed successfully</value>
+    <value>Ο κωδικός πρόσβασης άλλαξε με επιτυχία</value>
   </data>
   <data name="Messages_UserNotFound" xml:space="preserve">
-    <value>User not found.</value>
+    <value>Ο χρήστης δεν βρέθηκε.</value>
   </data>
   <data name="Messages_ErrorWhileChangingUserPassword" xml:space="preserve">
-    <value>Error while trying to change user password.</value>
+    <value>Σφάλμα κατά την προσπάθεια αλλαγής του κωδικού πρόσβασης</value>
   </data>
   <data name="Messages_UnableToResetAuthenticatorKey" xml:space="preserve">
-    <value>Unable to reset authenticator key</value>
+    <value>Αδυναμία επαναφοράς του κλειδιού ελέγχου ταυτότητας</value>
   </data>
   <data name="Messages_AuthenticatorKeyResetSuccessfully" xml:space="preserve">
-    <value>Authenticator key reset successfully</value>
+    <value>Το κλειδί ελέγχου ταυτότητας επαναφέρθηκε με επιτυχία</value>
   </data>
   <data name="Messages_UnableToDisable2FA" xml:space="preserve">
-    <value>Unable to disable two-factor authentication (2FA)</value>
+    <value>Αδυναμία απενεργοποίησης του ελέγχου ταυτότητας δύο παραγόντων (2FA)</value>
   </data>
   <data name="Messages_2FADisabledSuccessfully" xml:space="preserve">
-    <value>Two-factor authentication (2FA) disabled successfully</value>
+    <value>O έλεγχος ταυτότητας δύο παραγόντων (2FA) απενεργοποιήθηκε με επιτυχία</value>
   </data>
   <data name="Titles_SetUpAuthenticatorApp" xml:space="preserve">
-    <value>Set up authenticator app</value>
+    <value>Ρύθμιση εφαρμογής ελέγχου ταυτότητας</value>
   </data>
   <data name="Titles_SetUpAuthenticatorApp_Cap" xml:space="preserve">
-    <value>SET UP AUTHENTICATOR APP</value>
+    <value>ΡΥΘΜΙΣΗ ΕΦΑΡΜΟΓΗΣ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ</value>
   </data>
   <data name="Titles_AddAuthenticatorApp" xml:space="preserve">
-    <value>Add authenticator app</value>
+    <value>Προσθήκη εφαρμογής ελέγχου ταυτότητας</value>
   </data>
   <data name="Titles_AddAuthenticatorApp_Cap" xml:space="preserve">
-    <value>ADD AUTHENTICATOR APP</value>
+    <value>ΠΡΟΣΘΗΚΗ ΕΦΑΡΜΟΓΗΣ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ</value>
   </data>
   <data name="Titles_ResetAuthenticator" xml:space="preserve">
-    <value>Reset Authenticator</value>
+    <value>Επαναφορά Ελέγχου Ταυτότητας</value>
   </data>
   <data name="Titles_ResetAuthenticator_Cap" xml:space="preserve">
-    <value>RESET AUTHENTICATOR</value>
+    <value>ΕΠΑΝΑΦΟΡΑ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ</value>
   </data>
   <data name="Messages_ResetAuthenticatorWarning" xml:space="preserve">
-    <value>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</value>
+    <value>Εάν επαναφέρετε το κλειδί ελέγχου ταυτότητας, η εφαρμογή ελέγχου ταυτότητας δεν θα λειτουργεί μέχρι να την επαναρυθμίσετε.</value>
   </data>
   <data name="Titles_Disable2FA" xml:space="preserve">
-    <value>Disable two-factor authentication (2FA)</value>
+    <value>Απενεργοποίηση ελέγχου ταυτότητας δύο παραγόντων (2FA)</value>
   </data>
   <data name="Titles_Disable2FA_Cap" xml:space="preserve">
-    <value>DISABLE TWO-FACTOR AUTHENTICATION (2FA)</value>
+    <value>ΑΠΕΝΕΡΓΟΠΟΙΗΣΗ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ ΔΥΟ ΠΑΡΑΓΟΝΤΩΝ (2FA)</value>
   </data>
   <data name="Labels_Disable2FA" xml:space="preserve">
-    <value>Disable two-factor authentication (2FA)</value>
+    <value>Απενεργοποίηση ελέγχου ταυτότητας δύο παραγόντων (2FA)</value>
   </data>
   <data name="Labels_Disable2FA_Cap" xml:space="preserve">
-    <value>DISABLE TWO-FACTOR AUTHENTICATION (2FA)</value>
+    <value>ΑΠΕΝΕΡΓΟΠΟΙΗΣΗ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ ΔΥΟ ΠΑΡΑΓΟΝΤΩΝ (2FA)</value>
   </data>
   <data name="Messages_Disable2FAWarning" xml:space="preserve">
-    <value>This action only disables two-factor authentication (2FA).</value>
+    <value>Αυτή η ενέργεια απενεργοποιεί μόνο τον έλεγχο ταυτότητας δύο παραγόντων (2FA).</value>
   </data>
   <data name="Labels_ResetAuthenticatorKey" xml:space="preserve">
-    <value>Reset authenticator key</value>
+    <value>Επαναφορά κλειδιού ελέγχου ταυτότητας</value>
   </data>
   <data name="Labels_ResetAuthenticatorKey_Cap" xml:space="preserve">
-    <value>RESET AUTHENTICATOR KEY</value>
+    <value>ΕΠΑΝΑΦΟΡΑ ΚΛΕΙΔΙΟΥ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ</value>
   </data>
   <data name="Descriptions_Disable2FAProcessWarning" xml:space="preserve">
-    <value>This process disables two-factor authentication (2FA) until you verify your authenticator app. If you do not complete your authenticator app configuration you may lose access to your account.</value>
+    <value>Αυτή η διαδικασία απενεργοποιεί τον έλεγχο ταυτότητας δύο παραγόντων (2FA) μέχρι να επαληθεύσετε την εφαρμογή ελέγχου ταυτότητας. Εάν δεν ολοκληρώσετε τη ρύθμιση της εφαρμογής ελέγχου ταυτότητας, ενδέχεται να χάσετε την πρόσβαση στον λογαριασμό σας.</value>
   </data>
   <data name="Descriptions_Disable2FAKeyChangeWarning" xml:space="preserve">
-    <value>Disabling two-factor authentication (2FA) does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should reset your authenticator keys.</value>
+    <value>Η απενεργοποίηση του ελέγχου ταυτότητας δύο παραγόντων (2FA) δεν αλλάζει τα κλειδιά που χρησιμοποιούνται στις εφαρμογές ελέγχου ταυτότητας. Εάν θέλετε να αλλάξετε το κλειδί που χρησιμοποιείται σε μια εφαρμογή ελέγχου ταυτότητας, θα πρέπει να επαναφέρετε τα κλειδιά ελέγχου ταυτότητας.</value>
   </data>
   <data name="Titles_TwoFactorAuthentication" xml:space="preserve">
-    <value>Two-Factor Authentication</value>
+    <value>Έλεγχος Ταυτότητας Δύο Παραγόντων</value>
   </data>
   <data name="Descriptions_AuthenticatorApp" xml:space="preserve">
-    <value>Authenticator app</value>
+    <value>Εφαρμογή ελέγχου ταυτότητας</value>
   </data>
   <data name="Titles_TwoFactorAuthentication_Cap" xml:space="preserve">
-    <value>TWO-FACTOR AUTHENTICATION</value>
+    <value>ΕΛΕΓΧΟΣ ΤΑΥΤΟΤΗΤΑΣ ΔΥΟ ΠΑΡΑΓΟΝΤΩΝ</value>
   </data>
   <data name="Descriptions_AuthenticatorApp_Cap" xml:space="preserve">
-    <value>AUTHENTICATOR APP</value>
+    <value>ΕΦΑΡΜΟΓΗ ΕΛΕΓΧΟΥ ΤΑΥΤΟΤΗΤΑΣ</value>
   </data>
   <data name="Labels_VerificationCode" xml:space="preserve">
-    <value>Verification Code</value>
+    <value>Κωδικός επαλήθευσης</value>
   </data>
   <data name="Buttons_Verify" xml:space="preserve">
-    <value>Verify</value>
+    <value>Επαλήθευση</value>
   </data>
   <data name="Buttons_Verify_Cap" xml:space="preserve">
-    <value>VERIFY</value>
+    <value>ΕΠΑΛΗΘΕΥΣΗ</value>
   </data>
   <data name="Descriptions_UseAuthenticatorApp" xml:space="preserve">
-    <value>To use an authenticator app go through the following steps:</value>
+    <value>Για να χρησιμοποιήσετε μια εφαρμογή ελέγχου ταυτότητας, ακολουθήστε τα παρακάτω βήματα:</value>
   </data>
   <data name="Messages_AuthenticatorAppVerified" xml:space="preserve">
-    <value>Your authenticator app has been verified.</value>
+    <value>Η εφαρμογή ελέγχου ταυτότητας σας έχει επαληθευτεί.</value>
   </data>
   <data name="Messages_ConfirmProceed" xml:space="preserve">
-    <value>Are you sure you want to proceed?</value>
+    <value>Είστε σίγουροι ότι θέλετε να προχωρήσετε;</value>
   </data>
   <data name="Buttons_Proceed" xml:space="preserve">
-    <value>Proceed</value>
+    <value>Προχωρήστε</value>
   </data>
   <data name="Labels_Percentage" xml:space="preserve">
-    <value>Percentage</value>
+    <value>Ποσοστό</value>
   </data>
   <data name="Titles_MySubscriptions" xml:space="preserve">
-    <value>My Subscriptions</value>
+    <value>Οι Συνδρομές Μου</value>
   </data>
   <data name="Labels_ActivatedOn" xml:space="preserve">
-    <value>Activated on</value>
+    <value>Ενεργοποιήθηκε στις</value>
   </data>
   <data name="Labels_MoveUp" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Μετακίνηση προς τα πάνω</value>
   </data>
   <data name="Labels_MoveDown" xml:space="preserve">
-    <value>Move Down</value>
+    <value>Μετακίνηση προς τα κάτω</value>
   </data>
   <data name="Labels_Actions" xml:space="preserve">
-    <value>Actions</value>
+    <value>Ενέργειες</value>
   </data>
   <data name="Labels_User" xml:space="preserve">
-    <value>User</value>
+    <value>Χρήστης</value>
   </data>
   <data name="Labels_Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>Ειδοποιήσεις</value>
   </data>
   <data name="Labels_UserFor" xml:space="preserve">
-    <value>User for</value>
+    <value>Χρήστης για</value>
   </data>
   <data name="Labels_SentOn" xml:space="preserve">
-    <value>Sent On</value>
+    <value>Απεστάλη στις</value>
   </data>
   <data name="Labels_Orders" xml:space="preserve">
-    <value>Orders</value>
+    <value>Παραγγελίες</value>
   </data>
   <data name="Labels_Amount" xml:space="preserve">
-    <value>Amount</value>
+    <value>Ποσό</value>
   </data>
   <data name="Labels_ModifiedOn" xml:space="preserve">
-    <value>Modified On</value>
+    <value>Τροποποιήθηκε στις</value>
   </data>
   <data name="Labels_OrderId" xml:space="preserve">
-    <value>Order Id</value>
+    <value>Κωδικός Παραγγελίας</value>
   </data>
   <data name="Labels_Currency" xml:space="preserve">
-    <value>Currency</value>
+    <value>Νόμισμα</value>
   </data>
   <data name="Labels_Metadata" xml:space="preserve">
-    <value>Metadata</value>
+    <value>Μεταδεδομένα</value>
   </data>
   <data name="Titles_Payments" xml:space="preserve">
-    <value>Payments</value>
+    <value>Πληρωμές</value>
   </data>
   <data name="Labels_Id" xml:space="preserve">
-    <value>Id</value>
+    <value>Κωδικός</value>
   </data>
   <data name="Tooltips_OpenRelatedOrder" xml:space="preserve">
-    <value>Open Related Order</value>
+    <value>Άνοιγμα Σχετικής Παραγγελίας</value>
   </data>
   <data name="Messages_AddUser" xml:space="preserve">
-    <value>Add user</value>
+    <value>Προσθήκη χρήστη</value>
   </data>
   <data name="Messages_UserDeleted" xml:space="preserve">
-    <value>User with id '{0}' deleted successfully.</value>
+    <value>Ο χρήστης με κωδικό '{0}' διαγράφηκε με επιτυχία.</value>
   </data>
   <data name="Labels_Activation" xml:space="preserve">
-    <value>Activation</value>
+    <value>Ενεργοποίηση</value>
   </data>
   <data name="Labels_EmailConfirmed" xml:space="preserve">
-    <value>Email confirmed</value>
+    <value>Ηλεκτρονικό ταχυδρομείο επιβεβαιώθηκε</value>
   </data>
   <data name="Labels_Confirmed" xml:space="preserve">
-    <value>Confirmed</value>
+    <value>Επιβεβαιώθηκε</value>
   </data>
   <data name="Labels_UserStatus" xml:space="preserve">
-    <value>User Status</value>
+    <value>Κατάσταση χρήστη</value>
   </data>
   <data name="Labels_RejectionReason" xml:space="preserve">
-    <value>Rejection Reason</value>
+    <value>Λόγος απόρριψης</value>
   </data>
   <data name="Buttons_ResendConfirmationEmail" xml:space="preserve">
-    <value>Resend Confirmation Email</value>
+    <value>Επαναποστολή email επιβεβαίωσης</value>
   </data>
   <data name="Buttons_ResendConfirmationEmail_Cap" xml:space="preserve">
-    <value>RESEND CONFIRMATION EMAIL</value>
+    <value>ΕΠΑΝΑΠΟΣΤΟΛΗ EMAIL ΕΠΙΒΕΒΑΙΩΣΗΣ</value>
   </data>
   <data name="Buttons_ConfirmUserEmail" xml:space="preserve">
-    <value>Confirm User Email</value>
+    <value>Επιβεβαίωση email χρήστη</value>
   </data>
   <data name="Buttons_ConfirmUserEmail_Cap" xml:space="preserve">
-    <value>CONFIRM USER EMAIL</value>
+    <value>ΕΠΙΒΕΒΑΙΩΣΗ EMAIL ΧΡΗΣΤΗ</value>
   </data>
   <data name="Buttons_Approve" xml:space="preserve">
-    <value>Approve</value>
+    <value>Έγκριση</value>
   </data>
   <data name="Buttons_Approve_Cap" xml:space="preserve">
-    <value>APPROVE</value>
+    <value>ΕΓΚΡΙΣΗ</value>
   </data>
   <data name="Buttons_Reject" xml:space="preserve">
-    <value>Reject</value>
+    <value>Απόρριψη</value>
   </data>
   <data name="Buttons_Reject_Cap" xml:space="preserve">
-    <value>REJECT</value>
+    <value>ΑΠΟΡΡΙΨΗ</value>
   </data>
   <data name="Buttons_Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Επαναφορά</value>
   </data>
   <data name="Buttons_Reset_Cap" xml:space="preserve">
-    <value>RESET</value>
+    <value>ΕΠΑΝΑΦΟΡΑ</value>
   </data>
   <data name="Messages_EnterRejectionReason" xml:space="preserve">
-    <value>Enter rejection reason:</value>
+    <value>Εισάγετε τον λόγο απόρριψης:</value>
   </data>
   <data name="Buttons_Activate" xml:space="preserve">
-    <value>Activate</value>
+    <value>Ενεργοποίηση</value>
   </data>
   <data name="Buttons_Activate_Cap" xml:space="preserve">
-    <value>ACTIVATE</value>
+    <value>ΕΝΕΡΓΟΠΟΙΗΣΗ</value>
   </data>
   <data name="Buttons_Deactivate" xml:space="preserve">
-    <value>Deactivate</value>
+    <value>Απενεργοποίηση</value>
   </data>
   <data name="Buttons_Deactivate_Cap" xml:space="preserve">
-    <value>DEACTIVATE</value>
+    <value>ΑΠΕΝΕΡΓΟΠΟΙΗΣΗ</value>
   </data>
   <data name="Messages_ResendConfirmationEmail" xml:space="preserve">
-    <value>Resend confirmation email</value>
+    <value>Αποστολή email επιβεβαίωσης ξανά</value>
   </data>
   <data name="Messages_ResendConfirmationEmailConfirmation" xml:space="preserve">
-    <value>Are you sure you want to resend the user confirmation email to '{0}'</value>
+    <value>Είστε βέβαιοι ότι θέλετε να στείλετε ξανά το email επιβεβαίωσης στον χρήστη '{0}'</value>
   </data>
   <data name="Messages_ConfirmUserEmail" xml:space="preserve">
-    <value>Confirm user email</value>
+    <value>Επιβεβαίωση email χρήστη</value>
   </data>
   <data name="Messages_ConfirmUserEmailConfirmation" xml:space="preserve">
-    <value>Are you sure you want to confirm the email of the user '{0}'? This action cannot be undone!</value>
+    <value>Είστε βέβαιοι ότι θέλετε να επιβεβαιώσετε το email του χρήστη '{0}'; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί!</value>
   </data>
   <data name="Messages_UnableToConfirmUserEmail" xml:space="preserve">
-    <value>Unable to confirm user email for user '{0}'</value>
+    <value>Αδυναμία επιβεβαίωσης email για τον χρήστη '{0}'</value>
   </data>
   <data name="Messages_UserEmailConfirmedSuccessfully" xml:space="preserve">
-    <value>User email '{0}' confirmed successfully</value>
+    <value>Το email του χρήστη '{0}' επιβεβαιώθηκε με επιτυχία</value>
   </data>
   <data name="Buttons_YesSendIt" xml:space="preserve">
-    <value>Yes, send it!</value>
+    <value>Ναι, στείλε το!</value>
   </data>
   <data name="Buttons_ConfirmUpdateAll" xml:space="preserve">
-    <value>Yes, update all</value>
+    <value>Ναι, ενημερώσε τα όλα</value>
   </data>
   <data name="Buttons_ConfirmUpdateAll_Cap" xml:space="preserve">
-    <value>YES, UPDATE ALL</value>
+    <value>ΝΑΙ, ΕΝΗΜΕΡΩΣΕ ΤΑ ΟΛΑ</value>
   </data>
   <data name="Descriptions_NotificationsAll" xml:space="preserve">
-    <value>View all system notifications</value>
+    <value>Προβολή όλων των ειδοποιήσεων συστήματος</value>
   </data>
   <data name="Messages_NoOrderFound" xml:space="preserve">
-    <value>No order with id {0} found</value>
+    <value>Δεν βρέθηκε παραγγελία με κωδικό {0}</value>
   </data>
   <data name="Labels_PaymentDetails" xml:space="preserve">
-    <value>Payment Details</value>
+    <value>Λεπτομέρειες Πληρωμής</value>
   </data>
   <data name="Buttons_Confirm" xml:space="preserve">
-    <value>Confirm</value>
+    <value>Επιβεβαίωση</value>
   </data>
   <data name="Buttons_Abort" xml:space="preserve">
-    <value>Abort</value>
+    <value>Ακύρωση</value>
   </data>
   <data name="Buttons_Confirm_Cap" xml:space="preserve">
-    <value>CONFIRM</value>
+    <value>ΕΠΙΒΕΒΑΙΩΣΗ</value>
   </data>
   <data name="Buttons_Abort_Cap" xml:space="preserve">
-    <value>ABORT</value>
+    <value>ΑΚΥΡΩΣΗ</value>
   </data>
   <data name="Messages_NoPaymentFound" xml:space="preserve">
-    <value>No payment with id {0} found</value>
+    <value>Δεν βρέθηκε πληρωμή με κωδικό id {0}</value>
   </data>
   <data name="Messages_ConfirmingPayment" xml:space="preserve">
-    <value>Confirming payment '{0}'</value>
+    <value>Επιβεβαίωση πληρωμής '{0}'</value>
   </data>
   <data name="Messages_ConfirmPaymentPrompt" xml:space="preserve">
-    <value>Are you sure you want to confirm this payment?</value>
+    <value>Είστε βέβαιοι ότι θέλετε να επιβεβαιώσετε αυτήν την πληρωμή;</value>
   </data>
   <data name="Messages_UnableToConfirmPayment" xml:space="preserve">
-    <value>Unable to confirm payment '{0}'</value>
+    <value>Δεν είναι δυνατή η επιβεβαίωση της πληρωμής '{0}'</value>
   </data>
   <data name="Messages_PaymentConfirmedSuccessfully" xml:space="preserve">
-    <value>Payment '{0}' confirmed successfully</value>
+    <value>Η πληρωμή '{0}' επιβεβαιώθηκε με επιτυχία</value>
   </data>
   <data name="Messages_AbortingPayment" xml:space="preserve">
-    <value>Aborting payment '{0}'</value>
+    <value>Ακύρωση πληρωμής '{0}'</value>
   </data>
   <data name="Messages_AbortPaymentPrompt" xml:space="preserve">
-    <value>Are you sure you want to abort this payment?</value>
+    <value>Είστε βέβαιοι ότι θέλετε να ακυρώσετε αυτήν την πληρωμή;</value>
   </data>
   <data name="Messages_UnableToAbortPayment" xml:space="preserve">
-    <value>Unable to abort payment '{0}'</value>
+    <value>Δεν είναι δυνατή η ακύρωση της πληρωμής '{0}'</value>
   </data>
   <data name="Messages_PaymentAbortedSuccessfully" xml:space="preserve">
-    <value>Payment '{0}' aborted successfully</value>
+    <value>Η πληρωμή '{0}' ακυρώθηκε με επιτυχία</value>
   </data>
   <data name="Descriptions_Payments" xml:space="preserve">
-    <value>View and manage payments</value>
+    <value>Προβολή και διαχείριση πληρωμών</value>
   </data>
   <data name="Descriptions_ViewAndConfigureAllSystemUsers" xml:space="preserve">
-    <value>View and configure all system users</value>
+    <value>Προβολή και διαμόρφωση όλων των χρηστών του συστήματος</value>
   </data>
   <data name="Validation_EmailRequired" xml:space="preserve">
-    <value>Email is required.</value>
+    <value>Απαιτείται email.</value>
   </data>
   <data name="Validation_ValidEmailRequired" xml:space="preserve">
-    <value>A valid email is required.</value>
+    <value>Απαιτείται έγκυρο email.</value>
   </data>
   <data name="Messages_FileMustBeAnImage" xml:space="preserve">
-    <value>The file must be an image. ({0})</value>
+    <value>Το αρχείο πρέπει να είναι εικόνα. ({0})</value>
   </data>
   <data name="Messages_FileMustBeAnImageOrPdf" xml:space="preserve">
-    <value>The file must be an image or PDF. ({0})</value>
+    <value>Το αρχείο πρέπει να είναι εικόνα ή PDF. ({0})</value>
   </data>
   <data name="Messages_FileTooLarge" xml:space="preserve">
-    <value>The file you selected is too large, please select a file up to {0}.</value>
+    <value>Το μέγεθος του αρχείου που έχετε επιλέξει είναι πολυ μεγάλο. Παρακαλώ επιλέξτε ενα αρχείο μέχρι {0}.</value>
   </data>
   <data name="Messages_MaxFileSize" xml:space="preserve">
-    <value>Maximum file size: {0}.</value>
+    <value>Μέγιστο μέγεθος αρχείου: {0}.</value>
   </data>
   <data name="Messages_Here" xml:space="preserve">
-    <value>here</value>
+    <value>εδώ</value>
   </data>
   <data name="Messages_ReadMore" xml:space="preserve">
-    <value>Read more</value>
+    <value>Δες περισσοτερά</value>
   </data>
   <data name="Labels_Male" xml:space="preserve">
-    <value>Male</value>
+    <value>Άρρεν</value>
   </data>
   <data name="Labels_Female" xml:space="preserve">
-    <value>Female</value>
+    <value>Θήλυν</value>
   </data>
   <data name="Labels_Other" xml:space="preserve">
-    <value>Other</value>
+    <value>Αλλο</value>
   </data>
   <data name="None" xml:space="preserve">
-    <value>None</value>
+    <value>Καμία</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>Male</value>
+    <value>Άρρεν</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>Female</value>
+    <value>Θήλυν</value>
   </data>
   <data name="Validations_ValueGreaterOrEqual" xml:space="preserve">
-    <value>Value should be greater than or equal to {0}</value>
+    <value>Η τιμή πρέπει να είναι μεγαλύτερη ή ίση με {0}</value>
   </data>
   <data name="Other" xml:space="preserve">
-    <value>Other</value>
+    <value>Αλλο</value>
   </data>
   <data name="PendingReview" xml:space="preserve">
-    <value>Pending Review</value>
+    <value>Εξετάζεται</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value>Approved</value>
+    <value>Εγκρίθηκε</value>
   </data>
   <data name="Rejected" xml:space="preserve">
-    <value>Rejected</value>
+    <value>Απορρίφθηκε</value>
   </data>
   <data name="Labels_RowsPerPage" xml:space="preserve">
-    <value>Rows per page</value>
+    <value>Εγγραφές ανα σελίδα</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Τιμή</value>
   </data>
   <data name="Labels_Mandatory" xml:space="preserve">
-    <value>Mandatory</value>
+    <value>Υποχρεωτικό</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Required</value>
+    <value>Υποχρεωτικό</value>
   </data>
   <data name="Buttons_Proceed_Cap" xml:space="preserve">
-    <value>PROCEED</value>
+    <value>ΠΡΟΧΩΡΗΣΤΕ</value>
   </data>
 </root>

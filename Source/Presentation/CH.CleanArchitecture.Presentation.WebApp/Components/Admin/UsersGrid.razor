@@ -7,19 +7,19 @@
     <MudItem Class="pa-4" xs="12" sm="12" md="12">
         <MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="_table">
             <ToolBarContent>
-                <MudText Typo="Typo.h6">Users</MudText>
+                <MudText Typo="Typo.h6">@LocalizationService.GetLocalizedString(ResourceKeys.Titles_Users)</MudText>
                 <MudSpacer />
-                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Search)" Adornment="Adornment.Start"
                               AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
                 <CRUDButton Type="CRUDButtonType.New" OnClick="@(async () => await AddNewAsync())" />
             </ToolBarContent>
             <HeaderContent>
-                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.Name))" T="UserReadModel">Id</MudTableSortLabel></MudTh>
-                <MudTh>Name</MudTh>
-                <MudTh>Surname</MudTh>
-                <MudTh>Email</MudTh>
-                <MudTh>Roles</MudTh>
-                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.IsActive))" T="UserReadModel">Is Active</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.Name))" T="UserReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Id)</MudTableSortLabel></MudTh>
+                <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Name)</MudTh>
+                <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Surname)</MudTh>
+                <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Email)</MudTh>
+                <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)</MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.IsActive))" T="UserReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Active)</MudTableSortLabel></MudTh>
                 <MudTh></MudTh>
             </HeaderContent>
             <RowTemplate>

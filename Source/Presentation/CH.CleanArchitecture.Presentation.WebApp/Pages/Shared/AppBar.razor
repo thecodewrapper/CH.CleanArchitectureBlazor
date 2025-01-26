@@ -8,6 +8,28 @@
                 <NotificationsPanel Notifications="_notifications" />
                 <MudDivider Vertical="true"/>
                 <MudIconButton Icon="@(ThemeProvider.IsDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode)" OnClick="async () => await OnDarkModeToggled.InvokeAsync()" />
+                <!-- Language Selector -->
+                <MudMenu AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopRight" OffsetY="true">
+                    <ActivatorContent>
+                        <MudButton Variant="Variant.Text">
+                            <MudImage Width="25" Src="@($"images/{CurrentLanguageFlag}.png")" />
+                        </MudButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MudMenuItem OnClick="@(() => ChangeLanguage("en"))">
+                            <MudStack Row>
+                                <MudImage Width="25" Src="@($"images/en.png")" />
+                                <MudText Class="ml-2">English</MudText>
+                            </MudStack>
+                        </MudMenuItem>
+                        <MudMenuItem OnClick="@(() => ChangeLanguage("el"))">
+                            <MudStack Row>
+                                <MudImage Width="25" Src="@($"images/el.png")" />
+                                <MudText Class="ml-2">Greek</MudText>
+                            </MudStack>
+                        </MudMenuItem>
+                    </ChildContent>
+                </MudMenu>
             </Authorized>
         </AuthorizeView>
     </CascadingAuthenticationState>

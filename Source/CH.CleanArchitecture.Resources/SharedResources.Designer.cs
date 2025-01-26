@@ -61,11 +61,137 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abort.
+        /// </summary>
+        public static string Buttons_Abort {
+            get {
+                return ResourceManager.GetString("Buttons_Abort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABORT.
+        /// </summary>
+        public static string Buttons_Abort_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Abort_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate.
+        /// </summary>
+        public static string Buttons_Activate {
+            get {
+                return ResourceManager.GetString("Buttons_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACTIVATE.
+        /// </summary>
+        public static string Buttons_Activate_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Activate_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        public static string Buttons_Approve {
+            get {
+                return ResourceManager.GetString("Buttons_Approve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APPROVE.
+        /// </summary>
+        public static string Buttons_Approve_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Approve_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Buttons_Cancel {
             get {
                 return ResourceManager.GetString("Buttons_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL.
+        /// </summary>
+        public static string Buttons_Cancel_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Cancel_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Buttons_Confirm {
+            get {
+                return ResourceManager.GetString("Buttons_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONFIRM.
+        /// </summary>
+        public static string Buttons_Confirm_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Confirm_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, update all.
+        /// </summary>
+        public static string Buttons_ConfirmUpdateAll {
+            get {
+                return ResourceManager.GetString("Buttons_ConfirmUpdateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES, UPDATE ALL.
+        /// </summary>
+        public static string Buttons_ConfirmUpdateAll_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_ConfirmUpdateAll_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm User Email.
+        /// </summary>
+        public static string Buttons_ConfirmUserEmail {
+            get {
+                return ResourceManager.GetString("Buttons_ConfirmUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONFIRM USER EMAIL.
+        /// </summary>
+        public static string Buttons_ConfirmUserEmail_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_ConfirmUserEmail_Cap", resourceCulture);
             }
         }
         
@@ -79,11 +205,47 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE ORDER.
+        /// </summary>
+        public static string Buttons_CreateOrder_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_CreateOrder_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create User.
         /// </summary>
         public static string Buttons_CreateUser {
             get {
                 return ResourceManager.GetString("Buttons_CreateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE USER.
+        /// </summary>
+        public static string Buttons_CreateUser_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_CreateUser_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivate.
+        /// </summary>
+        public static string Buttons_Deactivate {
+            get {
+                return ResourceManager.GetString("Buttons_Deactivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEACTIVATE.
+        /// </summary>
+        public static string Buttons_Deactivate_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Deactivate_Cap", resourceCulture);
             }
         }
         
@@ -97,11 +259,47 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        public static string Buttons_Delete_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Delete_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All.
+        /// </summary>
+        public static string Buttons_DeleteAll {
+            get {
+                return ResourceManager.GetString("Buttons_DeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE ALL.
+        /// </summary>
+        public static string Buttons_DeleteAll_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_DeleteAll_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Buttons_Details {
             get {
                 return ResourceManager.GetString("Buttons_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DETAILS.
+        /// </summary>
+        public static string Buttons_Details_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Details_Cap", resourceCulture);
             }
         }
         
@@ -115,11 +313,146 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EDIT.
+        /// </summary>
+        public static string Buttons_Edit_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Edit_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string Buttons_New {
+            get {
+                return ResourceManager.GetString("Buttons_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW.
+        /// </summary>
+        public static string Buttons_New_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_New_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proceed.
+        /// </summary>
+        public static string Buttons_Proceed {
+            get {
+                return ResourceManager.GetString("Buttons_Proceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROCEED.
+        /// </summary>
+        public static string Buttons_Proceed_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Proceed_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reject.
+        /// </summary>
+        public static string Buttons_Reject {
+            get {
+                return ResourceManager.GetString("Buttons_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REJECT.
+        /// </summary>
+        public static string Buttons_Reject_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Reject_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resend Confirmation Email.
+        /// </summary>
+        public static string Buttons_ResendConfirmationEmail {
+            get {
+                return ResourceManager.GetString("Buttons_ResendConfirmationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RESEND CONFIRMATION EMAIL.
+        /// </summary>
+        public static string Buttons_ResendConfirmationEmail_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_ResendConfirmationEmail_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Buttons_Reset {
+            get {
+                return ResourceManager.GetString("Buttons_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RESET.
+        /// </summary>
+        public static string Buttons_Reset_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Reset_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Buttons_Save {
             get {
                 return ResourceManager.GetString("Buttons_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAVE.
+        /// </summary>
+        public static string Buttons_Save_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Save_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify.
+        /// </summary>
+        public static string Buttons_Verify {
+            get {
+                return ResourceManager.GetString("Buttons_Verify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VERIFY.
+        /// </summary>
+        public static string Buttons_Verify_Cap {
+            get {
+                return ResourceManager.GetString("Buttons_Verify_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, send it!.
+        /// </summary>
+        public static string Buttons_YesSendIt {
+            get {
+                return ResourceManager.GetString("Buttons_YesSendIt", resourceCulture);
             }
         }
         
@@ -151,7 +484,133 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Authenticator app.
+        /// </summary>
+        public static string Descriptions_AuthenticatorApp {
+            get {
+                return ResourceManager.GetString("Descriptions_AuthenticatorApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AUTHENTICATOR APP.
+        /// </summary>
+        public static string Descriptions_AuthenticatorApp_Cap {
+            get {
+                return ResourceManager.GetString("Descriptions_AuthenticatorApp_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change your password.
+        /// </summary>
+        public static string Descriptions_ChangeYourPassword {
+            get {
+                return ResourceManager.GetString("Descriptions_ChangeYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabling two-factor authentication (2FA) does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should reset your authenticator keys..
+        /// </summary>
+        public static string Descriptions_Disable2FAKeyChangeWarning {
+            get {
+                return ResourceManager.GetString("Descriptions_Disable2FAKeyChangeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This process disables two-factor authentication (2FA) until you verify your authenticator app. If you do not complete your authenticator app configuration you may lose access to your account..
+        /// </summary>
+        public static string Descriptions_Disable2FAProcessWarning {
+            get {
+                return ResourceManager.GetString("Descriptions_Disable2FAProcessWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your profile details.
+        /// </summary>
+        public static string Descriptions_ManageProfileDetails {
+            get {
+                return ResourceManager.GetString("Descriptions_ManageProfileDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all system notifications.
+        /// </summary>
+        public static string Descriptions_NotificationsAll {
+            get {
+                return ResourceManager.GetString("Descriptions_NotificationsAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View and manage payments.
+        /// </summary>
+        public static string Descriptions_Payments {
+            get {
+                return ResourceManager.GetString("Descriptions_Payments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal data.
+        /// </summary>
+        public static string Descriptions_PersonalData {
+            get {
+                return ResourceManager.GetString("Descriptions_PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account contains personal data that you have given us. This page allows you to download that data..
+        /// </summary>
+        public static string Descriptions_PersonalDataInfo {
+            get {
+                return ResourceManager.GetString("Descriptions_PersonalDataInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To use an authenticator app go through the following steps:.
+        /// </summary>
+        public static string Descriptions_UseAuthenticatorApp {
+            get {
+                return ResourceManager.GetString("Descriptions_UseAuthenticatorApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View and configure all system users.
+        /// </summary>
+        public static string Descriptions_ViewAndConfigureAllSystemUsers {
+            get {
+                return ResourceManager.GetString("Descriptions_ViewAndConfigureAllSystemUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View and modify your user profile details.
+        /// </summary>
+        public static string Descriptions_ViewAndModifyUserProfileDetails {
+            get {
+                return ResourceManager.GetString("Descriptions_ViewAndModifyUserProfileDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View your notifications.
+        /// </summary>
+        public static string Descriptions_ViewNotifications {
+            get {
+                return ResourceManager.GetString("Descriptions_ViewNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clean Architecture (Blazor) by Charalambos Hadjiantoniou..
         /// </summary>
         public static string Email_Template_Slogan {
             get {
@@ -160,11 +619,101 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Thank you for choosing us!.
         /// </summary>
         public static string Email_Template_ThankYou {
             get {
                 return ResourceManager.GetString("Email_Template_ThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string Female {
+            get {
+                return ResourceManager.GetString("Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a strong password.
+        /// </summary>
+        public static string HelperText_ChooseStrongPassword {
+            get {
+                return ResourceManager.GetString("HelperText_ChooseStrongPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat the password.
+        /// </summary>
+        public static string HelperText_RepeatPassword {
+            get {
+                return ResourceManager.GetString("HelperText_RepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Labels_Accept {
+            get {
+                return ResourceManager.GetString("Labels_Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACCEPT.
+        /// </summary>
+        public static string Labels_Accept_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Accept_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accepted.
+        /// </summary>
+        public static string Labels_Accepted {
+            get {
+                return ResourceManager.GetString("Labels_Accepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACCEPTED.
+        /// </summary>
+        public static string Labels_Accepted_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Accepted_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Labels_Actions {
+            get {
+                return ResourceManager.GetString("Labels_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activated on.
+        /// </summary>
+        public static string Labels_ActivatedOn {
+            get {
+                return ResourceManager.GetString("Labels_ActivatedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activation.
+        /// </summary>
+        public static string Labels_Activation {
+            get {
+                return ResourceManager.GetString("Labels_Activation", resourceCulture);
             }
         }
         
@@ -178,11 +727,56 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACTIVE.
+        /// </summary>
+        public static string Labels_Active_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Active_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Labels_Address {
+            get {
+                return ResourceManager.GetString("Labels_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Labels_Amount {
+            get {
+                return ResourceManager.GetString("Labels_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        public static string Labels_Area {
+            get {
+                return ResourceManager.GetString("Labels_Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please change your password.
         /// </summary>
         public static string Labels_ChangePassword {
             get {
                 return ResourceManager.GetString("Labels_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PLEASE CHANGE YOUR PASSWORD.
+        /// </summary>
+        public static string Labels_ChangePassword_Cap {
+            get {
+                return ResourceManager.GetString("Labels_ChangePassword_Cap", resourceCulture);
             }
         }
         
@@ -196,11 +790,56 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CHOOSE.
+        /// </summary>
+        public static string Labels_Choose_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Choose_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Labels_Clear {
+            get {
+                return ResourceManager.GetString("Labels_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLEAR.
+        /// </summary>
+        public static string Labels_Clear_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Clear_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmed.
+        /// </summary>
+        public static string Labels_Confirmed {
+            get {
+                return ResourceManager.GetString("Labels_Confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string Labels_ConfirmPassword {
             get {
                 return ResourceManager.GetString("Labels_ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONFIRM PASSWORD.
+        /// </summary>
+        public static string Labels_ConfirmPassword_Cap {
+            get {
+                return ResourceManager.GetString("Labels_ConfirmPassword_Cap", resourceCulture);
             }
         }
         
@@ -214,11 +853,155 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean Architecture by Charalambos Hadjiantoniou.
+        /// </summary>
+        public static string Labels_Copyright_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Copyright_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created On.
+        /// </summary>
+        public static string Labels_CreatedOn {
+            get {
+                return ResourceManager.GetString("Labels_CreatedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATED ON.
+        /// </summary>
+        public static string Labels_CreatedOn_Cap {
+            get {
+                return ResourceManager.GetString("Labels_CreatedOn_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string Labels_Currency {
+            get {
+                return ResourceManager.GetString("Labels_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Labels_Date {
+            get {
+                return ResourceManager.GetString("Labels_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATE.
+        /// </summary>
+        public static string Labels_Date_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Date_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Birth.
+        /// </summary>
+        public static string Labels_DateOfBirth {
+            get {
+                return ResourceManager.GetString("Labels_DateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATE OF BIRTH.
+        /// </summary>
+        public static string Labels_DateOfBirth_Cap {
+            get {
+                return ResourceManager.GetString("Labels_DateOfBirth_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Labels_Description {
+            get {
+                return ResourceManager.GetString("Labels_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DESCRIPTION.
+        /// </summary>
+        public static string Labels_Description_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Description_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Labels_Details {
+            get {
+                return ResourceManager.GetString("Labels_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable two-factor authentication (2FA).
+        /// </summary>
+        public static string Labels_Disable2FA {
+            get {
+                return ResourceManager.GetString("Labels_Disable2FA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DISABLE TWO-FACTOR AUTHENTICATION (2FA).
+        /// </summary>
+        public static string Labels_Disable2FA_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Disable2FA_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string Labels_Disabled {
             get {
                 return ResourceManager.GetString("Labels_Disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DISABLED.
+        /// </summary>
+        public static string Labels_Disabled_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Disabled_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Labels_Download {
+            get {
+                return ResourceManager.GetString("Labels_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOWNLOAD.
+        /// </summary>
+        public static string Labels_Download_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Download_Cap", resourceCulture);
             }
         }
         
@@ -232,11 +1015,47 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EMAIL.
+        /// </summary>
+        public static string Labels_Email_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Email_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email confirmed.
+        /// </summary>
+        public static string Labels_EmailConfirmed {
+            get {
+                return ResourceManager.GetString("Labels_EmailConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
         public static string Labels_Enabled {
             get {
                 return ResourceManager.GetString("Labels_Enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENABLED.
+        /// </summary>
+        public static string Labels_Enabled_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Enabled_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string Labels_Female {
+            get {
+                return ResourceManager.GetString("Labels_Female", resourceCulture);
             }
         }
         
@@ -250,11 +1069,38 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FIRST PAGE.
+        /// </summary>
+        public static string Labels_FirstPage_Cap {
+            get {
+                return ResourceManager.GetString("Labels_FirstPage_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Labels_Home {
             get {
                 return ResourceManager.GetString("Labels_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HOME.
+        /// </summary>
+        public static string Labels_Home_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Home_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Labels_Id {
+            get {
+                return ResourceManager.GetString("Labels_Id", resourceCulture);
             }
         }
         
@@ -268,11 +1114,29 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LAST PAGE.
+        /// </summary>
+        public static string Labels_LastPage_Cap {
+            get {
+                return ResourceManager.GetString("Labels_LastPage_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading.
         /// </summary>
         public static string Labels_Loading {
             get {
                 return ResourceManager.GetString("Labels_Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOADING.
+        /// </summary>
+        public static string Labels_Loading_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Loading_Cap", resourceCulture);
             }
         }
         
@@ -286,11 +1150,83 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOGIN.
+        /// </summary>
+        public static string Labels_Login_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Login_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string Labels_Logout {
             get {
                 return ResourceManager.GetString("Labels_Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOGOUT.
+        /// </summary>
+        public static string Labels_Logout_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Logout_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string Labels_Male {
+            get {
+                return ResourceManager.GetString("Labels_Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory.
+        /// </summary>
+        public static string Labels_Mandatory {
+            get {
+                return ResourceManager.GetString("Labels_Mandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metadata.
+        /// </summary>
+        public static string Labels_Metadata {
+            get {
+                return ResourceManager.GetString("Labels_Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified On.
+        /// </summary>
+        public static string Labels_ModifiedOn {
+            get {
+                return ResourceManager.GetString("Labels_ModifiedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Down.
+        /// </summary>
+        public static string Labels_MoveDown {
+            get {
+                return ResourceManager.GetString("Labels_MoveDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Up.
+        /// </summary>
+        public static string Labels_MoveUp {
+            get {
+                return ResourceManager.GetString("Labels_MoveUp", resourceCulture);
             }
         }
         
@@ -304,11 +1240,38 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NAME.
+        /// </summary>
+        public static string Labels_Name_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Name_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        public static string Labels_NewPassword {
+            get {
+                return ResourceManager.GetString("Labels_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next Page.
         /// </summary>
         public static string Labels_NextPage {
             get {
                 return ResourceManager.GetString("Labels_NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEXT PAGE.
+        /// </summary>
+        public static string Labels_NextPage_Cap {
+            get {
+                return ResourceManager.GetString("Labels_NextPage_Cap", resourceCulture);
             }
         }
         
@@ -322,11 +1285,92 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to of.
+        ///   Looks up a localized string similar to NO RESULTS.
         /// </summary>
-        public static string Labels_Of {
+        public static string Labels_NoResults_Cap {
             get {
-                return ResourceManager.GetString("Labels_Of", resourceCulture);
+                return ResourceManager.GetString("Labels_NoResults_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Labels_Notes {
+            get {
+                return ResourceManager.GetString("Labels_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTES.
+        /// </summary>
+        public static string Labels_Notes_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Notes_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string Labels_Notifications {
+            get {
+                return ResourceManager.GetString("Labels_Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Password.
+        /// </summary>
+        public static string Labels_OldPassword {
+            get {
+                return ResourceManager.GetString("Labels_OldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Id.
+        /// </summary>
+        public static string Labels_OrderId {
+            get {
+                return ResourceManager.GetString("Labels_OrderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orders.
+        /// </summary>
+        public static string Labels_Orders {
+            get {
+                return ResourceManager.GetString("Labels_Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string Labels_Other {
+            get {
+                return ResourceManager.GetString("Labels_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid.
+        /// </summary>
+        public static string Labels_Paid {
+            get {
+                return ResourceManager.GetString("Labels_Paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAID.
+        /// </summary>
+        public static string Labels_Paid_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Paid_Cap", resourceCulture);
             }
         }
         
@@ -336,6 +1380,51 @@ namespace CH.CleanArchitecture.Resources {
         public static string Labels_Password {
             get {
                 return ResourceManager.GetString("Labels_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PASSWORD.
+        /// </summary>
+        public static string Labels_Password_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Password_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Details.
+        /// </summary>
+        public static string Labels_PaymentDetails {
+            get {
+                return ResourceManager.GetString("Labels_PaymentDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string Labels_Pending {
+            get {
+                return ResourceManager.GetString("Labels_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PENDING.
+        /// </summary>
+        public static string Labels_Pending_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Pending_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        public static string Labels_Percentage {
+            get {
+                return ResourceManager.GetString("Labels_Percentage", resourceCulture);
             }
         }
         
@@ -358,11 +1447,56 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PREVIOUS PAGE.
+        /// </summary>
+        public static string Labels_PreviousPage_Cap {
+            get {
+                return ResourceManager.GetString("Labels_PreviousPage_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Labels_Price {
+            get {
+                return ResourceManager.GetString("Labels_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRICE.
+        /// </summary>
+        public static string Labels_Price_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Price_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Phone.
+        /// </summary>
+        public static string Labels_PrimaryPhone {
+            get {
+                return ResourceManager.GetString("Labels_PrimaryPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processing.
         /// </summary>
         public static string Labels_Processing {
             get {
                 return ResourceManager.GetString("Labels_Processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROCESSING.
+        /// </summary>
+        public static string Labels_Processing_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Processing_Cap", resourceCulture);
             }
         }
         
@@ -376,11 +1510,128 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PROFILE.
+        /// </summary>
+        public static string Labels_Profile_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Profile_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile picture.
+        /// </summary>
+        public static string Labels_ProfilePicture {
+            get {
+                return ResourceManager.GetString("Labels_ProfilePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string Labels_Quantity {
+            get {
+                return ResourceManager.GetString("Labels_Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QUANTITY.
+        /// </summary>
+        public static string Labels_Quantity_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Quantity_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        public static string Labels_Reason {
+            get {
+                return ResourceManager.GetString("Labels_Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reject.
+        /// </summary>
+        public static string Labels_Reject {
+            get {
+                return ResourceManager.GetString("Labels_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REJECT.
+        /// </summary>
+        public static string Labels_Reject_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Reject_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string Labels_Rejected {
+            get {
+                return ResourceManager.GetString("Labels_Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REJECTED.
+        /// </summary>
+        public static string Labels_Rejected_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Rejected_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejection Reason.
+        /// </summary>
+        public static string Labels_RejectionReason {
+            get {
+                return ResourceManager.GetString("Labels_RejectionReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me.
         /// </summary>
         public static string Labels_RememberMe {
             get {
                 return ResourceManager.GetString("Labels_RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMEMBER ME.
+        /// </summary>
+        public static string Labels_RememberMe_Cap {
+            get {
+                return ResourceManager.GetString("Labels_RememberMe_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset authenticator key.
+        /// </summary>
+        public static string Labels_ResetAuthenticatorKey {
+            get {
+                return ResourceManager.GetString("Labels_ResetAuthenticatorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RESET AUTHENTICATOR KEY.
+        /// </summary>
+        public static string Labels_ResetAuthenticatorKey_Cap {
+            get {
+                return ResourceManager.GetString("Labels_ResetAuthenticatorKey_Cap", resourceCulture);
             }
         }
         
@@ -394,11 +1645,38 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ROLES.
+        /// </summary>
+        public static string Labels_Roles_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Roles_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rows per page.
+        /// </summary>
+        public static string Labels_RowsPerPage {
+            get {
+                return ResourceManager.GetString("Labels_RowsPerPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Labels_Search {
             get {
                 return ResourceManager.GetString("Labels_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH.
+        /// </summary>
+        public static string Labels_Search_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Search_Cap", resourceCulture);
             }
         }
         
@@ -412,11 +1690,47 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEARCHING....
+        /// </summary>
+        public static string Labels_Searching_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Searching_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary Phone.
+        /// </summary>
+        public static string Labels_SecondaryPhone {
+            get {
+                return ResourceManager.GetString("Labels_SecondaryPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sent On.
+        /// </summary>
+        public static string Labels_SentOn {
+            get {
+                return ResourceManager.GetString("Labels_SentOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Labels_Settings {
             get {
                 return ResourceManager.GetString("Labels_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETTINGS.
+        /// </summary>
+        public static string Labels_Settings_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Settings_Cap", resourceCulture);
             }
         }
         
@@ -430,11 +1744,74 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to STATUS.
+        /// </summary>
+        public static string Labels_Status_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Status_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street 1.
+        /// </summary>
+        public static string Labels_Street1 {
+            get {
+                return ResourceManager.GetString("Labels_Street1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street 2.
+        /// </summary>
+        public static string Labels_Street2 {
+            get {
+                return ResourceManager.GetString("Labels_Street2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street Number.
+        /// </summary>
+        public static string Labels_StreetNumber {
+            get {
+                return ResourceManager.GetString("Labels_StreetNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
         public static string Labels_Surname {
             get {
                 return ResourceManager.GetString("Labels_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SURNAME.
+        /// </summary>
+        public static string Labels_Surname_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Surname_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string Labels_User {
+            get {
+                return ResourceManager.GetString("Labels_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User for.
+        /// </summary>
+        public static string Labels_UserFor {
+            get {
+                return ResourceManager.GetString("Labels_UserFor", resourceCulture);
             }
         }
         
@@ -448,6 +1825,33 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to USERNAME.
+        /// </summary>
+        public static string Labels_Username_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Username_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Status.
+        /// </summary>
+        public static string Labels_UserStatus {
+            get {
+                return ResourceManager.GetString("Labels_UserStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification Code.
+        /// </summary>
+        public static string Labels_VerificationCode {
+            get {
+                return ResourceManager.GetString("Labels_VerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         public static string Labels_Welcome {
@@ -457,11 +1861,551 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WELCOME.
+        /// </summary>
+        public static string Labels_Welcome_Cap {
+            get {
+                return ResourceManager.GetString("Labels_Welcome_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string Male {
+            get {
+                return ResourceManager.GetString("Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-factor authentication (2FA) disabled successfully.
+        /// </summary>
+        public static string Messages_2FADisabledSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_2FADisabledSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aborting payment &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_AbortingPayment {
+            get {
+                return ResourceManager.GetString("Messages_AbortingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to abort this payment?.
+        /// </summary>
+        public static string Messages_AbortPaymentPrompt {
+            get {
+                return ResourceManager.GetString("Messages_AbortPaymentPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add user.
+        /// </summary>
+        public static string Messages_AddUser {
+            get {
+                return ResourceManager.GetString("Messages_AddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your authenticator app has been verified..
+        /// </summary>
+        public static string Messages_AuthenticatorAppVerified {
+            get {
+                return ResourceManager.GetString("Messages_AuthenticatorAppVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authenticator key reset successfully.
+        /// </summary>
+        public static string Messages_AuthenticatorKeyResetSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_AuthenticatorKeyResetSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirming payment &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_ConfirmingPayment {
+            get {
+                return ResourceManager.GetString("Messages_ConfirmingPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to confirm this payment?.
+        /// </summary>
+        public static string Messages_ConfirmPaymentPrompt {
+            get {
+                return ResourceManager.GetString("Messages_ConfirmPaymentPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to proceed?.
+        /// </summary>
+        public static string Messages_ConfirmProceed {
+            get {
+                return ResourceManager.GetString("Messages_ConfirmProceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm user email.
+        /// </summary>
+        public static string Messages_ConfirmUserEmail {
+            get {
+                return ResourceManager.GetString("Messages_ConfirmUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to confirm the email of the user &apos;{0}&apos;? This action cannot be undone!.
+        /// </summary>
+        public static string Messages_ConfirmUserEmailConfirmation {
+            get {
+                return ResourceManager.GetString("Messages_ConfirmUserEmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This action only disables two-factor authentication (2FA)..
+        /// </summary>
+        public static string Messages_Disable2FAWarning {
+            get {
+                return ResourceManager.GetString("Messages_Disable2FAWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter rejection reason:.
+        /// </summary>
+        public static string Messages_EnterRejectionReason {
+            get {
+                return ResourceManager.GetString("Messages_EnterRejectionReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while trying to change user password..
+        /// </summary>
+        public static string Messages_ErrorWhileChangingUserPassword {
+            get {
+                return ResourceManager.GetString("Messages_ErrorWhileChangingUserPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file must be an image. ({0}).
+        /// </summary>
+        public static string Messages_FileMustBeAnImage {
+            get {
+                return ResourceManager.GetString("Messages_FileMustBeAnImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file must be an image or PDF. ({0}).
+        /// </summary>
+        public static string Messages_FileMustBeAnImageOrPdf {
+            get {
+                return ResourceManager.GetString("Messages_FileMustBeAnImageOrPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file you selected is too large, please select a file up to {0}..
+        /// </summary>
+        public static string Messages_FileTooLarge {
+            get {
+                return ResourceManager.GetString("Messages_FileTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to here.
+        /// </summary>
+        public static string Messages_Here {
+            get {
+                return ResourceManager.GetString("Messages_Here", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum file size: {0}..
+        /// </summary>
+        public static string Messages_MaxFileSize {
+            get {
+                return ResourceManager.GetString("Messages_MaxFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No order with id {0} found.
+        /// </summary>
+        public static string Messages_NoOrderFound {
+            get {
+                return ResourceManager.GetString("Messages_NoOrderFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No payment with id {0} found.
+        /// </summary>
+        public static string Messages_NoPaymentFound {
+            get {
+                return ResourceManager.GetString("Messages_NoPaymentFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password changed successfully.
+        /// </summary>
+        public static string Messages_PasswordChangedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_PasswordChangedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment &apos;{0}&apos; aborted successfully.
+        /// </summary>
+        public static string Messages_PaymentAbortedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_PaymentAbortedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment &apos;{0}&apos; confirmed successfully.
+        /// </summary>
+        public static string Messages_PaymentConfirmedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_PaymentConfirmedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string Messages_ReadMore {
+            get {
+                return ResourceManager.GetString("Messages_ReadMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resend confirmation email.
+        /// </summary>
+        public static string Messages_ResendConfirmationEmail {
+            get {
+                return ResourceManager.GetString("Messages_ResendConfirmationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to resend the user confirmation email to &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_ResendConfirmationEmailConfirmation {
+            get {
+                return ResourceManager.GetString("Messages_ResendConfirmationEmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you reset your authenticator key your authenticator app will not work until you reconfigure it..
+        /// </summary>
+        public static string Messages_ResetAuthenticatorWarning {
+            get {
+                return ResourceManager.GetString("Messages_ResetAuthenticatorWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to abort payment &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_UnableToAbortPayment {
+            get {
+                return ResourceManager.GetString("Messages_UnableToAbortPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to confirm payment &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_UnableToConfirmPayment {
+            get {
+                return ResourceManager.GetString("Messages_UnableToConfirmPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to confirm user email for user &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_UnableToConfirmUserEmail {
+            get {
+                return ResourceManager.GetString("Messages_UnableToConfirmUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to disable two-factor authentication (2FA).
+        /// </summary>
+        public static string Messages_UnableToDisable2FA {
+            get {
+                return ResourceManager.GetString("Messages_UnableToDisable2FA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to reset authenticator key.
+        /// </summary>
+        public static string Messages_UnableToResetAuthenticatorKey {
+            get {
+                return ResourceManager.GetString("Messages_UnableToResetAuthenticatorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to update user profile.
+        /// </summary>
+        public static string Messages_UnableToUpdateUserProfile {
+            get {
+                return ResourceManager.GetString("Messages_UnableToUpdateUserProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User with id &apos;{0}&apos; deleted successfully..
+        /// </summary>
+        public static string Messages_UserDeleted {
+            get {
+                return ResourceManager.GetString("Messages_UserDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User email &apos;{0}&apos; confirmed successfully.
+        /// </summary>
+        public static string Messages_UserEmailConfirmedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_UserEmailConfirmedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found..
+        /// </summary>
+        public static string Messages_UserNotFound {
+            get {
+                return ResourceManager.GetString("Messages_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         public static string Navigation_Top_Users {
             get {
                 return ResourceManager.GetString("Navigation_Top_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Notifications.
+        /// </summary>
+        public static string NavLink_AllNotifications {
+            get {
+                return ResourceManager.GetString("NavLink_AllNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALL NOTIFICATIONS.
+        /// </summary>
+        public static string NavLink_AllNotifications_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_AllNotifications_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Configuration.
+        /// </summary>
+        public static string NavLink_ApplicationConfig {
+            get {
+                return ResourceManager.GetString("NavLink_ApplicationConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APPLICATION CONFIGURATION.
+        /// </summary>
+        public static string NavLink_ApplicationConfig_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_ApplicationConfig_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audit.
+        /// </summary>
+        public static string NavLink_Audit {
+            get {
+                return ResourceManager.GetString("NavLink_Audit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AUDIT.
+        /// </summary>
+        public static string NavLink_Audit_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_Audit_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string NavLink_Dashboard {
+            get {
+                return ResourceManager.GetString("NavLink_Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DASHBOARD.
+        /// </summary>
+        public static string NavLink_Dashboard_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_Dashboard_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jobs.
+        /// </summary>
+        public static string NavLink_Jobs {
+            get {
+                return ResourceManager.GetString("NavLink_Jobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JOBS.
+        /// </summary>
+        public static string NavLink_Jobs_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_Jobs_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Notifications.
+        /// </summary>
+        public static string NavLink_MyNotifications {
+            get {
+                return ResourceManager.GetString("NavLink_MyNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MY NOTIFICATIONS.
+        /// </summary>
+        public static string NavLink_MyNotifications_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_MyNotifications_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orders.
+        /// </summary>
+        public static string NavLink_Orders {
+            get {
+                return ResourceManager.GetString("NavLink_Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ORDERS.
+        /// </summary>
+        public static string NavLink_Orders_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_Orders_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payments.
+        /// </summary>
+        public static string NavLink_Payments {
+            get {
+                return ResourceManager.GetString("NavLink_Payments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAYMENTS.
+        /// </summary>
+        public static string NavLink_Payments_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_Payments_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Management.
+        /// </summary>
+        public static string NavLink_UserManagement {
+            get {
+                return ResourceManager.GetString("NavLink_UserManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USER MANAGEMENT.
+        /// </summary>
+        public static string NavLink_UserManagement_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_UserManagement_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Profile.
+        /// </summary>
+        public static string NavLink_UserProfile {
+            get {
+                return ResourceManager.GetString("NavLink_UserProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USER PROFILE.
+        /// </summary>
+        public static string NavLink_UserProfile_Cap {
+            get {
+                return ResourceManager.GetString("NavLink_UserProfile_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
             }
         }
         
@@ -538,6 +2482,42 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending Review.
+        /// </summary>
+        public static string PendingReview {
+            get {
+                return ResourceManager.GetString("PendingReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string Rejected {
+            get {
+                return ResourceManager.GetString("Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required.
+        /// </summary>
+        public static string Required {
+            get {
+                return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         public static string Roles_Admin {
@@ -583,11 +2563,38 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add authenticator app.
+        /// </summary>
+        public static string Titles_AddAuthenticatorApp {
+            get {
+                return ResourceManager.GetString("Titles_AddAuthenticatorApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD AUTHENTICATOR APP.
+        /// </summary>
+        public static string Titles_AddAuthenticatorApp_Cap {
+            get {
+                return ResourceManager.GetString("Titles_AddAuthenticatorApp_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new.
         /// </summary>
         public static string Titles_AddNewModal {
             get {
                 return ResourceManager.GetString("Titles_AddNewModal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD.
+        /// </summary>
+        public static string Titles_AddNewModal_Cap {
+            get {
+                return ResourceManager.GetString("Titles_AddNewModal_Cap", resourceCulture);
             }
         }
         
@@ -601,11 +2608,65 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CHANGE PASSWORD.
+        /// </summary>
+        public static string Titles_ChangePassword_Cap {
+            get {
+                return ResourceManager.GetString("Titles_ChangePassword_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Details.
+        /// </summary>
+        public static string Titles_Details {
+            get {
+                return ResourceManager.GetString("Titles_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DETAILS.
+        /// </summary>
+        public static string Titles_Details_Cap {
+            get {
+                return ResourceManager.GetString("Titles_Details_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable two-factor authentication (2FA).
+        /// </summary>
+        public static string Titles_Disable2FA {
+            get {
+                return ResourceManager.GetString("Titles_Disable2FA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DISABLE TWO-FACTOR AUTHENTICATION (2FA).
+        /// </summary>
+        public static string Titles_Disable2FA_Cap {
+            get {
+                return ResourceManager.GetString("Titles_Disable2FA_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit User.
         /// </summary>
         public static string Titles_EditUser {
             get {
                 return ResourceManager.GetString("Titles_EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT USER.
+        /// </summary>
+        public static string Titles_EditUser_Cap {
+            get {
+                return ResourceManager.GetString("Titles_EditUser_Cap", resourceCulture);
             }
         }
         
@@ -619,11 +2680,47 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOGIN.
+        /// </summary>
+        public static string Titles_Login_Cap {
+            get {
+                return ResourceManager.GetString("Titles_Login_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Notifications.
+        /// </summary>
+        public static string Titles_MyNotifications {
+            get {
+                return ResourceManager.GetString("Titles_MyNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Subscriptions.
+        /// </summary>
+        public static string Titles_MySubscriptions {
+            get {
+                return ResourceManager.GetString("Titles_MySubscriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New User.
         /// </summary>
         public static string Titles_NewUser {
             get {
                 return ResourceManager.GetString("Titles_NewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW USER.
+        /// </summary>
+        public static string Titles_NewUser_Cap {
+            get {
+                return ResourceManager.GetString("Titles_NewUser_Cap", resourceCulture);
             }
         }
         
@@ -637,11 +2734,110 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NOTIFICATIONS.
+        /// </summary>
+        public static string Titles_Notifications_Cap {
+            get {
+                return ResourceManager.GetString("Titles_Notifications_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payments.
+        /// </summary>
+        public static string Titles_Payments {
+            get {
+                return ResourceManager.GetString("Titles_Payments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PERSONAL DATA.
+        /// </summary>
+        public static string Titles_PersonalData_Cap {
+            get {
+                return ResourceManager.GetString("Titles_PersonalData_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PERSONAL DETAILS.
+        /// </summary>
+        public static string Titles_PersonalDetails_Cap {
+            get {
+                return ResourceManager.GetString("Titles_PersonalDetails_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Authenticator.
+        /// </summary>
+        public static string Titles_ResetAuthenticator {
+            get {
+                return ResourceManager.GetString("Titles_ResetAuthenticator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RESET AUTHENTICATOR.
+        /// </summary>
+        public static string Titles_ResetAuthenticator_Cap {
+            get {
+                return ResourceManager.GetString("Titles_ResetAuthenticator_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set up authenticator app.
+        /// </summary>
+        public static string Titles_SetUpAuthenticatorApp {
+            get {
+                return ResourceManager.GetString("Titles_SetUpAuthenticatorApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SET UP AUTHENTICATOR APP.
+        /// </summary>
+        public static string Titles_SetUpAuthenticatorApp_Cap {
+            get {
+                return ResourceManager.GetString("Titles_SetUpAuthenticatorApp_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-Factor Authentication.
+        /// </summary>
+        public static string Titles_TwoFactorAuthentication {
+            get {
+                return ResourceManager.GetString("Titles_TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TWO-FACTOR AUTHENTICATION.
+        /// </summary>
+        public static string Titles_TwoFactorAuthentication_Cap {
+            get {
+                return ResourceManager.GetString("Titles_TwoFactorAuthentication_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Details.
         /// </summary>
         public static string Titles_UserDetails {
             get {
                 return ResourceManager.GetString("Titles_UserDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USER DETAILS.
+        /// </summary>
+        public static string Titles_UserDetails_Cap {
+            get {
+                return ResourceManager.GetString("Titles_UserDetails_Cap", resourceCulture);
             }
         }
         
@@ -655,11 +2851,56 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to USER PROFILE.
+        /// </summary>
+        public static string Titles_UserProfile_Cap {
+            get {
+                return ResourceManager.GetString("Titles_UserProfile_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         public static string Titles_Users {
             get {
                 return ResourceManager.GetString("Titles_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USERS.
+        /// </summary>
+        public static string Titles_Users_Cap {
+            get {
+                return ResourceManager.GetString("Titles_Users_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Related Order.
+        /// </summary>
+        public static string Tooltips_OpenRelatedOrder {
+            get {
+                return ResourceManager.GetString("Tooltips_OpenRelatedOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is required..
+        /// </summary>
+        public static string Validation_EmailRequired {
+            get {
+                return ResourceManager.GetString("Validation_EmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid email is required..
+        /// </summary>
+        public static string Validation_ValidEmailRequired {
+            get {
+                return ResourceManager.GetString("Validation_ValidEmailRequired", resourceCulture);
             }
         }
         
@@ -705,6 +2946,24 @@ namespace CH.CleanArchitecture.Resources {
         public static string Validations_UseDifferentPassword {
             get {
                 return ResourceManager.GetString("Validations_UseDifferentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value should be greater than or equal to {0}.
+        /// </summary>
+        public static string Validations_ValueGreaterOrEqual {
+            get {
+                return ResourceManager.GetString("Validations_ValueGreaterOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
     }

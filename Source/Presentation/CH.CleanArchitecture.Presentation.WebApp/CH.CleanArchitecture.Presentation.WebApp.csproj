@@ -48,8 +48,4 @@
     <ProjectReference Include="..\CH.CleanArchitecture.Presentation.Framework\CH.CleanArchitecture.Presentation.Framework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 </Project>
