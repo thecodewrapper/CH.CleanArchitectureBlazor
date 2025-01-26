@@ -24,7 +24,7 @@ namespace CH.CleanArchitecture.Tests.Mocks
         public ClaimsPrincipal User => new();
 
         public void Initialize(ClaimsPrincipal user) {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

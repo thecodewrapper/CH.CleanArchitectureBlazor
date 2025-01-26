@@ -20,7 +20,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         public ClaimsPrincipal User => new ClaimsPrincipal();
 
         public void Initialize(ClaimsPrincipal user) {
-            throw new NotImplementedException();
+            return;
         }
     }
 }
