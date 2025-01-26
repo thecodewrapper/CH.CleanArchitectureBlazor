@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web.HtmlRendering;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.HtmlRendering;
 
 namespace CH.CleanArchitecture.Presentation.EmailTemplates
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CH.CleanArchitecture.Presentation.EmailTemplates.Models
+﻿namespace CH.CleanArchitecture.Presentation.EmailTemplates.Models
 {
     /// <summary>
     /// Generic model for the email. Contains any payload needed for the email

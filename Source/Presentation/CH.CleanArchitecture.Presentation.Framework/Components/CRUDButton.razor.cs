@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using CH.CleanArchitecture.Core.Application;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using CH.CleanArchitecture.Core.Application;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {

@@ -9,8 +9,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
     public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.EnsureSchema(
                 name: "Domain");
 
@@ -158,8 +157,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "ApplicationConfigurations",
                 schema: "Config");

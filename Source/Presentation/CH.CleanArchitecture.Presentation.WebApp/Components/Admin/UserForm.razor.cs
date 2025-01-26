@@ -1,7 +1,7 @@
-﻿using MudBlazor;
-using CH.CleanArchitecture.Core.Application.Commands;
+﻿using CH.CleanArchitecture.Core.Application.Commands;
 using CH.CleanArchitecture.Presentation.Framework.Components;
 using CH.CleanArchitecture.Presentation.WebApp.Models;
+using MudBlazor;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
 {

@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using CH.Messaging.Abstractions;
 using CH.CleanArchitecture.Common;
-using System;
 
 namespace CH.CleanArchitecture.Core.Application.Commands
 {
     public class UpdateUserRolesCommand : BaseCommand<Result>
     {
-        public UpdateUserRolesCommand()
-        {
+        public UpdateUserRolesCommand() {
 
         }
 
@@ -24,7 +22,7 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     {
         private readonly IApplicationUserService _applicationUserService;
 
-        public UpdateUserRolesCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService):base(serviceProvider) {
+        public UpdateUserRolesCommandHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService) : base(serviceProvider) {
             _applicationUserService = applicationUserService;
         }
 

@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using CH.CleanArchitecture.Presentation.EmailTemplates.Models;
+﻿using CH.CleanArchitecture.Presentation.EmailTemplates.Models;
 
 namespace CH.CleanArchitecture.Presentation.EmailTemplates
 {

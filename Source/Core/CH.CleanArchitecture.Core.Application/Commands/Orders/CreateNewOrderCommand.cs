@@ -10,8 +10,7 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     {
         public string TrackingNumber { get; private set; }
 
-        public CreateNewOrderCommand(string trackingNumber)
-        {
+        public CreateNewOrderCommand(string trackingNumber) {
             TrackingNumber = trackingNumber;
         }
     }

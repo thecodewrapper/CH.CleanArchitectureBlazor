@@ -8,8 +8,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Identity
     public partial class AddedAreaFlatNumber : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.AddColumn<string>(
                 name: "Area",
                 schema: "Identity",
@@ -26,8 +25,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Identity
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "Area",
                 schema: "Identity",

@@ -1,10 +1,10 @@
-﻿using CH.Messaging.Abstractions;
-using Microsoft.AspNetCore.Components;
-using MudBlazor;
+﻿using System;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using System;
+using CH.Messaging.Abstractions;
+using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {

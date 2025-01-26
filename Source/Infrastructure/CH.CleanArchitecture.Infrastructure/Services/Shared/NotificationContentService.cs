@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -37,7 +36,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                         }
                     };
                     break;
-                default:throw new NotImplementedException();
+                default: throw new NotImplementedException();
             }
             return contentDTO;
         }

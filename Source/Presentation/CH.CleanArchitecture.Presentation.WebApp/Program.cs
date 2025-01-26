@@ -1,5 +1,5 @@
-using Serilog;
 using CH.CleanArchitecture.Infrastructure.Services;
+using Serilog;
 
 namespace CH.CleanArchitecture.Presentation.WebApp
 {

@@ -11,8 +11,7 @@ namespace CH.CleanArchitecture.Core.Application.Commands
         public decimal ProductPrice { get; private set; }
         public int Quantity { get; private set; }
 
-        public AddOrderItemCommand(Guid orderId, string productName, decimal productPrice, int quantity)
-        {
+        public AddOrderItemCommand(Guid orderId, string productName, decimal productPrice, int quantity) {
             OrderId = orderId;
             ProductName = productName;
             ProductPrice = productPrice;

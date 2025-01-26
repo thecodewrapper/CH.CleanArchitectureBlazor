@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Core.Application.DTOs;
-using CH.CleanArchitecture.Core.Application.ReadModels;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Models
 {

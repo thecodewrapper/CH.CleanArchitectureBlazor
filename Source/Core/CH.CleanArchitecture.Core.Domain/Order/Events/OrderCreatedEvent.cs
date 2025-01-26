@@ -10,23 +10,19 @@ namespace CH.CleanArchitecture.Core.Domain.Order.Events
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal OrderCreatedEvent()
-        {
+        internal OrderCreatedEvent() {
         }
 
-        public OrderCreatedEvent(string trackingNumber) : base(Guid.NewGuid())
-        {
+        public OrderCreatedEvent(string trackingNumber) : base(Guid.NewGuid()) {
             TrackingNumber = trackingNumber;
         }
 
         public OrderCreatedEvent(Guid aggregateId, int aggregateVersion, string trackingNumber)
-            : base(aggregateId, aggregateVersion)
-        {
+            : base(aggregateId, aggregateVersion) {
             TrackingNumber = trackingNumber;
         }
 
-        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion)
-        {
+        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion) {
             return new OrderCreatedEvent(aggregateId, aggregateVersion, TrackingNumber);
         }
     }

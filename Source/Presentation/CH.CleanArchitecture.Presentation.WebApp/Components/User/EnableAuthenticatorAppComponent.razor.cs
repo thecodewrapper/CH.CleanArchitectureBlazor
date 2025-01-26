@@ -19,7 +19,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
         private string _sharedKey { get; set; }
         private string _authenticatorUri { get; set; }
 
-        
+
 
         protected override async Task OnInitializedAsync() {
             string userId = (await GetCurrentUserAsync()).FindId();

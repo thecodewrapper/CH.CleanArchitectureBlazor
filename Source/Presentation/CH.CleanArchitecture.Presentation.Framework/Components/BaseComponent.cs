@@ -1,15 +1,15 @@
-﻿using AutoMapper;
-using CH.Messaging.Abstractions;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.Framework.Interfaces;
 using CH.CleanArchitecture.Presentation.Framework.Services;
+using CH.Messaging.Abstractions;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {

@@ -16,7 +16,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IIdentityContext _identityContext;
         private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper, IIdentityContext identityContext) :base(serviceProvider) {
+        public GetAllUsersQueryHandler(IServiceProvider serviceProvider, IApplicationUserService applicationUserService, IMapper mapper, IIdentityContext identityContext) : base(serviceProvider) {
             _applicationUserService = applicationUserService;
             _mapper = mapper;
             _identityContext = identityContext;

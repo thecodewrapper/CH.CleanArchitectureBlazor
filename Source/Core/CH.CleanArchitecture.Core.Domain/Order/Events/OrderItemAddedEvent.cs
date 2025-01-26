@@ -12,27 +12,23 @@ namespace CH.CleanArchitecture.Core.Domain.Order.Events
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal OrderItemAddedEvent()
-        {
+        internal OrderItemAddedEvent() {
         }
 
-        public OrderItemAddedEvent(string productName, decimal productPrice, int quantity)
-        {
+        public OrderItemAddedEvent(string productName, decimal productPrice, int quantity) {
             ProductName = productName;
             Quantity = quantity;
             ProductPrice = productPrice;
         }
 
         public OrderItemAddedEvent(Guid aggregateId, int aggregateVersion, string productName, decimal productPrice, int quantity)
-            : base(aggregateId, aggregateVersion)
-        {
+            : base(aggregateId, aggregateVersion) {
             ProductName = productName;
             Quantity = quantity;
             ProductPrice = productPrice;
         }
 
-        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion)
-        {
+        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion) {
             return new OrderItemAddedEvent(aggregateId, aggregateVersion, ProductName, ProductPrice, Quantity);
         }
     }

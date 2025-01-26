@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using CH.CleanArchitecture.Core.Application;
+﻿using CH.CleanArchitecture.Core.Application;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Services
 {

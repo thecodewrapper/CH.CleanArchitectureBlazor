@@ -2,18 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using System.ComponentModel.DataAnnotations;
+using CH.CleanArchitecture.Core.Application.Commands;
+using CH.CleanArchitecture.Presentation.WebApp.Extensions;
+using CH.CleanArchitecture.Presentation.WebApp.Models;
+using CH.CleanArchitecture.Presentation.WebApp.Services;
 using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Application.DTOs;
-using CH.CleanArchitecture.Core.Domain;
-using CH.CleanArchitecture.Presentation.WebApp.Extensions;
-using CH.CleanArchitecture.Presentation.WebApp.ModelBinders;
-using CH.CleanArchitecture.Presentation.WebApp.Models;
-using CH.CleanArchitecture.Presentation.WebApp.Services;
-using CH.CleanArchitecture.Core.Application.Commands;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {
@@ -111,7 +107,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null) {
             returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid) {
-                var createUserResult = await _serviceBus.SendAsync(new CreateUserCommand(Input.Email, Input.Name, Input.Surname, Input.Email, Input.Password, new List<string>() { "User"}));
+                var createUserResult = await _serviceBus.SendAsync(new CreateUserCommand(Input.Email, Input.Name, Input.Surname, Input.Email, Input.Password, new List<string>() { "User" }));
 
                 if (createUserResult.IsSuccessful) {
                     _logger.LogInformation("User created a new account with password.");

@@ -14,7 +14,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
 
-        public GetAllOrdersQueryHandler(IServiceProvider serviceProvider, IMapper mapper, IOrderRepository orderRepository) :base(serviceProvider) {
+        public GetAllOrdersQueryHandler(IServiceProvider serviceProvider, IMapper mapper, IOrderRepository orderRepository) : base(serviceProvider) {
             _orderRepository = orderRepository;
             _mapper = mapper;
         }

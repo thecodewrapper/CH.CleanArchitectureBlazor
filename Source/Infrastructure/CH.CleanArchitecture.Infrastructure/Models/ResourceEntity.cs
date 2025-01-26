@@ -1,5 +1,5 @@
-﻿using CH.Data.Abstractions;
-using CH.CleanArchitecture.Common.Enumerations;
+﻿using CH.CleanArchitecture.Common.Enumerations;
+using CH.Data.Abstractions;
 
 namespace CH.CleanArchitecture.Infrastructure.Models
 {

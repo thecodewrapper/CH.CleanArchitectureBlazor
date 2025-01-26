@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using CH.CleanArchitecture.Presentation.EmailTemplates.Models;
+﻿using CH.CleanArchitecture.Presentation.EmailTemplates.Models;
 
 namespace CH.CleanArchitecture.Presentation.EmailTemplates
 {

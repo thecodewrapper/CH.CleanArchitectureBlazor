@@ -2,10 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Presentation.WebApp.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {

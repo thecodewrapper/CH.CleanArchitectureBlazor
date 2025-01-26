@@ -12,7 +12,6 @@ using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Domain.User;
-using CH.CleanArchitecture.Infrastructure.DbContexts;
 using CH.CleanArchitecture.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,18 +25,14 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         private readonly ILogger<ApplicationUserService> _logger;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILocalizationService _localizer;
         private readonly UrlEncoder _urlEncoder;
-        private readonly ApplicationDbContext _applicationDbContext;
         private const string AUTHENTICATOR_URI_FORMAT = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
-        public ApplicationUserService(UserManager<ApplicationUser> userManager, ILogger<ApplicationUserService> logger, IMapper mapper, ILocalizationService localizer, UrlEncoder urlEncoder, ApplicationDbContext applicationDbContext) {
+        public ApplicationUserService(UserManager<ApplicationUser> userManager, ILogger<ApplicationUserService> logger, IMapper mapper, UrlEncoder urlEncoder) {
             _userManager = userManager;
             _logger = logger;
             _mapper = mapper;
-            _localizer = localizer;
             _urlEncoder = urlEncoder;
-            _applicationDbContext = applicationDbContext;
         }
 
         public async Task<Result> CreateUserAsync(User user, string password, List<string> roles) {

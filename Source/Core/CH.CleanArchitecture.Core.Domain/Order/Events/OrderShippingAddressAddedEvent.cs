@@ -10,23 +10,19 @@ namespace CH.CleanArchitecture.Core.Domain.Order.Events
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal OrderShippingAddressAddedEvent()
-        {
+        internal OrderShippingAddressAddedEvent() {
         }
 
-        public OrderShippingAddressAddedEvent(Address shippingAddress)
-        {
+        public OrderShippingAddressAddedEvent(Address shippingAddress) {
             ShippingAddress = shippingAddress;
         }
 
         public OrderShippingAddressAddedEvent(Guid aggregateId, int aggregateVersion, Address shippingAddress)
-            : base(aggregateId, aggregateVersion)
-        {
+            : base(aggregateId, aggregateVersion) {
             ShippingAddress = shippingAddress;
         }
 
-        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion)
-        {
+        public override IDomainEvent<Guid> WithAggregate(Guid aggregateId, int aggregateVersion) {
             return new OrderShippingAddressAddedEvent(aggregateId, aggregateVersion, ShippingAddress);
         }
     }

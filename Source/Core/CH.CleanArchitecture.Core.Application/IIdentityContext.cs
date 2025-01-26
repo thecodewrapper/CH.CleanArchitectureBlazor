@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Domain.User;

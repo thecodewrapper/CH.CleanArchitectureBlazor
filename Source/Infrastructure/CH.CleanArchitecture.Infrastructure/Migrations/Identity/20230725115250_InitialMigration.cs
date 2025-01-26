@@ -9,8 +9,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Identity
     public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.EnsureSchema(
                 name: "Identity");
 
@@ -263,8 +262,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Identity
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "Identity");

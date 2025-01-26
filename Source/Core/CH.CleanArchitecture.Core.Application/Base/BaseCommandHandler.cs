@@ -1,12 +1,12 @@
-﻿using CH.CleanArchitecture.Common;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using CH.CleanArchitecture.Common;
 using FluentValidation;
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CH.CleanArchitecture.Core.Application
 {

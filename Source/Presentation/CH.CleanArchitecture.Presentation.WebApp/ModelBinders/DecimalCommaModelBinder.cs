@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Globalization;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.ModelBinders
 {

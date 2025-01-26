@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using CH.CleanArchitecture.Common.Enumerations;
 
 namespace CH.CleanArchitecture.Core.Application.DTOs

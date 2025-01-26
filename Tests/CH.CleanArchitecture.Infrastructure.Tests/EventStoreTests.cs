@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using CH.CleanArchitecture.Core.Domain;
 using CH.CleanArchitecture.Core.Domain.Order.Events;
 using CH.CleanArchitecture.Tests;
 using CH.EventStore.Abstractions;

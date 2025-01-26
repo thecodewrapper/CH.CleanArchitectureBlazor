@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application.Authorization;
 using CH.CleanArchitecture.Core.Application.DTOs;

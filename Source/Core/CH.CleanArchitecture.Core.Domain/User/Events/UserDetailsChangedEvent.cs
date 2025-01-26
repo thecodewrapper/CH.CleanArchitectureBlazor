@@ -12,12 +12,10 @@ namespace CH.CleanArchitecture.Core.Domain.User.Events
         /// <summary>
         /// Needed for serialization
         /// </summary>
-        internal UserDetailsChangedEvent()
-        {
+        internal UserDetailsChangedEvent() {
         }
 
-        public UserDetailsChangedEvent(string email, string phoneNumber, string name, string surname)
-        {
+        public UserDetailsChangedEvent(string email, string phoneNumber, string name, string surname) {
             Email = email;
             PhoneNumber = phoneNumber;
             Name = name;
@@ -25,16 +23,14 @@ namespace CH.CleanArchitecture.Core.Domain.User.Events
         }
 
         public UserDetailsChangedEvent(string aggregateId, int aggregateVersion, string email, string phoneNumber, string name, string surname)
-            : base(aggregateId, aggregateVersion)
-        {
+            : base(aggregateId, aggregateVersion) {
             Email = email;
             PhoneNumber = phoneNumber;
             Name = name;
             Surname = surname;
         }
 
-        public override IDomainEvent<string> WithAggregate(string aggregateId, int aggregateVersion)
-        {
+        public override IDomainEvent<string> WithAggregate(string aggregateId, int aggregateVersion) {
             return new UserDetailsChangedEvent(aggregateId, aggregateVersion, Email, PhoneNumber, Name, Surname);
         }
     }

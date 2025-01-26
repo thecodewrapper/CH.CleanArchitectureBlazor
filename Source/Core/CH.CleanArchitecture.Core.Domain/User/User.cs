@@ -23,13 +23,11 @@ namespace CH.CleanArchitecture.Core.Domain.User
         public bool IsActive { get; private set; }
         public string UICulture { get; private set; }
 
-        private User()
-        {
+        private User() {
 
         }
 
-        public User(string username, string email, string name, string surname)
-        {
+        public User(string username, string email, string name, string surname) {
             Guard.Against.NullOrWhiteSpace(username, nameof(username));
             Guard.Against.NullOrWhiteSpace(email, nameof(email));
             Guard.Against.NullOrWhiteSpace(name, nameof(name));
@@ -47,13 +45,11 @@ namespace CH.CleanArchitecture.Core.Domain.User
             UICulture = "en";
         }
 
-        public void ChangeDetails(string email, string phoneNumber, string name, string surname)
-        {
+        public void ChangeDetails(string email, string phoneNumber, string name, string surname) {
             RaiseEvent(new UserDetailsChangedEvent(email, phoneNumber, name, surname));
         }
 
-        void IDomainEventHandler<UserDetailsChangedEvent>.Apply(UserDetailsChangedEvent @event)
-        {
+        void IDomainEventHandler<UserDetailsChangedEvent>.Apply(UserDetailsChangedEvent @event) {
             if (!string.IsNullOrEmpty(Email) && Email != @event.Email)
                 Email = @event.Email;
 
@@ -67,18 +63,15 @@ namespace CH.CleanArchitecture.Core.Domain.User
                 PhoneNumber = new PhoneNumber(@event.PhoneNumber);
         }
 
-        public void ChangeAddress(string line1, string line2, string city, string postCode, string country)
-        {
+        public void ChangeAddress(string line1, string line2, string city, string postCode, string country) {
             Address = new Address(line1, line2, city, postCode, country);
         }
 
-        public void Activate()
-        {
+        public void Activate() {
             IsActive = true;
         }
 
-        public void Deactivate()
-        {
+        public void Deactivate() {
             IsActive = false;
         }
     }

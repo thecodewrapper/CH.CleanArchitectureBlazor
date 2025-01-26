@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CH.CleanArchitecture.Tests
 {

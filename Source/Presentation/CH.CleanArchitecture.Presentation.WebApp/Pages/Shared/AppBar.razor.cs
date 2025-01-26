@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Components;
-using MudBlazor;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Queries;
 using CH.CleanArchitecture.Presentation.Framework.Components;
 using CH.CleanArchitecture.Presentation.Framework.ViewModels;
+using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Shared
 {

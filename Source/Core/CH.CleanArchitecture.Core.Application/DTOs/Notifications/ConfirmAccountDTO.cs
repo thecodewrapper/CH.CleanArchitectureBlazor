@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CH.CleanArchitecture.Core.Application.DTOs.Notifications
+﻿namespace CH.CleanArchitecture.Core.Application.DTOs.Notifications
 {
     public class ConfirmAccountDTO
     {

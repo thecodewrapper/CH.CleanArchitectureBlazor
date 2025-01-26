@@ -56,7 +56,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
 
             var appConfigs = _applicationContext.ApplicationConfigurations;
-                var applicationConfigurations = new ApplicationConfigurationEntity[] {
+            var applicationConfigurations = new ApplicationConfigurationEntity[] {
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.AUDIT.PURGE_HISTORYTABLE_INTERVAL_DAYS, Value = "60", Description = "Declares how many days the system keeps the audit history. Set it to 0 if you wish to leave the audit history for ever." },
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.AUDIT.PURGE_SERVICE_INTERVAL_HOURS, Value = "23", Description = "The interval in hours that the purging of Audit History will get place. Set it to 0 if you actually want to disable the service. Please keep in mind that you must manually restart the maintenance windows service and update the Hangfire job in order for your change to take place." },
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.EMAIL.SMTP_SETTINGS, Value = "smtp.test.com|587|true|false|username|Password", Description = "SMTP settings used to send emails. Please use this format for the configuration value : '{SMTP host Address}|{SMTP host port}|{Enable SSL}|{Use Default Credentials}|Username|Password'." },

@@ -2,16 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using System.ComponentModel.DataAnnotations;
+using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application.Commands;
+using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
-using CH.Messaging.Abstractions;
-using CH.CleanArchitecture.Core.Application.Commands;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {

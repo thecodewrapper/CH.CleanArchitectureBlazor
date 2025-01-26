@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using CH.CleanArchitecture.Infrastructure.Shared.Culture;
+using CH.CleanArchitecture.Presentation.WebApp.Extensions;
 using Hangfire;
 using Hangfire.Dashboard;
 using Microsoft.IdentityModel.Logging;
 using MudBlazor.Services;
-using CH.CleanArchitecture.Infrastructure.Shared.Culture;
-using CH.CleanArchitecture.Presentation.WebApp.Extensions;
 
 namespace CH.CleanArchitecture.Presentation.WebApp
 {

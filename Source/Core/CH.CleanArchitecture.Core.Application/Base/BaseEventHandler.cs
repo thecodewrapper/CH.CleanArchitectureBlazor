@@ -1,9 +1,9 @@
-﻿using CH.Messaging.Abstractions;
+﻿using System;
+using System.Threading.Tasks;
+using CH.Messaging.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace CH.CleanArchitecture.Core.Application
 {

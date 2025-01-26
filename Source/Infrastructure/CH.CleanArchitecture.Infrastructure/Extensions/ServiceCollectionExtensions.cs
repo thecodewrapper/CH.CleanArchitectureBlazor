@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper.Extensions.ExpressionMapping;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
+using CH.CleanArchitecture.Core.Application.Interfaces.Storage;
 using CH.CleanArchitecture.Infrastructure.DbContexts;
+using CH.CleanArchitecture.Infrastructure.DbContexts.Factories;
 using CH.CleanArchitecture.Infrastructure.Factories;
 using CH.CleanArchitecture.Infrastructure.Handlers.Queries;
 using CH.CleanArchitecture.Infrastructure.Mappings;
@@ -11,6 +14,8 @@ using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Infrastructure.Options;
 using CH.CleanArchitecture.Infrastructure.Repositories;
 using CH.CleanArchitecture.Infrastructure.Services;
+using CH.CleanArchitecture.Infrastructure.Services.Storage;
+using CH.CleanArchitecture.Presentation.EmailTemplates.Extensions;
 using CH.Data.Abstractions;
 using CH.EventStore.EntityFramework.Extensions;
 using CH.Messaging.Abstractions;
@@ -20,11 +25,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using CH.CleanArchitecture.Presentation.EmailTemplates.Extensions;
-using CH.CleanArchitecture.Core.Application.Interfaces.Storage;
-using CH.CleanArchitecture.Infrastructure.Services.Storage;
-using CH.CleanArchitecture.Infrastructure.DbContexts.Factories;
 
 namespace CH.CleanArchitecture.Infrastructure.Extensions
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using CH.CleanArchitecture.Core.Application.Constants;
 
 namespace CH.CleanArchitecture.Core.Application

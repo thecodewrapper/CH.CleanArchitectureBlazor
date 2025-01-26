@@ -8,8 +8,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
     public partial class AddedResources : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_Addresses_BillingAddressId",
                 schema: "Domain",
@@ -54,8 +53,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_Addresses_BillingAddressId",
                 schema: "Domain",
