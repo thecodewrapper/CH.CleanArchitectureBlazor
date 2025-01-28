@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["Presentation/CH.CleanArchitecture.Presentation.Web/CH.CleanArchitecture.Presentation.Web.csproj", "Presentation/CH.CleanArchitecture.Presentation.Web/"]
+COPY ["Presentation/CH.CleanArchitecture.Presentation.WebApp/CH.CleanArchitecture.Presentation.WebApp.csproj", "Presentation/CH.CleanArchitecture.Presentation.Web/"]
 COPY ["Presentation/CH.CleanArchitecture.Presentation.Framework/CH.CleanArchitecture.Presentation.Framework.csproj", "Presentation/CH.CleanArchitecture.Presentation.Framework/"]
 COPY ["Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/CH.CleanArchitecture.Presentation.EmailTemplates.csproj", "Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/"]
 COPY ["Core/CH.CleanArchitecture.Core.Application/CH.CleanArchitecture.Core.Application.csproj", "Core/CH.CleanArchitecture.Core.Application/"]
