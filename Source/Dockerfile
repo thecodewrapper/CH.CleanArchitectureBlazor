@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["Presentation/CH.CleanArchitecture.Presentation.WebApp/CH.CleanArchitecture.Presentation.WebApp.csproj", "Presentation/CH.CleanArchitecture.Presentation.Web/"]
+COPY ["Presentation/CH.CleanArchitecture.Presentation.WebApp/CH.CleanArchitecture.Presentation.WebApp.csproj", "Presentation/CH.CleanArchitecture.Presentation.WebApp/"]
 COPY ["Presentation/CH.CleanArchitecture.Presentation.Framework/CH.CleanArchitecture.Presentation.Framework.csproj", "Presentation/CH.CleanArchitecture.Presentation.Framework/"]
 COPY ["Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/CH.CleanArchitecture.Presentation.EmailTemplates.csproj", "Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/"]
 COPY ["Core/CH.CleanArchitecture.Core.Application/CH.CleanArchitecture.Core.Application.csproj", "Core/CH.CleanArchitecture.Core.Application/"]
@@ -17,15 +17,15 @@ COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Shared/CH.CleanArchite
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/CH.CleanArchitecture.Infrastructure.Auditing.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/"]
 COPY ["CH.CleanArchitecture.Resources/CH.CleanArchitecture.Resources.csproj", "CH.CleanArchitecture.Resources/"]
 COPY ["CH.CleanArchitecture.Common/CH.CleanArchitecture.Common.csproj", "CH.CleanArchitecture.Common/"]
-RUN dotnet restore "Presentation/CH.CleanArchitecture.Presentation.Web/CH.CleanArchitecture.Presentation.Web.csproj"
+RUN dotnet restore "Presentation/CH.CleanArchitecture.Presentation.WebApp/CH.CleanArchitecture.Presentation.WebApp.csproj"
 COPY . .
-WORKDIR "/src/Presentation/CH.CleanArchitecture.Presentation.Web"
-RUN dotnet build "CH.CleanArchitecture.Presentation.Web.csproj" -c Release -o /app/build
+WORKDIR "/src/Presentation/CH.CleanArchitecture.Presentation.WebApp"
+RUN dotnet build "CH.CleanArchitecture.Presentation.WebApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CH.CleanArchitecture.Presentation.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "CH.CleanArchitecture.Presentation.WebApp.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CH.CleanArchitecture.Presentation.Web.dll"]
+ENTRYPOINT ["dotnet", "CH.CleanArchitecture.Presentation.WebApp.dll"]
