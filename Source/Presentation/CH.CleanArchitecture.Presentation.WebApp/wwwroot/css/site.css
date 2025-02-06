@@ -70,12 +70,17 @@ a, .btn-link {
 /* Blazor reconnect*/
 #components-reconnect-modal {
     display: none;
+    color: white;
 }
 
     #components-reconnect-modal.components-reconnect-show,
     #components-reconnect-modal.components-reconnect-failed,
     #components-reconnect-modal.components-reconnect-rejected {
         display: block;
+    }
+
+    #components-reconnect-modal a {
+        color: #D5782D;
     }
 
 .custom-reconnect-modal > div {
@@ -132,11 +137,6 @@ a, .btn-link {
 .mud-card-media {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-}
-
-.subscriptionplan-card {
-    border: 2px solid #54b680;
-    min-height:450px;
 }
 
 .hover-highlight {
