@@ -21,9 +21,9 @@ namespace CH.CleanArchitecture.Tests
 {
     public class TestBase
     {
-        protected readonly ApplicationDbContext ApplicationContext;
-        protected readonly EventStoreDbContext EventStoreContext;
-        protected readonly IdentityDbContext IdentityContext;
+        protected readonly ApplicationDbContext ApplicationDbContext;
+        protected readonly EventStoreDbContext EventStoreDbContext;
+        protected readonly IdentityDbContext IdentityDbContext;
         protected readonly IServiceBus ServiceBus;
         protected readonly IServiceProvider ServiceProvider;
 
@@ -33,16 +33,16 @@ namespace CH.CleanArchitecture.Tests
             var eventStoreDbContextOptions = new DbContextOptionsBuilder<EventStoreDbContext>().UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
             // Create a new instance of your DbContext using the in-memory options
-            ApplicationContext = new ApplicationDbContext(appDbContextOptions, new MockIdentityContext());
-            IdentityContext = new IdentityDbContext(identityDbContextOptions);
-            EventStoreContext = new EventStoreDbContext(eventStoreDbContextOptions);
+            ApplicationDbContext = new ApplicationDbContext(appDbContextOptions, new MockIdentityContext());
+            IdentityDbContext = new IdentityDbContext(identityDbContextOptions);
+            EventStoreDbContext = new EventStoreDbContext(eventStoreDbContextOptions);
 
             var configuration = BuildConfiguration();
-            var serviceProvider = BuildServiceProvider(configuration, ApplicationContext, IdentityContext, EventStoreContext);
+            var serviceProvider = BuildServiceProvider(configuration, ApplicationDbContext, IdentityDbContext, EventStoreDbContext);
             ServiceProvider = serviceProvider;
             ServiceBus = serviceProvider.GetService<IServiceBus>();
-            AddApplicationData(ApplicationContext);
-            AddIdentityData(IdentityContext);
+            AddApplicationData(ApplicationDbContext);
+            AddIdentityData(IdentityDbContext);
         }
 
         /// <summary>

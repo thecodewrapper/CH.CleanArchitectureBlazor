@@ -22,7 +22,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
         public void ApplicationConfigurationRepo_Add_AddsEntityToContext() {
             _appConfigRepo.Add(new ApplicationConfigurationEntity() { Id = "test", Value = "test" });
             _appConfigRepo.UnitOfWork.SaveChanges();
-            var appConfig = ApplicationContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "test");
+            var appConfig = ApplicationDbContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "test");
 
             Assert.NotNull(appConfig);
         }
@@ -31,7 +31,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
         public async Task ApplicationConfigurationRepo_AddAsync_AddsEntityToContext() {
             await _appConfigRepo.AddAsync(new ApplicationConfigurationEntity() { Id = "test", Value = "test" });
             await _appConfigRepo.UnitOfWork.SaveChangesAsync();
-            var appConfig = ApplicationContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "test");
+            var appConfig = ApplicationDbContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "test");
 
             Assert.NotNull(appConfig);
         }
@@ -44,7 +44,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
                 new ApplicationConfigurationEntity() { Id = "test2", Value = "test2" }
             });
             _appConfigRepo.UnitOfWork.SaveChanges();
-            var appConfigs = ApplicationContext.ApplicationConfigurations.ToList();
+            var appConfigs = ApplicationDbContext.ApplicationConfigurations.ToList();
             var appConfig1 = appConfigs.SingleOrDefault(a => a.Id == "test");
             var appConfig2 = appConfigs.SingleOrDefault(a => a.Id == "test2");
 
@@ -60,7 +60,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
                 new ApplicationConfigurationEntity() { Id = "test2", Value = "test2" }
             });
             await _appConfigRepo.UnitOfWork.SaveChangesAsync();
-            var appConfigs = ApplicationContext.ApplicationConfigurations.ToList();
+            var appConfigs = ApplicationDbContext.ApplicationConfigurations.ToList();
             var appConfig1 = appConfigs.SingleOrDefault(a => a.Id == "test");
             var appConfig2 = appConfigs.SingleOrDefault(a => a.Id == "test2");
 
@@ -70,24 +70,24 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         [Fact]
         public void ApplicationConfigurationRepo_Delete_RemovesEntityFromContext() {
-            var dummyAppConfig = ApplicationContext.ApplicationConfigurations.Single(a => a.Id == "dummy1");
+            var dummyAppConfig = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Id == "dummy1");
             _appConfigRepo.Delete(dummyAppConfig);
             _appConfigRepo.UnitOfWork.SaveChanges();
 
-            var appConfig = ApplicationContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy1");
+            var appConfig = ApplicationDbContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy1");
 
             Assert.Null(appConfig);
         }
 
         [Fact]
         public void ApplicationConfigurationRepo_DeleteRange_RemovesEntitiesFromContext() {
-            var dummyAppConfig1 = ApplicationContext.ApplicationConfigurations.Single(a => a.Id == "dummy1");
-            var dummyAppConfig2 = ApplicationContext.ApplicationConfigurations.Single(a => a.Id == "dummy2");
+            var dummyAppConfig1 = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Id == "dummy1");
+            var dummyAppConfig2 = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Id == "dummy2");
             _appConfigRepo.DeleteRange(new List<ApplicationConfigurationEntity>() { dummyAppConfig1, dummyAppConfig2 });
             _appConfigRepo.UnitOfWork.SaveChanges();
 
-            var appConfig1 = ApplicationContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy1");
-            var appConfig2 = ApplicationContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy2");
+            var appConfig1 = ApplicationDbContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy1");
+            var appConfig2 = ApplicationDbContext.ApplicationConfigurations.SingleOrDefault(a => a.Id == "dummy2");
 
             Assert.Null(appConfig1);
             Assert.Null(appConfig2);
@@ -119,7 +119,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         [Fact]
         public void ApplicationConfigurationRepo_GetAll_FetchesAllRecords() {
-            int count = ApplicationContext.ApplicationConfigurations.Count();
+            int count = ApplicationDbContext.ApplicationConfigurations.Count();
             var allConfigs = _appConfigRepo.GetAll();
 
             Assert.NotEmpty(allConfigs);
@@ -147,7 +147,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         [Fact]
         public void ApplicationConfigurationRepo_GetFirst_IfDoesNotExist_ReturnsNull() {
-            ApplicationContext.Add(new ApplicationConfigurationEntity() { Id = "appconfig1", Value = "appConfig1Value" });
+            ApplicationDbContext.Add(new ApplicationConfigurationEntity() { Id = "appconfig1", Value = "appConfig1Value" });
 
             var retrievedAppConfig = _appConfigRepo.GetFirst(a => a.Value == "some value which does not exist");
 
@@ -156,7 +156,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         [Fact]
         public async Task ApplicationConfigurationRepo_GetFirstAsync_IfDoesNotExist_ReturnsNull() {
-            ApplicationContext.Add(new ApplicationConfigurationEntity() { Id = "appconfig1", Value = "appConfig1Value" });
+            ApplicationDbContext.Add(new ApplicationConfigurationEntity() { Id = "appconfig1", Value = "appConfig1Value" });
 
             var retrievedAppConfig = await _appConfigRepo.GetFirstAsync(a => a.Value == "some value which does not exist");
 
@@ -179,21 +179,21 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         [Fact]
         public void ApplicationConfigurationRepo_Update_UpdatesEntityCorrectly() {
-            var appConfig = ApplicationContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue1");
+            var appConfig = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue1");
             string changedValue = "changedValue";
             appConfig.Value = changedValue;
             _appConfigRepo.Update(appConfig);
             _appConfigRepo.UnitOfWork.SaveChanges(true);
 
-            var retrievedAppConfig = ApplicationContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig.Id);
+            var retrievedAppConfig = ApplicationDbContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig.Id);
 
             Assert.Equal(changedValue, retrievedAppConfig.Value);
         }
 
         [Fact]
         public void ApplicationConfigurationRepo_UpdateRange_UpdatesAllEntitiesCorrectly() {
-            var appConfig1 = ApplicationContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue1");
-            var appConfig2 = ApplicationContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue2");
+            var appConfig1 = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue1");
+            var appConfig2 = ApplicationDbContext.ApplicationConfigurations.Single(a => a.Value == "dummyvalue2");
             string changedValue1 = "changedValue1";
             string changedValue2 = "changedValue2";
             appConfig1.Value = changedValue1;
@@ -202,8 +202,8 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
             _appConfigRepo.UpdateRange(new List<ApplicationConfigurationEntity>() { appConfig1, appConfig2 });
             _appConfigRepo.UnitOfWork.SaveChanges(true);
 
-            var retrievedAppConfig1 = ApplicationContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig1.Id);
-            var retrievedAppConfig2 = ApplicationContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig2.Id);
+            var retrievedAppConfig1 = ApplicationDbContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig1.Id);
+            var retrievedAppConfig2 = ApplicationDbContext.ApplicationConfigurations.AsNoTracking().Single(a => a.Id == appConfig2.Id);
 
             Assert.Equal(changedValue1, retrievedAppConfig1.Value);
             Assert.Equal(changedValue2, retrievedAppConfig2.Value);

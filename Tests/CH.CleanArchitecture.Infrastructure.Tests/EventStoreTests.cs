@@ -24,7 +24,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
             int aggregateVersion = 1;
             await _eventStore.SaveAsync(aggregateName, aggregateVersion, new OrderItemAddedEvent("some product name", 100, 1));
 
-            var eventsFromStore = EventStoreContext.Events.ToList();
+            var eventsFromStore = EventStoreDbContext.Events.ToList();
 
             Assert.NotEmpty(eventsFromStore);
         }
@@ -82,7 +82,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
 
         private void AddDummyEvent(Type type, string aggregateId, int version) {
             Guid eventId = Guid.NewGuid();
-            EventStoreContext.Events.Add(
+            EventStoreDbContext.Events.Add(
             new EventEntity
             {
                 Id = eventId,
@@ -94,7 +94,7 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
                 Data = "{\"TrackingNumber\":\"TRACKING NUMBER HERE\",\"EventId\":\"" + eventId + "\",\"AggregateId\":\"" + aggregateId + "\",\"AggregateVersion\":" + version + "}",
                 Version = version
             });
-            EventStoreContext.SaveChanges();
+            EventStoreDbContext.SaveChanges();
         }
     }
 }

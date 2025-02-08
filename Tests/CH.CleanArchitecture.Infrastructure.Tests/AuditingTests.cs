@@ -12,11 +12,11 @@ namespace CH.CleanArchitecture.Infrastructure.Tests
         public void Auditing_OnAdd_AuditableEntity_CreatesAuditHistoryRecord() {
             OrderEntity order = new OrderEntity();
             order.TotalAmount = 100;
-            ApplicationContext.Orders.Add(order);
-            ApplicationContext.SaveChanges();
-            ApplicationContext.DetachAll();
+            ApplicationDbContext.Orders.Add(order);
+            ApplicationDbContext.SaveChanges();
+            ApplicationDbContext.DetachAll();
 
-            var auditHistory = ApplicationContext.AuditHistory.SingleOrDefault(ah => ah.TableName == nameof(OrderEntity) && ah.Kind == EntityState.Added);
+            var auditHistory = ApplicationDbContext.AuditHistory.SingleOrDefault(ah => ah.TableName == nameof(OrderEntity) && ah.Kind == EntityState.Added);
 
             Assert.NotNull(auditHistory);
         }
