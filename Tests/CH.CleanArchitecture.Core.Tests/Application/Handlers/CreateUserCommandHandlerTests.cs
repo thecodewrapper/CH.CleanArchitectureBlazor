@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
 using CH.CleanArchitecture.Tests;
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace CH.CleanArchitecture.Core.Tests.Application.Commands
+namespace CH.CleanArchitecture.Core.Tests.Application.Handlers
 {
-    public class CreateUserTests : TestBase
+    public class CreateUserCommandHandlerTests : TestBase
     {
-        public CreateUserTests() {
+        private readonly CreateUserCommandHandler _handler;
 
+        public CreateUserCommandHandlerTests() {
+            var applicationUserService = ServiceProvider.GetService<IApplicationUserService>();
+            _handler = new CreateUserCommandHandler(ServiceProvider, applicationUserService);
         }
+
         [Fact]
         public async Task CreateUser_WhenPasswordIsNull_ShouldFail() {
             var command = new CreateUserCommand(
@@ -23,7 +29,7 @@ namespace CH.CleanArchitecture.Core.Tests.Application.Commands
                 null,
                 null);
 
-            Result result = await ServiceBus.SendAsync(command);
+            Result result = await _handler.HandleAsync(command);
 
             result.IsSuccessful.Should().BeFalse();
             result.Exception.Should().BeOfType<ArgumentNullException>();
@@ -39,7 +45,7 @@ namespace CH.CleanArchitecture.Core.Tests.Application.Commands
                 "test test",
                 null);
 
-            Result result = await ServiceBus.SendAsync(command);
+            Result result = await _handler.HandleAsync(command);
 
             result.IsSuccessful.Should().BeTrue();
             result.Exception.Should().BeNull();
