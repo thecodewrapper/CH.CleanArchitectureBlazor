@@ -1,8 +1,8 @@
-﻿using CH.CleanArchitecture.Core.Application.Constants;
+﻿using System.Security.Claims;
+using CH.CleanArchitecture.Core.Application.Constants;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace CH.CleanArchitecture.Presentation.WebApp.Controllers
 {

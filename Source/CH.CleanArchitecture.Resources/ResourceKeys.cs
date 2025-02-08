@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Reflection;
-using System.Resources;
-
-namespace CH.CleanArchitecture.Resources
+﻿namespace CH.CleanArchitecture.Resources
 {
     /// This file is auto generated from ResourceKeys.tt template file
     /// It contains constants for all the keys in SharedResources.resx file
