@@ -20,14 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D858E59-D28A-4EB0-8FB2-A34E98D047B9}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		DeveloperGuidelines.txt = DeveloperGuidelines.txt
 		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installation", "Installation", "{88302356-9234-4690-B1CF-177CCAADC048}"
-	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
-		SecretsManagement.txt = SecretsManagement.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CH.CleanArchitecture.Infrastructure.Auditing", "Source\Infrastructure\CH.CleanArchitecture.Infrastructure.Auditing\CH.CleanArchitecture.Infrastructure.Auditing.csproj", "{BDA46E9E-32BA-4A67-BBD2-7D0556A3F91D}"
@@ -137,7 +130,6 @@ Global
 		{9845D63A-21C5-45C0-8F4B-8CB5A8C3221C} = {9D25B1F7-3124-4A06-A61C-15F6E2B963B3}
 		{3C5A9F7D-BA49-41E1-9C03-DF51DE1B974C} = {932E3123-6CBD-44B3-8754-1A9ECAC2BD85}
 		{BC8F60A1-DF11-4652-ABC1-21AC46984249} = {932E3123-6CBD-44B3-8754-1A9ECAC2BD85}
-		{88302356-9234-4690-B1CF-177CCAADC048} = {3D858E59-D28A-4EB0-8FB2-A34E98D047B9}
 		{BDA46E9E-32BA-4A67-BBD2-7D0556A3F91D} = {932E3123-6CBD-44B3-8754-1A9ECAC2BD85}
 		{48EEAA66-C9CB-4233-8A59-223098E25302} = {9D25B1F7-3124-4A06-A61C-15F6E2B963B3}
 		{A6491F9E-7748-42CF-B883-71ACF87536E9} = {6ACCBAB0-D17A-41C2-B7C6-EE20314ED863}

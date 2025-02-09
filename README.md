@@ -56,8 +56,8 @@ Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thec
 ```
 ### 🔑 User Secrets Configuration
 ```sh
-dotnet user-secrets --project CH.CleanArchitecture.Presentation.Web set "ConnectionStrings:ApplicationConnection" "{connection_string}"
-dotnet user-secrets --project CH.CleanArchitecture.Presentation.Web set "ConnectionStrings:IdentityConnection" "{connection_string}"
+dotnet user-secrets --project CH.CleanArchitecture.Presentation.WebApp set "ConnectionStrings:ApplicationConnection" "{connection_string}"
+dotnet user-secrets --project CH.CleanArchitecture.Presentation.WebApp set "ConnectionStrings:IdentityConnection" "{connection_string}"
 ```
 Or manually edit the `secrets.json` file:
 ```json
@@ -124,10 +124,38 @@ Enroll the following jobs:
 - **Application Services** → Return `Result<T>` or `Result`.
 
 ### 📌 EF Core Migrations
-```sh
-add-migration {MIGRATION_NAME} -context ApplicationDbContext -o Migrations
-```
+To add migrations for different contexts, use the following commands:
 
+- 🗂 **Application Context**:
+  ```sh
+  add-migration {MIGRATION_NAME_HERE} -context ApplicationDbContext -o Migrations/Application
+  ```
+- 🏛 **Event Store Context**:
+  ```sh
+  add-migration {MIGRATION_NAME_HERE} -context EventStoreDbContext -o Migrations/EventStore
+  ```
+- 🔐 **Identity Context**:
+  ```sh
+  add-migration {MIGRATION_NAME_HERE} -context IdentityDbContext -o Migrations/Identity
+  ```
+
+### 📌 Database Updates
+The following commands install/update the databases. This process runs automatically every time the project is executed, but you can also run it manually in **Package Manager Console**, ensuring `CH.CleanArchitecture.Infrastructure` is selected as the **Default Project**, and `CH.CleanArchitecture.Presentation.WebApp` is set as the **solution startup project**:
+
+- 🗂 **Update Application Database**:
+  ```sh
+  update-database -context ApplicationDbContext
+  ```
+- 🏛 **Update Event Store Database**:
+  ```sh
+  update-database -context EventStoreDbContext
+  ```
+- 🔐 **Update Identity Database**:
+  ```sh
+  update-database -context IdentityDbContext
+  ```
+
+- 
 ### 📌 Docker Compose
 ```sh
 docker-compose up
