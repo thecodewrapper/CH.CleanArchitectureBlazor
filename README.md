@@ -83,7 +83,7 @@ Use the `CreateAdmin` endpoint in `SetupController`.
 - Create an **S3 bucket** for documents.
 - Inside the bucket, create a folder: `profile-pictures`.
 
-### 🔹 Application Configuration (Under Developer -> Application Config)
+### 🔹 Application Configuration (Under Developer → Application Config)
 These settings reside under **Developer → Application Config** in the navigation menu. The following are the configuration keys:
 
 - **EmailSmtpSettings**: `smtp.test.com|587|true|false|username|password`
@@ -101,7 +101,7 @@ These settings reside under **Developer → Application Config** in the navigati
 - **AWSSecretAccessKey**: `{your_aws_secret_key}`
 - **ResourcesProfilePicturesFolder**: `profile-pictures`
 
-### 🔹 Schedule Jobs (Under Developer -> Jobs)
+### 🔹 Schedule Jobs (Under Developer → Jobs)
 Enroll the following jobs:
 
 - ✅ **Audit History Purge Job**
