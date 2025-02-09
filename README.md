@@ -18,19 +18,19 @@ Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thec
 - **Docker Support**
 
 ## 🌟 Features
-- 🔹 **Localization**: Provides multi-language support to enhance user experience across different regions.
-- 🔹 **Event Sourcing**: Event sourcing using EF Core and SQL Server as persistent storage, including snapshots and retroactive events.
-- 🔹 **Data Persistence**: EventStore repository and DataEntity generic repository. Persistence can be swapped between them, fine-grained to individual entities.
-- 🔹 **Secure Configurations**: Persistent application configurations with optional encryption for added security.
-- 🔹 **Data Auditing**: Built-in auditing for entities not using EventStore, ensuring traceability of data operations.
-- 🔹 **User Management**: Local user management with ASP.NET Core Identity.
-- 🔹 **Domain/Data entity separatation**: Clean separation of data entities and domain objects and mapping between them for persistence/retrieval using AutoMapper.
-- 🔹 **Blazor UI**: Uses Blazor Server with MudBlazor components for a modern UI framework.
-- 🔹 **CQRS Pattern**: Implements command and query separation using handler abstractions, supporting MassTransit or MediatR with minimal changes.
-- 🔹 **Service Bus Abstractions**: Supports message-broker solutions like MassTransit or MediatR, with MassTransit’s mediator as the default implementation.
-- 🔹 **Domain-Driven Design**: Unforcefully promoting Domain-Driven Design tactical patterns with aggregates, entities and domain event abstractions.
-- 🔹 **Lightweight Authorization**: Implements a custom ASP.NET Core AuthorizationHandler for fine-grained access control.
-- 🔹 **Docker Ready**: Offers containerization support for both SQL Server and the web application.
+- 🌍 **Localization**: Provides multi-language support to enhance user experience across different regions.
+- 📜 **Event Sourcing**: Event sourcing using EF Core and SQL Server as persistent storage, including snapshots and retroactive events.
+- 💾 **Data Persistence**: EventStore repository and DataEntity generic repository. Persistence can be swapped between them, fine-grained to individual entities.
+- 🔐 **Secure Configurations**: Persistent application configurations with optional encryption for added security.
+- 📑 **Data Auditing**: Built-in auditing for entities not using EventStore, ensuring traceability of data operations.
+- 👤 **User Management**: Local user management with ASP.NET Core Identity.
+- 🏗️ **Domain/Data entity separatation**: Clean separation of data entities and domain objects and mapping between them for persistence/retrieval using AutoMapper.
+- 🎨 **Blazor UI**: Uses Blazor Server with MudBlazor components for a modern UI framework.
+- ⚡ **CQRS Pattern**: Implements command and query separation using handler abstractions, supporting MassTransit or MediatR with minimal changes.
+- 📩 **Service Bus Abstractions**: Supports message-broker solutions like MassTransit or MediatR, with MassTransit’s mediator as the default implementation.
+- 🏗 **Domain-Driven Design**: Unforcefully promoting Domain-Driven Design tactical patterns with aggregates, entities and domain event abstractions.
+- 🔏 **Lightweight Authorization**: Implements a custom ASP.NET Core AuthorizationHandler for fine-grained access control.
+- 🐳 **Docker Ready**: Offers containerization support for both SQL Server and the web application.
 
 ### ✨ Additional Goodies
 - ✅ **Password Generator**: Implements a robust password generation strategy based on ASP.NET Core Identity configurations.
