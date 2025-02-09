@@ -5,13 +5,13 @@
 @inject VersionService VersionService;
 <MudDrawer @bind-Open="SideBarOpen" Elevation="1" Variant="DrawerVariant.Mini">
     <MudNavMenu>
-        <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@IconConstants.DASHBOARD">Dashboard</MudNavLink>
+        <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@IconConstants.DASHBOARD">@L.GetLocalizedString(ResourceKeys.NavLink_Dashboard)</MudNavLink>
         <AuthorizeView Roles="User">
-            <MudNavLink Href="/userprofile" Match="NavLinkMatch.All" Icon="@IconConstants.USER_PROFILE">User Profile</MudNavLink>
-            <MudNavLink Href="/notifications" Match="NavLinkMatch.All" Icon="@IconConstants.MY_NOTIFICATIONS">My Notifications</MudNavLink>
+            <MudNavLink Href="/userprofile" Match="NavLinkMatch.All" Icon="@IconConstants.USER_PROFILE">@L.GetLocalizedString(ResourceKeys.NavLink_UserProfile)</MudNavLink>
+            <MudNavLink Href="/notifications" Match="NavLinkMatch.All" Icon="@IconConstants.MY_NOTIFICATIONS">@L.GetLocalizedString(ResourceKeys.NavLink_MyNotifications)</MudNavLink>
         </AuthorizeView>
         <AuthorizeView Roles="Admin">
-            <MudNavLink Href="/admin/users" Match="NavLinkMatch.Prefix" Icon="@IconConstants.USERS">User Management</MudNavLink>
+            <MudNavLink Href="/admin/users" Match="NavLinkMatch.Prefix" Icon="@IconConstants.USERS">@L.GetLocalizedString(ResourceKeys.NavLink_UserManagement)</MudNavLink>
         </AuthorizeView>
         <AuthorizeView Roles="SuperAdmin">
             <MudNavGroup Title="Developer" Icon="@IconConstants.DEVELOPER" Expanded="true">

@@ -1,20 +1,20 @@
 ﻿@page "/userprofile"
-<PageHeader Title="User Profile" Icon="@IconConstants.USER_PROFILE" Description="View and modify your user profile details" />
+<PageHeader Title="@L.GetLocalizedString(ResourceKeys.Titles_UserProfile)" Icon="@IconConstants.USER_PROFILE" Description="@L.GetLocalizedString(ResourceKeys.Descriptions_ViewAndModifyUserProfileDetails)" />
 <MudTabs Outlined="false" Position="Position.Top" Rounded="true" Border="true" ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
-    <MudTabPanel Text="Details">
-        <MudText Typo="Typo.h5" Class="inner-component-title">Manage your profile details</MudText>
+    <MudTabPanel Text="@L.GetLocalizedString(ResourceKeys.Titles_PersonalDetails_Cap)">
+        <MudText Typo="Typo.h5" Class="inner-component-title">@L.GetLocalizedString(ResourceKeys.Descriptions_ManageProfileDetails)</MudText>
         <UserDetailsForm />
     </MudTabPanel>
-    <MudTabPanel Text="Change Password">
-        <MudText Typo="Typo.h5" Class="inner-component-title">Change your password</MudText>
+    <MudTabPanel Text="@L.GetLocalizedString(ResourceKeys.Titles_ChangePassword_Cap)">
+        <MudText Typo="Typo.h5" Class="inner-component-title">@L.GetLocalizedString(ResourceKeys.Descriptions_ChangeYourPassword)</MudText>
         <ChangePasswordComponent />
     </MudTabPanel>
-    <MudTabPanel Text="Personal Data">
-        <MudText Typo="Typo.h5" Class="inner-component-title">Personal data</MudText>
+    <MudTabPanel Text="@L.GetLocalizedString(ResourceKeys.Titles_PersonalData_Cap)">
+        <MudText Typo="Typo.h5" Class="inner-component-title">@L.GetLocalizedString(ResourceKeys.Descriptions_PersonalData)</MudText>
         <PersonalDataComponent />
     </MudTabPanel>
-    <MudTabPanel Text="Two-Factor Authentication">
-        <MudText Typo="Typo.h5" Class="inner-component-title">Authenticator app</MudText>
-        <TwoFactorAuthenticationComponent/>
+    <MudTabPanel Text="@L.GetLocalizedString(ResourceKeys.Titles_TwoFactorAuthentication_Cap)">
+        <MudText Typo="Typo.h5" Class="inner-component-title">@L.GetLocalizedString(ResourceKeys.Descriptions_AuthenticatorApp)</MudText>
+        <TwoFactorAuthenticationComponent />
     </MudTabPanel>
 </MudTabs>

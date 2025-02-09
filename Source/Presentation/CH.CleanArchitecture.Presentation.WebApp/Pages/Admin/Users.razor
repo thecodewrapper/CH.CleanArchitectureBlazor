@@ -3,5 +3,5 @@
 @using CH.CleanArchitecture.Core.Application.Commands;
 @using CH.CleanArchitecture.Presentation.WebApp.Components.Admin
 @attribute [Authorize(Roles = "Admin")]
-<PageHeader Title="User Management" Icon="@IconConstants.USERS" Description="View and configure all system users" />
-<UsersGrid/>
+<PageHeader Title="@L.GetLocalizedString(ResourceKeys.NavLink_UserManagement)" Icon="@IconConstants.USERS" Description="@L.GetLocalizedString(ResourceKeys.Descriptions_ViewAndConfigureAllSystemUsers)" />
+<UsersGrid />
