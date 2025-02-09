@@ -341,5 +341,11 @@ namespace CH.CleanArchitecture.Resources
         public const string Messages_UnableToActivateUser = "Messages_UnableToActivateUser";
         public const string Messages_UnableToDeactivateUser = "Messages_UnableToDeactivateUser";
         public const string Labels_Unconfirmed = "Labels_Unconfirmed";
+        public const string Labels_Country = "Labels_Country";
+        public const string Labels_City = "Labels_City";
+        public const string Labels_FlatNumber = "Labels_FlatNumber";
+        public const string Labels_Title = "Labels_Title";
+        public const string Labels_ReceivedOn = "Labels_ReceivedOn";
+        public const string Labels_ConfirmNewPassword = "Labels_ConfirmNewPassword";
     }
 }

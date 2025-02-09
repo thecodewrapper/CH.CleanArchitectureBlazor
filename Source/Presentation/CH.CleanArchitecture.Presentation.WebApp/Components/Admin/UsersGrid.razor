@@ -14,7 +14,7 @@
                 <CRUDButton Type="CRUDButtonType.New" OnClick="@(async () => await AddNewAsync())" />
             </ToolBarContent>
             <HeaderContent>
-                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.Name))" T="UserReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Id)</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(UserReadModel.Id))" T="UserReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Id)</MudTableSortLabel></MudTh>
                 <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Name)</MudTh>
                 <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Surname)</MudTh>
                 <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Email)</MudTh>
@@ -23,13 +23,13 @@
                 <MudTh></MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd DataLabel="Id">@context.Id</MudTd>
-                <MudTd DataLabel="Name">@context.Name</MudTd>
-                <MudTd DataLabel="Surname">@context.Surname</MudTd>
-                <MudTd DataLabel="Email">@context.Email</MudTd>
-                <MudTd DataLabel="Roles">@context.Roles</MudTd>
-                <MudTd DataLabel="Is Active"><ActivityStatus IsActive="@context.IsActive" /></MudTd>
-                <MudTd DataLabel="Details">
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Id)">@context.Id</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Name)">@context.Name</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Surname)">@context.Surname</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Email)">@context.Email</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)">@context.Roles</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Active)"><ActivityStatus IsActive="@context.IsActive" /></MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Details)">
                     <MudStack Row Spacing="1" Justify="Justify.FlexEnd">
                          <CRUDButton Type="CRUDButtonType.Details" OnClick="@(() => ShowUser(context.Id))" />
                          <CRUDButton Type="CRUDButtonType.Delete" OnClick="@(() => DeleteUser(context))" />

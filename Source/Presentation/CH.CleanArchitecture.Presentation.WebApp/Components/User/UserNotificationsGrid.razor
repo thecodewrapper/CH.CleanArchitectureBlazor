@@ -5,19 +5,19 @@
     <MudItem Class="pa-4" xs="12" sm="12" md="12">
         <MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="_table">
             <ToolBarContent>
-                <MudText Typo="Typo.h6">Notifications</MudText>
+                <MudText Typo="Typo.h6">@L.GetLocalizedString(ResourceKeys.Titles_Notifications)</MudText>
                 <MudSpacer />
-                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@L.GetLocalizedString(ResourceKeys.Labels_Search)" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
             </ToolBarContent>
             <HeaderContent>
-                <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationReadModel.DateCreated))" InitialDirection="SortDirection.Descending" T="NotificationReadModel">Received On</MudTableSortLabel></MudTh>
-                <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationReadModel.Title))" T="NotificationReadModel">Title</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationReadModel.DateCreated))" InitialDirection="SortDirection.Descending" T="NotificationReadModel">@L.GetLocalizedString(ResourceKeys.Labels_ReceivedOn)</MudTableSortLabel></MudTh>
+                <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationReadModel.Title))" T="NotificationReadModel">@L.GetLocalizedString(ResourceKeys.Labels_Title)</MudTableSortLabel></MudTh>
                 <MudTh>Description</MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd DataLabel="ReceivedOn">@context.DateCreated</MudTd>
-                <MudTd DataLabel="Title">@context.Title</MudTd>
-                <MudTd DataLabel="Description">@context.Description</MudTd>
+                <MudTd DataLabel="@L.GetLocalizedString(ResourceKeys.Labels_ReceivedOn)">@context.DateCreated</MudTd>
+                <MudTd DataLabel="@L.GetLocalizedString(ResourceKeys.Labels_Title)">@context.Title</MudTd>
+                <MudTd DataLabel="@L.GetLocalizedString(ResourceKeys.Labels_Description)">@context.Description</MudTd>
             </RowTemplate>
             <NoRecordsContent>
                 <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_NoRecordsFound)</MudText>

@@ -19,10 +19,11 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
         private string _sharedKey { get; set; }
         private string _authenticatorUri { get; set; }
 
-
-
+        private string _userLanguage = "en";
         protected override async Task OnInitializedAsync() {
-            string userId = (await GetCurrentUserAsync()).FindId();
+            var user = await GetCurrentUserAsync();
+            string userId = user.FindId();
+            _userLanguage = user.FindCulture();
             await LoadSharedKeyAndQrCodeUriAsync(userId);
             await base.OnInitializedAsync();
         }

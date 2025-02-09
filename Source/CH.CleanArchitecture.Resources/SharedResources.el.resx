@@ -1113,4 +1113,22 @@
   <data name="Labels_Unconfirmed" xml:space="preserve">
     <value>Μη επιβεβαιωμένο</value>
   </data>
+    <data name="Labels_Country" xml:space="preserve">
+    <value>Χώρα</value>
+  </data>
+  <data name="Labels_City" xml:space="preserve">
+    <value>Πόλη</value>
+  </data>
+  <data name="Labels_FlatNumber" xml:space="preserve">
+    <value>Αριθμός Διαμερίσματος</value>
+  </data>
+  <data name="Labels_Title" xml:space="preserve">
+    <value>Τίτλος</value>
+  </data>
+  <data name="Labels_ReceivedOn" xml:space="preserve">
+    <value>Λήφθηκε στις</value>
+  </data>
+  <data name="Labels_ConfirmNewPassword" xml:space="preserve">
+    <value>Επιβεβαίωση Νέου Κωδικού Πρόσβασης</value>
+  </data>
 </root>

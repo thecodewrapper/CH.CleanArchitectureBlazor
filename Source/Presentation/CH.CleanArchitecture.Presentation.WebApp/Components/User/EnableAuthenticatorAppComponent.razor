@@ -1,37 +1,68 @@
 ﻿@inherits BaseComponent
 <MudPaper Elevation="0" Class="pa-6">
-    <p>To use an authenticator app go through the following steps:</p>
+    <p>@L.GetLocalizedString(ResourceKeys.Descriptions_UseAuthenticatorApp)</p>
     <ol class="list">
+        @if (_userLanguage == "en")
+        {
+            <li>
+                <p>
+                    Download a two-factor authenticator app like Microsoft Authenticator for
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a> and
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a> or
+                    Google Authenticator for
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a> and
+                    <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
+                </p>
+            </li>
+            <li>
+                <p>Scan the QR Code or enter this key <kbd>@_sharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
+                <div id="qrCode"></div>
+                <div id="qrCodeData" data-url="@_authenticatorUri"></div>
+            </li>
+        }
+        else
+        {
+            <li>
+                <p>
+                    Κατεβάστε μια εφαρμογή αυθεντικοποίησης δύο παραγόντων, όπως το Microsoft Authenticator για
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a> και
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a> ή
+                    το Google Authenticator για
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a> και
+                    <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
+                </p>
+            </li>
+            <li>
+                <p>Σαρώστε τον QR Κωδικό ή εισαγάγετε αυτό το κλειδί <kbd>@_sharedKey</kbd> στην εφαρμογή αυθεντικοποίησης δύο παραγόντων σας. Τα κενά και οι πεζοί-κεφαλαίοι χαρακτήρες δεν έχουν σημασία.</p>
+                <div id="qrCode"></div>
+                <div id="qrCodeData" data-url="@_authenticatorUri"></div>
+            </li>
+        }
+        <br />
         <li>
-            <p>
-                Download a two-factor authenticator app like Microsoft Authenticator for
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a> and
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a> or
-                Google Authenticator for
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a> and
-                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
-            </p>
-        </li>
-        <li>
-            <p>Scan the QR Code or enter this key <kbd>@_sharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
-            <div id="qrCode"></div>
-            <div id="qrCodeData" data-url="@_authenticatorUri"></div>
-        </li>
-        <li>
-            <p>
-                Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
-                with a unique code. Enter the code in the confirmation box below.
-            </p>
+            @if (_userLanguage == "en")
+            {
+                <p>
+                    Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
+                    with a unique code.Enter the code in the confirmation box below.
+                </p>
+            }
+            else
+            {
+                <p>
+                    Μόλις σαρώσετε τον QR κωδικό ή εισαγάγετε το παραπάνω κλειδί, η εφαρμογή αυθεντικοποίησης δύο παραγόντων θα σας παρέχει έναν μοναδικό κωδικό. Εισαγάγετε τον κωδικό στο πλαίσιο επιβεβαίωσης παρακάτω.
+                </p>
+            }
             <div class="row">
                 <div class="col-md-6">
                     <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
                         <DataAnnotationsValidator />
                         <MudCard>
                             <MudCardContent>
-                                <MudTextField Label="Verification Code" Class="mt-3" @bind-Value="model.Code" For="@(() => model.Code)" InputType="MudBlazor.InputType.Text" />
+                                <MudTextField Label="@L.GetLocalizedString(ResourceKeys.Labels_VerificationCode)" Class="mt-3" @bind-Value="model.Code" For="@(() => model.Code)" InputType="MudBlazor.InputType.Text" />
                             </MudCardContent>
                             <MudCardActions>
-                                <MudButton ButtonType="ButtonType.Submit" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Verify</MudButton>
+                                <MudButton ButtonType="ButtonType.Submit" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">@L.GetLocalizedString(ResourceKeys.Buttons_Verify_Cap)</MudButton>
                             </MudCardActions>
                         </MudCard>
                     </EditForm>

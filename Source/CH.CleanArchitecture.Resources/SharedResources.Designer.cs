@@ -799,6 +799,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string Labels_City {
+            get {
+                return ResourceManager.GetString("Labels_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string Labels_Clear {
@@ -822,6 +831,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Labels_Confirmed {
             get {
                 return ResourceManager.GetString("Labels_Confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm New Password.
+        /// </summary>
+        public static string Labels_ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("Labels_ConfirmNewPassword", resourceCulture);
             }
         }
         
@@ -858,6 +876,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Labels_Copyright_Cap {
             get {
                 return ResourceManager.GetString("Labels_Copyright_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Labels_Country {
+            get {
+                return ResourceManager.GetString("Labels_Country", resourceCulture);
             }
         }
         
@@ -1074,6 +1101,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Labels_FirstPage_Cap {
             get {
                 return ResourceManager.GetString("Labels_FirstPage_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat Number.
+        /// </summary>
+        public static string Labels_FlatNumber {
+            get {
+                return ResourceManager.GetString("Labels_FlatNumber", resourceCulture);
             }
         }
         
@@ -1555,6 +1591,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Received On.
+        /// </summary>
+        public static string Labels_ReceivedOn {
+            get {
+                return ResourceManager.GetString("Labels_ReceivedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reject.
         /// </summary>
         public static string Labels_Reject {
@@ -1794,6 +1839,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Labels_Surname_Cap {
             get {
                 return ResourceManager.GetString("Labels_Surname_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Labels_Title {
+            get {
+                return ResourceManager.GetString("Labels_Title", resourceCulture);
             }
         }
         
