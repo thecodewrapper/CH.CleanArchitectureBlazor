@@ -122,40 +122,41 @@ Enroll the following jobs:
 - **Domain-Driven Design** ->
   - Aggregate roots implement `IAggregateRoot<T, TId>`.
 - **Application Services** → Return `Result<T>` or `Result`.
-
+---
 ### 📌 EF Core Migrations
 To add migrations for different contexts, use the following commands:
 
-- 🗂 **Application Context**:
+🗂 **Application Context**:
   ```sh
   add-migration {MIGRATION_NAME_HERE} -context ApplicationDbContext -o Migrations/Application
   ```
-- 🏛 **Event Store Context**:
+
+🏛 **Event Store Context**:
   ```sh
   add-migration {MIGRATION_NAME_HERE} -context EventStoreDbContext -o Migrations/EventStore
   ```
-- 🔐 **Identity Context**:
+
+🔐 **Identity Context**:
   ```sh
   add-migration {MIGRATION_NAME_HERE} -context IdentityDbContext -o Migrations/Identity
   ```
-
+---
 ### 📌 Database Updates
 The following commands install/update the databases. This process runs automatically every time the project is executed, but you can also run it manually in **Package Manager Console**, ensuring `CH.CleanArchitecture.Infrastructure` is selected as the **Default Project**, and `CH.CleanArchitecture.Presentation.WebApp` is set as the **solution startup project**:
 
-- 🗂 **Update Application Database**:
+🗂 **Update Application Database**:
   ```sh
   update-database -context ApplicationDbContext
   ```
-- 🏛 **Update Event Store Database**:
+🏛 **Update Event Store Database**:
   ```sh
   update-database -context EventStoreDbContext
   ```
-- 🔐 **Update Identity Database**:
+🔐 **Update Identity Database**:
   ```sh
   update-database -context IdentityDbContext
   ```
-
-- 
+---
 ### 📌 Docker Compose
 ```sh
 docker-compose up
