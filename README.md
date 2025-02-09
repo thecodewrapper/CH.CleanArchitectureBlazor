@@ -70,8 +70,6 @@ Or manually edit the `secrets.json` file:
 ---
 
 ## 📦 Post-Deployment Setup
-### 🔹 Create an Admin Account
-Use the `CreateAdmin` endpoint in `SetupController`.
 
 ### 🔹 Cloud Storage Setup
 #### **Azure Blob Storage** (Skip if using AWS S3)
