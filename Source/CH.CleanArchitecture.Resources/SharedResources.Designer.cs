@@ -1798,6 +1798,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unconfirmed.
+        /// </summary>
+        public static string Labels_Unconfirmed {
+            get {
+                return ResourceManager.GetString("Labels_Unconfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         public static string Labels_User {
@@ -1906,6 +1915,24 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to activate this user?.
+        /// </summary>
+        public static string Messages_ActivateUserConfirmation {
+            get {
+                return ResourceManager.GetString("Messages_ActivateUserConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activating user &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_ActivatingUser {
+            get {
+                return ResourceManager.GetString("Messages_ActivatingUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user.
         /// </summary>
         public static string Messages_AddUser {
@@ -1974,6 +2001,24 @@ namespace CH.CleanArchitecture.Resources {
         public static string Messages_ConfirmUserEmailConfirmation {
             get {
                 return ResourceManager.GetString("Messages_ConfirmUserEmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to deactivate this user?.
+        /// </summary>
+        public static string Messages_DeactivateUserConfirmation {
+            get {
+                return ResourceManager.GetString("Messages_DeactivateUserConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivating user &apos;{0}&apos;.
+        /// </summary>
+        public static string Messages_DeactivatingUser {
+            get {
+                return ResourceManager.GetString("Messages.DeactivatingUser", resourceCulture);
             }
         }
         
@@ -2140,6 +2185,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to activate user &apos;{0}&apos;..
+        /// </summary>
+        public static string Messages_UnableToActivateUser {
+            get {
+                return ResourceManager.GetString("Messages_UnableToActivateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to confirm payment &apos;{0}&apos;.
         /// </summary>
         public static string Messages_UnableToConfirmPayment {
@@ -2154,6 +2208,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Messages_UnableToConfirmUserEmail {
             get {
                 return ResourceManager.GetString("Messages_UnableToConfirmUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to deactivate user &apos;{0}&apos;..
+        /// </summary>
+        public static string Messages_UnableToDeactivateUser {
+            get {
+                return ResourceManager.GetString("Messages_UnableToDeactivateUser", resourceCulture);
             }
         }
         
@@ -2181,6 +2244,24 @@ namespace CH.CleanArchitecture.Resources {
         public static string Messages_UnableToUpdateUserProfile {
             get {
                 return ResourceManager.GetString("Messages_UnableToUpdateUserProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User &apos;{0}&apos; activated successfully..
+        /// </summary>
+        public static string Messages_UserActivatedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_UserActivatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User &apos;{0}&apos; deactivated successfully..
+        /// </summary>
+        public static string Messages_UserDeactivatedSuccessfully {
+            get {
+                return ResourceManager.GetString("Messages_UserDeactivatedSuccessfully", resourceCulture);
             }
         }
         

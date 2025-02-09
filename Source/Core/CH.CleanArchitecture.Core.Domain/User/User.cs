@@ -22,6 +22,7 @@ namespace CH.CleanArchitecture.Core.Domain.User
         public IReadOnlyCollection<RoleEnum> Roles { get; private set; }
         public bool IsActive { get; private set; }
         public string UICulture { get; private set; }
+        public string EmailConfirmed { get; private set; }
 
         private User() {
 

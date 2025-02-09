@@ -16,6 +16,9 @@ namespace CH.CleanArchitecture.Core.Application.Authorization
                 case OPERATIONS.USER.UPDATE:
                 case OPERATIONS.USER.DELETE:
                 case OPERATIONS.USER.READ:
+                case OPERATIONS.USER.CONFIRM_EMAIL:
+                case OPERATIONS.USER.ACTIVATE:
+                case OPERATIONS.USER.DEACTIVATE:
                     context.EvaluateRequirement(requirement, () => context.User.IsInRole(RoleEnum.Admin.ToString()));
                     break;
             }

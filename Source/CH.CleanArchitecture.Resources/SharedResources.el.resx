@@ -1086,4 +1086,31 @@
   <data name="Buttons_Proceed_Cap" xml:space="preserve">
     <value>ΠΡΟΧΩΡΗΣΤΕ</value>
   </data>
+    <data name="Messages_ActivatingUser" xml:space="preserve">
+    <value>Ενεργοποίηση χρήστη '{0}'</value>
+  </data>
+  <data name="Messages.DeactivatingUser" xml:space="preserve">
+    <value>Απενεργοποίηση χρήστη '{0}'</value>
+  </data>
+  <data name="Messages_ActivateUserConfirmation" xml:space="preserve">
+    <value>Είστε βέβαιοι ότι θέλετε να ενεργοποιήσετε αυτόν τον χρήστη;</value>
+  </data>
+  <data name="Messages_DeactivateUserConfirmation" xml:space="preserve">
+    <value>Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε αυτόν τον χρήστη;</value>
+  </data>
+  <data name="Messages_UserActivatedSuccessfully" xml:space="preserve">
+    <value>Ο χρήστης '{0}' ενεργοποιήθηκε με επιτυχία.</value>
+  </data>
+  <data name="Messages_UserDeactivatedSuccessfully" xml:space="preserve">
+    <value>Ο χρήστης '{0}' απενεργοποιήθηκε με επιτυχία.</value>
+  </data>
+  <data name="Messages_UnableToActivateUser" xml:space="preserve">
+    <value>Αδυναμία ενεργοποίησης χρήστη '{0}'.</value>
+  </data>
+  <data name="Messages_UnableToDeactivateUser" xml:space="preserve">
+    <value>Αδυναμία απενεργοποίησης χρήστη '{0}'.</value>
+  </data>
+  <data name="Labels_Unconfirmed" xml:space="preserve">
+    <value>Μη επιβεβαιωμένο</value>
+  </data>
 </root>

@@ -1086,4 +1086,31 @@
   <data name="Buttons_Proceed_Cap" xml:space="preserve">
     <value>PROCEED</value>
   </data>
+    <data name="Messages_ActivatingUser" xml:space="preserve">
+    <value>Activating user '{0}'</value>
+  </data>
+  <data name="Messages.DeactivatingUser" xml:space="preserve">
+    <value>Deactivating user '{0}'</value>
+  </data>
+  <data name="Messages_ActivateUserConfirmation" xml:space="preserve">
+    <value>Are you sure you want to activate this user?</value>
+  </data>
+  <data name="Messages_DeactivateUserConfirmation" xml:space="preserve">
+    <value>Are you sure you want to deactivate this user?</value>
+  </data>
+  <data name="Messages_UserActivatedSuccessfully" xml:space="preserve">
+    <value>User '{0}' activated successfully.</value>
+  </data>
+  <data name="Messages_UserDeactivatedSuccessfully" xml:space="preserve">
+    <value>User '{0}' deactivated successfully.</value>
+  </data>
+  <data name="Messages_UnableToActivateUser" xml:space="preserve">
+    <value>Unable to activate user '{0}'.</value>
+  </data>
+  <data name="Messages_UnableToDeactivateUser" xml:space="preserve">
+    <value>Unable to deactivate user '{0}'.</value>
+  </data>
+  <data name="Labels_Unconfirmed" xml:space="preserve">
+    <value>Unconfirmed</value>
+  </data>
 </root>

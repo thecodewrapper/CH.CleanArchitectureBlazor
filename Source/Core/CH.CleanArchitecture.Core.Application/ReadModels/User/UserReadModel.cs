@@ -12,13 +12,11 @@ namespace CH.CleanArchitecture.Core.Application.ReadModels
         public string Surname { get; set; }
         public string Email { get; set; }
         public IReadOnlyCollection<RoleEnum> Roles { get; set; }
-        public IReadOnlyCollection<string> LocalizedRoles { get; set; }
         public string PhoneNumber { get; set; }
         public string SecondaryPhoneNumber { get; set; }
-        public string Fax { get; set; }
         public bool IsActive { get; set; }
-        public string Culture { get; set; }
         public string UICulture { get; set; }
         public AddressReadModel Address { get; set; }
+        public bool EmailConfirmed { get; set; }
     }
 }
