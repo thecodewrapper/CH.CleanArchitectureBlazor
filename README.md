@@ -117,9 +117,9 @@ Enroll the following jobs:
   - Commands inherit `BaseCommand`.
   - Queries inherit `BaseQuery`.
   - Use `Result<T>` or `Result` for return values.
-- **Persistence** ->
+- **Persistence** →
   - Data models implement `IDataEntity<TId>`.
-- **Domain-Driven Design** ->
+- **Domain-Driven Design** →
   - Aggregate roots implement `IAggregateRoot<T, TId>`.
 - **Application Services** → Return `Result<T>` or `Result`.
 ---
