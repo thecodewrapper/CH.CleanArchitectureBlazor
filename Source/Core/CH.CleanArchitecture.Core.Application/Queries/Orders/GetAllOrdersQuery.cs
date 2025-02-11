@@ -6,5 +6,6 @@ namespace CH.CleanArchitecture.Core.Application.Queries
 {
     public class GetAllOrdersQuery : BaseQuery<Result<List<OrderReadModel>>>
     {
+        public QueryOptions Options { get; set; }
     }
 }
