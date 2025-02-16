@@ -4,8 +4,8 @@
 
 using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
-using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +15,10 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly IServiceBus _serviceBus;
+        private readonly IServiceBusMediator _serviceBus;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(IServiceBus serviceBus, ILogger<LoginModel> logger) {
+        public LoginModel(IServiceBusMediator serviceBus, ILogger<LoginModel> logger) {
             _serviceBus = serviceBus;
             _logger = logger;
         }

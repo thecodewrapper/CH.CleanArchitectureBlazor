@@ -110,7 +110,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
             if (applicationUser.IsActive == false)
                 return serviceResult.Fail().WithMessage("User is not active.");
-            return serviceResult;
+            return serviceResult.Succeed();
         }
 
         private async Task<Result<LoginResponseDTO>> SignInUser(ApplicationUser applicationUser, LoginRequestDTO loginRequest) {

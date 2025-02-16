@@ -19,7 +19,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
         #region Dependencies
 
         [Inject]
-        public IServiceBus ServiceBus { get; set; }
+        public IServiceBusMediator ServiceBus { get; set; }
 
         [Inject]
         public IMapper Mapper { get; set; }

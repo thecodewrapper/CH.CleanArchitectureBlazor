@@ -11,7 +11,7 @@ namespace CH.CleanArchitecture.Common
         private List<IResultError> _errors = new List<IResultError>();
 
         public Result() {
-            IsSuccessful = true;
+            IsSuccessful = false;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace CH.CleanArchitecture.Common
         /// <summary>
         /// Metadata which might be contained in the result
         /// </summary>
-        public Dictionary<string, object> Metadata { get; internal set; } = new Dictionary<string, object>();
+        public Dictionary<string, object> Metadata { get; set; } = new Dictionary<string, object>();
 
         /// <summary>
         /// Helper proper to present the message with errors
@@ -42,7 +42,7 @@ namespace CH.CleanArchitecture.Common
         /// <summary>
         /// An indication whether the result is succesful
         /// </summary>
-        public bool IsSuccessful { get; internal set; }
+        public bool IsSuccessful { get; set; }
 
         /// <summary>
         /// Any exception that might have been thrown

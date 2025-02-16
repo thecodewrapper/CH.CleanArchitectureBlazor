@@ -27,7 +27,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
                 return new TableData<UserReadModel>();
             }
 
-            _totalItems = (int)query.Metadata["AllRecordCount"];
+            _totalItems = Convert.ToInt32(query.Metadata["AllRecordCount"]);
             IEnumerable<UserReadModel> data = query.Unwrap();
             await Task.Delay(300);
 

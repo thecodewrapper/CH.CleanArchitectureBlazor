@@ -699,7 +699,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
             if (applicationUser.IsActive)
                 return serviceResult.Fail().WithMessage("User is already active.");
-            return serviceResult;
+            return serviceResult.Succeed();
         }
 
         private async Task<Result> ValidateRolesForAdditionAsync(List<string> roles, ApplicationUser applicationUser) {

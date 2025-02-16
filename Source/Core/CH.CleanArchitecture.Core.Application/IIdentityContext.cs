@@ -12,10 +12,11 @@ namespace CH.CleanArchitecture.Core.Application
         public string Name { get; }
         public string Culture { get; }
         public string UiCulture { get; }
-        public IEnumerable<RoleEnum> Roles { get; }
+        public List<RoleEnum> Roles { get; }
         public ThemeEnum Theme { get; }
+        public List<ClaimData> Claims { get; }
         public ClaimsPrincipal User { get; }
 
-        void Initialize(ClaimsPrincipal user);
+        void Initialize(List<ClaimData> claimData);
     }
 }

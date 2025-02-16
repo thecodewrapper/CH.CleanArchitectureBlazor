@@ -25,7 +25,7 @@ namespace CH.CleanArchitecture.Core.Application
         }
 
         public override async Task Consume(ConsumeContext<TRequest> context) {
-            IdentityContext.Initialize(context.Message.IdentityContext.User);
+            IdentityContext.Initialize(context.Message.IdentityContext.Claims);
             var requirements = context.Message.Requirements;
 
             // Checking authorization requirements

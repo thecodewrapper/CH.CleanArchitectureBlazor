@@ -13,7 +13,7 @@ namespace CH.CleanArchitecture.Tests.Mocks
 
         public string Name => "Tester Tester";
 
-        public IEnumerable<RoleEnum> Roles { get; set; } = new List<RoleEnum>();
+        public List<RoleEnum> Roles => new();
 
         public string Culture => "en-GB";
 
@@ -23,7 +23,9 @@ namespace CH.CleanArchitecture.Tests.Mocks
 
         public ClaimsPrincipal User => new();
 
-        public void Initialize(ClaimsPrincipal user) {
+        public List<ClaimData> Claims => new();
+
+        public void Initialize(List<ClaimData> claimData) {
             return;
         }
     }

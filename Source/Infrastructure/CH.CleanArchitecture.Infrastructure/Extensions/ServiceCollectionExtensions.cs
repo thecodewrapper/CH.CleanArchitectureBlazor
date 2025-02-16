@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ardalis.GuardClauses;
 using AutoMapper.Extensions.ExpressionMapping;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
@@ -22,6 +23,7 @@ using CH.Messaging.Abstractions;
 using Hangfire;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,7 +50,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddCryptoServices();
             services.AddAuthServices();
             services.AddScheduledJobs(configuration);
-            services.AddServiceBusMediator();
+            services.AddServiceBus(configuration);
         }
 
         private static void AddDatabasePersistence(this IServiceCollection services, IConfiguration configuration) {
@@ -70,19 +72,64 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddTransient<IOrderRepository, OrderRepository>();
         }
 
+        private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration, List<Type> consumerTypes = default) {
+            var options = GetServiceBusOptions(configuration);
+
+            services.AddServiceBusMediator(consumerTypes);
+            services.AddScoped<IServiceBusMediator, ServiceBusMediator>();
+
+            if (options.Enabled) {
+                services.AddScoped<IServiceBus, ServiceBus>();
+                services.AddSingleton<ServiceBusJsonSerializerOptions>();
+
+                switch (options.Provider.ToLower()) {
+                    case "azure": services.AddAzureServiceBus(options.HostUrl, options.InputQueueName); break;
+                    default:
+                        throw new NotSupportedException($"The service bus provider '{options.Provider}' is not supported.");
+                }
+            }
+            else {
+                services.AddScoped<IServiceBus, ServiceBusMediator>(); //registering the mediator as the service bus if no external service bus is used
+            }
+        }
+
         private static void AddServiceBusMediator(this IServiceCollection services, List<Type> consumerTypes = default) {
-            services.AddMediator(x =>
+            services.AddMassTransit(cfg =>
             {
-                if (consumerTypes != null && consumerTypes.Any()) {
-                    consumerTypes.ForEach(t => x.AddConsumer(t));
-                }
-                else {
-                    x.AddConsumers(typeof(CreateUserCommandHandler).Assembly);
-                    x.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
-                }
+                cfg.AddMediator(m =>
+                {
+                    if (consumerTypes != null && consumerTypes.Any()) {
+                        consumerTypes.ForEach(t => m.AddConsumer(t));
+                    }
+                    else {
+                        m.AddConsumers(typeof(CreateUserCommandHandler).Assembly);
+                        m.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
+                    }
+                });
             });
-            services.AddScoped<IServiceBus, ServiceBusMediator>();
-            services.AddScoped<IEventBus, ServiceBusMediator>();
+        }
+
+        private static void AddAzureServiceBus(this IServiceCollection services, string hostUrl, string inputQueueName) {
+            Guard.Against.NullOrEmpty(hostUrl, nameof(hostUrl));
+            Guard.Against.NullOrEmpty(inputQueueName, nameof(inputQueueName));
+
+            services.AddMassTransit(cfg =>
+            {
+                cfg.AddConsumer<BusMessageConsumer>();
+                cfg.SetKebabCaseEndpointNameFormatter();
+                cfg.UsingAzureServiceBus((context, config) =>
+                {
+                    config.UseServiceBusMessageScheduler();
+                    config.AutoStart = true;
+                    config.Host(hostUrl);
+
+                    config.ReceiveEndpoint(inputQueueName, e =>
+                    {
+                        e.ConfigureConsumer<BusMessageConsumer>(context);
+                    });
+                });
+                cfg.AddRequestClient<BusMessage>(new Uri($"queue:{inputQueueName}"));
+            });
         }
 
         private static void AddMapping(this IServiceCollection services) {
@@ -223,6 +270,13 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configuration.GetSection("EmailSender").Bind(emailSenderOptions);
 
             return emailSenderOptions;
+        }
+
+        private static ServiceBusOptions GetServiceBusOptions(IConfiguration configuration) {
+            ServiceBusOptions serviceBusOptions = new ServiceBusOptions();
+            configuration.GetSection("ServiceBus").Bind(serviceBusOptions);
+
+            return serviceBusOptions;
         }
     }
 }

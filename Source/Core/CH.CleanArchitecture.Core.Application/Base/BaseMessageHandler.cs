@@ -23,7 +23,7 @@ namespace CH.CleanArchitecture.Core.Application
         }
 
         public virtual async Task Consume(ConsumeContext<TRequest> context) {
-            IdentityContext.Initialize(context.Message.IdentityContext.User);
+            IdentityContext.Initialize(context.Message.IdentityContext.Claims);
             var messageResult = await HandleAsync(context.Message);
             await context.RespondAsync(messageResult);
         }

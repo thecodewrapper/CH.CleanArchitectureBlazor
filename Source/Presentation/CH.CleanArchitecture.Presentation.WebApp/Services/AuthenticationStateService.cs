@@ -42,7 +42,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Services
                     return;
                 }
 
-                _identityContext.Initialize(_currentUser); //update identity provider state
+                _identityContext.Initialize(_currentUser.Claims.Select(c => new ClaimData(c.Type, c.Value)).ToList()); //update identity provider state
 
             }
             finally {

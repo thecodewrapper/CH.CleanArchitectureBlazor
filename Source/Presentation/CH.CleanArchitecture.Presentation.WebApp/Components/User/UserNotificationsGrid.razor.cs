@@ -30,7 +30,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
                 return new TableData<NotificationReadModel>();
             }
 
-            _totalItems = (int)query.Metadata["AllRecordCount"];
+            _totalItems = Convert.ToInt32(query.Metadata["AllRecordCount"]);
             IEnumerable<NotificationReadModel> data = query.Unwrap();
             await Task.Delay(300);
 

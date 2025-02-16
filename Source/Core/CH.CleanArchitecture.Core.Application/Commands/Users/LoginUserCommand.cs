@@ -8,9 +8,9 @@ namespace CH.CleanArchitecture.Core.Application.Commands
 {
     public class LoginUserCommand : BaseCommand<Result<LoginResponseDTO>>
     {
-        public string Username { get; private set; }
-        public string Password { get; private set; }
-        public bool RememberMe { get; private set; }
+        public string Username { get; init; }
+        public string Password { get; init; }
+        public bool RememberMe { get; init; }
 
         public LoginUserCommand(string username, string password, bool rememberMe) {
             Username = username;

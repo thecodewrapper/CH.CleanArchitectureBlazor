@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
-using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,10 +14,10 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
     public class LoginWith2faModel : PageModel
     {
         private readonly ILogger<LoginWith2faModel> _logger;
-        private readonly IServiceBus _serviceBus;
+        private readonly IServiceBusMediator _serviceBus;
         private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public LoginWith2faModel(ILogger<LoginWith2faModel> logger, IServiceBus serviceBus, IUserAuthenticationService userAuthenticationService) {
+        public LoginWith2faModel(ILogger<LoginWith2faModel> logger, IServiceBusMediator serviceBus, IUserAuthenticationService userAuthenticationService) {
             _logger = logger;
             _serviceBus = serviceBus;
             _userAuthenticationService = userAuthenticationService;

@@ -6,7 +6,6 @@ using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Tests.Mocks;
 using CH.EventStore.EntityFramework;
-using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +23,7 @@ namespace CH.CleanArchitecture.Tests
         protected readonly ApplicationDbContext ApplicationDbContext;
         protected readonly EventStoreDbContext EventStoreDbContext;
         protected readonly IdentityDbContext IdentityDbContext;
-        protected readonly IServiceBus ServiceBus;
+        protected readonly IServiceBusMediator ServiceBus;
         protected readonly IServiceProvider ServiceProvider;
 
         public TestBase() {
@@ -40,7 +39,7 @@ namespace CH.CleanArchitecture.Tests
             var configuration = BuildConfiguration();
             var serviceProvider = BuildServiceProvider(configuration, ApplicationDbContext, IdentityDbContext, EventStoreDbContext);
             ServiceProvider = serviceProvider;
-            ServiceBus = serviceProvider.GetService<IServiceBus>();
+            ServiceBus = serviceProvider.GetService<IServiceBusMediator>();
             AddApplicationData(ApplicationDbContext);
             AddIdentityData(IdentityDbContext);
         }

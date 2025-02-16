@@ -1,9 +1,16 @@
-﻿using CH.Messaging.Abstractions;
+﻿using System;
+using CH.Messaging.Abstractions;
 
 namespace CH.CleanArchitecture.Core.Application
 {
-    public abstract class BaseMessage<TResponse> : IRequest<TResponse> where TResponse : class
+    public abstract class BaseMessage<TResponse> : BaseMessage, IRequest<TResponse> where TResponse : class
     {
-        public IIdentityContext IdentityContext { get; set; }
+    }
+
+    public abstract class BaseMessage : IRequest
+    {
+        public Guid CorrelationId { get; set; }
+        public bool IsBus { get; set; }
+        public IdentityContext IdentityContext { get; set; }
     }
 }

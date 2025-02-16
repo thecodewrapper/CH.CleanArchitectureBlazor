@@ -3,11 +3,11 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
 using CH.CleanArchitecture.Presentation.WebApp.Extensions;
 using CH.CleanArchitecture.Presentation.WebApp.Models;
 using CH.CleanArchitecture.Presentation.WebApp.Services;
-using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -16,11 +16,11 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Account
     public class RegisterUserModel : PageModel
     {
         private readonly ILogger<RegisterUserModel> _logger;
-        private readonly IServiceBus _serviceBus;
+        private readonly IServiceBusMediator _serviceBus;
         private readonly UserAccountService _userAccountService;
         private readonly DocumentsService _documentUploadService;
 
-        public RegisterUserModel(ILogger<RegisterUserModel> logger, IServiceBus serviceBus, UserAccountService userAccountService, DocumentsService documentUploadService) {
+        public RegisterUserModel(ILogger<RegisterUserModel> logger, IServiceBusMediator serviceBus, UserAccountService userAccountService, DocumentsService documentUploadService) {
             _logger = logger;
             _serviceBus = serviceBus;
             _userAccountService = userAccountService;

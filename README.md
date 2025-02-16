@@ -52,12 +52,20 @@ Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thec
 },
 "EmailSender": {
   "UseSendGrid": true
+},
+"ServiceBus": {
+  "Enabled": true,
+  "Provider": "azure",
+  "HostUrl": "",
+  "InputQueueName": "chcleanarchitecture-input-queue"
 }
 ```
 ### 🔑 User Secrets Configuration
 ```sh
 dotnet user-secrets --project CH.CleanArchitecture.Presentation.WebApp set "ConnectionStrings:ApplicationConnection" "{connection_string}"
 dotnet user-secrets --project CH.CleanArchitecture.Presentation.WebApp set "ConnectionStrings:IdentityConnection" "{connection_string}"
+dotnet user-secrets --project CH.CleanArchitecture.Presentation.WebApp set "ServiceBus:HostUrl" "Endpoint=sb://{YOUR_SERVICE_BUS}.servicebus.windows.net/"
+
 ```
 Or manually edit the `secrets.json` file:
 ```json
