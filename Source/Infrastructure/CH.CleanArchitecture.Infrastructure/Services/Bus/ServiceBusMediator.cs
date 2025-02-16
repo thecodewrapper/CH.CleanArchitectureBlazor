@@ -35,6 +35,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
             }
 
+            _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
             try {
                 var response = await client.GetResponse<TResponse>(baseMessage, cancellationToken);
                 return response.Message;
@@ -49,7 +50,11 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             cancellationToken.ThrowIfCancellationRequested();
             BaseMessage baseMessage = request as BaseMessage
                 ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
-            baseMessage.IdentityContext = _identityContext as IdentityContext;
+
+            if (!baseMessage.IsBus) {
+                baseMessage.IdentityContext = _identityContext as IdentityContext;
+            }
+
             await _mediator.Send(request);
         }
     }

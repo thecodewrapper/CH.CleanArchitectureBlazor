@@ -25,7 +25,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         public async Task Consume(ConsumeContext<BusMessage> context) {
             BusMessage message = context.Message;
 
-            _logger.LogDebug("Consuming bus message with correlation id {CorrelationId}", message.CorrelationId);
+            _logger.LogDebug("Consuming BUS message ({MessageType}) with correlation id {CorrelationId}", message.RequestType, message.CorrelationId);
             var messageType = Type.GetType(message.RequestType);
             if (messageType == null) {
                 throw new InvalidOperationException($"Unable to find type: {message.RequestType}");

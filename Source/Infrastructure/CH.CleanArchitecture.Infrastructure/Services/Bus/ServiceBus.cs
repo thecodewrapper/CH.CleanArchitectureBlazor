@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
@@ -51,6 +50,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 ResponseType = typeof(TResponse).AssemblyQualifiedName
             };
 
+            _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
             try {
                 var response = await client.GetResponse<TResponse>(busMessage, cancellationToken, RequestTimeout.Default);
                 return response.Message;

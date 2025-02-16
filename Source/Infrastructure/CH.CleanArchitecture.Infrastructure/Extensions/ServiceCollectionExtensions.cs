@@ -94,18 +94,15 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         }
 
         private static void AddServiceBusMediator(this IServiceCollection services, List<Type> consumerTypes = default) {
-            services.AddMassTransit(cfg =>
+            services.AddMediator(m =>
             {
-                cfg.AddMediator(m =>
-                {
-                    if (consumerTypes != null && consumerTypes.Any()) {
-                        consumerTypes.ForEach(t => m.AddConsumer(t));
-                    }
-                    else {
-                        m.AddConsumers(typeof(CreateUserCommandHandler).Assembly);
-                        m.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
-                    }
-                });
+                if (consumerTypes != null && consumerTypes.Any()) {
+                    consumerTypes.ForEach(t => m.AddConsumer(t));
+                }
+                else {
+                    m.AddConsumers(typeof(CreateUserCommandHandler).Assembly);
+                    m.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
+                }
             });
         }
 
