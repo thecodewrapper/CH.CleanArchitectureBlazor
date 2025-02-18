@@ -106,9 +106,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             });
         }
 
-        private static void AddAzureServiceBus(this IServiceCollection services, string hostUrl, string inputQueueName) {
+        private static void AddAzureServiceBus(this IServiceCollection services, string hostUrl) {
             Guard.Against.NullOrEmpty(hostUrl, nameof(hostUrl));
-            Guard.Against.NullOrEmpty(inputQueueName, nameof(inputQueueName));
 
             services.AddMassTransit(cfg =>
             {
