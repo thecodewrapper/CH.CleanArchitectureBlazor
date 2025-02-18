@@ -14,24 +14,23 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     /// Abstraction over the implementation specifics of a message broker transmission
     /// Concrete implementation of <see cref="IServiceBus"/> which uses MassTransit's <see cref="IRequestClient<TResponse>"/>
     /// </summary>
-    internal class ServiceBus : IServiceBus, IEventBus
+    internal class MassTransitServiceBus : IServiceBus, IEventBus
     {
-        private readonly ILogger<ServiceBus> _logger;
+        private readonly ILogger<MassTransitServiceBus> _logger;
         private readonly IBus _bus;
         private readonly IIdentityContext _identityContext;
         private readonly IServiceProvider _serviceProvider;
-        private readonly ServiceBusJsonSerializerOptions _serializerOptions;
 
-        public ServiceBus(ILogger<ServiceBus> logger, IBus bus, IIdentityContext identityContext, IServiceProvider serviceProvider, ServiceBusJsonSerializerOptions serializerOptions) {
+        public MassTransitServiceBus(ILogger<MassTransitServiceBus> logger, IBus bus, IIdentityContext identityContext, IServiceProvider serviceProvider) {
             _logger = logger;
             _bus = bus;
             _identityContext = identityContext;
             _serviceProvider = serviceProvider;
-            _serializerOptions = serializerOptions;
         }
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse : class {
-            var client = _serviceProvider.GetRequiredService<IRequestClient<BusMessage>>();
+            var clientType = typeof(IRequestClient<>).MakeGenericType(request.GetType());
+            dynamic client = _serviceProvider.GetRequiredService(clientType);
             cancellationToken.ThrowIfCancellationRequested();
 
             Guid correlationId = Guid.NewGuid();
@@ -40,19 +39,12 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             baseMessage.IdentityContext = _identityContext as IdentityContext;
             baseMessage.CorrelationId = correlationId;
             baseMessage.IsBus = true;
+            baseMessage.IsEvent = false;
+            baseMessage.ResponseType = typeof(TResponse).AssemblyQualifiedName;
 
-            string data = JsonSerializer.Serialize((object)request, request.GetType(), _serializerOptions.Options);
-            var busMessage = new BusMessage()
-            {
-                Data = data,
-                CorrelationId = correlationId,
-                RequestType = request.GetType().AssemblyQualifiedName,
-                ResponseType = typeof(TResponse).AssemblyQualifiedName
-            };
-
-            _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
+            _logger.LogDebug("Sending message ({MessageType}) via BUS with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
             try {
-                var response = await client.GetResponse<TResponse>(busMessage, cancellationToken, RequestTimeout.Default);
+                var response = await client.GetResponse<TResponse>(request, cancellationToken, RequestTimeout.Default);
                 return response.Message;
             }
             catch (Exception ex) {
@@ -61,8 +53,15 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
         }
 
-        public async Task SendAsync(IRequest request, CancellationToken cancellationToken = default) {
-            await _bus.Send(request);
+        public async Task PublishAsync(IRequest request, CancellationToken cancellationToken = default) {
+            Guid correlationId = Guid.NewGuid();
+            BaseMessage baseMessage = request as BaseMessage
+                ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
+            baseMessage.IdentityContext = _identityContext as IdentityContext;
+            baseMessage.CorrelationId = correlationId;
+            baseMessage.IsBus = true;
+            baseMessage.IsEvent = true;
+            await _bus.Publish(request, cancellationToken);
         }
     }
 }

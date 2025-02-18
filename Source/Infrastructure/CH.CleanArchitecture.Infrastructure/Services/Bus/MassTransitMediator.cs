@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
+using MassTransit;
 using MassTransit.Mediator;
 using Microsoft.Extensions.Logging;
 
@@ -12,13 +13,13 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     /// Abstraction over the implementation specifics of a message broker transmission
     /// Concrete implementation of <see cref="IServiceBusMediator"/> which uses MassTransit's <see cref="IMediator"/>
     /// </summary>
-    internal class ServiceBusMediator : IServiceBusMediator
+    internal class MassTransitMediator : IServiceBusMediator
     {
-        private readonly ILogger<ServiceBusMediator> _logger;
+        private readonly ILogger<MassTransitMediator> _logger;
         private readonly IMediator _mediator;
         private readonly IIdentityContext _identityContext;
 
-        public ServiceBusMediator(ILogger<ServiceBusMediator> logger, IMediator mediator, IIdentityContext identityContext) {
+        public MassTransitMediator(ILogger<MassTransitMediator> logger, IMediator mediator, IIdentityContext identityContext) {
             _logger = logger;
             _mediator = mediator;
             _identityContext = identityContext;
@@ -46,7 +47,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
         }
 
-        public async Task SendAsync(IRequest request, CancellationToken cancellationToken = default) {
+        public async Task PublishAsync(IRequest request, CancellationToken cancellationToken = default) {
             cancellationToken.ThrowIfCancellationRequested();
             BaseMessage baseMessage = request as BaseMessage
                 ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
@@ -55,7 +56,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
             }
 
-            await _mediator.Send(request);
+            await _mediator.Publish(request);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Ardalis.GuardClauses;
 using AutoMapper.Extensions.ExpressionMapping;
 using CH.CleanArchitecture.Core.Application;
@@ -76,11 +77,10 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             var options = GetServiceBusOptions(configuration);
 
             services.AddServiceBusMediator(consumerTypes);
-            services.AddScoped<IServiceBusMediator, ServiceBusMediator>();
+            services.AddScoped<IServiceBusMediator, MassTransitMediator>();
 
             if (options.Enabled) {
-                services.AddScoped<IServiceBus, ServiceBus>();
-                services.AddSingleton<ServiceBusJsonSerializerOptions>();
+                services.AddScoped<IServiceBus, MassTransitServiceBus>();
 
                 switch (options.Provider.ToLower()) {
                     case "azure": services.AddAzureServiceBus(options.HostUrl, options.InputQueueName); break;
@@ -89,7 +89,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 }
             }
             else {
-                services.AddScoped<IServiceBus, ServiceBusMediator>(); //registering the mediator as the service bus if no external service bus is used
+                services.AddScoped<IServiceBus, MassTransitMediator>(); //registering the mediator as the service bus if no external service bus is used
             }
         }
 
@@ -112,7 +112,11 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
 
             services.AddMassTransit(cfg =>
             {
-                cfg.AddConsumer<BusMessageConsumer>();
+                foreach (var eventType in GetAllMessageTypesFromAssemblies(typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly)) {
+                    var consumerType = typeof(BusMessageConsumer<>).MakeGenericType(eventType);
+                    cfg.AddConsumer(consumerType);
+                }
+
                 cfg.SetKebabCaseEndpointNameFormatter();
                 cfg.UsingAzureServiceBus((context, config) =>
                 {
@@ -120,12 +124,15 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                     config.AutoStart = true;
                     config.Host(hostUrl);
 
-                    config.ReceiveEndpoint(inputQueueName, e =>
-                    {
-                        e.ConfigureConsumer<BusMessageConsumer>(context);
-                    });
+                    foreach (var eventType in GetAllMessageTypesFromAssemblies(typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly)) {
+                        var consumerType = typeof(BusMessageConsumer<>).MakeGenericType(eventType);
+
+                        config.ReceiveEndpoint(eventType.Name.ToLower(), e =>
+                        {
+                            e.ConfigureConsumer(context, consumerType);
+                        });
+                    }
                 });
-                cfg.AddRequestClient<BusMessage>(new Uri($"queue:{inputQueueName}"));
             });
         }
 
@@ -274,6 +281,11 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configuration.GetSection("ServiceBus").Bind(serviceBusOptions);
 
             return serviceBusOptions;
+        }
+
+        private static IEnumerable<Type> GetAllMessageTypesFromAssemblies(params Assembly[] assemblies) {
+            return assemblies.SelectMany(assembly => assembly.GetTypes())
+                .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(BaseMessage)));
         }
     }
 }

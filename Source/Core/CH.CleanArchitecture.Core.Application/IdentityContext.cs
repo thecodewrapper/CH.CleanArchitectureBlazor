@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Domain.User;
 
@@ -20,6 +21,7 @@ namespace CH.CleanArchitecture.Core.Application
         public ThemeEnum Theme { get; set; }
         public List<ClaimData> Claims { get; set; } = new();
 
+        [JsonIgnore]
         public ClaimsPrincipal User { get; private set; }
 
         public IdentityContext() {
