@@ -83,7 +83,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 services.AddScoped<IServiceBus, MassTransitServiceBus>();
 
                 switch (options.Provider.ToLower()) {
-                    case "azure": services.AddAzureServiceBus(options.HostUrl, options.InputQueueName); break;
+                    case "azure": services.AddAzureServiceBus(options.HostUrl); break;
                     default:
                         throw new NotSupportedException($"The service bus provider '{options.Provider}' is not supported.");
                 }
