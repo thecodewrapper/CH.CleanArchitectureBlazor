@@ -32,6 +32,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Polly" Version="8.5.2" />
     <PackageReference Include="SendGrid" Version="9.29.3" />
     <PackageReference Include="Storage.Net" Version="9.3.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.1" />

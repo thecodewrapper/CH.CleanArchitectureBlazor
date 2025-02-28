@@ -77,7 +77,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             var options = GetServiceBusOptions(configuration);
 
             services.AddServiceBusMediator(consumerTypes);
-            services.AddScoped<IServiceBusMediator, MassTransitMediator>();
 
             if (options.Enabled) {
                 services.AddScoped<IServiceBus, MassTransitServiceBus>();
@@ -104,6 +103,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                     m.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
                 }
             });
+            services.AddScoped<IServiceBusMediator, MassTransitMediator>();
         }
 
         private static void AddAzureServiceBus(this IServiceCollection services, string hostUrl) {

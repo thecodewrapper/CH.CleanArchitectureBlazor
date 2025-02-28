@@ -3,9 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
-using MassTransit;
 using MassTransit.Mediator;
 using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {
@@ -36,13 +37,17 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
             }
 
-            _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
             try {
-                var response = await client.GetResponse<TResponse>(baseMessage, cancellationToken);
-                return response.Message;
+                return await GetRetryPolicy().ExecuteAsync(async () =>
+                {
+                    _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
+
+                    var response = await client.GetResponse<TResponse>(baseMessage, cancellationToken);
+                    return response.Message;
+                });
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error sending message to mediator");
+                _logger.LogError(ex, "Failed to send message to mediator after retries.");
                 return default;
             }
         }
@@ -56,7 +61,29 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
             }
 
-            await _mediator.Publish(request);
+            try {
+                await GetRetryPolicy().ExecuteAsync(async () =>
+                {
+                    _logger.LogDebug("Publishing message ({MessageType}) via MEDIATOR. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.IsBus);
+                    await _mediator.Publish(request, cancellationToken);
+                });
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Failed to publish message to mediator after retries.");
+            }
+        }
+
+        private AsyncRetryPolicy GetRetryPolicy() {
+            var retryPolicy = Policy
+                .Handle<Exception>()
+                .WaitAndRetryAsync(3, retryAttempt =>
+                    TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), // Exponential backoff
+                    (exception, timeSpan, retryCount, context) =>
+                    {
+                        _logger.LogWarning(exception, "Retry {RetryCount} after {Delay}s due to exception: {Message}",
+                            retryCount, timeSpan.TotalSeconds, exception.Message);
+                    });
+            return retryPolicy;
         }
     }
 }

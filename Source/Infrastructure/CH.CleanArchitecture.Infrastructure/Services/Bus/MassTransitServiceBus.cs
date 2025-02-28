@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
@@ -7,6 +6,8 @@ using CH.Messaging.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {
@@ -42,13 +43,17 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             baseMessage.IsEvent = false;
             baseMessage.ResponseType = typeof(TResponse).AssemblyQualifiedName;
 
-            _logger.LogDebug("Sending message ({MessageType}) via BUS with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
             try {
-                var response = await client.GetResponse<TResponse>(request, cancellationToken, RequestTimeout.Default);
-                return response.Message;
+                return await GetRetryPolicy().ExecuteAsync(async () =>
+                {
+                    _logger.LogDebug("Sending message ({MessageType}) via BUS with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
+
+                    var response = await client.GetResponse<TResponse>(request, cancellationToken, RequestTimeout.Default);
+                    return response.Message;
+                });
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error sending message to bus");
+                _logger.LogError(ex, "Error sending message to bus after retries");
                 return default;
             }
         }
@@ -61,7 +66,30 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             baseMessage.CorrelationId = correlationId;
             baseMessage.IsBus = true;
             baseMessage.IsEvent = true;
-            await _bus.Publish(request, cancellationToken);
+
+            try {
+                await GetRetryPolicy().ExecuteAsync(async () =>
+                {
+                    _logger.LogDebug("Publishing event ({MessageType}) via BUS with correlation id {CorrelationId}", baseMessage.GetType().Name, correlationId);
+                    await _bus.Publish(request, cancellationToken);
+                });
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Failed to publish event to BUS after retries.");
+            }
+        }
+
+        private AsyncRetryPolicy GetRetryPolicy() {
+            var retryPolicy = Policy
+                .Handle<Exception>()
+                .WaitAndRetryAsync(3, retryAttempt =>
+                    TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), // Exponential backoff
+                    (exception, timeSpan, retryCount, context) =>
+                    {
+                        _logger.LogWarning(exception, "Retry {RetryCount} after {Delay}s due to exception: {Message}",
+                            retryCount, timeSpan.TotalSeconds, exception.Message);
+                    });
+            return retryPolicy;
         }
     }
 }
