@@ -47,7 +47,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 });
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Failed to send message to mediator after retries.");
+                _logger.LogError(ex, "Failed to send message to MEDIATOR after retries.");
                 return default;
             }
         }
@@ -69,7 +69,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 });
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Failed to publish message to mediator after retries.");
+                _logger.LogError(ex, "Failed to publish event to MEDIATOR after retries.");
             }
         }
 

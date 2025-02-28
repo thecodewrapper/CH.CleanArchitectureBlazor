@@ -53,7 +53,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 });
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error sending message to bus after retries");
+                _logger.LogError(ex, "Failed to send message to BUS after retries.");
                 return default;
             }
         }
