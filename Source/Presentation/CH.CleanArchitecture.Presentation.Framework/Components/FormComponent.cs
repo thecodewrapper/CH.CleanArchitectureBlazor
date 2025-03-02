@@ -125,4 +125,34 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
             }
         }
     }
+
+    public abstract class FormComponent : BaseComponent
+    {
+        [CascadingParameter]
+        protected IMudDialogInstance MudDialog { get; set; }
+
+        protected abstract Task<Result> HandleAsync();
+
+        protected async Task HandleValidSubmit() {
+            Loader.Show();
+            Result result;
+            try {
+                result = await HandleAsync();
+            }
+            catch (Exception ex) {
+                LogExceptionError(ex, nameof(HandleValidSubmit));
+                return;
+            }
+
+
+            Loader.Hide();
+            if (result.IsSuccessful) {
+                ToastService.ShowSuccess(result.Message);
+                MudDialog.Close(DialogResult.Ok(result));
+            }
+            else {
+                ToastService.ShowError(result.MessageWithErrors);
+            }
+        }
+    }
 }
