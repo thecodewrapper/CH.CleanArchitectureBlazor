@@ -55,8 +55,10 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             var messageAndConsumerAssemblies = new List<Assembly> { typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly };
             services.AddServiceBus(builder =>
             {
-                builder.UseMediator(messageAndConsumerAssemblies)
-                       .UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, messageAndConsumerAssemblies);
+                builder.UseMediator(messageAndConsumerAssemblies);
+                if (serviceBusOptions.Enabled) {
+                    builder.UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, messageAndConsumerAssemblies);
+                }     
             });
         }
 
