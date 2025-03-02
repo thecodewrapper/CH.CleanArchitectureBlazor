@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
-using System;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;

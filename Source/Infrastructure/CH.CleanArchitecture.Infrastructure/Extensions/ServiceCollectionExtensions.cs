@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using Ardalis.GuardClauses;
 using AutoMapper.Extensions.ExpressionMapping;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.Commands;
@@ -20,11 +18,9 @@ using CH.CleanArchitecture.Infrastructure.Services.Storage;
 using CH.CleanArchitecture.Presentation.EmailTemplates.Extensions;
 using CH.Data.Abstractions;
 using CH.EventStore.EntityFramework.Extensions;
-using CH.Messaging.Abstractions;
 using Hangfire;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,6 +50,16 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddServiceBus(configuration);
         }
 
+        private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration) {
+            var serviceBusOptions = GetServiceBusOptions(configuration);
+            var messageAndConsumerAssemblies = new List<Assembly> { typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly };
+            services.AddServiceBus(builder =>
+            {
+                builder.UseMediator(messageAndConsumerAssemblies)
+                       .UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, messageAndConsumerAssemblies);
+            });
+        }
+
         private static void AddDatabasePersistence(this IServiceCollection services, IConfiguration configuration) {
             if (configuration.GetValue<bool>("UseInMemoryDatabase")) {
                 services.AddDbContext<IdentityDbContext>(options => options.UseInMemoryDatabase("IdentityDb"));
@@ -71,68 +77,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddTransient(typeof(IEntityRepository<,>), typeof(DataEntityRepository<,>));
             services.AddTransient(typeof(IESRepository<,>), typeof(ESRepository<,>));
             services.AddTransient<IOrderRepository, OrderRepository>();
-        }
-
-        private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration, List<Type> consumerTypes = default) {
-            var options = GetServiceBusOptions(configuration);
-
-            services.AddServiceBusMediator(consumerTypes);
-
-            if (options.Enabled) {
-                services.AddScoped<IServiceBus, MassTransitServiceBus>();
-
-                switch (options.Provider.ToLower()) {
-                    case "azure": services.AddAzureServiceBus(options.HostUrl); break;
-                    default:
-                        throw new NotSupportedException($"The service bus provider '{options.Provider}' is not supported.");
-                }
-            }
-            else {
-                services.AddScoped<IServiceBus, MassTransitMediator>(); //registering the mediator as the service bus if no external service bus is used
-            }
-        }
-
-        private static void AddServiceBusMediator(this IServiceCollection services, List<Type> consumerTypes = default) {
-            services.AddMediator(m =>
-            {
-                if (consumerTypes != null && consumerTypes.Any()) {
-                    consumerTypes.ForEach(t => m.AddConsumer(t));
-                }
-                else {
-                    m.AddConsumers(typeof(CreateUserCommandHandler).Assembly);
-                    m.AddConsumers(typeof(GetAllUsersQueryHandler).Assembly);
-                }
-            });
-            services.AddScoped<IServiceBusMediator, MassTransitMediator>();
-        }
-
-        private static void AddAzureServiceBus(this IServiceCollection services, string hostUrl) {
-            Guard.Against.NullOrEmpty(hostUrl, nameof(hostUrl));
-
-            services.AddMassTransit(cfg =>
-            {
-                foreach (var eventType in GetAllMessageTypesFromAssemblies(typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly)) {
-                    var consumerType = typeof(BusMessageConsumer<>).MakeGenericType(eventType);
-                    cfg.AddConsumer(consumerType);
-                }
-
-                cfg.SetKebabCaseEndpointNameFormatter();
-                cfg.UsingAzureServiceBus((context, config) =>
-                {
-                    config.UseServiceBusMessageScheduler();
-                    config.AutoStart = true;
-                    config.Host(hostUrl);
-
-                    foreach (var eventType in GetAllMessageTypesFromAssemblies(typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly)) {
-                        var consumerType = typeof(BusMessageConsumer<>).MakeGenericType(eventType);
-
-                        config.ReceiveEndpoint(eventType.Name.ToLower(), e =>
-                        {
-                            e.ConfigureConsumer(context, consumerType);
-                        });
-                    }
-                });
-            });
         }
 
         private static void AddMapping(this IServiceCollection services) {
@@ -280,11 +224,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configuration.GetSection("ServiceBus").Bind(serviceBusOptions);
 
             return serviceBusOptions;
-        }
-
-        private static IEnumerable<Type> GetAllMessageTypesFromAssemblies(params Assembly[] assemblies) {
-            return assemblies.SelectMany(assembly => assembly.GetTypes())
-                .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(BaseMessage)));
         }
     }
 }

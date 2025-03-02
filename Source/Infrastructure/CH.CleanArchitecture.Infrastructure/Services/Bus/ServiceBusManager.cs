@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 
