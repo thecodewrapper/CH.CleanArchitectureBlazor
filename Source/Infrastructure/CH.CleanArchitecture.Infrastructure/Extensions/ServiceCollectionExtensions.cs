@@ -34,11 +34,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddDbInitializer();
             services.AddRepositories();
             services.AddIdentity();
-            services.AddEventStoreEFCore((o) =>
-            {
-                o.UseInMemoryDatabase = configuration.GetValue<bool>("UseInMemoryDatabase");
-                o.ConnectionStringSQL = configuration.GetConnectionString("ApplicationConnection");
-            });
+            services.AddEventSourcing(configuration);
             services.AddMapping();
 
             services.AddSharedServices();
@@ -63,6 +59,15 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             });
         }
 
+        private static void AddEventSourcing(this IServiceCollection services, IConfiguration configuration) {
+            services.AddEventStoreEFCore((o) =>
+            {
+                o.UseInMemoryDatabase = configuration.GetValue<bool>("UseInMemoryDatabase");
+                o.ConnectionStringSQL = configuration.GetConnectionString("ApplicationConnection");
+            });
+            services.AddTransient(typeof(IESRepository<,>), typeof(ESRepository<,>));
+        }
+
         private static void AddDatabasePersistence(this IServiceCollection services, IConfiguration configuration) {
             if (configuration.GetValue<bool>("UseInMemoryDatabase")) {
                 services.AddDbContext<IdentityDbContext>(options => options.UseInMemoryDatabase("IdentityDb"));
@@ -82,7 +87,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
 
         private static void AddRepositories(this IServiceCollection services) {
             services.AddTransient(typeof(IEntityRepository<,>), typeof(DataEntityRepository<,>));
-            services.AddTransient(typeof(IESRepository<,>), typeof(ESRepository<,>));
             services.AddTransient<IOrderRepository, OrderRepository>();
         }
 
