@@ -42,6 +42,10 @@ namespace CH.CleanArchitecture.Core.Application.Extensions
             services.AddTransient<IUserNotificationService, UserNotificationService>();
         }
 
+        public static void AddIdentityContext(this IServiceCollection services) {
+            services.AddScoped<IIdentityContext, IdentityContext>();
+        }
+
         private static void AddAuthorizationPolicies(this IServiceCollection services) {
             services.AddSingleton<IAuthorizationPolicyProvider, CustomAuthorizationPolicyProvider>();
 
