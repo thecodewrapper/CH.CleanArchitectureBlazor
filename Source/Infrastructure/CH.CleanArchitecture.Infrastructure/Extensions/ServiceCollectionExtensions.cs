@@ -31,6 +31,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
     {
         public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration) {
             services.AddDatabasePersistence(configuration);
+            services.AddDbInitializer();
             services.AddRepositories();
             services.AddIdentity();
             services.AddEventStoreEFCore((o) =>
@@ -71,8 +72,12 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 services.AddIdentityDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
                 services.AddApplicationDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
             }
-            services.AddTransient<IDbInitializerService, DbInitializerService>();
+            
             services.AddTransient<IIdentityContext, DefaultIdentityContext>();
+        }
+
+        private static void AddDbInitializer(this IServiceCollection services) {
+            services.AddTransient<IDbInitializerService, DbInitializerService>();
         }
 
         private static void AddRepositories(this IServiceCollection services) {
