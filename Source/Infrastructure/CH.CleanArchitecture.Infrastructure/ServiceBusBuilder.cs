@@ -42,7 +42,7 @@ namespace CH.CleanArchitecture.Infrastructure
             return this;
         }
 
-        public ServiceBusBuilder UseServiceBus(string provider, string hostUrl, params Type[] messageTypes) {
+        public ServiceBusBuilder UseServiceBus(string provider, string hostUrl, IEnumerable<Type> consumerTypes, params Type[] messageTypes) {
             _useServiceBus = true;
             _serviceBusProvider = provider;
             _serviceBusHostUrl = hostUrl;
@@ -50,6 +50,7 @@ namespace CH.CleanArchitecture.Infrastructure
             if (messageTypes != null && messageTypes.Any()) {
                 _serviceBusMessageTypes.AddRange(messageTypes);
             }
+            UseMediator(consumerTypes.ToArray());
             return this;
         }
 
@@ -61,6 +62,7 @@ namespace CH.CleanArchitecture.Infrastructure
             if (assemblies != null && assemblies.Any()) {
                 _serviceBusAssemblies.AddRange(assemblies);
             }
+            UseMediator(assemblies);
             return this;
         }
 
