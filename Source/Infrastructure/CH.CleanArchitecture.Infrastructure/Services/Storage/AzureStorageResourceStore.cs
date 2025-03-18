@@ -36,11 +36,11 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         #region Public Methods
 
-        public string GetResourceURI(string resourceId, string containerName) {
+        public string GetResourceURI(string containerName, string resourceId) {
             return $"{_baseUri}{containerName}/{resourceId}";
         }
 
-        public async Task<bool> DeleteResourceAsync(string resourceId, string containerName) {
+        public async Task<bool> DeleteResourceAsync(string containerName, string resourceId) {
             try {
                 var blob = GetBlobReference(containerName, resourceId);
                 _logger.LogDebug($"Attempting to delete resource {resourceId} from Azure Storage Blob (Container: {containerName}).");

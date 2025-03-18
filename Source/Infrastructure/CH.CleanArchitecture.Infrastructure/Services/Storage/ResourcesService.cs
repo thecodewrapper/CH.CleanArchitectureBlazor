@@ -51,7 +51,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services.Storage
                 string resourceId = await _resourceStore.SaveResourceAsync(stream, folderName, isPublic);
                 _logger.LogDebug($"Resource {resourceId} saved on store. Attempting to add related resource entity...");
 
-                string resourceURI = _resourceStore.GetResourceURI(resourceId, folderName);
+                string resourceURI = _resourceStore.GetResourceURI(folderName, resourceId);
                 resourceName.TryGetFileExtension(out string extension);
                 ResourceEntity resourceEntity = new ResourceEntity()
                 {
@@ -89,7 +89,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services.Storage
                 await _resourceStore.SaveResourceAsync(stream, folderName, isPublic, resourceId);
                 _logger.LogDebug($"Resource {resourceId} saved on store. Attempting to add related resource entity...");
 
-                string resourceURI = _resourceStore.GetResourceURI(resourceId, folderName);
+                string resourceURI = _resourceStore.GetResourceURI(folderName, resourceId);
                 resourceName.TryGetFileExtension(out string extension);
                 ResourceEntity resourceEntity = new ResourceEntity()
                 {
@@ -125,7 +125,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services.Storage
                     throw new Exception("Resource not found");
                 }
 
-                bool deletedFromStore = await _resourceStore.DeleteResourceAsync(resourceId, resourceToDelete.ContainerName);
+                bool deletedFromStore = await _resourceStore.DeleteResourceAsync(resourceToDelete.ContainerName, resourceId);
                 if (!deletedFromStore && !forceDelete) {
                     _logger.LogError($"Resource {resourceId} failed to delete from store. Perhaps it doesn't exist.");
                     result.Fail().WithError("Failed to delete resource from store");

@@ -135,11 +135,22 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         public static void AddStorageServices(this IServiceCollection services, IConfiguration configuration) {
             var options = GetStorageOptions(configuration);
 
-            if (options.StorageProvider == "azure") {
-                services.AddTransient<IResourceStore, AzureStorageResourceStore>();
+            if (string.IsNullOrEmpty(options.StorageProvider)) {
+                return;
             }
-            else if (options.StorageProvider == "aws") {
-                services.AddTransient<IResourceStore, AWSS3ResourceStore>();
+
+            switch (options.StorageProvider.ToLower()) {
+                case "azure":
+                    services.AddTransient<IResourceStore, AzureStorageResourceStore>();
+                    break;
+                case "aws":
+                    services.AddTransient<IResourceStore, AWSS3ResourceStore>();
+                    break;
+                case "local":
+                    services.AddTransient<IResourceStore>(provider => new LocalFileResourceStore(options.BasePath));
+                    break;
+                default:
+                    throw new ArgumentException("Invalid storage provider specified.");
             }
 
             services.AddTransient<IResourcesService, ResourcesService>();

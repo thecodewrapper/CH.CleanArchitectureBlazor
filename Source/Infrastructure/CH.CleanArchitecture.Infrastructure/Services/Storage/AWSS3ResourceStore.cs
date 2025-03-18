@@ -30,7 +30,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             _bucketRegion = RegionEndpoint.GetBySystemName(_appConfigService.GetValue(AppConfigKeys.AWS.S3_REGION).Unwrap());
         }
 
-        public async Task<bool> DeleteResourceAsync(string resourceId, string folder) {
+        public async Task<bool> DeleteResourceAsync(string folder, string resourceId) {
             try {
                 var deleteObjectRequest = new DeleteObjectRequest
                 {
@@ -68,7 +68,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
         }
 
-        public string GetResourceURI(string resourceId, string folder) {
+        public string GetResourceURI(string folder, string resourceId) {
             string baseUrl = GetAmazonS3ServiceURL();
             string resourceURI = Path.Combine(baseUrl, GetS3ObjectKey(folder, resourceId));
             return resourceURI;
