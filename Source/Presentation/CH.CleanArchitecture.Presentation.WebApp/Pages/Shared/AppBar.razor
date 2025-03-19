@@ -5,7 +5,7 @@
             <Authorized>
                 <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="async () => await OnSidebarToggled.InvokeAsync()" />
                 <MudSpacer />
-                <NotificationPanel Notifications="_notifications" />
+                <NotificationsPanel Notifications="_notifications" />
                 <MudDivider Vertical="true"/>
                 <MudIconButton Icon="@(ThemeProvider.IsDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode)" OnClick="async () => await OnDarkModeToggled.InvokeAsync()" />
                 <!-- Language Selector -->

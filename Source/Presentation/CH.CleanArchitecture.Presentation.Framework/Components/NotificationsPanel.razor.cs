@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {
-    public partial class NotificationPanel : BaseComponent
+    public partial class NotificationsPanel : BaseComponent
     {
         [Parameter]
         public List<NotificationViewModel> Notifications { get; set; } = new();
