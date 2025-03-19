@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CH.CleanArchitecture.Presentation.Framework.Components
 {
-    public partial class NotificationsPanel : BaseComponent
+    public partial class NotificationPanel : BaseComponent
     {
         [Parameter]
         public List<NotificationViewModel> Notifications { get; set; } = new();
@@ -19,7 +19,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
 
         public bool _isOpen;
 
-        public NotificationsPanel() {
+        public NotificationPanel() {
         }
 
         public void ToggleOpen() {
