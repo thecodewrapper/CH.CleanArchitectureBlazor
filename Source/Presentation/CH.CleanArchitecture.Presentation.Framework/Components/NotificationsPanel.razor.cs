@@ -19,7 +19,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components
 
         public bool _isOpen;
 
-        public NotificationPanel() {
+        public NotificationsPanel() {
         }
 
         public void ToggleOpen() {
