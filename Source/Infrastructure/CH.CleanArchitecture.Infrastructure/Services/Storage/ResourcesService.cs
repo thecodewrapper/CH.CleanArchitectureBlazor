@@ -6,12 +6,11 @@ using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Common.Enumerations;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
-using CH.CleanArchitecture.Core.Application.Interfaces.Storage;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.Data.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace CH.CleanArchitecture.Infrastructure.Services.Storage
+namespace CH.CleanArchitecture.Infrastructure.Services
 {
     internal class ResourcesService : IResourcesService
     {

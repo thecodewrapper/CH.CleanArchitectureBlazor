@@ -1,6 +1,6 @@
 ﻿using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
-using CH.CleanArchitecture.Core.Application.Interfaces.Storage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
