@@ -37,7 +37,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         #region Public Methods
 
         public string GetResourceURI(string containerName, string resourceId) {
-            return $"{_baseUri}{containerName}/{resourceId}";
+            return $"{_baseUri}{containerName.ToLower()}/{resourceId}";
         }
 
         public async Task<bool> DeleteResourceAsync(string containerName, string resourceId) {
@@ -72,7 +72,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         public async Task<Stream> DownloadResourceAsync(string containerName, string resourceId) {
             try {
-                _logger.LogInformation($"Downloading resource '{containerName}'/{resourceId}");
+                _logger.LogInformation($"Downloading resource '{containerName.ToLower()}'/{resourceId}");
 
                 var blob = GetBlobReference(containerName, resourceId);
                 MemoryStream memoryStream = new MemoryStream();
@@ -92,7 +92,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         private BlobClient GetBlobReference(string containerName, string resourceId) {
             var blobServiceClient = GetBlobServiceClient();
-            var container = blobServiceClient.GetBlobContainerClient(containerName);
+            var container = blobServiceClient.GetBlobContainerClient(containerName.ToLower());
             var blob = container.GetBlobClient(resourceId);
             return blob;
         }
