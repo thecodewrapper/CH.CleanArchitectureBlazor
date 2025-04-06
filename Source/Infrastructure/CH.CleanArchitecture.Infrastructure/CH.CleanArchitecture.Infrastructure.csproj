@@ -12,31 +12,31 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.2" />
-    <PackageReference Include="AWSSDK.S3" Version="3.7.412.4" />
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.23.0" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="8.0.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.416.5" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.24.0" />
     <PackageReference Include="CH.EventStore.EntityFramework" Version="1.1.0" />
-    <PackageReference Include="Hangfire" Version="1.8.17" />
-    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.3.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.0" />
+    <PackageReference Include="Hangfire" Version="1.8.18" />
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.12" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.1.1" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Polly" Version="8.5.2" />
     <PackageReference Include="SendGrid" Version="9.29.3" />
     <PackageReference Include="Storage.Net" Version="9.3.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.2" />
   </ItemGroup>
 
   <ItemGroup>
