@@ -1,3 +1,4 @@
+using CH.CleanArchitecture.Infrastructure;
 using CH.CleanArchitecture.Infrastructure.Services;
 using Serilog;
 
@@ -10,12 +11,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp
         public static void Main(string[] args) {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile($"appsettings.json", true)
-                .AddJsonFile($"appsettings.{environment}.json", true)
-                .AddEnvironmentVariables();
-
+            var configurationBuilder = ConfigurationBuilderHelper.GetConfiguration(environment, null);
             _configurationRoot = configurationBuilder.Build();
 
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(_configurationRoot).CreateLogger();
