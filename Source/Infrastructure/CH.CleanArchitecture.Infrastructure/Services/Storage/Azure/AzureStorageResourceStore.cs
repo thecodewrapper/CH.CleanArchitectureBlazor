@@ -18,18 +18,16 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     {
         #region Private Fields
 
-        private readonly IApplicationConfigurationService _appConfigService;
-        private readonly string _baseUri;
         private readonly ILogger<AzureStorageResourceStore> _logger;
+        private readonly AzureStorageService _azureStorageService;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public AzureStorageResourceStore(ILogger<AzureStorageResourceStore> logger, IApplicationConfigurationService appConfigService) {
+        public AzureStorageResourceStore(ILogger<AzureStorageResourceStore> logger, AzureStorageService azureStorageService) {
             _logger = logger;
-            _appConfigService = appConfigService;
-            _baseUri = _appConfigService.GetValue(AppConfigKeys.AZURE.BLOB_STORAGE_BASE_URI).Unwrap();
+            _azureStorageService = azureStorageService;
         }
 
         #endregion Public Constructors
@@ -37,7 +35,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         #region Public Methods
 
         public string GetResourceURI(string containerName, string resourceId) {
-            return $"{_baseUri}{containerName.ToLower()}/{resourceId}";
+            return $"{containerName.ToLower()}/{resourceId}";
         }
 
         public async Task<bool> DeleteResourceAsync(string containerName, string resourceId) {
@@ -91,24 +89,10 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         #region Private Methods
 
         private BlobClient GetBlobReference(string containerName, string resourceId) {
-            var blobServiceClient = GetBlobServiceClient();
+            var blobServiceClient = _azureStorageService.GetBlobServiceClient();
             var container = blobServiceClient.GetBlobContainerClient(containerName.ToLower());
             var blob = container.GetBlobClient(resourceId);
             return blob;
-        }
-
-        private BlobServiceClient GetBlobServiceClient() {
-            bool usePasswordlessAuthentication = _appConfigService.GetValueBool(AppConfigKeys.AZURE.STORAGE_USE_PASSWORDLESS_AUTHENTICATION).Unwrap();
-
-            if (usePasswordlessAuthentication) {
-                string azureStorageAccountName = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_NAME).Unwrap();
-                // https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#defaultazurecredential
-                return new BlobServiceClient(new Uri(azureStorageAccountName), new DefaultAzureCredential());
-            }
-            else {
-                string connString = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_CONNECTION_STRING).Unwrap();
-                return new BlobServiceClient(connString);
-            }
         }
 
         #endregion Private Methods
