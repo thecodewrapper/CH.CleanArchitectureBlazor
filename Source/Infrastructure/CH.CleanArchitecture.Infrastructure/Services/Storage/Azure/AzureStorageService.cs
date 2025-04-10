@@ -26,14 +26,14 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 return new BlobServiceClient(new Uri(GetServiceEndpoint(azureStorageAccountName)), new DefaultAzureCredential());
             }
             else {
-                string connString = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_CONNECTION_STRING).Unwrap();
+                string connString = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_CONNECTION_STRING).Unwrap(); //for this, its best to use Azure Key Vault for stronger security
                 return new BlobServiceClient(connString);
             }
         }
 
         public BlobServiceClient GetBlobServiceClientWithSharedKey() {
             string azureStorageAccountName = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_NAME).Unwrap();
-            string azureStorageAccountKey = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_KEY).Unwrap();
+            string azureStorageAccountKey = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_KEY).Unwrap(); //for this, its best to use Azure Key Vault for stronger security
             StorageSharedKeyCredential storageSharedKeyCredential = new(azureStorageAccountName, azureStorageAccountKey);
 
             return new BlobServiceClient(new Uri(GetServiceEndpoint(azureStorageAccountName)), storageSharedKeyCredential);
