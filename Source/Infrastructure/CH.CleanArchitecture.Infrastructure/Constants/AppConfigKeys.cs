@@ -47,6 +47,7 @@
             public const string BLOB_STORAGE_BASE_URI = "AzureBlobStorageBaseURI";
             public const string STORAGE_USE_PASSWORDLESS_AUTHENTICATION = "AzureStorageUsePasswordlessAuthentication";
             public const string STORAGE_ACCOUNT_NAME = "AzureStorageAccountName";
+            public const string STORAGE_ACCOUNT_KEY = "AzureStorageAccountKey";
         }
 
         public static class AWS
