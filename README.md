@@ -48,7 +48,14 @@ Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thec
   "Email": "{set email here}"
 },
 "Storage": {
-  "StorageProvider": "azure" 
+  "BasePath": "c:\\temp\\ch.cleanarchitecture",
+  "StorageProvider": "local",
+  "Azure": {
+    "StorageAccountName": "",
+    "UsePasswordlessAuthentication": true,
+    "ConnectionString": "",
+    "StorageAccountKey": ""
+  }
 },
 "EmailSender": {
   "UseSendGrid": true
@@ -79,16 +86,6 @@ Or manually edit the `secrets.json` file:
 
 ## 📦 Post-Deployment Setup
 
-### 🔹 Cloud Storage Setup
-#### **Azure Blob Storage** (Skip if using AWS S3)
-- Create a container: `profile-pictures`
-- Generate a **SAS token** with **Blob permissions** and copy the connection string.
-- Assign `Storage Blob Data Reader` to the app's managed identity.
-
-#### **AWS S3**
-- Create an **S3 bucket** for documents.
-- Inside the bucket, create a folder: `profile-pictures`.
-
 ### 🔹 Application Configuration (Under Developer → Application Config)
 These settings reside under **Developer → Application Config** in the navigation menu. The following are the configuration keys:
 
@@ -98,14 +95,6 @@ These settings reside under **Developer → Application Config** in the navigati
 - **CryptoJWTSymmetricKey**: `{your_jwt_key}`
 - **CryptoJWTIssuer**: `{your_issuer}`
 - **CryptoJWTAuthority**: `{your_authority}`
-- **AzureBlobStorageBaseURI**: `https://{YOUR_BLOB_STORAGE_ACCOUNT}.blob.core.windows.net/`
-- **AzureStorageConnectionString**: `{your_azure_storage_connection_string}`
-- **AWSS3Region**: `eu-west-1`
-- **AWSS3BucketName**: `{your_s3_bucket_name}`
-- **AWSS3EndpointFormat**: `https://{bucket-name}.s3.{region}.amazonaws.com/`
-- **AWSAccessKeyId**: `{your_aws_access_key}`
-- **AWSSecretAccessKey**: `{your_aws_secret_key}`
-- **ResourcesProfilePicturesFolder**: `profile-pictures`
 
 ### 🔹 Schedule Jobs (Under Developer → Jobs)
 Enroll the following jobs:
