@@ -132,6 +132,12 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         /// <param name="configuration"></param>
         public static void AddStorageServices(this IServiceCollection services, IConfiguration configuration) {
             var options = GetStorageOptions(configuration);
+            services.Configure<StorageOptions>(c => {
+                c.StorageProvider = options.StorageProvider;
+                c.BasePath = options.BasePath;
+                c.Azure = options.Azure;
+                c.AWS = options.AWS;
+            });
 
             if (string.IsNullOrEmpty(options.StorageProvider)) {
                 return;

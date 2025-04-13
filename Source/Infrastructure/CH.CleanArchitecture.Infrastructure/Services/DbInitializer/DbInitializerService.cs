@@ -71,17 +71,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.SECURITY.GOOGLE_RECAPTCHA_SECRETKEY, Value = @"{secretKey}", Description = "Use this for communication between the site and Google"},
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.EVENTSTORE.SNAPSHOT_FREQUENCY, IsEncrypted = false, Value = "50", Description = "The number of events after which a snapshot in the event store will be taken"},
                     new ApplicationConfigurationEntity { Id = AppConfigKeys.NOTIFICATIONS.PURGE_HISTORYTABLE_INTERVAL, Value = "0", Description = "Declares how many days the system keeps the user notifications. Set it to 0 if you wish to leave the notifications for ever." },
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.NOTIFICATIONS.PURGE_SERVICE_INTERVAL_HOURS, Value = "23", Description = "The interval in hours that the purging of User Notifications will get place. Set it to 0 if you actually want to disable the service." },
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AZURE.STORAGE_CONNECTION_STRING, Value = "{connectionString}", Description = "Connection string for the Azure Storage account."},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AZURE.BLOB_STORAGE_BASE_URI, Value = "", Description = "The Azure Blob Storage base URI"},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AZURE.STORAGE_USE_PASSWORDLESS_AUTHENTICATION, Value = "false", Description = "Whether to use passwordless authentication (DefaultAzureCredential), or connection string, for connecting to Azure Storage. If this is true, the application configuration for AzureStorageAccountName needs to be set."},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AZURE.STORAGE_ACCOUNT_NAME, Value = "{the storage account name}", Description = "The Azure Storage account name."},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AZURE.STORAGE_ACCOUNT_KEY, Value = "{the storage account key}", Description = "The Azure Storage account key."},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AWS.S3_BUCKET_NAME, Value = "", Description = "The AWS S3 bucket name."},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AWS.S3_REGION, Value = "{systemName}", Description = "The AWS S3 region. Use the system name of the region'. Example: 'eu-west-1'"},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AWS.S3_ENDPOINT_FORMAT, Value = "https://{0}.s3.{1}.amazonaws.com/", Description = "The string format of S3 public url endpoint. Use '{0}' as a placeholder for the bucket name and '{1}' as a placeholder for the region"},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AWS.AWS_ACCESS_KEY_ID, Value = "", Description = "The AWS access key id. Used for authenticating with AWS"},
-                    new ApplicationConfigurationEntity { Id = AppConfigKeys.AWS.AWS_SECRET_ACCESS_KEY, Value = "", Description = "The AWS secret access key. Used for authenticating with AWSA"}
+                    new ApplicationConfigurationEntity { Id = AppConfigKeys.NOTIFICATIONS.PURGE_SERVICE_INTERVAL_HOURS, Value = "23", Description = "The interval in hours that the purging of User Notifications will get place. Set it to 0 if you actually want to disable the service." }
                 };
 
             foreach (var appConfig in applicationConfigurations) {

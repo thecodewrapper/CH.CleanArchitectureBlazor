@@ -1,42 +1,46 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Azure.Identity;
 using Azure.Storage;
 using Azure.Storage.Blobs;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.Constants;
+using CH.CleanArchitecture.Infrastructure.Options;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
 {
     internal class AzureStorageService
     {
-        private readonly IApplicationConfigurationService _appConfigService;
+        private readonly ILogger<AzureStorageService> _logger;
+        private readonly StorageOptions _storageOptions;
+        private readonly string _azureStorageAccountName;
 
-        public AzureStorageService(IApplicationConfigurationService appConfigService) {
-            _appConfigService = appConfigService;
+        public AzureStorageService(ILogger<AzureStorageService> logger, IOptions<StorageOptions> storageOptions) {
+            _logger = logger;
+            _storageOptions = storageOptions.Value;
+            _azureStorageAccountName = _storageOptions.Azure.StorageAccountName;
         }
 
         public BlobServiceClient GetBlobServiceClient() {
-            bool usePasswordlessAuthentication = _appConfigService.GetValueBool(AppConfigKeys.AZURE.STORAGE_USE_PASSWORDLESS_AUTHENTICATION).Unwrap();
+            bool usePasswordlessAuthentication = _storageOptions.Azure.UsePasswordlessAuthentication;
 
             if (usePasswordlessAuthentication) {
-                string azureStorageAccountName = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_NAME).Unwrap();
                 // https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#defaultazurecredential
-                return new BlobServiceClient(new Uri(GetServiceEndpoint(azureStorageAccountName)), new DefaultAzureCredential());
+                return new BlobServiceClient(new Uri(GetServiceEndpoint()), new DefaultAzureCredential());
             }
             else {
-                string connString = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_CONNECTION_STRING).Unwrap(); //for this, its best to use Azure Key Vault for stronger security
+                string connString = _storageOptions.Azure.ConnectionString;
                 return new BlobServiceClient(connString);
             }
         }
 
         public BlobServiceClient GetBlobServiceClientWithSharedKey() {
-            string azureStorageAccountName = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_NAME).Unwrap();
-            string azureStorageAccountKey = _appConfigService.GetValue(AppConfigKeys.AZURE.STORAGE_ACCOUNT_KEY).Unwrap(); //for this, its best to use Azure Key Vault for stronger security
-            StorageSharedKeyCredential storageSharedKeyCredential = new(azureStorageAccountName, azureStorageAccountKey);
+            string azureStorageAccountKey = _storageOptions.Azure.StorageAccountKey;
 
-            return new BlobServiceClient(new Uri(GetServiceEndpoint(azureStorageAccountName)), storageSharedKeyCredential);
+            //https://learn.microsoft.com/en-us/azure/storage/blobs/sas-service-create-dotnet?tabs=container
+            StorageSharedKeyCredential storageSharedKeyCredential = new(_azureStorageAccountName, azureStorageAccountKey);
+
+            _logger.LogDebug($"Retrieving blob client with shared key for storage account {_azureStorageAccountName}");
+            return new BlobServiceClient(new Uri(GetServiceEndpoint()), storageSharedKeyCredential);
         }
 
         public BlobContainerClient GetBlobContainerClient(BlobServiceClient blobServiceClient, string containerName) {
@@ -44,8 +48,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return containerClient;
         }
 
-        private string GetServiceEndpoint(string accountName) {
-            return $"https://{accountName}.blob.core.windows.net";
+        public string GetServiceEndpoint() {
+            return $"https://{_azureStorageAccountName}.blob.core.windows.net";
         }
     }
 }

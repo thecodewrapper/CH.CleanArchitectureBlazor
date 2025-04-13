@@ -41,24 +41,6 @@
             public const string PURGE_SERVICE_INTERVAL_HOURS = "NotificationsPurgeServiceIntervalHours";
         }
 
-        public static class AZURE
-        {
-            public const string STORAGE_CONNECTION_STRING = "AzureStorageConnectionString";
-            public const string BLOB_STORAGE_BASE_URI = "AzureBlobStorageBaseURI";
-            public const string STORAGE_USE_PASSWORDLESS_AUTHENTICATION = "AzureStorageUsePasswordlessAuthentication";
-            public const string STORAGE_ACCOUNT_NAME = "AzureStorageAccountName";
-            public const string STORAGE_ACCOUNT_KEY = "AzureStorageAccountKey";
-        }
-
-        public static class AWS
-        {
-            public const string S3_REGION = "AWSS3Region";
-            public const string S3_BUCKET_NAME = "AWSS3BucketName";
-            public const string S3_ENDPOINT_FORMAT = "AWSS3EndpointFormat";
-            public const string AWS_ACCESS_KEY_ID = "AWSAccessKeyId";
-            public const string AWS_SECRET_ACCESS_KEY = "AWSSecretAccessKey";
-        }
-
         public static class RESOURCES
         {
             public const string RESOURCES_PROFILEPICTURES_FOLDER = "ResourcesProfilePicturesFolder";
