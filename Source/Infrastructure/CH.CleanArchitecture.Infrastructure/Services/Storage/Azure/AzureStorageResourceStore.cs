@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Azure.Identity;
 using Azure.Storage.Blobs;
-using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.Constants;
 using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
@@ -22,6 +20,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         private readonly AzureStorageService _azureStorageService;
 
         #endregion Private Fields
+        public string ResourceProvider => "azure";
 
         #region Public Constructors
 
@@ -80,6 +79,25 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
             catch (Exception ex) {
                 _logger.LogError(ex, $"Failed to download resource {resourceId} from Azure Storage Blob (Container: {containerName}");
+                throw;
+            }
+        }
+
+        public async Task<List<string>> ListResourcesAsync(string container) {
+            try {
+                var blobServiceClient = _azureStorageService.GetBlobServiceClient();
+                var containerClient = _azureStorageService.GetBlobContainerClient(blobServiceClient, container);
+                var blobNames = new List<string>();
+
+                await foreach (var blobItem in containerClient.GetBlobsAsync()) {
+                    blobNames.Add(blobItem.Name);
+                }
+
+                _logger.LogInformation($"Listed {blobNames.Count} resources in folder '{container}'.");
+                return blobNames;
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"Failed to list resources in folder '{container}'.");
                 throw;
             }
         }

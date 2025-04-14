@@ -6,6 +6,7 @@ using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Tests.Mocks;
 using CH.EventStore.EntityFramework;
+using CH.Messaging.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +53,6 @@ namespace CH.CleanArchitecture.Tests
             IServiceCollection services = new ServiceCollection();
             services.AddInfrastructureLayer(configuration);
             services.AddApplicationLayer();
-            services.AddTransient<IIdentityContext, MockIdentityContext>();
 
             services.AddScoped<SignInManager<ApplicationUser>>(_ => InitializeSignInManager(identityDbContext));
             services.AddScoped<UserManager<ApplicationUser>>(_ => InitializeUserManager(identityDbContext));
@@ -62,13 +62,13 @@ namespace CH.CleanArchitecture.Tests
             services.AddScoped<EventStoreDbContext>(_ => eventStoreDbContext);
 
             services.AddApplicationAuthorization();
-            services.AddScoped<IAuthorizationService, MockAuthorizationService>();
             services.AddSingleton<ILoggerFactory, NullLoggerFactory>();
             services.AddLogging();
 
             var localizationService = new Mock<ILocalizationService>();
             services.AddScoped(_ => localizationService.Object);
 
+            AddMocks(services);
             return services.BuildServiceProvider();
         }
 
@@ -169,6 +169,15 @@ namespace CH.CleanArchitecture.Tests
                         It.IsAny<bool>()))
                 .ReturnsAsync(SignInResult.Success);
             return signInManager.Object;
+        }
+
+        private static void AddMocks(IServiceCollection serviceCollection) {
+            serviceCollection.AddTransient<IIdentityContext, MockIdentityContext>();
+            serviceCollection.AddScoped<IAuthorizationService, MockAuthorizationService>();
+            serviceCollection.AddSingleton<ILoggerFactory, NullLoggerFactory>();
+            serviceCollection.AddScoped<IServiceBus, MockServiceBus>();
+            serviceCollection.AddScoped<IResourceStore, MockResourceStore>();
+            serviceCollection.AddSingleton<IFileSystem, MockFileSystem>();
         }
     }
 }

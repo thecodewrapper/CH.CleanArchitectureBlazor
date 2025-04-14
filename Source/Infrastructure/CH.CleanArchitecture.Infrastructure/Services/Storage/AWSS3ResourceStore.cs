@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Amazon;
@@ -23,7 +24,9 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         private string _bucketName;
         private RegionEndpoint _bucketRegion;
 
-        public AWSS3ResourceStore(ILogger<AWSS3ResourceStore> logger, IOptions<StorageOptions> storageOptions) {
+        public string ResourceProvider => "aws";
+
+        internal AWSS3ResourceStore(ILogger<AWSS3ResourceStore> logger, IOptions<StorageOptions> storageOptions) {
             _logger = logger;
             _storageOptions = storageOptions.Value;
             _bucketName = _storageOptions.AWS.BucketName;
@@ -106,6 +109,43 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             string resourceId = Guid.NewGuid().ToString(); //generating a random resource id
             await SaveResourceAsync(stream, path, isPublic, resourceId);
             return resourceId;
+        }
+
+        public async Task<List<string>> ListResourcesAsync(string folder) {
+            try {
+                _logger.LogInformation($"Listing resources in folder: {folder}");
+
+                AmazonS3Client client = GetAmazonS3Client();
+                var request = new ListObjectsV2Request
+                {
+                    BucketName = _bucketName,
+                    Prefix = string.IsNullOrEmpty(folder) ? null : $"{folder}/",
+                    MaxKeys = 100 // Adjust as needed
+                };
+
+                var resourceKeys = new List<string>();
+                ListObjectsV2Response response;
+
+                do {
+                    response = await client.ListObjectsV2Async(request);
+                    foreach (S3Object entry in response.S3Objects) {
+                        string key = entry.Key;
+                        if (!string.IsNullOrEmpty(folder)) {
+                            key = key.Substring(folder.Length + 1); // Remove folder prefix
+                        }
+                        resourceKeys.Add(key);
+                    }
+
+                    request.ContinuationToken = response.NextContinuationToken;
+                } while (response.IsTruncated);
+
+                _logger.LogInformation($"Successfully listed {resourceKeys.Count} resources in folder: {folder}");
+                return resourceKeys;
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"Failed to list resources in folder: {folder}");
+                throw;
+            }
         }
 
         private AmazonS3Client GetAmazonS3Client() {

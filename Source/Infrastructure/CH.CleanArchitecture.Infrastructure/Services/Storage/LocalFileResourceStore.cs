@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Core.Application;
@@ -8,6 +9,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
     internal class LocalFileResourceStore : IResourceStore
     {
         private readonly string _baseDirectory;
+
+        public string ResourceProvider => "local";
 
         public LocalFileResourceStore(string baseDirectory) {
             _baseDirectory = baseDirectory ?? throw new ArgumentNullException(nameof(baseDirectory));
@@ -49,6 +52,23 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             string filename = Guid.NewGuid().ToString(); // Generate a unique filename
             await SaveResourceAsync(stream, path, isPublic, filename);
             return filename;
+        }
+
+        public async Task<List<string>> ListResourcesAsync(string folder) {
+            string fullPath = Path.Combine(_baseDirectory, folder);
+
+            if (!Directory.Exists(fullPath)) {
+                throw new DirectoryNotFoundException($"The folder '{folder}' does not exist.");
+            }
+
+            var files = Directory.GetFiles(fullPath);
+            var fileNames = new List<string>();
+
+            foreach (var file in files) {
+                fileNames.Add(Path.GetFileName(file));
+            }
+
+            return await Task.FromResult(fileNames);
         }
 
         private string GetFullPath(string folder, string filename) {
