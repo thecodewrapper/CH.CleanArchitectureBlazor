@@ -47,13 +47,18 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
 
         private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration) {
             var serviceBusOptions = GetServiceBusOptions(configuration);
-            var messageAndConsumerAssemblies = new List<Assembly> { typeof(CreateUserCommandHandler).Assembly, typeof(GetAllUsersQueryHandler).Assembly };
+            var handlersAssemblies = new List<Assembly> //these assemblies include the event handlers aswell
+            {
+                typeof(CreateUserCommandHandler).Assembly,
+                typeof(GetAllUsersQueryHandler).Assembly
+            };
             services.AddServiceBus(builder =>
             {
-                builder.UseMediator(messageAndConsumerAssemblies);
+                builder.UseMediator(handlersAssemblies);
                 if (serviceBusOptions.Enabled) {
-                    builder.UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, messageAndConsumerAssemblies);
-                }     
+                    string appName = configuration["Application:Name"];
+                    builder.WithAppName(appName).UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, handlersAssemblies);
+                }
             });
         }
 

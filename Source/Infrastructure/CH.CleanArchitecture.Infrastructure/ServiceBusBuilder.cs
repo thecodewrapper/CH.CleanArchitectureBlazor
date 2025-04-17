@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Services;
@@ -21,9 +22,15 @@ namespace CH.CleanArchitecture.Infrastructure
         private bool _useServiceBus = false;
         private string _serviceBusProvider;
         private string _serviceBusHostUrl;
+        private string _appName;
 
         public ServiceBusBuilder(IServiceCollection services) {
             _services = services;
+        }
+
+        public ServiceBusBuilder WithAppName(string appName) {
+            _appName = appName.ToLowerInvariant();
+            return this;
         }
 
         public ServiceBusBuilder UseMediator(params Type[] consumerTypes) {
@@ -87,24 +94,30 @@ namespace CH.CleanArchitecture.Infrastructure
 
         private void BuildServiceBus() {
             _services.AddScoped<IServiceBus, MassTransitServiceBus>();
+            _services.AddScoped<IEventBus, MassTransitServiceBus>();
 
             // Determine the message types (either provided or from assemblies)
             var resolvedMessageTypes = _serviceBusMessageTypes.Any()
                 ? _serviceBusMessageTypes
-                : GetAllMessageTypesFromAssemblies(_serviceBusAssemblies);
+                : GetHandledMessageTypesFromHandlerAssemblies(_serviceBusAssemblies);
 
             switch (_serviceBusProvider.ToLower()) {
                 case "azure":
-                    _services.AddAzureServiceBus(_serviceBusHostUrl, resolvedMessageTypes.ToList());
+                    _services.AddAzureServiceBus(_serviceBusHostUrl, resolvedMessageTypes.ToList(), _appName);
                     break;
                 default:
                     throw new NotSupportedException($"The service bus provider '{_serviceBusProvider}' is not supported.");
             }
         }
 
-        private static IEnumerable<Type> GetAllMessageTypesFromAssemblies(IEnumerable<Assembly> assemblies) {
-            return assemblies.SelectMany(assembly => assembly.GetTypes())
-                .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(BaseMessage)));
+        private static IEnumerable<Type> GetHandledMessageTypesFromHandlerAssemblies(IEnumerable<Assembly> assemblies) {
+            return assemblies
+                .SelectMany(a => a.GetTypes())
+                .Where(t =>
+                    t.IsClass && !t.IsAbstract &&
+                    (t.IsSubclassOfGeneric(typeof(BaseCommandHandler<,>)) ||
+                     t.IsSubclassOfGeneric(typeof(BaseEventHandler<>))))
+                .Select(handlerType => handlerType.BaseType.GetGenericArguments().First()); // TRequest
         }
     }
 }
