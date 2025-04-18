@@ -5,6 +5,8 @@ using System.Reflection;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.Extensions;
+using CH.CleanArchitecture.Infrastructure.ServiceBus;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
 using CH.CleanArchitecture.Infrastructure.Services;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,18 +51,6 @@ namespace CH.CleanArchitecture.Infrastructure
             return this;
         }
 
-        public ServiceBusBuilder UseServiceBus(string provider, string hostUrl, IEnumerable<Type> consumerTypes, params Type[] messageTypes) {
-            _useServiceBus = true;
-            _serviceBusProvider = provider;
-            _serviceBusHostUrl = hostUrl;
-
-            if (messageTypes != null && messageTypes.Any()) {
-                _serviceBusMessageTypes.AddRange(messageTypes);
-            }
-            UseMediator(consumerTypes.ToArray());
-            return this;
-        }
-
         public ServiceBusBuilder UseServiceBus(string provider, string hostUrl, IEnumerable<Assembly> assemblies) {
             _useServiceBus = true;
             _serviceBusProvider = provider;
@@ -93,24 +83,22 @@ namespace CH.CleanArchitecture.Infrastructure
         }
 
         private void BuildServiceBus() {
-            _services.AddScoped<IServiceBus, MassTransitServiceBus>();
-            _services.AddScoped<IEventBus, MassTransitServiceBus>();
+            _services.AddScoped<IServiceBus, AzureServiceBus>();
+            _services.AddScoped<IEventBus, AzureServiceBus>();
 
             // Determine the message types (either provided or from assemblies)
-            var resolvedMessageTypes = _serviceBusMessageTypes.Any()
-                ? _serviceBusMessageTypes
-                : GetHandledMessageTypesFromHandlerAssemblies(_serviceBusAssemblies);
+            var resolvedMessageTypes = _serviceBusMessageTypes.Any() ? _serviceBusMessageTypes : GetMessageTypesFromAssemblies(_serviceBusAssemblies);
 
             switch (_serviceBusProvider.ToLower()) {
                 case "azure":
-                    _services.AddAzureServiceBus(_serviceBusHostUrl, resolvedMessageTypes.ToList(), _appName);
+                    _services.AddAzureServiceBusMessaging(_serviceBusHostUrl, resolvedMessageTypes.ToList(), resolvedMessageTypes.ToList());
                     break;
                 default:
                     throw new NotSupportedException($"The service bus provider '{_serviceBusProvider}' is not supported.");
             }
         }
 
-        private static IEnumerable<Type> GetHandledMessageTypesFromHandlerAssemblies(IEnumerable<Assembly> assemblies) {
+        private static IEnumerable<Type> GetMessageTypesFromAssemblies(IEnumerable<Assembly> assemblies) {
             return assemblies
                 .SelectMany(a => a.GetTypes())
                 .Where(t =>

@@ -12,6 +12,7 @@ using CH.CleanArchitecture.Infrastructure.Mappings;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.CleanArchitecture.Infrastructure.Options;
 using CH.CleanArchitecture.Infrastructure.Repositories;
+using CH.CleanArchitecture.Infrastructure.ServiceBus;
 using CH.CleanArchitecture.Infrastructure.Services;
 using CH.CleanArchitecture.Presentation.EmailTemplates.Extensions;
 using CH.Data.Abstractions;
@@ -46,18 +47,20 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         }
 
         private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration) {
-            var serviceBusOptions = GetServiceBusOptions(configuration);
-            var handlersAssemblies = new List<Assembly> //these assemblies include the event handlers aswell
+            var serviceBusOptions = services.AddServiceBusOptions(configuration);
+            var handlerAssemblies = new List<Assembly>
             {
                 typeof(CreateUserCommandHandler).Assembly,
                 typeof(GetAllUsersQueryHandler).Assembly
             };
             services.AddServiceBus(builder =>
             {
-                builder.UseMediator(handlersAssemblies);
+                builder.UseMediator(handlerAssemblies);
                 if (serviceBusOptions.Enabled) {
                     string appName = configuration["Application:Name"];
-                    builder.WithAppName(appName).UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, handlersAssemblies);
+
+                    builder.WithAppName(appName)
+                           .UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, [typeof(CreateUserCommand).Assembly]);
                 }
             });
         }
@@ -250,13 +253,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configuration.GetSection("EmailSender").Bind(emailSenderOptions);
 
             return emailSenderOptions;
-        }
-
-        private static ServiceBusOptions GetServiceBusOptions(IConfiguration configuration) {
-            ServiceBusOptions serviceBusOptions = new ServiceBusOptions();
-            configuration.GetSection("ServiceBus").Bind(serviceBusOptions);
-
-            return serviceBusOptions;
         }
     }
 }

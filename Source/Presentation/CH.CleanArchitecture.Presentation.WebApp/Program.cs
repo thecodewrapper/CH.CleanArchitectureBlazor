@@ -17,9 +17,6 @@ namespace CH.CleanArchitecture.Presentation.WebApp
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(_configurationRoot).CreateLogger();
             var host = CreateHostBuilder(args).Build();
 
-            //for Npgsql to handle dates properly
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 var logger = services.GetRequiredService<ILogger<Program>>();

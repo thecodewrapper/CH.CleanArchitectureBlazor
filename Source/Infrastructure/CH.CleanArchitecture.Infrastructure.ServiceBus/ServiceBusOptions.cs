@@ -1,6 +1,6 @@
-﻿namespace CH.CleanArchitecture.Infrastructure.Options
+﻿namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
-    internal class ServiceBusOptions
+    public class ServiceBusOptions
     {
         /// <summary>
         /// Whether services bus should be enabled
@@ -16,10 +16,5 @@
         /// The host url of the service bus
         /// </summary>
         public string HostUrl { get; set; }
-
-        /// <summary>
-        /// The input queue name
-        /// </summary>
-        public string InputQueueName { get; set; }
     }
 }

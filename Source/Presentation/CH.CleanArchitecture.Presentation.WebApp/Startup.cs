@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CH.CleanArchitecture.Infrastructure.ServiceBus;
 using CH.CleanArchitecture.Infrastructure.Shared.Culture;
 using CH.CleanArchitecture.Presentation.WebApp.Extensions;
 using Hangfire;
@@ -61,7 +62,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.ApplicationServices.UseServiceBus();
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -87,9 +88,6 @@ namespace CH.CleanArchitecture.Presentation.WebApp
                 .AddSupportedUICultures(supportedCultures);
             localizationOptions.RequestCultureProviders.Insert(0, new UserProfileRequestCultureProvider());
             app.UseRequestLocalization(localizationOptions);
-
-            // TODO[MC] enable to validate AutoMapper config
-            //mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
             app.UseEndpoints(endpoints =>
             {

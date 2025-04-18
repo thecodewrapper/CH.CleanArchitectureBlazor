@@ -13,6 +13,7 @@ COPY ["Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/CH.CleanArc
 COPY ["Core/CH.CleanArchitecture.Core.Application/CH.CleanArchitecture.Core.Application.csproj", "Core/CH.CleanArchitecture.Core.Application/"]
 COPY ["Core/CH.CleanArchitecture.Core.Domain/CH.CleanArchitecture.Core.Domain.csproj", "Core/CH.CleanArchitecture.Core.Domain/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure/CH.CleanArchitecture.Infrastructure.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure/"]
+COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.ServiceBus/CH.CleanArchitecture.Infrastructure.ServiceBus.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.ServiceBus/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Shared/CH.CleanArchitecture.Infrastructure.Shared.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Shared/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/CH.CleanArchitecture.Infrastructure.Auditing.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.Auditing/"]
 COPY ["CH.CleanArchitecture.Resources/CH.CleanArchitecture.Resources.csproj", "CH.CleanArchitecture.Resources/"]
