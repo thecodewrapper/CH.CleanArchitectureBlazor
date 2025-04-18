@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
 using CH.CleanArchitecture.Core.Application;
 using Microsoft.Extensions.Hosting;
 
@@ -11,19 +12,40 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     internal class AzureServiceBusResponseListener : BackgroundService
     {
         private readonly ServiceBusProcessor _processor;
+        private readonly ServiceBusClient _serviceBusClient;
+        private readonly ServiceBusAdministrationClient _adminClient;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
+        private readonly ReplyQueueResolver _replyQueueResolver;
 
-        public AzureServiceBusResponseListener(ServiceBusClient serviceBusClient, IMessageSerializer serializer, IMessageResponseTracker tracker, ReplyQueueResolver replyQueueResolver) {
+        public AzureServiceBusResponseListener(
+            ServiceBusClient serviceBusClient,
+            ServiceBusAdministrationClient serviceBusAdministrationClient,
+            IMessageSerializer serializer,
+            IMessageResponseTracker tracker,
+            ReplyQueueResolver replyQueueResolver) {
+
+            _serviceBusClient = serviceBusClient;
+            _adminClient = serviceBusAdministrationClient;
             _serializer = serializer;
             _tracker = tracker;
+            _replyQueueResolver = replyQueueResolver;
             _processor = serviceBusClient.CreateProcessor(replyQueueResolver.GetReplyQueueName(), new ServiceBusProcessorOptions());
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken) {
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
+            await EnsureQueueExistsAsync(_replyQueueResolver.GetReplyQueueName());
+
             _processor.ProcessMessageAsync += OnMessageReceived;
             _processor.ProcessErrorAsync += args => Task.CompletedTask;
-            return _processor.StartProcessingAsync(stoppingToken);
+
+            await _processor.StartProcessingAsync(stoppingToken);
+        }
+
+        public override async Task StopAsync(CancellationToken cancellationToken) {
+            await _processor.StopProcessingAsync(cancellationToken);
+            await _processor.DisposeAsync();
+            await base.StopAsync(cancellationToken);
         }
 
         private async Task OnMessageReceived(ProcessMessageEventArgs args) {
@@ -39,6 +61,11 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                 .Invoke(_tracker, new[] { correlationId, response });
 
             await args.CompleteMessageAsync(args.Message);
+        }
+
+        private async Task EnsureQueueExistsAsync(string queueName) {
+            if (!await _adminClient.QueueExistsAsync(queueName))
+                await _adminClient.CreateQueueAsync(queueName);
         }
     }
 }

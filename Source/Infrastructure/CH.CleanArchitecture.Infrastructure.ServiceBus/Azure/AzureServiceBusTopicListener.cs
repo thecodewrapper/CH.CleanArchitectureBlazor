@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     internal class AzureServiceBusTopicListener : BackgroundService
     {
         private readonly ServiceBusClient _client;
+        private readonly ServiceBusAdministrationClient _adminClient;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IMessageSerializer _serializer;
         private readonly ILogger<AzureServiceBusTopicListener> _logger;
@@ -22,20 +24,30 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly string _subscriptionName;
         private readonly Dictionary<string, ServiceBusProcessor> _processors = new();
 
-        public AzureServiceBusTopicListener(ILogger<AzureServiceBusTopicListener> logger, IMessageRegistry<IRequest> registry, IMessageSerializer serializer, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory) {
+        public AzureServiceBusTopicListener(ILogger<AzureServiceBusTopicListener> logger,
+            IMessageRegistry<IRequest> registry,
+            IMessageSerializer serializer,
+            ServiceBusClient serviceBusClient,
+            ServiceBusAdministrationClient serviceBusAdministrationClient,
+            IConfiguration configuration,
+            IServiceScopeFactory serviceScopeFactory) {
+
             _registry = registry;
             _serializer = serializer;
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
-            var connectionString = configuration["ServiceBus:HostUrl"] ?? throw new InvalidOperationException("Missing ServiceBus:ConnectionString in configuration");
 
-            _client = new ServiceBusClient(connectionString);
+            _client = serviceBusClient;
+            _adminClient = serviceBusAdministrationClient;
             _subscriptionName = configuration["Application:Name"] ?? "app-subscription";
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
             foreach (var messageType in _registry.GetConsumableTypes()) {
                 var topicName = TopicNameHelper.GetTopicName(messageType);
+
+                //Ensure topic and subscription exist
+                await EnsureTopicWithSubscriptionAsync(topicName, _subscriptionName);
 
                 var processor = _client.CreateProcessor(topicName, _subscriptionName, new ServiceBusProcessorOptions
                 {
@@ -63,6 +75,27 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                 await processor.DisposeAsync();
             }
             await base.StopAsync(cancellationToken);
+        }
+
+        private async Task EnsureTopicWithSubscriptionAsync(string topicName, string subscriptionName) {
+            //Ensure topic exists
+            if (!await _adminClient.TopicExistsAsync(topicName))
+                await _adminClient.CreateTopicAsync(topicName);
+
+            //Ensure subscription exists
+            if (!await _adminClient.SubscriptionExistsAsync(topicName, subscriptionName)) {
+                await _adminClient.CreateSubscriptionAsync(topicName, subscriptionName);
+
+                //Filter to only receive messages of this type
+                var rule = new CreateRuleOptions
+                {
+                    Name = "MessageTypeFilter",
+                    Filter = new SqlRuleFilter($"[Type] = '{topicName}'")
+                };
+
+                await _adminClient.DeleteRuleAsync(topicName, subscriptionName, "$Default");
+                await _adminClient.CreateRuleAsync(topicName, subscriptionName, rule);
+            }
         }
 
         private async Task HandleMessageAsync(ProcessMessageEventArgs args, Type messageType) {

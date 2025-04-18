@@ -19,7 +19,6 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 builder.AddServiceBusAdministrationClient(hostUrl);
             });
             services.AddSingleton<IMessageBrokerDispatcher, AzureServiceBusMessageDispatcher>();
-            services.AddSingleton<IServiceBusManager, AzureServiceBusManager>();
             services.AddScoped<IServiceBus, AzureServiceBus>();
 
             services.AddHostedService<AzureServiceBusTopicListener>();
