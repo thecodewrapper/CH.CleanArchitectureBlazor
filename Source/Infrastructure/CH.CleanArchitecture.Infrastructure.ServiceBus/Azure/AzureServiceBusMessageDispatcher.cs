@@ -19,13 +19,13 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
         private const int WAIT_FOR_RESPONSE_TIMEOUT_SECONDS = 10;
 
-        public AzureServiceBusMessageDispatcher(ILogger<AzureServiceBusMessageDispatcher> logger, ServiceBusClient client, IMessageSerializer serializer, IMessageResponseTracker tracker, ServiceBusNaming replyQueueResolver) {
+        public AzureServiceBusMessageDispatcher(ILogger<AzureServiceBusMessageDispatcher> logger, ServiceBusClient client, IMessageSerializer serializer, IMessageResponseTracker tracker, ServiceBusNaming serviceBusNaming) {
             _logger = logger;
             _client = client;
             _serializer = serializer;
             _tracker = tracker;
 
-            _replyTo = replyQueueResolver.GetReplyQueueName();
+            _replyTo = serviceBusNaming.GetReplyQueueName();
         }
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse : class {
