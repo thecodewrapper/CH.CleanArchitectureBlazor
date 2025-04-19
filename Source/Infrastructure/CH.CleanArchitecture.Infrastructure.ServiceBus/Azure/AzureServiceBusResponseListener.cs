@@ -16,25 +16,25 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly ServiceBusAdministrationClient _adminClient;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
-        private readonly ReplyQueueResolver _replyQueueResolver;
+        private readonly ServiceBusNaming _serviceBusNaming;
 
         public AzureServiceBusResponseListener(
             ServiceBusClient serviceBusClient,
             ServiceBusAdministrationClient serviceBusAdministrationClient,
             IMessageSerializer serializer,
             IMessageResponseTracker tracker,
-            ReplyQueueResolver replyQueueResolver) {
+            ServiceBusNaming serviceBusNaming) {
 
             _serviceBusClient = serviceBusClient;
             _adminClient = serviceBusAdministrationClient;
             _serializer = serializer;
             _tracker = tracker;
-            _replyQueueResolver = replyQueueResolver;
-            _processor = serviceBusClient.CreateProcessor(replyQueueResolver.GetReplyQueueName(), new ServiceBusProcessorOptions());
+            _serviceBusNaming = serviceBusNaming;
+            _processor = serviceBusClient.CreateProcessor(_serviceBusNaming.GetReplyQueueName(), new ServiceBusProcessorOptions());
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
-            await EnsureQueueExistsAsync(_replyQueueResolver.GetReplyQueueName());
+            await EnsureQueueExistsAsync(_serviceBusNaming.GetReplyQueueName());
 
             _processor.ProcessMessageAsync += OnMessageReceived;
             _processor.ProcessErrorAsync += args => Task.CompletedTask;

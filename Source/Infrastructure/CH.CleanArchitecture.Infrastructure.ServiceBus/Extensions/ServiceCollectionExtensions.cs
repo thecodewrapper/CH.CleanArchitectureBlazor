@@ -1,5 +1,4 @@
-﻿using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
+﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +32,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 c.Enabled = options.Enabled;
                 c.Provider = options.Provider;
                 c.HostUrl = options.HostUrl;
-                }
+            }
             );
 
             return options;
@@ -58,7 +57,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             // Core infrastructure
             services.AddSingleton<IMessageSerializer, JsonMessageSerializer>();
             services.AddSingleton<IMessageResponseTracker, InMemoryMessageResponseTracker>();
-            services.AddSingleton<ReplyQueueResolver>();
+            services.AddSingleton<ServiceBusNaming>();
         }
 
         private static ServiceBusOptions GetServiceBusOptions(IConfiguration configuration) {

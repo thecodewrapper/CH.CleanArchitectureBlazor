@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using CH.CleanArchitecture.Core.Application;
+﻿using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 using MassTransit.Mediator;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
 
-namespace CH.CleanArchitecture.Infrastructure.Services
+namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
     /// <summary>
     /// Abstraction over the implementation specifics of a message broker transmission

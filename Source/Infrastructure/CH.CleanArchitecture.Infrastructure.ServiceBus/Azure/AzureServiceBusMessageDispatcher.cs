@@ -19,7 +19,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
         private const int WAIT_FOR_RESPONSE_TIMEOUT_SECONDS = 10;
 
-        public AzureServiceBusMessageDispatcher(ILogger<AzureServiceBusMessageDispatcher> logger, ServiceBusClient client, IMessageSerializer serializer, IMessageResponseTracker tracker, ReplyQueueResolver replyQueueResolver) {
+        public AzureServiceBusMessageDispatcher(ILogger<AzureServiceBusMessageDispatcher> logger, ServiceBusClient client, IMessageSerializer serializer, IMessageResponseTracker tracker, ServiceBusNaming replyQueueResolver) {
             _logger = logger;
             _client = client;
             _serializer = serializer;

@@ -43,25 +43,35 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddCryptoServices();
             services.AddAuthServices();
             services.AddScheduledJobs(configuration);
-            services.AddServiceBus(configuration);
+            services.AddMessaging(configuration);
         }
 
-        private static void AddServiceBus(this IServiceCollection services, IConfiguration configuration) {
+        public static void AddServiceBus(this IServiceCollection services, Action<ServiceBusBuilder> configure) {
+            var builder = new ServiceBusBuilder(services);
+            configure(builder);
+
+            builder.Build();
+        }
+
+        private static void AddMessaging(this IServiceCollection services, IConfiguration configuration) {
             var serviceBusOptions = services.AddServiceBusOptions(configuration);
             var handlerAssemblies = new List<Assembly>
             {
                 typeof(CreateUserCommandHandler).Assembly,
                 typeof(GetAllUsersQueryHandler).Assembly
             };
+
             services.AddServiceBus(builder =>
             {
-                builder.UseMediator(handlerAssemblies);
-                if (serviceBusOptions.Enabled) {
-                    string appName = configuration["Application:Name"];
+                builder.UseMediator(o =>
+                {
+                    o.WithAssemblies(handlerAssemblies.ToArray());
+                });
 
-                    builder.WithAppName(appName)
-                           .UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, [typeof(CreateUserCommand).Assembly]);
-                }
+                builder.UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, o =>
+                {
+                    o.WithAssemblies([typeof(CreateUserCommand).Assembly]);
+                });
             });
         }
 

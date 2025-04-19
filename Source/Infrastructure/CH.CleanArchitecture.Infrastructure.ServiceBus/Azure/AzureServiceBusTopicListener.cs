@@ -30,7 +30,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             ServiceBusClient serviceBusClient,
             ServiceBusAdministrationClient serviceBusAdministrationClient,
             IConfiguration configuration,
-            IServiceScopeFactory serviceScopeFactory) {
+            IServiceScopeFactory serviceScopeFactory,
+            ServiceBusNaming serviceBusNaming) {
 
             _registry = registry;
             _serializer = serializer;
@@ -39,7 +40,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
             _client = serviceBusClient;
             _adminClient = serviceBusAdministrationClient;
-            _subscriptionName = configuration["Application:Name"] ?? "app-subscription";
+            _subscriptionName = serviceBusNaming.GetSubscriptionName();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
