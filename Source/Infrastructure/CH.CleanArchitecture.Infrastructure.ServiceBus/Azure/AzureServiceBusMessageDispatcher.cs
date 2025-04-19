@@ -15,15 +15,22 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly ServiceBusClient _client;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
+        private readonly ServiceBusNaming _serviceBusNaming;
         private readonly string _replyTo;
 
         private const int WAIT_FOR_RESPONSE_TIMEOUT_SECONDS = 10;
 
-        public AzureServiceBusMessageDispatcher(ILogger<AzureServiceBusMessageDispatcher> logger, ServiceBusClient client, IMessageSerializer serializer, IMessageResponseTracker tracker, ServiceBusNaming serviceBusNaming) {
+        public AzureServiceBusMessageDispatcher(
+            ILogger<AzureServiceBusMessageDispatcher> logger,
+            ServiceBusClient client,
+            IMessageSerializer serializer,
+            IMessageResponseTracker tracker,
+            ServiceBusNaming serviceBusNaming) {
             _logger = logger;
             _client = client;
             _serializer = serializer;
             _tracker = tracker;
+            _serviceBusNaming = serviceBusNaming;
 
             _replyTo = serviceBusNaming.GetReplyQueueName();
         }
@@ -59,7 +66,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                 Subject = typeof(TResponse).AssemblyQualifiedName,
                 ApplicationProperties =
                 {
-                    ["Type"] = topicName
+                    ["Type"] = topicName,
+                    ["InstanceId"] = _serviceBusNaming.GetInstanceId()
                 }
             };
 

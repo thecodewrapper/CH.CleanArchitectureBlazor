@@ -155,6 +155,12 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             return resultProp?.GetValue(task);
         }
 
+        /// <summary>
+        /// Sends a reply message to the reply queue of the original sender of the message.
+        /// </summary>
+        /// <param name="originalMessage"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         private async Task SendReplyMessageToBus(ServiceBusReceivedMessage originalMessage, object response) {
             var replySender = _client.CreateSender(originalMessage.ReplyTo);
             string serializedResponse = _serializer.Serialize(response);

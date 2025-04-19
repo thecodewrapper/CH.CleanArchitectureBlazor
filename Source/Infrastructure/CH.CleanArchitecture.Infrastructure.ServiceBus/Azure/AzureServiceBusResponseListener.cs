@@ -10,6 +10,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     /// </summary>
     internal class AzureServiceBusResponseListener : BackgroundService
     {
+        private const int REPLY_QUEUE_AUTO_DELETE_ON_IDLE_DAYS = 10;
         private readonly ServiceBusProcessor _processor;
         private readonly ServiceBusClient _serviceBusClient;
         private readonly ServiceBusAdministrationClient _adminClient;
@@ -63,8 +64,15 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         private async Task EnsureQueueExistsAsync(string queueName) {
-            if (!await _adminClient.QueueExistsAsync(queueName))
-                await _adminClient.CreateQueueAsync(queueName);
+            if (!await _adminClient.QueueExistsAsync(queueName)) {
+                var options = new CreateQueueOptions(queueName)
+                {
+                    AutoDeleteOnIdle = TimeSpan.FromDays(REPLY_QUEUE_AUTO_DELETE_ON_IDLE_DAYS),
+                    MaxDeliveryCount = 10
+                };
+
+                await _adminClient.CreateQueueAsync(options);
+            }
         }
     }
 }

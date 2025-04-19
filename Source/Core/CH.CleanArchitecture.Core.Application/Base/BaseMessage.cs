@@ -10,6 +10,7 @@ namespace CH.CleanArchitecture.Core.Application
     public abstract class BaseMessage : IRequest
     {
         public Guid CorrelationId { get; set; }
+        public Guid InstanceId { get; set; }
         public bool IsBus { get; set; }
         public bool IsEvent { get; set; }
         public string ResponseType { get; set; }

@@ -3,18 +3,25 @@ using CH.Messaging.Abstractions;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
-    public class ServiceBus : IServiceBus, IEventBus
+    internal class ServiceBus : IServiceBus, IEventBus
     {
         private readonly IServiceBusMediator _localMediator;
         private readonly IMessageBrokerDispatcher _brokerDispatcher;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IIdentityContext _identityContext;
+        private readonly ServiceBusNaming _serviceBusNaming;
 
-        public ServiceBus(IServiceBusMediator localMediator, IMessageBrokerDispatcher brokerDispatcher, IMessageRegistry<IRequest> registry, IIdentityContext identityContext) {
+        public ServiceBus(IServiceBusMediator localMediator, 
+            IMessageBrokerDispatcher brokerDispatcher, 
+            IMessageRegistry<IRequest> registry, 
+            IIdentityContext identityContext, 
+            ServiceBusNaming serviceBusNaming) {
+
             _localMediator = localMediator;
             _brokerDispatcher = brokerDispatcher;
             _registry = registry;
             _identityContext = identityContext;
+            _serviceBusNaming = serviceBusNaming;
         }
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
@@ -28,6 +35,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                     baseMessage.IsEvent = false;
                     baseMessage.ResponseType = typeof(TResponse).AssemblyQualifiedName!;
                     baseMessage.CorrelationId = baseMessage.CorrelationId == Guid.Empty ? Guid.NewGuid() : baseMessage.CorrelationId;
+                    baseMessage.InstanceId = _serviceBusNaming.GetInstanceId();
                     baseMessage.IdentityContext = _identityContext as IdentityContext;
                 }
 
