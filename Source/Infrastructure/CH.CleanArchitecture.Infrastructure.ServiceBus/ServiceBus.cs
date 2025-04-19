@@ -1,18 +1,18 @@
 ﻿using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 
-namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
+namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
-    public class AzureServiceBus : IServiceBus, IEventBus
+    public class ServiceBus : IServiceBus, IEventBus
     {
         private readonly IServiceBusMediator _localMediator;
-        private readonly IMessageBrokerDispatcher _brokerPublisher;
+        private readonly IMessageBrokerDispatcher _brokerDispatcher;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IIdentityContext _identityContext;
 
-        public AzureServiceBus(IServiceBusMediator localMediator, IMessageBrokerDispatcher brokerPublisher, IMessageRegistry<IRequest> registry, IIdentityContext identityContext) {
+        public ServiceBus(IServiceBusMediator localMediator, IMessageBrokerDispatcher brokerDispatcher, IMessageRegistry<IRequest> registry, IIdentityContext identityContext) {
             _localMediator = localMediator;
-            _brokerPublisher = brokerPublisher;
+            _brokerDispatcher = brokerDispatcher;
             _registry = registry;
             _identityContext = identityContext;
         }
@@ -31,7 +31,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                     baseMessage.IdentityContext = _identityContext as IdentityContext;
                 }
 
-                return await _brokerPublisher.SendAsync(request, cancellationToken);
+                return await _brokerDispatcher.SendAsync(request, cancellationToken);
             }
 
             // Fallback: local only (query or non-routed command)
@@ -48,12 +48,10 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                     baseMessage.IdentityContext = _identityContext as IdentityContext;
                 }
 
-                await _brokerPublisher.PublishAsync(request, cancellationToken);
+                await _brokerDispatcher.PublishAsync(request, cancellationToken);
             }
-            else {
-                // In-process event only
+            else                 // In-process event only
                 await _localMediator.PublishAsync(request, cancellationToken);
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
 using CH.Messaging.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
@@ -67,8 +66,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             var provider = _brokerOptions.Provider;
             var hostUrl = _brokerOptions.HostUrl;
 
-            _services.AddScoped<IServiceBus, AzureServiceBus>();
-            _services.AddScoped<IEventBus, AzureServiceBus>();
+            _services.AddScoped<IServiceBus, ServiceBus>();
+            _services.AddScoped<IEventBus, ServiceBus>();
 
             if (!producers.Any() && !consumers.Any()) {
                 var resolved = GetMessageTypesFromAssemblies(assemblies);
