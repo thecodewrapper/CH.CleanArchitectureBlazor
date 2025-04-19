@@ -28,7 +28,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 
         public static ServiceBusOptions AddServiceBusOptions(this IServiceCollection services, IConfiguration configuration) {
             var options = GetServiceBusOptions(configuration);
-            services.Configure<ServiceBusOptions>(c => {
+            services.Configure<ServiceBusOptions>(c =>
+            {
                 c.Enabled = options.Enabled;
                 c.Provider = options.Provider;
                 c.HostUrl = options.HostUrl;

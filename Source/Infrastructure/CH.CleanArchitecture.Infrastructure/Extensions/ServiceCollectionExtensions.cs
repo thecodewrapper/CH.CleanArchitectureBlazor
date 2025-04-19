@@ -93,7 +93,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 services.AddIdentityDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
                 services.AddApplicationDbContextFactory(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
             }
-            
+
             services.AddTransient<IIdentityContext, DefaultIdentityContext>();
         }
 
@@ -150,7 +150,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         /// <param name="configuration"></param>
         public static void AddStorageServices(this IServiceCollection services, IConfiguration configuration) {
             var options = GetStorageOptions(configuration);
-            services.Configure<StorageOptions>(c => {
+            services.Configure<StorageOptions>(c =>
+            {
                 c.StorageProvider = options.StorageProvider;
                 c.BasePath = options.BasePath;
                 c.Azure = options.Azure;

@@ -1,6 +1,4 @@
-﻿using CH.CleanArchitecture.Core.Application;
-
-namespace CH.CleanArchitecture.Infrastructure.ServiceBus
+﻿namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
     /// <summary>
     /// Central registry of which message types an application is allowed to publish (produce)

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using CH.CleanArchitecture.Core.Application;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

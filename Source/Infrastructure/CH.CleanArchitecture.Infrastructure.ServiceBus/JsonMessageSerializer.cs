@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using CH.CleanArchitecture.Core.Application;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

@@ -34,7 +34,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                         else {
                             contentDTO.Content = await _componentHtmlRenderer.RenderComponentAsync<ConfirmAccountGR>(new Dictionary<string, object?>() { { nameof(ConfirmAccountGR.Model), ConstructEmailViewModel(dto) } });
                         }
-                    };
+                    }
+                    ;
                     break;
                 default: throw new NotImplementedException();
             }
@@ -52,7 +53,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                         else {
                             contentDTO.Content = await _componentHtmlRenderer.RenderComponentAsync<ResetPasswordGR>(new Dictionary<string, object?>() { { nameof(ResetPasswordGR.Model), ConstructEmailViewModel(dto) } });
                         }
-                    };
+                    }
+                    ;
                     break;
                 default: throw new NotImplementedException();
             }

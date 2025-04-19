@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CH.CleanArchitecture.Infrastructure.ServiceBus;
 using CH.CleanArchitecture.Infrastructure.Shared.Culture;
 using CH.CleanArchitecture.Presentation.WebApp.Extensions;
 using Hangfire;

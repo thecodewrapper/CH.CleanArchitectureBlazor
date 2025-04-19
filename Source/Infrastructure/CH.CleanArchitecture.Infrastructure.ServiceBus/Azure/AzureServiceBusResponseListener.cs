@@ -1,6 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
-using CH.CleanArchitecture.Core.Application;
 using Microsoft.Extensions.Hosting;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
