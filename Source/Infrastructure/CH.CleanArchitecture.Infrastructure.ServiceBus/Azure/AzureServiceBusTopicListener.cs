@@ -47,6 +47,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
+            _logger.LogInformation($"Starting Azure Service Bus topic listener with subscription name: {_subscriptionName}");
             await EnsureTopicsWithSubscriptionsAsync();
 
             foreach (var messageType in _registry.GetConsumableTypes()) {
@@ -87,6 +88,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private async Task EnsureTopicsWithSubscriptionsAsync() {
             List<string> topicNamesFromTypes = _registry.GetConsumableTypes().Select(t => TopicNameHelper.GetTopicName(t).ToLowerInvariant()).ToList();
 
+            _logger.LogInformation("Ensuring topics and subscriptions exist for message types: {Topics}", string.Join(", ", topicNamesFromTypes));
             var existingTopics = new HashSet<string>();
             await foreach (var topic in _adminClient.GetTopicsAsync()) {
                 existingTopics.Add(topic.Name);
@@ -95,12 +97,16 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             foreach (var topicName in topicNamesFromTypes) {
                 // Create topic if missing
                 if (!existingTopics.Contains(topicName)) {
+                    _logger.LogInformation("Creating topic: {Topic}", topicName);
                     await _adminClient.CreateTopicAsync(topicName);
+                    _logger.LogInformation("Created topic: {Topic}", topicName);
                 }
 
                 //Ensure subscription exists
                 if (!await _adminClient.SubscriptionExistsAsync(topicName, _subscriptionName)) {
+                    _logger.LogInformation("Creating subscription: {Subscription} for topic: {Topic}", _subscriptionName, topicName);
                     await _adminClient.CreateSubscriptionAsync(topicName, _subscriptionName);
+                    _logger.LogInformation("Created subscription: {Subscription} for topic: {Topic}", _subscriptionName, topicName);
 
                     var rule = new CreateRuleOptions
                     {
