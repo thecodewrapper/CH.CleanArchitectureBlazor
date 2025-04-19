@@ -200,6 +200,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                 Subject = response.GetType().AssemblyQualifiedName
             };
 
+            _logger.LogInformation("Sending reply message to {ReplyTo} with correlation id {CorrelationId}", originalMessage.ReplyTo, originalMessage.CorrelationId);
             await replySender.SendMessageAsync(replyMessage);
         }
     }
