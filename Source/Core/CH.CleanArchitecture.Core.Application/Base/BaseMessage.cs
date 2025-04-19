@@ -15,5 +15,11 @@ namespace CH.CleanArchitecture.Core.Application
         public bool IsEvent { get; set; }
         public string ResponseType { get; set; }
         public IdentityContext IdentityContext { get; set; }
+
+        /// <summary>
+        /// Used to sent the message to a specific recipient.
+        /// If null, then it becomes a broadcast message.
+        /// </summary>
+        public string Recipient { get; set; }
     }
 }

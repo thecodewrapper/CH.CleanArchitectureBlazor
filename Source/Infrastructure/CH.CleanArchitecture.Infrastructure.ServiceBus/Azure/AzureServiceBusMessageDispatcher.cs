@@ -37,9 +37,11 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse : class {
             string topicName = TopicNameHelper.GetTopicName(request.GetType());
-            Guid correlationId = (request as BaseMessage)?.CorrelationId ?? Guid.NewGuid();
+            var baseMessage = request as BaseMessage;
+            Guid correlationId = baseMessage?.CorrelationId ?? Guid.NewGuid();
+            string? recipient = baseMessage?.Recipient;
 
-            ServiceBusMessage message = ConstructServiceBusMessage(request, correlationId, topicName);
+            ServiceBusMessage message = ConstructServiceBusMessage(request, correlationId, topicName, recipient);
             ServiceBusSender sender = _client.CreateSender(topicName);
 
             _logger.LogDebug("Sending message ({MessageType}) to topic {TopicName} with correlation id {CorrelationId}.", request.GetType().Name, topicName, correlationId);
@@ -57,7 +59,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             await sender.SendMessageAsync(message, cancellationToken);
         }
 
-        private ServiceBusMessage ConstructServiceBusMessage<TResponse>(IRequest<TResponse> request, Guid correlationId, string topicName) where TResponse : class {
+        private ServiceBusMessage ConstructServiceBusMessage<TResponse>(IRequest<TResponse> request, Guid correlationId, string topicName, string? recipient) where TResponse : class {
             var body = new BinaryData(_serializer.Serialize(request));
             var message = new ServiceBusMessage(body)
             {
@@ -70,6 +72,10 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                     ["InstanceId"] = _serviceBusNaming.GetInstanceId()
                 }
             };
+
+            if (!string.IsNullOrWhiteSpace(recipient)) {
+                message.ApplicationProperties["Recipient"] = recipient;
+            }
 
             return message;
         }

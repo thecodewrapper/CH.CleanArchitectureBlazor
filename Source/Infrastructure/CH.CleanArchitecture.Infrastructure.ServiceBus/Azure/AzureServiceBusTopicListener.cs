@@ -91,7 +91,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
                 var rule = new CreateRuleOptions
                 {
                     Name = "MessageTypeFilter",
-                    Filter = new SqlRuleFilter($"[Type] = '{topicName}'")
+                    Filter = new SqlRuleFilter($"[Type] = '{topicName}' AND ([Recipient] IS NULL OR [Recipient] = '{subscriptionName}')")
                 };
 
                 await _adminClient.DeleteRuleAsync(topicName, subscriptionName, "$Default");
