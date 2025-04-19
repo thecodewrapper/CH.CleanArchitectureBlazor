@@ -11,8 +11,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 
         public ServiceBusNaming(IConfiguration configuration) {
             _subscriptionName = configuration["Application:Name"] ?? Assembly.GetEntryAssembly().GetName().FullName.ToLowerInvariant();
-            _replyQueueName = $"{_subscriptionName}.replies-{_instanceId}";
             _instanceId = Guid.NewGuid();
+            _replyQueueName = $"{_subscriptionName}.replies-{_instanceId}";
         }
 
         public string GetSubscriptionName() => _subscriptionName;
