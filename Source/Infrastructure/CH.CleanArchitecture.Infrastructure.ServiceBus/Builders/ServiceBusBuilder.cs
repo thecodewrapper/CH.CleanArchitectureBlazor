@@ -47,6 +47,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 
         private void BuildMediator() {
             _services.AddScoped<IServiceBusMediator, MassTransitMediator>();
+            _services.AddScoped<IEventBus, MassTransitMediator>();
             _services.AddMediator(m =>
             {
                 if (_mediatorOptions.GetConsumers().Any()) {
