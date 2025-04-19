@@ -24,6 +24,9 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly string _subscriptionName;
         private readonly Dictionary<string, ServiceBusProcessor> _processors = new();
 
+        private HashSet<string> _existingTopics = new();
+        private HashSet<string> _existingSubscriptions = new();
+
         public AzureServiceBusTopicListener(ILogger<AzureServiceBusTopicListener> logger,
             IMessageRegistry<IRequest> registry,
             IMessageSerializer serializer,
@@ -44,11 +47,10 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
+            await EnsureTopicsWithSubscriptionsAsync();
+
             foreach (var messageType in _registry.GetConsumableTypes()) {
                 var topicName = TopicNameHelper.GetTopicName(messageType);
-
-                //Ensure topic and subscription exist
-                await EnsureTopicWithSubscriptionAsync(topicName, _subscriptionName);
 
                 var processor = _client.CreateProcessor(topicName, _subscriptionName, new ServiceBusProcessorOptions
                 {
@@ -78,27 +80,49 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             await base.StopAsync(cancellationToken);
         }
 
-        private async Task EnsureTopicWithSubscriptionAsync(string topicName, string subscriptionName) {
-            //Ensure topic exists
-            if (!await _adminClient.TopicExistsAsync(topicName))
-                await _adminClient.CreateTopicAsync(topicName);
+        /// <summary>
+        /// Ensures that all topics and subscriptions exist on Service Bus for the registered message types.
+        /// </summary>
+        /// <returns></returns>
+        private async Task EnsureTopicsWithSubscriptionsAsync() {
+            List<string> topicNamesFromTypes = _registry.GetConsumableTypes().Select(t => TopicNameHelper.GetTopicName(t).ToLowerInvariant()).ToList();
 
-            //Ensure subscription exists
-            if (!await _adminClient.SubscriptionExistsAsync(topicName, subscriptionName)) {
-                await _adminClient.CreateSubscriptionAsync(topicName, subscriptionName);
+            var existingTopics = new HashSet<string>();
+            await foreach (var topic in _adminClient.GetTopicsAsync()) {
+                existingTopics.Add(topic.Name);
+            }
 
-                //Filter to only receive messages of this type
-                var rule = new CreateRuleOptions
-                {
-                    Name = "MessageTypeFilter",
-                    Filter = new SqlRuleFilter($"[Type] = '{topicName}' AND ([Recipient] IS NULL OR [Recipient] = '{subscriptionName}')")
-                };
+            foreach (var topicName in topicNamesFromTypes) {
+                // Create topic if missing
+                if (!existingTopics.Contains(topicName)) {
+                    await _adminClient.CreateTopicAsync(topicName);
+                }
 
-                await _adminClient.DeleteRuleAsync(topicName, subscriptionName, "$Default");
-                await _adminClient.CreateRuleAsync(topicName, subscriptionName, rule);
+                //Ensure subscription exists
+                if (!await _adminClient.SubscriptionExistsAsync(topicName, _subscriptionName)) {
+                    await _adminClient.CreateSubscriptionAsync(topicName, _subscriptionName);
+
+                    var rule = new CreateRuleOptions
+                    {
+                        Name = "MessageTypeFilter",
+                        Filter = new SqlRuleFilter($"[Type] = '{topicName}' AND ([Recipient] IS NULL OR [Recipient] = '{_subscriptionName}')")
+                    };
+
+                    await _adminClient.DeleteRuleAsync(topicName, _subscriptionName, "$Default");
+                    await _adminClient.CreateRuleAsync(topicName, _subscriptionName, rule);
+                }
             }
         }
 
+        /// <summary>
+        /// Handles an incoming Azure Service Bus message by deserializing it, resolving the appropriate mediator,
+        /// and routing the message to either a publish or send handler, depending on whether it is an event or a command.
+        /// If the message expects a response (command with ReplyTo set), the response is serialized and sent back
+        /// to the specified reply queue. Completes or abandons the message based on success or failure.
+        /// </summary>
+        /// <param name="args">The message event arguments containing the received message and cancellation token.</param>
+        /// <param name="messageType">The CLR type of the message payload.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         private async Task HandleMessageAsync(ProcessMessageEventArgs args, Type messageType) {
             try {
                 string raw = args.Message.Body.ToString();
