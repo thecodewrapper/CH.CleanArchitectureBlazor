@@ -1,5 +1,4 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Azure.Messaging.ServiceBus.Administration;
 using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Configuration;
@@ -16,61 +15,60 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     internal class AzureServiceBusTopicListener : BackgroundService
     {
         private readonly ServiceBusClient _client;
-        private readonly ServiceBusAdministrationClient _adminClient;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IMessageSerializer _serializer;
+        private readonly IMessageBrokerManager _manager;
         private readonly ILogger<AzureServiceBusTopicListener> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly string _subscriptionName;
         private readonly Dictionary<string, ServiceBusProcessor> _processors = new();
 
-        private HashSet<string> _existingTopics = new();
-        private HashSet<string> _existingSubscriptions = new();
-
         public AzureServiceBusTopicListener(ILogger<AzureServiceBusTopicListener> logger,
             IMessageRegistry<IRequest> registry,
             IMessageSerializer serializer,
-            ServiceBusClient serviceBusClient,
-            ServiceBusAdministrationClient serviceBusAdministrationClient,
+            IMessageBrokerManager manager,
             IConfiguration configuration,
             IServiceScopeFactory serviceScopeFactory,
+            ServiceBusClient serviceBusClient,
             ServiceBusNaming serviceBusNaming) {
 
             _registry = registry;
             _serializer = serializer;
+            _manager = manager;
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
 
             _client = serviceBusClient;
-            _adminClient = serviceBusAdministrationClient;
             _subscriptionName = serviceBusNaming.GetSubscriptionName();
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken) {
             _logger.LogInformation($"Starting Azure Service Bus topic listener with subscription name: {_subscriptionName}");
-            await EnsureTopicsWithSubscriptionsAsync();
 
-            foreach (var messageType in _registry.GetConsumableTypes()) {
+            IEnumerable<Type> messageTypes = _registry.GetConsumableTypes();
+            List<string> topicNamesFromTypes = messageTypes.Select(t => TopicNameHelper.GetTopicName(t).ToLowerInvariant()).ToList();
+
+            await EnsureTopicsExist(topicNamesFromTypes);
+            await EnsureSubscriptionsExist(topicNamesFromTypes);
+
+            foreach (var messageType in messageTypes) {
                 var topicName = TopicNameHelper.GetTopicName(messageType);
 
-                var processor = _client.CreateProcessor(topicName, _subscriptionName, new ServiceBusProcessorOptions
-                {
-                    MaxConcurrentCalls = 1,
-                    AutoCompleteMessages = false
-                });
+                try {
+                    await StartProcessingTopicAsync(topicName, messageType, cancellationToken);
+                }
+                catch (ServiceBusException ex) when (ex.Reason == ServiceBusFailureReason.MessagingEntityNotFound) {
+                    _logger.LogWarning(ex, "Subscription or topic not found for {Topic}. Recreating and retrying...", topicName);
 
-                processor.ProcessMessageAsync += async args => await HandleMessageAsync(args, messageType);
-                processor.ProcessErrorAsync += args =>
-                {
-                    _logger.LogError(args.Exception, "Error in processor for {Topic}", topicName);
-                    return Task.CompletedTask;
-                };
+                    await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken); //give Azure time to catch-up
 
-                await processor.StartProcessingAsync(stoppingToken);
-                _processors[topicName] = processor;
-
-                _logger.LogInformation("Started listening to topic: {Topic} (type: {Type})", topicName, messageType.Name);
+                    await _manager.CreateTopicAsync(topicName);
+                    await _manager.CreateSubscriptionAsync(topicName, _subscriptionName);
+                    await StartProcessingTopicAsync(topicName, messageType, cancellationToken);
+                }
             }
+
+            _logger.LogInformation("Azure Service Bus topic listener started successfully.");
         }
 
         public override async Task StopAsync(CancellationToken cancellationToken) {
@@ -81,43 +79,36 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             await base.StopAsync(cancellationToken);
         }
 
-        /// <summary>
-        /// Ensures that all topics and subscriptions exist on Service Bus for the registered message types.
-        /// </summary>
-        /// <returns></returns>
-        private async Task EnsureTopicsWithSubscriptionsAsync() {
-            List<string> topicNamesFromTypes = _registry.GetConsumableTypes().Select(t => TopicNameHelper.GetTopicName(t).ToLowerInvariant()).ToList();
-
-            _logger.LogInformation("Ensuring topics and subscriptions exist for message types: {Topics}", string.Join(", ", topicNamesFromTypes));
-            var existingTopics = new HashSet<string>();
-            await foreach (var topic in _adminClient.GetTopicsAsync()) {
-                existingTopics.Add(topic.Name);
+        private async Task EnsureTopicsExist(List<string> topicNames) {
+            foreach (var topicName in topicNames) {
+                await _manager.CreateTopicAsync(topicName);
             }
+        }
 
-            foreach (var topicName in topicNamesFromTypes) {
-                // Create topic if missing
-                if (!existingTopics.Contains(topicName)) {
-                    _logger.LogInformation("Creating topic: {Topic}", topicName);
-                    await _adminClient.CreateTopicAsync(topicName);
-                    _logger.LogInformation("Created topic: {Topic}", topicName);
-                }
-
-                //Ensure subscription exists
-                if (!await _adminClient.SubscriptionExistsAsync(topicName, _subscriptionName)) {
-                    _logger.LogInformation("Creating subscription: {Subscription} for topic: {Topic}", _subscriptionName, topicName);
-                    await _adminClient.CreateSubscriptionAsync(topicName, _subscriptionName);
-                    _logger.LogInformation("Created subscription: {Subscription} for topic: {Topic}", _subscriptionName, topicName);
-
-                    var rule = new CreateRuleOptions
-                    {
-                        Name = "MessageTypeFilter",
-                        Filter = new SqlRuleFilter($"[Type] = '{topicName}' AND ([Recipient] IS NULL OR [Recipient] = '{_subscriptionName}')")
-                    };
-
-                    await _adminClient.DeleteRuleAsync(topicName, _subscriptionName, "$Default");
-                    await _adminClient.CreateRuleAsync(topicName, _subscriptionName, rule);
-                }
+        private async Task EnsureSubscriptionsExist(List<string> topicNames) {
+            foreach (var topicName in topicNames) {
+                await _manager.CreateSubscriptionAsync(topicName, _subscriptionName);
             }
+        }
+
+        private async Task StartProcessingTopicAsync(string topicName, Type messageType, CancellationToken cancellationToken) {
+            var processor = _client.CreateProcessor(topicName, _subscriptionName, new ServiceBusProcessorOptions
+            {
+                MaxConcurrentCalls = 1,
+                AutoCompleteMessages = false
+            });
+
+            processor.ProcessMessageAsync += async args => await HandleMessageAsync(args, messageType);
+            processor.ProcessErrorAsync += args =>
+            {
+                _logger.LogError(args.Exception, "Error in processor for {Topic}", topicName);
+                return Task.CompletedTask;
+            };
+
+            await processor.StartProcessingAsync(cancellationToken);
+            _processors[topicName] = processor;
+
+            _logger.LogInformation("Started listening to topic: {Topic} (type: {Type})", topicName, messageType.Name);
         }
 
         /// <summary>
