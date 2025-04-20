@@ -65,16 +65,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private async Task StartProcessorAsync(CancellationToken cancellationToken) {
             _processor = _serviceBusClient.CreateProcessor(_replyQueueName, new ServiceBusProcessorOptions());
             _processor.ProcessMessageAsync += OnMessageReceived;
-            _processor.ProcessErrorAsync += async args =>
-            {
-                if (args.Exception is ServiceBusException sbEx &&
-                    sbEx.Reason == ServiceBusFailureReason.MessagingEntityNotFound) {
-                    await RecoverFromMissingReplyQueueAsync(cancellationToken);
-                }
-                else {
-                    _logger.LogError(args.Exception, "Unhandled error in reply queue processor.");
-                }
-            };
+            _processor.ProcessErrorAsync += OnProcessError;
 
             await _processor.StartProcessingAsync(cancellationToken);
             _logger.LogInformation("Service Bus response listener started for queue: {Queue}", _replyQueueName);
@@ -97,33 +88,31 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             _logger.LogInformation($"Completed message with ID: {args.Message.MessageId}");
         }
 
-        private async Task RecoverFromMissingReplyQueueAsync(CancellationToken cancellationToken) {
-            var retryPolicy = Policy
-                .Handle<Exception>()
-                .WaitAndRetryAsync(
-                    retryCount: 3,
-                    sleepDurationProvider: attempt => TimeSpan.FromSeconds(2 * attempt),
-                    onRetry: (ex, delay, attempt, context) =>
+        private async Task OnProcessError(ProcessErrorEventArgs args) {
+            if (args.Exception is ServiceBusException sbEx && sbEx.Reason == ServiceBusFailureReason.MessagingEntityNotFound) {
+                try {
+                    var retryPolicy = Policy
+                        .Handle<Exception>()
+                        .WaitAndRetryAsync(
+                            retryCount: 3,
+                            sleepDurationProvider: attempt => TimeSpan.FromSeconds(2 * attempt),
+                            onRetry: (ex, delay, attempt, ctx) =>
+                            {
+                                _logger.LogWarning(ex, "Retry {Attempt} for reply queue recovery after {Delay}", attempt, delay);
+                            });
+
+                    await retryPolicy.ExecuteAsync(async ct =>
                     {
-                        _logger.LogWarning(ex, "Retry {Attempt} for reply queue recovery after {Delay}", attempt, delay);
-                    });
-
-            try {
-                await retryPolicy.ExecuteAsync(async ct =>
-                {
-                    await _manager.CreateQueueAsync(_replyQueueName);
-
-                    await _processor.StopProcessingAsync();
-                    await _processor.DisposeAsync();
-
-                    await StartProcessorAsync(ct);
-                }, cancellationToken);
-
-                _logger.LogInformation("Successfully recovered and restarted reply queue processor: {Queue}", _replyQueueName);
+                        await _manager.CreateQueueAsync(_replyQueueName);
+                    }, args.CancellationToken);
+                }
+                catch (Exception ex) {
+                    _logger.LogCritical(ex, "Failed to recreate reply queue after multiple attempts..");
+                    throw;
+                }
             }
-            catch (Exception ex) {
-                _logger.LogCritical(ex, "Failed to recover reply queue processor after multiple attempts. Listener will not restart.");
-                throw;
+            else {
+                _logger.LogError(args.Exception, "Unhandled error in reply queue processor.");
             }
         }
     }
