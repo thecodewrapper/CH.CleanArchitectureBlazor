@@ -57,6 +57,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 BaseMessage baseMessage = request as BaseMessage ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
                 baseMessage.IsBus = true;
                 baseMessage.IsEvent = true;
+                baseMessage.CorrelationId = baseMessage.CorrelationId == Guid.Empty ? Guid.NewGuid() : baseMessage.CorrelationId;
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
 
                 _logger.LogDebug("Publishing message ({MessageType}) via SERVICE BUS. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.IsBus);
