@@ -27,8 +27,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             var client = _mediator.CreateRequestClient<IRequest<TResponse>>();
             cancellationToken.ThrowIfCancellationRequested();
 
-            BaseMessage<TResponse> baseMessage = request as BaseMessage<TResponse>
-                ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage<TResponse>)}");
+            BaseMessage<TResponse> baseMessage = request as BaseMessage<TResponse> ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage<TResponse>)}");
 
             if (!baseMessage.IsBus) {
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
@@ -51,8 +50,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 
         public async Task PublishAsync(IRequest request, CancellationToken cancellationToken = default) {
             cancellationToken.ThrowIfCancellationRequested();
-            BaseMessage baseMessage = request as BaseMessage
-                ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
+            BaseMessage baseMessage = request as BaseMessage ?? throw new InvalidOperationException($"Request must be of type {nameof(BaseMessage)}");
 
             if (!baseMessage.IsBus) {
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
@@ -61,7 +59,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             try {
                 await GetRetryPolicy().ExecuteAsync(async () =>
                 {
-                    _logger.LogDebug("Publishing message ({MessageType}) via MEDIATOR. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.IsBus);
+                    _logger.LogDebug("Publishing message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
                     await _mediator.Publish(request, cancellationToken);
                 });
             }
