@@ -58,6 +58,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 baseMessage.IsBus = true;
                 baseMessage.IsEvent = true;
                 baseMessage.CorrelationId = baseMessage.CorrelationId == Guid.Empty ? Guid.NewGuid() : baseMessage.CorrelationId;
+                baseMessage.InstanceId = _serviceBusNaming.GetInstanceId();
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
 
                 _logger.LogDebug("Publishing message ({MessageType}) via SERVICE BUS with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
