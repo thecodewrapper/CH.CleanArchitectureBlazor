@@ -60,7 +60,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 baseMessage.CorrelationId = baseMessage.CorrelationId == Guid.Empty ? Guid.NewGuid() : baseMessage.CorrelationId;
                 baseMessage.IdentityContext = _identityContext as IdentityContext;
 
-                _logger.LogDebug("Publishing message ({MessageType}) via SERVICE BUS. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.IsBus);
+                _logger.LogDebug("Publishing message ({MessageType}) via SERVICE BUS with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
                 await _brokerDispatcher.PublishAsync(request, cancellationToken);
             }
             else {
