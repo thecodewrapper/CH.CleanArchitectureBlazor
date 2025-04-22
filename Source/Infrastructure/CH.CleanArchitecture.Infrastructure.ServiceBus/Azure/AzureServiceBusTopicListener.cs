@@ -45,13 +45,16 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         protected override async Task ExecuteAsync(CancellationToken cancellationToken) {
             _logger.LogInformation($"Starting Azure Service Bus topic listener with subscription name: {_subscriptionName}");
 
-            IEnumerable<Type> messageTypes = _registry.GetConsumableTypes();
-            List<string> topicNamesFromTypes = messageTypes.Select(TopicNameHelper.GetTopicName).ToList();
+            IEnumerable<Type> consumableMessageTypes = _registry.GetConsumableTypes();
 
-            await EnsureTopicsExist(topicNamesFromTypes);
-            await EnsureSubscriptionsExist(topicNamesFromTypes);
+            List<string> consumableTopicNames = consumableMessageTypes.Select(TopicNameHelper.GetTopicName).ToList();
+            List<string> producableTopicNames = _registry.GetProducableTypes().Select(TopicNameHelper.GetTopicName).ToList();
 
-            foreach (var messageType in messageTypes) {
+            await EnsureTopicsExist(producableTopicNames);
+            await EnsureTopicsExist(consumableTopicNames);
+            await EnsureSubscriptionsExist(consumableTopicNames);
+
+            foreach (var messageType in consumableMessageTypes) {
                 var topicName = TopicNameHelper.GetTopicName(messageType);
 
                 try {
