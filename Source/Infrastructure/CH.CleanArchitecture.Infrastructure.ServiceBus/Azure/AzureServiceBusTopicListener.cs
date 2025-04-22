@@ -46,7 +46,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             _logger.LogInformation($"Starting Azure Service Bus topic listener with subscription name: {_subscriptionName}");
 
             IEnumerable<Type> messageTypes = _registry.GetConsumableTypes();
-            List<string> topicNamesFromTypes = messageTypes.Select(t => TopicNameHelper.GetTopicName(t).ToLowerInvariant()).ToList();
+            List<string> topicNamesFromTypes = messageTypes.Select(TopicNameHelper.GetTopicName).ToList();
 
             await EnsureTopicsExist(topicNamesFromTypes);
             await EnsureSubscriptionsExist(topicNamesFromTypes);
