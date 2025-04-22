@@ -52,7 +52,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : class, IRequest {
             string topicName = TopicNameHelper.GetTopicName(@event.GetType());
 
-            ServiceBusMessage message = ConstructServiceBusMessage(@event);
+            ServiceBusMessage message = ConstructServiceBusMessage(@event, topicName);
             ServiceBusSender sender = _client.CreateSender(topicName);
 
             _logger.LogDebug("Publishing event ({MessageType}) to topic {TopicName}.", @event.GetType().Name, topicName);
@@ -80,11 +80,16 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             return message;
         }
 
-        private ServiceBusMessage ConstructServiceBusMessage<TEvent>(TEvent @event) where TEvent : class, IRequest {
+        private ServiceBusMessage ConstructServiceBusMessage<TEvent>(TEvent @event, string topicName) where TEvent : class, IRequest {
             var body = new BinaryData(_serializer.Serialize(@event));
             var message = new ServiceBusMessage(body)
             {
-                Subject = @event.GetType().AssemblyQualifiedName
+                Subject = @event.GetType().AssemblyQualifiedName,
+                ApplicationProperties =
+                {
+                    ["Type"] = topicName,
+                    ["InstanceId"] = _serviceBusNaming.GetInstanceId()
+                }
             };
             return message;
         }
