@@ -176,6 +176,7 @@ namespace CH.CleanArchitecture.Tests
             serviceCollection.AddScoped<IAuthorizationService, MockAuthorizationService>();
             serviceCollection.AddSingleton<ILoggerFactory, NullLoggerFactory>();
             serviceCollection.AddScoped<IServiceBus, MockServiceBus>();
+            serviceCollection.AddScoped<IServiceBusMediator, MockServiceBus>();
             serviceCollection.AddScoped<IResourceStore, MockResourceStore>();
             serviceCollection.AddSingleton<IFileSystem, MockFileSystem>();
         }
