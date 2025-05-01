@@ -12,5 +12,6 @@ namespace CH.CleanArchitecture.Core.Application
         Task CreateFileAsync(string path, Stream contents);
         bool DirectoryExists(string path);
         void CreateDirectory(string path);
+        void DeleteDirectory(string path, bool recursive);
     }
 }

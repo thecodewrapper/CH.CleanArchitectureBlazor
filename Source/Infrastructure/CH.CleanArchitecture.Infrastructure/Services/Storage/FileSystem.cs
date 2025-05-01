@@ -17,5 +17,6 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         public bool DirectoryExists(string path) => Directory.Exists(path);
         public void CreateDirectory(string path) => Directory.CreateDirectory(path);
+        public void DeleteDirectory(string path, bool recursive) => Directory.Delete(path, recursive);
     }
 }
