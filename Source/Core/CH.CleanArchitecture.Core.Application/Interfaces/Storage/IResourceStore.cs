@@ -14,6 +14,7 @@ namespace CH.CleanArchitecture.Core.Application
         Task<string> SaveResourceAsync(Stream stream, string path, bool isPublic);
         Task<Stream> DownloadResourceAsync(string containerName, string resourceId);
         Task<bool> DeleteResourceAsync(string containerName, string resourceId);
+        Task CreateResourceFolderAsync(string folder);
         Task<List<string>> ListResourcesAsync(string folder);
         string GetResourceURI(string folder, string resourceId);
     }

@@ -111,6 +111,11 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return resourceId;
         }
 
+        public Task CreateResourceFolderAsync(string folder) {
+            //Current implementation for this resource store uses a single bucket, so no need to implement this
+            return Task.CompletedTask;
+        }
+
         public async Task<List<string>> ListResourcesAsync(string folder) {
             try {
                 _logger.LogInformation($"Listing resources in folder: {folder}");

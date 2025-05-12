@@ -48,5 +48,9 @@ namespace CH.CleanArchitecture.Tests.Mocks
                 .ToList();
             return Task.FromResult(resources);
         }
+
+        public Task CreateResourceFolderAsync(string folder) {
+            return Task.CompletedTask;
+        }
     }
 }

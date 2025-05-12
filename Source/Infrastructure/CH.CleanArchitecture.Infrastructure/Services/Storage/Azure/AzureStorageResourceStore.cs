@@ -83,6 +83,18 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
         }
 
+        public async Task CreateResourceFolderAsync(string containerName) {
+            try {
+                var blobServiceClient = _azureStorageService.GetBlobServiceClient();
+                var containerClient = _azureStorageService.GetBlobContainerClient(blobServiceClient, containerName);
+                await containerClient.CreateIfNotExistsAsync();
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"Failed to create resource folder '{containerName}' in Azure Storage Blob.");
+                throw;
+            }
+        }
+
         public async Task<List<string>> ListResourcesAsync(string container) {
             try {
                 var blobServiceClient = _azureStorageService.GetBlobServiceClient();

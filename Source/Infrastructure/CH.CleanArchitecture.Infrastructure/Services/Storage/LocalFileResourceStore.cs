@@ -54,7 +54,15 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return filename;
         }
 
-        public async Task<List<string>> ListResourcesAsync(string folder) {
+        public Task CreateResourceFolderAsync(string folder) {
+            string fullPath = Path.Combine(_baseDirectory, folder);
+            if (!Directory.Exists(fullPath)) {
+                Directory.CreateDirectory(fullPath);
+            }
+            return Task.CompletedTask;
+        }
+
+        public Task<List<string>> ListResourcesAsync(string folder) {
             string fullPath = Path.Combine(_baseDirectory, folder);
 
             if (!Directory.Exists(fullPath)) {
@@ -68,7 +76,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 fileNames.Add(Path.GetFileName(file));
             }
 
-            return await Task.FromResult(fileNames);
+            return Task.FromResult(fileNames);
         }
 
         private string GetFullPath(string folder, string filename) {
