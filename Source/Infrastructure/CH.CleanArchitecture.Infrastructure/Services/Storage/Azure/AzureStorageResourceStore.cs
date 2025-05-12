@@ -39,7 +39,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         public async Task<bool> DeleteResourceAsync(string containerName, string resourceId) {
             try {
-                var blob = GetBlobReference(containerName, resourceId);
+                var blob = await GetBlobReferenceAsync(containerName, resourceId);
                 _logger.LogDebug($"Attempting to delete resource {resourceId} from Azure Storage Blob (Container: {containerName}).");
                 return await blob.DeleteIfExistsAsync();
             }
@@ -51,7 +51,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         public async Task SaveResourceAsync(Stream stream, string containerName, bool isPublic, string resourceId) {
             try {
-                var blob = GetBlobReference(containerName, resourceId);
+                var blob = await GetBlobReferenceAsync(containerName, resourceId);
                 await blob.UploadAsync(stream);
                 _logger.LogDebug($"Saved resource {resourceId} successfully to Azure Storage Blob (Container: {containerName}, Stream length: {stream.Length})");
             }
@@ -71,7 +71,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             try {
                 _logger.LogInformation($"Downloading resource '{containerName.ToLower()}'/{resourceId}");
 
-                var blob = GetBlobReference(containerName, resourceId);
+                var blob = await GetBlobReferenceAsync(containerName, resourceId);
                 MemoryStream memoryStream = new MemoryStream();
                 await blob.DownloadToAsync(memoryStream);
 
@@ -118,11 +118,16 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         #region Private Methods
 
-        private BlobClient GetBlobReference(string containerName, string resourceId) {
+        private async ValueTask<BlobClient> GetBlobReferenceAsync(string containerName, string resourceId, bool createIfNotExists = false) {
             var blobServiceClient = _azureStorageService.GetBlobServiceClient();
-            var container = blobServiceClient.GetBlobContainerClient(containerName.ToLower());
-            var blob = container.GetBlobClient(resourceId);
-            return blob;
+            var containerClient = blobServiceClient.GetBlobContainerClient(containerName.ToLower()); // In Azure Storage, container names must be lower-case only
+
+            if (createIfNotExists) {
+                await containerClient.CreateIfNotExistsAsync();
+            }
+
+            var blobClient = containerClient.GetBlobClient(resourceId);
+            return blobClient;
         }
 
         #endregion Private Methods
