@@ -162,10 +162,13 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                 return;
             }
 
+            services.AddTransient<IResourceStoreSecurityService, NoOpStorageSecurityService>();
+
             switch (options.StorageProvider.ToLower()) {
                 case "azure":
                     services.AddTransient<AzureStorageService>();
                     services.AddTransient<IResourceStore, AzureStorageResourceStore>();
+                    services.AddTransient<IResourceStoreSecurityService, AzureStorageSecurityService>();
                     break;
                 case "aws":
                     services.AddTransient<IResourceStore, AWSS3ResourceStore>();
