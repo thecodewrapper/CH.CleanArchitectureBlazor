@@ -45,5 +45,11 @@
         {
             public const string RESOURCES_PROFILEPICTURES_FOLDER = "ResourcesProfilePicturesFolder";
         }
+
+        public static class CACHE
+        {
+            public const string SLIDING_EXPIRATION_TIME = "CacheDefaultSlidingExpiration";
+            public const string KEY_PREFIX = "CacheKeyPrefix";
+        }
     }
 }

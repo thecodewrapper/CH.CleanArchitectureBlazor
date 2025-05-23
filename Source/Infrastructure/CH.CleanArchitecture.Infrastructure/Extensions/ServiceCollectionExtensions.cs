@@ -44,6 +44,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddAuthServices();
             services.AddScheduledJobs(configuration);
             services.AddMessaging(configuration);
+            services.AddCaching();
         }
 
         public static void AddServiceBus(this IServiceCollection services, Action<ServiceBusBuilder> configure) {
@@ -51,6 +52,15 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configure(builder);
 
             builder.Build();
+        }
+
+        private static IServiceCollection AddCaching(this IServiceCollection services) {
+            services.AddScoped<ICacheKeyGenerator, CacheKeyGenerator>();
+
+            services.AddMemoryCache();
+            services.AddScoped<ICacheService, InMemoryCacheService>();
+
+            return services;
         }
 
         private static void AddMessaging(this IServiceCollection services, IConfiguration configuration) {
@@ -68,10 +78,14 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
                     o.WithAssemblies(handlerAssemblies.ToArray());
                 });
 
-                builder.UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, o =>
-                {
-                    o.WithAssemblies([typeof(CreateUserCommand).Assembly]);
-                });
+                if (serviceBusOptions.Enabled) {
+                    builder.UseServiceBus(serviceBusOptions.Provider, serviceBusOptions.HostUrl, o =>
+                    {
+                        //o.WithAssemblies([typeof(CreateUserCommand).Assembly]);
+                        //o.WithProduce(typeof(CreateUserCommand));
+                        //o.withconsume(typeof(CreateUserCommand));
+                    });
+                }
             });
         }
 
