@@ -46,9 +46,10 @@ namespace CH.CleanArchitecture.Core.Application
                 FluentValidation.Results.ValidationResult validationResult = await _validator.ValidateAsync(context.Message);
 
                 if (!validationResult.IsValid) {
-                    string validationErrorMessage = string.Join(",", validationResult.Errors.Select(e => e.ErrorMessage));
-                    _logger.LogError($"Validation failed for {context.Message.GetType()}. Validation Error: {validationErrorMessage}");
-                    await context.RespondAsync(CreateFailedResponse(validationErrorMessage));
+                    _logger.LogError($"Validation failed for {context.Message.GetType()}. Validation Errors: {string.Join(",", validationResult.Errors.Select(e => e.ErrorMessage))}");
+
+                    var failedResponse = CreateFailedResponse("Validation Failed", [.. validationResult.Errors.Select(e => new ResultError(e.ErrorMessage, e.ErrorCode))]);
+                    await context.RespondAsync(failedResponse);
                     return;
                 }
             }
