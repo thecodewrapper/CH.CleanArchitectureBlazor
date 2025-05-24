@@ -35,7 +35,7 @@ namespace CH.CleanArchitecture.Core.Application
 
                 if (!authorizationResult.Succeeded) {
                     _logger.LogError($"Authorization failed for {context.Message.GetType()}"); //push properties for failure reasons here
-                    await context.RespondAsync(new Result().Fail().WithError("Authorization failed"));
+                    await context.RespondAsync(CreateFailedResponse("Authorization Failed"));
                     return;
                 }
             }
@@ -48,7 +48,7 @@ namespace CH.CleanArchitecture.Core.Application
                 if (!validationResult.IsValid) {
                     string validationErrorMessage = string.Join(",", validationResult.Errors.Select(e => e.ErrorMessage));
                     _logger.LogError($"Validation failed for {context.Message.GetType()}. Validation Error: {validationErrorMessage}");
-                    await context.RespondAsync(new Result().Fail().WithMessage(validationErrorMessage));
+                    await context.RespondAsync(CreateFailedResponse(validationErrorMessage));
                     return;
                 }
             }
@@ -57,6 +57,23 @@ namespace CH.CleanArchitecture.Core.Application
             var messageResult = await HandleAsync(context.Message);
             _logger.LogDebug($"Handled {context.Message.GetType()}");
             await context.RespondAsync(messageResult);
+        }
+
+        protected TResponse CreateFailedResponse(string message, params IResultError[] errors) {
+            var result = Activator.CreateInstance<TResponse>();
+            if (result is Result r) {
+                r.IsSuccessful = false;
+                r.Message = message;
+
+                foreach (var error in errors) {
+                    r.AddError(error.Error, error.Code);
+                }
+            }
+            else {
+                throw new InvalidOperationException("TResponse must inherit from Result.");
+            }
+
+            return result;
         }
     }
 }
