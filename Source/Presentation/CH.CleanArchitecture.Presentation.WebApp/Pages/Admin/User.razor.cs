@@ -18,6 +18,9 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Admin
         private UserDetailsFormModel model = new UserDetailsFormModel();
         private UserReadModel _userReadModel = new();
 
+        private MudSelect<string> _rolesMultiSelect;
+        private List<string> _selectedRoles;
+
         [Inject]
         private UserAccountService UserAccountService { get; set; }
 
@@ -72,6 +75,8 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Admin
             model.Name = _userReadModel.Name;
             model.Surname = _userReadModel.Surname;
             model.LanguagePreference = _userReadModel.UICulture;
+
+            _selectedRoles = _userReadModel.Roles.Select(r => r.ToString()).ToList();
 
             AddressReadModel addressReadModel = _userReadModel.Address ?? new AddressReadModel();
             model.Address = Mapper.Map<AddressDTO>(addressReadModel);
@@ -130,6 +135,27 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Admin
                 );
                 await LoadUserProfile();
             }
+        }
+
+        private async Task UpdateRoles() {
+            var result = await SendRequestAsync(new UpdateUserRolesCommand()
+            {
+                Roles = _selectedRoles,
+                Username = _userReadModel.Username
+            });
+
+            if (result.IsSuccessful) {
+                await LoadUserProfile();
+            }
+        }
+
+        private void SelectedRolesChanged(IEnumerable<string> values) {
+            _selectedRoles = values.ToList();
+            _rolesMultiSelect.ResetValidation();
+            if (!values.Any()) {
+                _rolesMultiSelect.Validate();
+            }
+            StateHasChanged();
         }
     }
 }

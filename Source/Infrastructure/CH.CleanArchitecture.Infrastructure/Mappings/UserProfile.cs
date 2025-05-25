@@ -15,9 +15,9 @@ namespace CH.CleanArchitecture.Infrastructure.Mappings
 
             CreateMap<User, ApplicationUser>()
                 .ForMember(target => target.Roles, opt => opt.Ignore());
+            CreateMap<User, UserReadModel>();
 
             CreateMap<ApplicationUser, User>();
-
             CreateMap<ApplicationUser, UserReadModel>();
 
             CreateMap<IdentityError, ResultError>()

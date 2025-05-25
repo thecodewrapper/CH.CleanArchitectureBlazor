@@ -27,7 +27,7 @@
                 <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Name)">@context.Name</MudTd>
                 <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Surname)">@context.Surname</MudTd>
                 <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Email)">@context.Email</MudTd>
-                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)">@context.Roles</MudTd>
+                <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)">@(string.Join(",", context.Roles.Select(r => r)))</MudTd>
                 <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Active)"><ActivityStatus IsActive="@context.IsActive" /></MudTd>
                 <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Details)">
                     <MudStack Row Spacing="1" Justify="Justify.FlexEnd">

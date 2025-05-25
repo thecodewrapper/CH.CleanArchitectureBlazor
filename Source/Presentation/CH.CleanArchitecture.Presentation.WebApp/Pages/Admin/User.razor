@@ -72,4 +72,21 @@
             </MudCardActions>
         </MudCard>
     </MudItem>
+    <MudItem xs="12" sm="12" md="6">
+        <MudCard Class="mb-5">
+            <MudCardHeader>
+                <MudText Typo="Typo.h5" Class="inner-component-title">@L.GetLocalizedString(ResourceKeys.Labels_Roles)</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudSelect @ref="_rolesMultiSelect" MultiSelection T="string" Label="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Roles)" SelectedValues="_selectedRoles" SelectedValuesChanged="SelectedRolesChanged" Required>
+                            @foreach (RoleEnum item in Enum.GetValues(typeof(RoleEnum))) {
+                                <MudSelectItem T="string" Value="@item.ToString()">@item</MudSelectItem>
+                            }
+                </MudSelect>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="UpdateRoles">@L.GetLocalizedString(ResourceKeys.Buttons_Save_Cap)</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
 </MudGrid>
