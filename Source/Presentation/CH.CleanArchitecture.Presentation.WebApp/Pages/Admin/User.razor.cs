@@ -138,6 +138,11 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Admin
         }
 
         private async Task UpdateRoles() {
+            if (!_selectedRoles.Any()) {
+                ToastService.ShowError($"You have to select at least one role");
+                return;
+            }
+
             var result = await SendRequestAsync(new UpdateUserRolesCommand()
             {
                 Roles = _selectedRoles,
