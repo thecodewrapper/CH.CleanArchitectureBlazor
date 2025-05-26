@@ -1,6 +1,6 @@
 ﻿using CH.CleanArchitecture.Common;
 
-namespace CH.CleanArchitecture.Core.Application.DTOs
+namespace CH.CleanArchitecture.Core.Application.DTOs.Notifications
 {
     /// <summary>
     /// Used to encapsulate the content of a notification to be sent

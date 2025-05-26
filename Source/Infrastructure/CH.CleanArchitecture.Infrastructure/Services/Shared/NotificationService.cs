@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Infrastructure.Constants;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.Data.Abstractions;
@@ -21,7 +21,6 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
         private readonly IApplicationConfigurationService _appConfigService;
         private readonly IEntityRepository<NotificationEntity, Guid> _notificationRepository;
-        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailService _emailService;
         private readonly ISMSService _smsService;
         private readonly ILogger<NotificationService> _logger;
@@ -36,15 +35,13 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             ISMSService smsService,
             IMapper mapper,
             IApplicationConfigurationService appConfigService,
-            IEntityRepository<NotificationEntity, Guid> notificationRepository,
-            UserManager<ApplicationUser> userManager) {
+            IEntityRepository<NotificationEntity, Guid> notificationRepository) {
             _logger = logger;
             _emailService = emailService;
             _smsService = smsService;
             _mapper = mapper;
             _appConfigService = appConfigService;
             _notificationRepository = notificationRepository;
-            _userManager = userManager;
         }
 
         #endregion Public Constructors
@@ -122,27 +119,26 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             try {
                 List<NotificationDTO> notificationsToSend = new();
 
-                //Retrieve user DTOs
-                List<ApplicationUser> recipients = _userManager.Users.Where(u => sendNotificationDTO.Recipients.Contains(u.Id)).ToList();
+                List<NotificationRecipientDTO> recipients = sendNotificationDTO.Recipients;
 
                 switch (sendNotificationDTO.Type) {
                     case NotificationType.Portal: {
-                            foreach (var user in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, user.Id);
+                            foreach (var recipient in recipients) {
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
                                 notificationDTO.IsSent = true;
                                 notificationsToSend.Add(notificationDTO);
                             }
                         }
                         break;
                     case NotificationType.SMS: {
-                            foreach (var user in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, user.Id);
+                            foreach (var recipient in recipients) {
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
                                 notificationDTO.IsNew = false; //setting this to false because it has no impact on SMS notifications
-                                if (string.IsNullOrEmpty(user.PhoneNumber)) {
-                                    _logger.LogWarning($"User {user.Id} does not have a phone number. Skipping sending notification...");
+                                if (string.IsNullOrEmpty(recipient.PhoneNumber)) {
+                                    _logger.LogWarning($"User {recipient.Id} does not have a phone number. Skipping sending notification...");
                                     continue; //continue to next iteration
                                 }
-                                var sentResult = await _smsService.SendSMSAsync(user.PhoneNumber, sendNotificationDTO.Message);
+                                var sentResult = await _smsService.SendSMSAsync(recipient.PhoneNumber, sendNotificationDTO.Message);
 
                                 //if result is invalid perhaps there was an exception, maybe user doesnt have a phone number, so we handle it here
                                 notificationDTO.IsSent = sentResult.IsSuccessful;
@@ -154,8 +150,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                             List<string> emailList = recipients.Select(u => u.Email).ToList();
                             var sentResult = await _emailService.SendEmailAsync(emailList, sendNotificationDTO.Title, sendNotificationDTO.Message);
 
-                            foreach (var user in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, user.Id);
+                            foreach (var recipient in recipients) {
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
                                 notificationDTO.IsNew = false; //setting this to false because it has no impact on email notifications
                                 notificationDTO.Description = sendNotificationDTO.Message.Chop(500); //chop the string, in case of email HTML content
                                 notificationDTO.IsSent = sentResult.IsSuccessful;

@@ -1,7 +1,7 @@
 ﻿using System;
 using CH.CleanArchitecture.Common;
 
-namespace CH.CleanArchitecture.Core.Application.DTOs
+namespace CH.CleanArchitecture.Core.Application.DTOs.Notifications
 {
     /// <summary>
     /// Notification DTO

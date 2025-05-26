@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Core.Application.Queries;
 using CH.CleanArchitecture.Core.Application.ReadModels;
 using Microsoft.EntityFrameworkCore;

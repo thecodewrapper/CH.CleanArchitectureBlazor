@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace CH.CleanArchitecture.Core.Application.DTOs
+namespace CH.CleanArchitecture.Core.Application.DTOs.Notifications
 {
     public class SendNotificationDTO : SendNotificationBaseDTO
     {
-        public List<string> Recipients { get; set; }
+        public List<NotificationRecipientDTO> Recipients { get; set; }
     }
 }

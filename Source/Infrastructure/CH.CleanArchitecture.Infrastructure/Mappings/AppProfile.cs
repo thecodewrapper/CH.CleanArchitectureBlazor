@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CH.CleanArchitecture.Core.Application.DTOs;
+using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Core.Application.Mappings;
 using CH.CleanArchitecture.Core.Application.ReadModels;
 using CH.CleanArchitecture.Core.Domain;

@@ -30,7 +30,13 @@ namespace CH.CleanArchitecture.Core.Application.Services
                 ConfirmationUrl = confirmationUrl
             };
 
-            var recipients = new List<string>() { user.Id };
+            var recipients = new List<NotificationRecipientDTO>() {
+                new NotificationRecipientDTO()
+                {
+                    Id = user.Id,
+                    Email = user.Email
+                }
+            };
             var emailContent = await _notificationContentService.GetConfirmAccountContent(NotificationType.Email, dto, new CultureInfo(user.UICulture));
 
             _logger.LogDebug($"Sending notification for account confirmation for user {user.Id}");
@@ -48,7 +54,13 @@ namespace CH.CleanArchitecture.Core.Application.Services
                 ResetPasswordUrl = passwordResetUrl
             };
 
-            var recipients = new List<string>() { user.Id };
+            var recipients = new List<NotificationRecipientDTO>() {
+                new NotificationRecipientDTO()
+                {
+                    Id = user.Id,
+                    Email = user.Email
+                }
+            };
             var emailContent = await _notificationContentService.GetResetPasswordContent(NotificationType.Email, dto, new CultureInfo(user.UICulture));
 
             _logger.LogDebug($"Sending notification for password reset for user {user.Id}");
@@ -56,7 +68,7 @@ namespace CH.CleanArchitecture.Core.Application.Services
             await SendNotificationFromContent(emailContent, recipients);
         }
 
-        private async Task SendNotificationFromContent(NotificationContentDTO content, List<string> recipients) {
+        private async Task SendNotificationFromContent(NotificationContentDTO content, List<NotificationRecipientDTO> recipients) {
             var notification = new SendNotificationDTO()
             {
                 Title = content.Title,
