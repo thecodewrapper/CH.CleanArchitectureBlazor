@@ -15,6 +15,7 @@
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="8.0.0" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.416.5" />
+    <PackageReference Include="Azure.Communication.Email" Version="1.0.1" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.24.0" />
     <PackageReference Include="CH.EventStore.EntityFramework" Version="1.1.0" />
     <PackageReference Include="Hangfire" Version="1.8.18" />

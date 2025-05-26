@@ -35,8 +35,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddIdentity();
             services.AddEventSourcing(configuration);
             services.AddMapping();
-
-            services.AddSharedServices();
+            services.AddApplicationConfiguration();
+            services.AddNotificationServices();
             services.AddLocalizationServices();
             services.AddStorageServices(configuration);
             services.AddCommunicationServices(configuration);
@@ -45,6 +45,8 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddScheduledJobs(configuration);
             services.AddMessaging(configuration);
             services.AddCaching();
+
+            services.AddTransient<IAuditHistoryService, AuditHistoryService>();
         }
 
         public static void AddServiceBus(this IServiceCollection services, Action<ServiceBusBuilder> configure) {
@@ -142,14 +144,14 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
         }
 
-        private static void AddSharedServices(this IServiceCollection services) {
-
-            services.AddTransient<IApplicationConfigurationService, ApplicationConfigurationService>();
-            services.AddTransient<IAuditHistoryService, AuditHistoryService>();
-
+        private static void AddNotificationServices(this IServiceCollection services) {
             services.AddHtmlRenderingServices();
             services.AddTransient<INotificationService, NotificationService>();
             services.AddTransient<INotificationContentService, NotificationContentService>();
+        }
+
+        private static void AddApplicationConfiguration(this IServiceCollection services) {
+            services.AddTransient<IApplicationConfigurationService, ApplicationConfigurationService>();
         }
 
         private static void AddLocalizationServices(this IServiceCollection services) {
@@ -163,7 +165,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         public static void AddStorageServices(this IServiceCollection services, IConfiguration configuration) {
-            var options = GetStorageOptions(configuration);
+            var options = OptionsHelper.GetStorageOptions(configuration);
             services.Configure<StorageOptions>(c =>
             {
                 c.StorageProvider = options.StorageProvider;
@@ -199,9 +201,19 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
         }
 
         private static void AddCommunicationServices(this IServiceCollection services, IConfiguration configuration) {
-            var emailSenderOptions = GetEmailSenderOptions(configuration);
+            var emailSenderOptions = OptionsHelper.GetEmailSenderOptions(configuration);
+            services.Configure<EmailSenderOptions>(c =>
+            {
+                c.Azure = emailSenderOptions.Azure;
+                c.UseSendGrid = emailSenderOptions.UseSendGrid;
+                c.UseAzureCommunicationServices = emailSenderOptions.UseAzureCommunicationServices;
+            });
+
             if (emailSenderOptions.UseSendGrid) {
                 services.AddTransient<IEmailService, EmailSendGridService>();
+            }
+            else if (emailSenderOptions.UseAzureCommunicationServices) {
+                services.AddTransient<IEmailService, EmailACSService>();
             }
             else {
                 services.AddTransient<IEmailService, EmailSMTPService>();
@@ -267,20 +279,6 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             });
 
             return services;
-        }
-
-        private static StorageOptions GetStorageOptions(IConfiguration configuration) {
-            StorageOptions storageOptions = new StorageOptions();
-            configuration.GetSection("Storage").Bind(storageOptions);
-
-            return storageOptions;
-        }
-
-        private static EmailSenderOptions GetEmailSenderOptions(IConfiguration configuration) {
-            EmailSenderOptions emailSenderOptions = new EmailSenderOptions();
-            configuration.GetSection("EmailSender").Bind(emailSenderOptions);
-
-            return emailSenderOptions;
         }
     }
 }
