@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Presentation.EmailTemplates;
 using CH.CleanArchitecture.Presentation.EmailTemplates.Components.EN;

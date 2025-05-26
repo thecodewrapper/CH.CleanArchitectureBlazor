@@ -13,7 +13,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
         private readonly IIdentityContext _identityContext;
         private readonly ServiceBusNaming _serviceBusNaming;
 
-        public ServiceBus(ILogger<ServiceBus> logger, 
+        public ServiceBus(ILogger<ServiceBus> logger,
             IServiceBusMediator localMediator,
             IMessageBrokerDispatcher brokerDispatcher,
             IMessageRegistry<IRequest> registry,

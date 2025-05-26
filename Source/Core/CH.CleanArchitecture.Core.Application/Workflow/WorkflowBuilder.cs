@@ -1,8 +1,8 @@
-﻿using CH.CleanArchitecture.Common;
-using Polly;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CH.CleanArchitecture.Common;
+using Polly;
 
 namespace CH.CleanArchitecture.Core.Application.Workflow
 {

@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application.Workflow;
-using System;
-using System.Threading.Tasks;
+using FluentAssertions;
 using Xunit;
 
 namespace CH.CleanArchitecture.Core.Tests.Application.Workflow

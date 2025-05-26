@@ -10,7 +10,6 @@ using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Infrastructure.Constants;
 using CH.CleanArchitecture.Infrastructure.Models;
 using CH.Data.Abstractions;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Infrastructure.Services
