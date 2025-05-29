@@ -80,6 +80,9 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 case "azure":
                     _services.AddAzureServiceBusMessaging(hostUrl, producers, consumers);
                     break;
+                case "rabbitmq":
+                    _services.AddRabbitMqMessaging(hostUrl, producers, consumers);
+                    break;
                 default:
                     throw new NotSupportedException($"Message broker '{provider}' is not supported.");
             }

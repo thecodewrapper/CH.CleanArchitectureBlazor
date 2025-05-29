@@ -1,4 +1,4 @@
-﻿namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
+﻿namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
     internal static class TopicNameHelper
     {

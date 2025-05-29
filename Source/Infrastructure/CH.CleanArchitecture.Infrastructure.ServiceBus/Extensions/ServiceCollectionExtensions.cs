@@ -1,8 +1,10 @@
 ﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
@@ -22,6 +24,24 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 
             services.AddHostedService<AzureServiceBusTopicListener>();
             services.AddHostedService<AzureServiceBusResponseListener>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRabbitMqMessaging(this IServiceCollection services, string hostUrl, IEnumerable<Type> producers, IEnumerable<Type> consumers) {
+            services.AddServiceBusCore(producers, consumers);
+
+            services.AddSingleton(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<RabbitMQConnectionManager>>();
+                return new RabbitMQConnectionManager(hostUrl, logger);
+            });
+
+            services.AddSingleton<IMessageBrokerManager, RabbitMQManager>();
+            services.AddSingleton<IMessageBrokerDispatcher, RabbitMQMessageDispatcher>();
+
+            services.AddHostedService<RabbitMQResponseListener>();
+            services.AddHostedService<RabbitMQTopicListener>();
 
             return services;
         }
