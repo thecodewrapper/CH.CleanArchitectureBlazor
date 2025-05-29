@@ -33,7 +33,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
             _logger.LogInformation("Starting RabbitMQ response listener on queue '{Queue}'", _replyQueueName);
 
-            var connection = await _connectionManager.CreateConnectionAsync();
+            var connection = await _connectionManager.GetOrCreateConnectionAsync();
             await _manager.CreateQueueAsync(_replyQueueName);
 
             var channel = await connection.CreateChannelAsync();

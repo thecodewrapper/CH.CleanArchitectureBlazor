@@ -30,7 +30,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             IServiceScopeFactory scopeFactory,
             ServiceBusNaming naming) {
             _logger = logger;
-            _connection = connectionManager.CreateConnectionAsync().GetAwaiter().GetResult();
+            _connection = connectionManager.GetOrCreateConnectionAsync().GetAwaiter().GetResult();
             _manager = manager;
             _serializer = serializer;
             _registry = registry;

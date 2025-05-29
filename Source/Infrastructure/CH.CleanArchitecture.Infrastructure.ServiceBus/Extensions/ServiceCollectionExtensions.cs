@@ -34,7 +34,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             services.AddSingleton(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<RabbitMQConnectionManager>>();
-                return new RabbitMQConnectionManager(hostUrl, logger);
+                var serviceBusNaming = sp.GetRequiredService<ServiceBusNaming>();
+                return new RabbitMQConnectionManager(hostUrl, logger, serviceBusNaming);
             });
 
             services.AddSingleton<IMessageBrokerManager, RabbitMQManager>();

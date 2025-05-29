@@ -10,7 +10,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
 
         public RabbitMQManager(ILogger<RabbitMQManager> logger, RabbitMQConnectionManager connectionManager) {
             _logger = logger;
-            _connection = connectionManager.CreateConnectionAsync().GetAwaiter().GetResult();
+            _connection = connectionManager.GetOrCreateConnectionAsync().GetAwaiter().GetResult();
         }
 
         public async Task CreateQueueAsync(string queueName) {

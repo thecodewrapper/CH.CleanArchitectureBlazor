@@ -1,24 +1,50 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Data.Common;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
 {
-    public class RabbitMQConnectionManager
+    internal class RabbitMQConnectionManager
     {
         private readonly ILogger<RabbitMQConnectionManager> _logger;
+        private readonly ServiceBusNaming _serviceBusNaming;
         private readonly ConnectionFactory _factory;
 
-        public RabbitMQConnectionManager(string hostUrl, ILogger<RabbitMQConnectionManager> logger) {
+        private IConnection? _connection;
+        private readonly SemaphoreSlim _connectionLock = new(1, 1);
+
+        public RabbitMQConnectionManager(string hostUrl, ILogger<RabbitMQConnectionManager> logger, ServiceBusNaming serviceBusNaming) {
             _logger = logger;
+            _serviceBusNaming = serviceBusNaming;
             _factory = new ConnectionFactory
             {
                 Uri = new Uri(hostUrl)
             };
         }
 
-        public async Task<IConnection> CreateConnectionAsync() {
-            _logger.LogInformation("Creating new RabbitMQ connection to {Uri}", _factory.Uri);
-            return await _factory.CreateConnectionAsync();
+        public async Task<IConnection> GetOrCreateConnectionAsync() {
+            if (_connection?.IsOpen == true)
+                return _connection;
+
+            await _connectionLock.WaitAsync();
+            try {
+                if (_connection?.IsOpen == true)
+                    return _connection;
+
+                _logger.LogInformation("Creating new RabbitMQ connection to {Uri}", _factory.Uri);
+                _connection = await _factory.CreateConnectionAsync(_serviceBusNaming.GetInstanceId().ToString());
+
+                return _connection;
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Failed to create RabbitMQ connection to {Uri}", _factory.Uri);
+                throw;
+            }
+            finally {
+                _connectionLock.Release();
+            }
         }
+
+        public bool IsConnected => _connection?.IsOpen == true;
     }
 }

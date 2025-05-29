@@ -23,7 +23,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             IMessageResponseTracker tracker,
             ServiceBusNaming naming) {
             _logger = logger;
-            _connection = connectionManager.CreateConnectionAsync().GetAwaiter().GetResult();
+            _connection = connectionManager.GetOrCreateConnectionAsync().GetAwaiter().GetResult();
             _serializer = serializer;
             _tracker = tracker;
             _instanceId = naming.GetInstanceId().ToString(); // Use same naming class for consistency
@@ -36,7 +36,6 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             var baseMessage = request as BaseMessage;
             Guid correlationId = baseMessage?.CorrelationId ?? Guid.NewGuid();
             string? recipient = baseMessage?.Recipient;
-
 
             using var channel = await _connection.CreateChannelAsync();
             BasicProperties props = new()
@@ -87,7 +86,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
                 body: body
             );
 
-            _logger.LogDebug("Published event {Type} to exchange {Exchange}", typeof(TEvent).Name, topicName);
+            _logger.LogDebug("Published event {Type} to exchange {Exchange}", @event.GetType().Name, topicName);
         }
     }
 }
