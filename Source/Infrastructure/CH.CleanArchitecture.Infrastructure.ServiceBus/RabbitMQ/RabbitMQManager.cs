@@ -15,7 +15,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
 
         public async Task CreateQueueAsync(string queueName) {
             using var channel = await _connection.CreateChannelAsync();
-            await channel.QueueDeclareAsync(queue: queueName, durable: true, exclusive: false, autoDelete: false);
+            await channel.QueueDeclareAsync(queue: queueName, durable: false, exclusive: false, autoDelete: false);
             _logger.LogInformation("Queue declared: {QueueName}", queueName);
         }
 
