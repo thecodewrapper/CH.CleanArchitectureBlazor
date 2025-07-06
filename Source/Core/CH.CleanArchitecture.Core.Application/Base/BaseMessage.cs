@@ -11,6 +11,7 @@ namespace CH.CleanArchitecture.Core.Application
     {
         public Guid CorrelationId { get; set; }
         public Guid InstanceId { get; set; }
+        public Guid TraceId { get; set; }
         public bool IsBus { get; set; }
         public bool IsEvent { get; set; }
         public string ResponseType { get; set; }

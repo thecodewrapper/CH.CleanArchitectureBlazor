@@ -45,6 +45,7 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddScheduledJobs(configuration);
             services.AddMessaging(configuration);
             services.AddCaching();
+            services.AddEventAggregator();
 
             services.AddTransient<IAuditHistoryService, AuditHistoryService>();
         }
@@ -54,6 +55,10 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             configure(builder);
 
             builder.Build();
+        }
+
+        private static void AddEventAggregator(this IServiceCollection services) {
+            services.AddSingleton<IEventAggregator, EventAggregator>();
         }
 
         private static IServiceCollection AddCaching(this IServiceCollection services) {
