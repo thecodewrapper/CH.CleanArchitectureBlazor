@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Common.Enumerations;
@@ -8,6 +9,13 @@ namespace CH.CleanArchitecture.Core.Application
 {
     public interface IResourcesService
     {
+        /// <summary>
+        /// Retrieves all resources as a queryable collection.
+        /// </summary>
+        /// <returns>A <see cref="Result{T}"/> containing an <see cref="IQueryable{T}"/> of <see cref="ResourceDTO"/> objects.
+        /// The collection represents all available resources.</returns>
+        Result<IQueryable<ResourceDTO>> GetAll();
+
         /// <summary>
         /// Adds a resource entity to store. Returns the resource id if successfull wrapped in a <see cref="Result"/>
         /// </summary>

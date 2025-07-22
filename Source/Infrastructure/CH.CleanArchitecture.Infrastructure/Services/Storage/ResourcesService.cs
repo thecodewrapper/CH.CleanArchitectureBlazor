@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CH.CleanArchitecture.Common;
@@ -35,6 +36,20 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         #endregion Public Constructors
 
         #region Public Methods
+
+        public Result<IQueryable<ResourceDTO>> GetAll() {
+            Result<IQueryable<ResourceDTO>> result = new Result<IQueryable<ResourceDTO>>();
+            try {
+                var resources = _resourceRepository.GetAll();
+                result.Data = _mapper.ProjectTo<ResourceDTO>(resources);
+                result.Succeed();
+            }
+            catch (Exception ex) {
+                ServicesHelper.HandleServiceError(ref result, _logger, ex, "Error while trying to fetch all resources from the database");
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Adds a resource entity to DB and saves the passed in stream in store. Returns the resource id if successful wrapped in a ServiceResult

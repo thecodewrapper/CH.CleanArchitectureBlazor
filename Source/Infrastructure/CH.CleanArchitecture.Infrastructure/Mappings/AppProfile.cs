@@ -37,6 +37,8 @@ namespace CH.CleanArchitecture.Infrastructure.Mappings
 
             #region Resources
             CreateMap<ResourceEntity, ResourceDTO>();
+            CreateMap<ResourceEntity, ResourceReadModel>();
+            CreateMap<ResourceDTO, ResourceReadModel>();
             #endregion Resources
         }
     }
