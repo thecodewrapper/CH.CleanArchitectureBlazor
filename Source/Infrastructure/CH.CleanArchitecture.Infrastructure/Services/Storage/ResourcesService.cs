@@ -191,6 +191,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             Result<string> result = new Result<string>();
             try {
                 result.Data = _resourceRepository.GetSingle(r => r.Id == resourceId)?.URI ?? string.Empty;
+                result.Succeed();
             }
             catch (Exception ex) {
                 ServicesHelper.HandleServiceError(ref result, _logger, ex, "Error while trying to fetch data from the database");
