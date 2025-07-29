@@ -29,6 +29,11 @@
             /// The Azure Storage account key.
             /// </summary>
             public string StorageAccountKey { get; set; }
+
+            /// <summary>
+            /// The format of the Azure Storage service endpoint.
+            /// </summary>
+            public string ServiceEndpointFormat { get; set; }
         }
 
         public class AWSS3Options

@@ -13,11 +13,13 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         private readonly ILogger<AzureStorageService> _logger;
         private readonly StorageOptions _storageOptions;
         private readonly string _azureStorageAccountName;
+        private readonly string _serviceEndpointFormat;
 
         public AzureStorageService(ILogger<AzureStorageService> logger, IOptions<StorageOptions> storageOptions) {
             _logger = logger;
             _storageOptions = storageOptions.Value;
             _azureStorageAccountName = _storageOptions.Azure.StorageAccountName;
+            _serviceEndpointFormat = _storageOptions.Azure.ServiceEndpointFormat;
         }
 
         public BlobServiceClient GetBlobServiceClient() {
@@ -49,7 +51,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         }
 
         public string GetServiceEndpoint() {
-            return $"https://{_azureStorageAccountName}.blob.core.windows.net";
+            return string.Format(_serviceEndpointFormat, _azureStorageAccountName);
         }
     }
 }
