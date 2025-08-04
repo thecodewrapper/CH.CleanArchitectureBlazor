@@ -152,6 +152,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
                 _logger.LogDebug($"Resource entity {resourceId} removed successfully");
                 result.Data = true;
+                result.Succeed().WithMessage($"Resource {resourceId} removed successfully");
             }
             catch (Exception ex) {
                 ServicesHelper.HandleServiceError(ref result, _logger, ex, "Error while trying to delete resource");

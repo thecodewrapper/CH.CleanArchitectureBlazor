@@ -42,6 +42,9 @@ namespace CH.CleanArchitecture.Infrastructure.DbContexts
             //Notifications
             builder.ApplyConfiguration(new NotificationEntityConfiguration());
 
+            //Resources
+            builder.ApplyConfiguration(new ResourceEntityTypeConfiguration());
+
             //Orders
             builder.ApplyConfiguration(new OrderEntityConfiguration());
 

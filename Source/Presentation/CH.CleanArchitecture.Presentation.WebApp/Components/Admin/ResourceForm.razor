@@ -1,0 +1,46 @@
+﻿@using CH.CleanArchitecture.Common.Enumerations
+@inherits FormComponent
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@_formModel" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <MudCard>
+                <MudCardContent>
+                    <MudStack Spacing="0">
+                        <MudTextField Label="Name" Class="mt-3" @bind-Value="_formModel.Name" For="@(() => _formModel.Name)" Required />
+                        <MudTextField Label="Folder Name" Class="mt-3" @bind-Value="_formModel.FolderName" For="@(() => _formModel.FolderName)"/>
+                        <MudSelect T="ResourceType" Label="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Type)" Required @bind-Value="_formModel.Type" For="@(() => _formModel.Type)" AnchorOrigin="Origin.BottomLeft" Variant="Variant.Outlined">
+                            @foreach (var type in Enum.GetValues<ResourceType>()) {
+                                <MudSelectItem Value="type">@type.ToString()</MudSelectItem>
+                            }
+                        </MudSelect>
+                        <MudTextField Label="Domain" Class="mt-3" @bind-Value="_formModel.Domain" For="@(() => _formModel.Domain)" />
+                        <MudFileUpload T="IBrowserFile" FilesChanged="SelectFiles" MaximumFileCount="_maxAllowedFiles">
+                            <ActivatorContent>
+                                <MudButton Class="mt-4" Variant="Variant.Filled"
+                                           Color="Color.Primary"
+                                           StartIcon="@Icons.Material.Filled.CloudUpload">
+                                    Select file(s)
+                                </MudButton>
+                            </ActivatorContent>
+                        </MudFileUpload>
+                        @if (_files != null)
+                        {
+                            <MudList T="string">
+                                @foreach (var file in _files)
+                                {
+                                    <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+                                        @file.Name <code>@file.Size bytes</code>
+                                    </MudListItem>
+                                }
+                            </MudList>
+                        }
+                    </MudStack>
+                </MudCardContent>
+                <MudCardActions>
+                    <CRUDButton Type="CRUDButtonType.SubmitForm" />
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

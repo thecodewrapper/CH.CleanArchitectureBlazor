@@ -1086,7 +1086,7 @@
   <data name="Buttons_Proceed_Cap" xml:space="preserve">
     <value>PROCEED</value>
   </data>
-    <data name="Messages_ActivatingUser" xml:space="preserve">
+  <data name="Messages_ActivatingUser" xml:space="preserve">
     <value>Activating user '{0}'</value>
   </data>
   <data name="Messages.DeactivatingUser" xml:space="preserve">
@@ -1113,7 +1113,7 @@
   <data name="Labels_Unconfirmed" xml:space="preserve">
     <value>Unconfirmed</value>
   </data>
-    <data name="Labels_Country" xml:space="preserve">
+  <data name="Labels_Country" xml:space="preserve">
     <value>Country</value>
   </data>
   <data name="Labels_City" xml:space="preserve">
@@ -1130,5 +1130,26 @@
   </data>
   <data name="Labels_ConfirmNewPassword" xml:space="preserve">
     <value>Confirm New Password</value>
+  </data>
+  <data name="NavLink_Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Descriptions_ViewAllResources" xml:space="preserve">
+    <value>View all resources</value>
+  </data>
+  <data name="Titles_Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Messages_AddResource" xml:space="preserve">
+    <value>Add resource</value>
+  </data>
+  <data name="Messages_DeleteResource" xml:space="preserve">
+    <value>Delete resource</value>
+  </data>
+  <data name="Messages_DeleteResourceConfirmation" xml:space="preserve">
+    <value>Are your sure you want to delete this resource?</value>
+  </data>
+  <data name="Labels_Type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

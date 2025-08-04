@@ -1,0 +1,6 @@
+﻿@page "/admin/resources"
+@using CH.CleanArchitecture.Presentation.WebApp.Components.Admin
+@using CH.Messaging.Abstractions;
+@attribute [Authorize(Roles = "Admin")]
+<PageHeader Title="@L.GetLocalizedString(ResourceKeys.NavLink_Resources)" Icon="@IconConstants.RESOURCES" Description="@L.GetLocalizedString(ResourceKeys.Descriptions_ViewAllResources)" />
+<ResourcesGrid />

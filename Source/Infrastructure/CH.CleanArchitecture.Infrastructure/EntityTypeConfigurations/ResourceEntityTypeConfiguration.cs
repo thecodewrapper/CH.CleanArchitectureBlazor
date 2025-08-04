@@ -13,7 +13,6 @@ namespace CH.CleanArchitecture.Infrastructure.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<ResourceEntity> builder) {
             builder.ToTable("Resources", ApplicationDbContext.APP_SCHEMA);
             builder.HasKey(a => a.Id);
-            builder.Property(a => a.Id).HasDefaultValueSql("gen_random_uuid()");
 
             builder.Property(r => r.Extension).HasMaxLength(16);
             builder.Property(r => r.Meta).HasMaxLength(1024);

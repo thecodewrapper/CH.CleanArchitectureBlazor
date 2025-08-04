@@ -12,6 +12,7 @@
         </AuthorizeView>
         <AuthorizeView Roles="Admin">
             <MudNavLink Href="/admin/users" Match="NavLinkMatch.Prefix" Icon="@IconConstants.USERS">@L.GetLocalizedString(ResourceKeys.NavLink_UserManagement)</MudNavLink>
+            <MudNavLink Href="/admin/resources" Match="NavLinkMatch.Prefix" Icon="@IconConstants.RESOURCES">@L.GetLocalizedString(ResourceKeys.NavLink_Resources)</MudNavLink>
         </AuthorizeView>
         <AuthorizeView Roles="SuperAdmin">
             <MudNavGroup Title="Developer" Icon="@IconConstants.DEVELOPER" Expanded="true">

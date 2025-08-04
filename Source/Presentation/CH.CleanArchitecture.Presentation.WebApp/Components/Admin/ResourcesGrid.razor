@@ -1,0 +1,44 @@
+﻿@using Newtonsoft.Json;
+@inherits BaseComponent
+@attribute [Authorize(Roles = "Admin")]
+
+<MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="_table">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">@LocalizationService.GetLocalizedString(ResourceKeys.Titles_Resources)</MudText>
+        <MudSpacer />
+        <MudTextField T="string" ValueChanged="@(s => OnSearch(s))" Placeholder="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Search)" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        <CRUDButton Type="CRUDButtonType.New" OnClick="@(async () => await AddNewAsync())" />
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(ResourceReadModel.Name))" T="ResourceReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Name)</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(ResourceReadModel.ContainerName))" T="ResourceReadModel">Container Name</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(ResourceReadModel.Domain))" T="ResourceReadModel">Domain</MudTableSortLabel></MudTh>
+        <MudTh>@LocalizationService.GetLocalizedString(ResourceKeys.Labels_Type)</MudTh>
+        <MudTh>URI</MudTh>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(ResourceReadModel.DateCreated))" T="ResourceReadModel">@LocalizationService.GetLocalizedString(ResourceKeys.Labels_CreatedOn)</MudTableSortLabel></MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Container">@context.ContainerName</MudTd>
+        <MudTd DataLabel="Domain">@context.Domain</MudTd>
+        <MudTd DataLabel="Type">@context.Type</MudTd>
+        <MudTd DataLabel="URI">@context.URI</MudTd>
+        <MudTd DataLabel="@LocalizationService.GetLocalizedString(ResourceKeys.Labels_CreatedOn)">@context.DateCreated</MudTd>
+        <MudTd DataLabel="Details">
+            <MudStack Row Spacing="1" Justify="Justify.FlexEnd">
+                <CRUDButton Type="CRUDButtonType.Delete" OnClick="@(() => Delete(context))" />
+            </MudStack>
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_NoRecordsFound)</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_Loading)</MudText>
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>

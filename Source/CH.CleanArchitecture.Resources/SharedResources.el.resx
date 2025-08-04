@@ -1086,7 +1086,7 @@
   <data name="Buttons_Proceed_Cap" xml:space="preserve">
     <value>ΠΡΟΧΩΡΗΣΤΕ</value>
   </data>
-    <data name="Messages_ActivatingUser" xml:space="preserve">
+  <data name="Messages_ActivatingUser" xml:space="preserve">
     <value>Ενεργοποίηση χρήστη '{0}'</value>
   </data>
   <data name="Messages.DeactivatingUser" xml:space="preserve">
@@ -1113,7 +1113,7 @@
   <data name="Labels_Unconfirmed" xml:space="preserve">
     <value>Μη επιβεβαιωμένο</value>
   </data>
-    <data name="Labels_Country" xml:space="preserve">
+  <data name="Labels_Country" xml:space="preserve">
     <value>Χώρα</value>
   </data>
   <data name="Labels_City" xml:space="preserve">
@@ -1130,5 +1130,26 @@
   </data>
   <data name="Labels_ConfirmNewPassword" xml:space="preserve">
     <value>Επιβεβαίωση Νέου Κωδικού Πρόσβασης</value>
+  </data>
+  <data name="NavLink_Resources" xml:space="preserve">
+    <value>Αρχεία</value>
+  </data>
+  <data name="Descriptions_ViewAllResources" xml:space="preserve">
+    <value>Προβολή όλων των αρχείων</value>
+  </data>
+  <data name="Titles_Resources" xml:space="preserve">
+    <value>Αρχεία</value>
+  </data>
+  <data name="Messages_AddResource" xml:space="preserve">
+    <value>Προσθήκη αρχείου</value>
+  </data>
+  <data name="Messages_DeleteResource" xml:space="preserve">
+    <value>Διαγραφή αρχείου</value>
+  </data>
+  <data name="Messages_DeleteResourceConfirmation" xml:space="preserve">
+    <value>Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το αρχείο;</value>
+  </data>
+  <data name="Labels_Type" xml:space="preserve">
+    <value>Τύπος</value>
   </data>
 </root>

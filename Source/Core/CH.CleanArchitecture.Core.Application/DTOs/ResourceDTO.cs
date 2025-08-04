@@ -5,6 +5,7 @@ namespace CH.CleanArchitecture.Core.Application.DTOs
 {
     public class ResourceDTO
     {
+        public string Id { get; set; }
         /// <summary>
         /// The resource data
         /// </summary>

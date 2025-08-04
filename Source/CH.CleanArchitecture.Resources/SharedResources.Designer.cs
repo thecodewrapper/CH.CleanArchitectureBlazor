@@ -583,6 +583,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View all resources.
+        /// </summary>
+        public static string Descriptions_ViewAllResources {
+            get {
+                return ResourceManager.GetString("Descriptions_ViewAllResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View and configure all system users.
         /// </summary>
         public static string Descriptions_ViewAndConfigureAllSystemUsers {
@@ -1852,6 +1861,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Labels_Type {
+            get {
+                return ResourceManager.GetString("Labels_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unconfirmed.
         /// </summary>
         public static string Labels_Unconfirmed {
@@ -1987,6 +2005,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add resource.
+        /// </summary>
+        public static string Messages_AddResource {
+            get {
+                return ResourceManager.GetString("Messages_AddResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user.
         /// </summary>
         public static string Messages_AddUser {
@@ -2073,6 +2100,24 @@ namespace CH.CleanArchitecture.Resources {
         public static string Messages_DeactivatingUser {
             get {
                 return ResourceManager.GetString("Messages.DeactivatingUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete resource.
+        /// </summary>
+        public static string Messages_DeleteResource {
+            get {
+                return ResourceManager.GetString("Messages_DeleteResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are your sure you want to delete this resource?.
+        /// </summary>
+        public static string Messages_DeleteResourceConfirmation {
+            get {
+                return ResourceManager.GetString("Messages_DeleteResourceConfirmation", resourceCulture);
             }
         }
         
@@ -2500,6 +2545,15 @@ namespace CH.CleanArchitecture.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string NavLink_Resources {
+            get {
+                return ResourceManager.GetString("NavLink_Resources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Management.
         /// </summary>
         public static string NavLink_UserManagement {
@@ -2919,6 +2973,15 @@ namespace CH.CleanArchitecture.Resources {
         public static string Titles_ResetAuthenticator_Cap {
             get {
                 return ResourceManager.GetString("Titles_ResetAuthenticator_Cap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string Titles_Resources {
+            get {
+                return ResourceManager.GetString("Titles_Resources", resourceCulture);
             }
         }
         

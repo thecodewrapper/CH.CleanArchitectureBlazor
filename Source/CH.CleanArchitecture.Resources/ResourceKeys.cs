@@ -1,4 +1,9 @@
-﻿namespace CH.CleanArchitecture.Resources
+﻿using System;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+
+namespace CH.CleanArchitecture.Resources
 {
     /// This file is auto generated from ResourceKeys.tt template file
     /// It contains constants for all the keys in SharedResources.resx file
@@ -342,5 +347,12 @@
         public const string Labels_Title = "Labels_Title";
         public const string Labels_ReceivedOn = "Labels_ReceivedOn";
         public const string Labels_ConfirmNewPassword = "Labels_ConfirmNewPassword";
+        public const string NavLink_Resources = "NavLink_Resources";
+        public const string Descriptions_ViewAllResources = "Descriptions_ViewAllResources";
+        public const string Titles_Resources = "Titles_Resources";
+        public const string Messages_AddResource = "Messages_AddResource";
+        public const string Messages_DeleteResource = "Messages_DeleteResource";
+        public const string Messages_DeleteResourceConfirmation = "Messages_DeleteResourceConfirmation";
+        public const string Labels_Type = "Labels_Type";
     }
 }
