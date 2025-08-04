@@ -14,6 +14,16 @@ namespace CH.CleanArchitecture.Infrastructure.EntityTypeConfigurations
             builder.ToTable("Resources", ApplicationDbContext.APP_SCHEMA);
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).HasDefaultValueSql("gen_random_uuid()");
+
+            builder.Property(r => r.Extension).HasMaxLength(16);
+            builder.Property(r => r.Meta).HasMaxLength(1024);
+            builder.Property(r => r.Name).HasMaxLength(256);
+            builder.Property(r => r.ContainerName).HasMaxLength(256);
+            builder.Property(r => r.URI).HasMaxLength(1024);
+            builder.Property(r => r.Domain).HasMaxLength(256).IsRequired(false);
+
+            builder.Property(r => r.CreatedBy).HasMaxLength(64);
+            builder.Property(r => r.ModifiedBy).HasMaxLength(64);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace CH.CleanArchitecture.Core.Application.ReadModels
         public string URI { get; set; }
         public string Meta { get; set; }
         public string Extension { get; set; }
+        public string Domain { get; set; }
     }
 }
