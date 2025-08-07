@@ -1,0 +1,19 @@
+﻿@inherits BaseComponent
+
+<MudTextField @bind-Value="_email"
+              Label="Recipient Email"
+              T="string"
+              Required="true"
+              For="@(() => _email)"
+              Immediate="true"
+              Validation="@(() => ValidateEmail)"
+              Margin="Margin.Dense"
+              Class="my-2" />
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => SendEmailAsync())" Class="me-2">
+    Send Test Email
+</MudButton>
+
+@if (!string.IsNullOrWhiteSpace(_status)) {
+    <MudAlert Severity="@_severity" Class="mt-3">@_status</MudAlert>
+}

@@ -16,5 +16,6 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Constants
         public const string USERS = Icons.Material.Filled.SupervisedUserCircle;
         public const string AUTH_STATE = Icons.Material.Filled.QueryStats;
         public const string RESOURCES = Icons.Material.Filled.Image;
+        public const string OPERATIONS = Icons.Material.Filled.Handyman;
     }
 }
