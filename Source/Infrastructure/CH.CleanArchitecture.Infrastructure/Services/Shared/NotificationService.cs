@@ -71,7 +71,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         public Result<IQueryable<NotificationDTO>> GetAllForUser(string userFor) {
             var result = new Result<IQueryable<NotificationDTO>>();
             try {
-                var allNotificationsForUser = _notificationRepository.GetAll().Where(n => n.UserFor == userFor);
+                var allNotificationsForUser = _notificationRepository.GetAll().Where(n => n.RecipientId == userFor);
                 result.WithData(_mapper.ProjectTo<NotificationDTO>(allNotificationsForUser));
             }
             catch (Exception ex) {
@@ -118,12 +118,13 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             try {
                 List<NotificationDTO> notificationsToSend = new();
 
+                //Retrieve user DTOs
                 List<NotificationRecipientDTO> recipients = sendNotificationDTO.Recipients;
 
                 switch (sendNotificationDTO.Type) {
                     case NotificationType.Portal: {
                             foreach (var recipient in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient);
                                 notificationDTO.IsSent = true;
                                 notificationsToSend.Add(notificationDTO);
                             }
@@ -131,7 +132,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                         break;
                     case NotificationType.SMS: {
                             foreach (var recipient in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient);
                                 notificationDTO.IsNew = false; //setting this to false because it has no impact on SMS notifications
                                 if (string.IsNullOrEmpty(recipient.PhoneNumber)) {
                                     _logger.LogWarning($"User {recipient.Id} does not have a phone number. Skipping sending notification...");
@@ -150,7 +151,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                             var sentResult = await _emailService.SendEmailAsync(emailList, sendNotificationDTO.Title, sendNotificationDTO.Message);
 
                             foreach (var recipient in recipients) {
-                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient.Id);
+                                NotificationDTO notificationDTO = ConstructNewNotificationDTO(sendNotificationDTO.Title, sendNotificationDTO.Message, sendNotificationDTO.Type, recipient);
                                 notificationDTO.IsNew = false; //setting this to false because it has no impact on email notifications
                                 notificationDTO.Description = sendNotificationDTO.Message.Chop(500); //chop the string, in case of email HTML content
                                 notificationDTO.IsSent = sentResult.IsSuccessful;
@@ -173,10 +174,22 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             return result;
         }
 
+        public async Task<Result<int>> SendNotificationFromContent(NotificationContentDTO content, List<NotificationRecipientDTO> recipients) {
+            var notification = new SendNotificationDTO()
+            {
+                Title = content.Title,
+                Message = content.Content,
+                Recipients = recipients,
+                Type = content.Type
+            };
+
+            return await SendNotificationAsync(notification);
+        }
+
         public async Task<Result> MarkAllAsReadForUserAsync(string user) {
             var result = new Result();
             try {
-                var allNotificationsForUser = _notificationRepository.GetAll().Where(n => n.UserFor == user && n.IsNew).ToList();
+                var allNotificationsForUser = _notificationRepository.GetAll().Where(n => n.RecipientId == user && n.IsNew).ToList();
                 allNotificationsForUser.ForEach(n => n.IsNew = false);
 
                 _notificationRepository.UpdateRange(allNotificationsForUser);
@@ -256,14 +269,16 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             }
         }
 
-        private NotificationDTO ConstructNewNotificationDTO(string title, string message, NotificationType type, string usernameFor) {
+        private NotificationDTO ConstructNewNotificationDTO(string title, string message, NotificationType type, NotificationRecipientDTO recipient) {
             return new NotificationDTO()
             {
                 Title = title,
                 Description = message,
                 DateCreated = DateTime.UtcNow,
                 IsNew = true,
-                UserFor = usernameFor,
+                RecipientId = recipient.Id,
+                RecipientPhone = recipient.PhoneNumber,
+                RecipientEmail = recipient.Email,
                 Type = type,
                 IsSent = false,
                 Id = Guid.NewGuid()

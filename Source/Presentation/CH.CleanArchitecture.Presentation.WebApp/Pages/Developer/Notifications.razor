@@ -1,0 +1,5 @@
+﻿@page "/dev/notifications"
+@using CH.CleanArchitecture.Presentation.WebApp.Components.Developer
+@attribute [Authorize(Roles = "SuperAdmin")]
+<PageHeader Title="All Notifications" Icon="@IconConstants.ALL_NOTIFICATIONS" Description="View all notifications" />
+<NotificationsGrid />

@@ -22,9 +22,19 @@ namespace CH.CleanArchitecture.Infrastructure.Models
         public string Title { get; set; }
 
         /// <summary>
-        /// User the notification intended for
+        /// Id of the recipient
         /// </summary>
-        public string UserFor { get; set; }
+        public string RecipientId { get; set; }
+
+        /// <summary>
+        /// Phone of the recipient
+        /// </summary>
+        public string RecipientPhone { get; set; }
+
+        /// <summary>
+        /// Email of the recipient
+        /// </summary>
+        public string RecipientEmail { get; set; }
 
         /// <summary>
         /// The notification type (SMS, Email, Internal)

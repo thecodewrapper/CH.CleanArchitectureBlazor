@@ -17,6 +17,7 @@
         <AuthorizeView Roles="SuperAdmin">
             <MudNavGroup Title="Developer" Icon="@IconConstants.DEVELOPER" Expanded="true">
                 <MudNavLink Icon="@IconConstants.APPLICATION_CONFIG" Match="NavLinkMatch.Prefix" Href="/dev/appconfigs">Application Config</MudNavLink>
+                <MudNavLink Href="/dev/notifications" Match="NavLinkMatch.Prefix" Icon="@IconConstants.ALL_NOTIFICATIONS">All Notifications</MudNavLink>
                 <MudNavLink Icon="@IconConstants.AUDIT" Match="NavLinkMatch.Prefix" Href="/dev/audit">Audit</MudNavLink>
                 <MudNavLink Icon="@IconConstants.JOBS" Match="NavLinkMatch.Prefix" Href="/dev/jobs">Jobs</MudNavLink>
                 <MudNavLink Icon="@IconConstants.AUTH_STATE" Match="NavLinkMatch.Prefix" Href="/dev/authinfo">Authentication Info</MudNavLink>

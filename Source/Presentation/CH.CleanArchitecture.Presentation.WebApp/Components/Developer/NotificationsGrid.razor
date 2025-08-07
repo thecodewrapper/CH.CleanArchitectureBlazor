@@ -1,0 +1,41 @@
+﻿@using CH.CleanArchitecture.Core.Application.DTOs.Notifications
+@using CH.CleanArchitecture.Core.Application.DTOs
+@using CH.CleanArchitecture.Infrastructure.Services
+@inherits BaseComponent
+@attribute [Authorize(Roles = "SuperAdmin")]
+
+<MudTable ServerData="@ServerReload" Dense="true" Hover="true" @ref="_table">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Notifications</MudText>
+        <MudSpacer />
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@L.GetLocalizedString(ResourceKeys.Labels_Search)" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationDTO.Id))" T="NotificationDTO">Id</MudTableSortLabel></MudTh>
+        <MudTh>Title</MudTh>
+        <MudTh><MudTableSortLabel SortLabel="@(nameof(NotificationDTO.DateCreated))" T="NotificationDTO">Date Created</MudTableSortLabel></MudTh>
+        <MudTh>Is New</MudTh>
+        <MudTh>Phone</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Is Sent</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Title">@context.Title</MudTd>
+        <MudTd DataLabel="DateCreated">@context.DateCreated</MudTd>
+        <MudTd DataLabel="IsNew">@context.IsNew</MudTd>
+        <MudTd DataLabel="Phone">@context.RecipientPhone</MudTd>
+        <MudTd DataLabel="Email">@context.RecipientEmail</MudTd>
+        <MudTd DataLabel="IsSent">@context.IsSent</MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_NoRecordsFound)</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>@LocalizationService.GetLocalizedString(ResourceKeys.Search_Loading)</MudText>
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>
