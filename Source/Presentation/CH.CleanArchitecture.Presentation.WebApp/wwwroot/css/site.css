@@ -149,6 +149,13 @@ a, .btn-link {
 
 .login-container {
     margin-top: 20px;
+    top: 120px !important;
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        top: 60px !important;
+    }
 }
 
 .divider:after,

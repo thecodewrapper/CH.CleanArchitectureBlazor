@@ -5,43 +5,171 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-12">
-        <section>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        background: linear-gradient(135deg, #08A556 0%, #0fa864 100%);
+    }
+
+    .login-bg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #08A556 0%, #0fa864 100%);
+    }
+
+    .login-card {
+        display: flex;
+        flex-direction: row;
+        background: #ffffff;
+        border-radius: 20px;
+        max-width: 960px;
+        width: 100%;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        overflow: hidden;
+    }
+
+    .login-left,
+    .login-right {
+        flex: 1;
+        padding: 50px 40px;
+    }
+
+    .login-left {
+        background: #f7faf9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .brand-kicker {
+        font-weight: 600;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #087a41;
+    }
+
+    .login-left h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #0f172a;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0 0;
+        display: grid;
+        gap: 10px;
+    }
+
+    .feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: #1f2937;
+    }
+
+    .feature-bullet {
+        width: 20px;
+        height: 20px;
+        background: #08A556;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .login-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .login-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #0f172a;
+    }
+
+    .login-subtitle {
+        margin-bottom: 24px;
+        color: #475569;
+    }
+
+    .login-actions .btn {
+        height: 48px;
+        font-weight: 600;
+    }
+
+    .btn-outline-primary {
+        border-width: 2px;
+    }
+
+    @@media (max-width: 768px) {
+        .login-card {
+            flex-direction: column;
+        }
+
+        .login-left, .login-right {
+            padding: 30px 24px;
+        }
+    }
+</style>
+
+<div class="login-bg">
+    <div class="login-card">
+        <div class="login-left">
+            <div class="brand-kicker">Clean Architecture for all</div>
+            <h2>Tools that help you grow and care for your clients</h2>
+            <ul class="feature-list">
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 1</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 2</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 3</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 4</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 5</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 6</li>
+                <li><span class="feature-bullet"><i class="fa fa-check"></i></span> Feature 7</li>
+            </ul>
+        </div>
+
+        <div class="login-right">
+            <h1 class="login-title">Welcome</h1>
+            <p class="login-subtitle">Use your account to log in.</p>
             <form id="account" method="post">
-                <div>Use your account to log in.</div>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <input asp-for="Input.Email" class="form-control" placeholder="name@example.com" />
+                    <label asp-for="Input.Email">Email</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
+
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <input asp-for="Input.Password" type="password" class="form-control" placeholder="password" />
+                    <label asp-for="Input.Password">Password</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
+
+                <div class="login-actions d-grid gap-2">
+                    <button id="login-submit" type="submit" class="btn btn-primary btn-lg">Log in</button>
+                    <a class="btn btn-outline-primary btn-lg" asp-page="./RegisterUser" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary login-button">Log in</button>
-                </div>
-                <div style="margin-top:10px;">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./RegisterUser" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
-                    </p>
+
+                <div class="mt-3">
+                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
 </div>
 
