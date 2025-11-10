@@ -35,7 +35,7 @@ namespace CH.CleanArchitecture.Core.Application
 
                 if (!authorizationResult.Succeeded) {
                     _logger.LogError($"Authorization failed for {context.Message.GetType()}"); //push properties for failure reasons here
-                    await context.RespondAsync(CreateFailedResponse("Authorization Failed"));
+                    await context.RespondAsync(CreateFailedResponse("Authorization Failed", [CommonResultErrors.Unauthorized]));
                     return;
                 }
             }
