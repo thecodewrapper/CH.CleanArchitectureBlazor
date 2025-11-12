@@ -142,7 +142,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                     }
 
                     request.ContinuationToken = response.NextContinuationToken;
-                } while (response.IsTruncated);
+                } while (response.IsTruncated ?? false);
 
                 _logger.LogInformation($"Successfully listed {resourceKeys.Count} resources in folder: {folder}");
                 return resourceKeys;

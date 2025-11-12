@@ -8,8 +8,8 @@ A personal take on Clean Architecture for Blazor Server. For a detailed explanat
 Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thecodewrapper/CH.CleanArchitecture).
 
 ## 🚀 Technologies Used
-- **ASP.NET Core 8**
-- **Entity Framework Core 8**
+- **ASP.NET Core 10**
+- **Entity Framework Core 10**
 - **MassTransit**
 - **AutoMapper**
 - **Blazor & MudBlazor**
