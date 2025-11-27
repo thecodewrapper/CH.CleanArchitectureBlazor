@@ -3,7 +3,7 @@
 [![Build Status](https://dev.azure.com/chadjiantoniou/CleanArchitectureBlazor/_apis/build/status%2Fthecodewrapper.CH.CleanArchitectureBlazor?branchName=main)](https://dev.azure.com/chadjiantoniou/CleanArchitectureBlazor/_build/latest?definitionId=5&branchName=main)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate?hosted_button_id=XSXQYY5KBMXYW)
 
-A personal take on Clean Architecture for Blazor Server. For a detailed explanation, check out my blog post: [Implementing a Clean Architecture in ASP.NET Core 8](https://thecodewrapper.com/dev/tcw-clean-achitecture).
+A personal take on Clean Architecture for Blazor Server. For a detailed explanation, check out my blog post: [Implementing a Clean Architecture in ASP.NET Core 10](https://thecodewrapper.com/dev/tcw-clean-achitecture).
 
 Looking for the ASP.NET Core MVC version? Find it [here](https://github.com/thecodewrapper/CH.CleanArchitecture).
 
