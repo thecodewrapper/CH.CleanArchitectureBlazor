@@ -17,6 +17,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     {
         private readonly ServiceBusClient _client;
         private readonly ITopicNameFormatter _topicNameFormatter;
+        private readonly IEnumerable<IServiceBusReceiverPlugin> _receiverPlugins;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageBrokerManager _manager;
@@ -33,7 +34,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             IServiceScopeFactory serviceScopeFactory,
             ServiceBusClient serviceBusClient,
             IServiceBusNaming serviceBusNaming,
-            ITopicNameFormatter topicNameFormatter) {
+            ITopicNameFormatter topicNameFormatter,
+            IEnumerable<IServiceBusReceiverPlugin> receiverPlugins) {
 
             _registry = registry;
             _serializer = serializer;
@@ -43,6 +45,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
             _client = serviceBusClient;
             _topicNameFormatter = topicNameFormatter;
+            _receiverPlugins = receiverPlugins;
             _subscriptionName = serviceBusNaming.GetSubscriptionName();
         }
 
@@ -100,7 +103,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         private async Task StartProcessingTopicAsync(string topicName, Type messageType, CancellationToken cancellationToken) {
-            var processor = _client.CreateProcessor(topicName, _subscriptionName, new ServiceBusProcessorOptions
+            var processor = _client.CreatePluginProcessor(topicName, _subscriptionName, _receiverPlugins, new ServiceBusProcessorOptions
             {
                 MaxConcurrentCalls = 1,
                 AutoCompleteMessages = false

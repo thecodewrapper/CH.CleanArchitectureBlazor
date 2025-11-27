@@ -20,5 +20,25 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
             return services;
         }
+
+        public static IServiceCollection RegisterAzureServiceBusReceiverPlugin(this IServiceCollection services, IServiceBusReceiverPlugin serviceBusReceiverPlugin) {
+            services.AddSingleton(serviceBusReceiverPlugin);
+            return services;
+        }
+
+        public static IServiceCollection RegisterAzureServiceBusSenderPlugin(this IServiceCollection services, IServiceBusSenderPlugin serviceBusSenderPlugin) {
+            services.AddSingleton(serviceBusSenderPlugin);
+            return services;
+        }
+
+        public static IServiceCollection RegisterAzureServiceBusSenderPlugin<T>(this IServiceCollection services) where T : class, IServiceBusSenderPlugin {
+            services.AddSingleton<IServiceBusSenderPlugin, T>();
+            return services;
+        }
+
+        public static IServiceCollection RegisterAzureServiceBusReceiverPlugin<T>(this IServiceCollection services) where T : class, IServiceBusReceiverPlugin {
+            services.AddSingleton<IServiceBusReceiverPlugin, T>();
+            return services;
+        }
     }
 }

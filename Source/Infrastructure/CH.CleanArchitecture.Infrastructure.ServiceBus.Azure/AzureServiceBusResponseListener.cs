@@ -19,6 +19,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
         private readonly IServiceBusNaming _serviceBusNaming;
+        private readonly IEnumerable<IServiceBusReceiverPlugin> _receiverPlugins;
         private readonly string _replyQueueName;
 
         public AzureServiceBusResponseListener(
@@ -27,7 +28,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             IMessageSerializer serializer,
             IMessageResponseTracker tracker,
             ServiceBusClient serviceBusClient,
-            IServiceBusNaming serviceBusNaming) {
+            IServiceBusNaming serviceBusNaming,
+            IEnumerable<IServiceBusReceiverPlugin> receiverPlugins) {
 
             _logger = logger;
             _manager = manager;
@@ -35,6 +37,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             _tracker = tracker;
             _serviceBusClient = serviceBusClient;
             _serviceBusNaming = serviceBusNaming;
+            _receiverPlugins = receiverPlugins;
             _replyQueueName = serviceBusNaming.GetReplyQueueName();
         }
 
@@ -64,7 +67,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         private async Task StartProcessorAsync(CancellationToken cancellationToken) {
-            _processor = _serviceBusClient.CreateProcessor(_replyQueueName, new ServiceBusProcessorOptions());
+            _processor = _serviceBusClient.CreatePluginProcessor(_replyQueueName, _receiverPlugins, new ServiceBusProcessorOptions());
             _processor.ProcessMessageAsync += OnMessageReceived;
             _processor.ProcessErrorAsync += OnProcessError;
 

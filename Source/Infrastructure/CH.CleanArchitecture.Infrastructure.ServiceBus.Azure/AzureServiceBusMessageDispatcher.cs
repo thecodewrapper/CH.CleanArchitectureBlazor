@@ -18,6 +18,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly IMessageResponseTracker _tracker;
         private readonly IServiceBusNaming _serviceBusNaming;
         private readonly ITopicNameFormatter _topicNameFormatter;
+        private readonly IEnumerable<IServiceBusSenderPlugin> _senderPlugins;
         private readonly string _replyTo;
 
         private const int WAIT_FOR_RESPONSE_TIMEOUT_SECONDS = 10;
@@ -28,13 +29,15 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             IMessageSerializer serializer,
             IMessageResponseTracker tracker,
             IServiceBusNaming serviceBusNaming,
-            ITopicNameFormatter topicNameFormatter) {
+            ITopicNameFormatter topicNameFormatter,
+            IEnumerable<IServiceBusSenderPlugin> senderPlugins) {
             _logger = logger;
             _client = client;
             _serializer = serializer;
             _tracker = tracker;
             _serviceBusNaming = serviceBusNaming;
             _topicNameFormatter = topicNameFormatter;
+            _senderPlugins = senderPlugins;
             _replyTo = serviceBusNaming.GetReplyQueueName();
         }
 
@@ -47,7 +50,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             string? recipient = baseMessage?.Recipient;
 
             ServiceBusMessage message = ConstructServiceBusMessage(request, correlationId, topicName, recipient);
-            ServiceBusSender sender = _client.CreateSender(topicName);
+            ServiceBusSender sender = _client.CreatePluginSender(topicName, _senderPlugins);
 
             _logger.LogDebug("Sending message ({MessageType}) to topic {TopicName} with correlation id {CorrelationId}.", request.GetType().Name, topicName, correlationId);
             await sender.SendMessageAsync(message, cancellationToken);
@@ -60,7 +63,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             string topicName = _topicNameFormatter.GetTopicName(@event.GetType());
 
             ServiceBusMessage message = ConstructServiceBusMessage(@event, topicName);
-            ServiceBusSender sender = _client.CreateSender(topicName);
+            ServiceBusSender sender = _client.CreatePluginSender(topicName, _senderPlugins);
 
             _logger.LogDebug("Publishing event ({MessageType}) to topic {TopicName}.", @event.GetType().Name, topicName);
             await sender.SendMessageAsync(message, cancellationToken);
