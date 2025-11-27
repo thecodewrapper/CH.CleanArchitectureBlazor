@@ -9,8 +9,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
     public partial class AddedResources2 : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Resources",
                 schema: "App",
@@ -36,8 +35,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "Resources",
                 schema: "App");

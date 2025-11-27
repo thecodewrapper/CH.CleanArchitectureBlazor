@@ -1,6 +1,6 @@
-﻿using CH.Messaging.Abstractions;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using CH.Messaging.Abstractions;
 
 namespace CH.CleanArchitecture.Core.Application
 {

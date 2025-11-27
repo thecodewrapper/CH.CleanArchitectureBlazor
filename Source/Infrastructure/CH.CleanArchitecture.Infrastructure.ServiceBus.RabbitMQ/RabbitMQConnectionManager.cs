@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ

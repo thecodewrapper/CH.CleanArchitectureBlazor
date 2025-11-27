@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
 {

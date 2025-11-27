@@ -18,13 +18,11 @@ namespace CH.CleanArchitecture.Core.Application.Commands
     {
         private readonly IResourcesService _resourcesService;
 
-        public DeleteResourceCommandHandler(IServiceProvider serviceProvider, IResourcesService resourcesService) : base(serviceProvider)
-        {
+        public DeleteResourceCommandHandler(IServiceProvider serviceProvider, IResourcesService resourcesService) : base(serviceProvider) {
             _resourcesService = resourcesService;
         }
 
-        public override async Task<Result> HandleAsync(DeleteResourceCommand command)
-        {
+        public override async Task<Result> HandleAsync(DeleteResourceCommand command) {
             return await _resourcesService.DeleteResourceAsync(command.Id, command.ForceDelete);
         }
     }

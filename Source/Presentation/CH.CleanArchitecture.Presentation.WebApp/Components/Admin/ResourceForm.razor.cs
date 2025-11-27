@@ -22,8 +22,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
         }
 
         protected override async Task<Result> HandleAsync() {
-            if (_files.Count == 0)
-            {
+            if (_files.Count == 0) {
                 return new Result { IsSuccessful = false, Message = "No file selected." };
             }
 

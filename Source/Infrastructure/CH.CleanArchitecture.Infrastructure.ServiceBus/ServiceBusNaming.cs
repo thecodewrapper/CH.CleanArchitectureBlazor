@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Reflection;
 using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
-using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

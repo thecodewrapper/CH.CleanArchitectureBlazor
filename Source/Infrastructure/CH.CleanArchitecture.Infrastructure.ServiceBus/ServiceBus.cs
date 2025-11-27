@@ -1,7 +1,7 @@
-﻿using CH.Messaging.Abstractions;
-using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Core.Application;
+﻿using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using CH.Messaging.Abstractions;
+using Microsoft.Extensions.Logging;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

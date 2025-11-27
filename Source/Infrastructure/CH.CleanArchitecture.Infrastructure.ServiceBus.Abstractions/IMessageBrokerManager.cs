@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace CH.CleanArchitecture.Infrastructure.ServiceBus
+﻿namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
     public interface IMessageBrokerManager
     {

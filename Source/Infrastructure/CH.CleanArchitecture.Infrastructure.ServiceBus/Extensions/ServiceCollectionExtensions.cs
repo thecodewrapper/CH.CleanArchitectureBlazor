@@ -1,7 +1,7 @@
-﻿using CH.Messaging.Abstractions;
+﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

@@ -1,11 +1,11 @@
-﻿using CH.Messaging.Abstractions;
-using MassTransit;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
 using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
 using CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ;
-using System.Reflection;
+using CH.Messaging.Abstractions;
+using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {

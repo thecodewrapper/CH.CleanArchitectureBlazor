@@ -8,8 +8,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
     public partial class EnhancedNotificationEntity : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.RenameColumn(
                 name: "UserFor",
                 schema: "App",
@@ -32,8 +31,7 @@ namespace CH.CleanArchitecture.Infrastructure.Migrations.Application
         }
 
         /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "RecipientEmail",
                 schema: "App",

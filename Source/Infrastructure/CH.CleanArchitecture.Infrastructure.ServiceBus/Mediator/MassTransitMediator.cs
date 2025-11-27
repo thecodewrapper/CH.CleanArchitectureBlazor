@@ -1,7 +1,7 @@
-﻿using CH.Messaging.Abstractions;
+﻿using CH.CleanArchitecture.Core.Application;
+using CH.Messaging.Abstractions;
 using MassTransit.Mediator;
 using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Core.Application;
 using Polly;
 using Polly.Retry;
 

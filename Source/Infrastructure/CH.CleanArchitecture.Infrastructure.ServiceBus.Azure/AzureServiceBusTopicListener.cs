@@ -1,13 +1,11 @@
 ﻿using Azure.Messaging.ServiceBus;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Core.Application;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 {

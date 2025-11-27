@@ -1,9 +1,9 @@
-﻿using CH.Messaging.Abstractions;
-using Microsoft.Extensions.Logging;
+﻿using System.Text;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using CH.Messaging.Abstractions;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
-using System.Text;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
 {

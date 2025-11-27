@@ -1,7 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using Polly;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
