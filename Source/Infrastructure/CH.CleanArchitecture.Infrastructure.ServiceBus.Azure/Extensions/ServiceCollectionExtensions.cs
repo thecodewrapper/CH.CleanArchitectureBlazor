@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Azure;
+﻿using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure.Plugins;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
@@ -17,6 +18,9 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
             services.AddHostedService<AzureServiceBusTopicListener>();
             services.AddHostedService<AzureServiceBusResponseListener>();
+
+            services.RegisterAzureServiceBusReceiverPlugin<LoggingPlugin>();
+            services.RegisterAzureServiceBusSenderPlugin<LoggingPlugin>();
 
             return services;
         }
