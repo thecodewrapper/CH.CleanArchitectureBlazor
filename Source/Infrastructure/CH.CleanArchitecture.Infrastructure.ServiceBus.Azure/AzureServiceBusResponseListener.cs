@@ -1,6 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using Polly;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
@@ -17,7 +18,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly IMessageBrokerManager _manager;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
-        private readonly ServiceBusNaming _serviceBusNaming;
+        private readonly IServiceBusNaming _serviceBusNaming;
         private readonly string _replyQueueName;
 
         public AzureServiceBusResponseListener(
@@ -26,7 +27,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             IMessageSerializer serializer,
             IMessageResponseTracker tracker,
             ServiceBusClient serviceBusClient,
-            ServiceBusNaming serviceBusNaming) {
+            IServiceBusNaming serviceBusNaming) {
 
             _logger = logger;
             _manager = manager;

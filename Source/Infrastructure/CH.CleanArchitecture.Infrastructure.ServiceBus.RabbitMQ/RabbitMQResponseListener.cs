@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -21,7 +22,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             IMessageResponseTracker tracker,
             IMessageSerializer serializer,
             IMessageBrokerManager manager,
-            ServiceBusNaming naming) {
+            IServiceBusNaming naming) {
             _logger = logger;
             _connectionManager = connectionManager;
             _tracker = tracker;

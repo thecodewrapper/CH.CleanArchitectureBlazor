@@ -1,4 +1,7 @@
-﻿using Azure.Messaging.ServiceBus;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +12,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     /// </summary>
     internal class AzureServiceBusManager : IMessageBrokerManager
     {
-        private const int REPLY_QUEUE_AUTO_DELETE_ON_IDLE_DAYS = 1;
+        private const int REPLY_QUEUE_AUTO_DELETE_ON_IDLE_DAYS = 10;
 
         private readonly ILogger<AzureServiceBusManager> _logger;
         private readonly ServiceBusAdministrationClient _adminClient;

@@ -1,6 +1,7 @@
-﻿using CH.CleanArchitecture.Core.Application;
-using CH.Messaging.Abstractions;
+﻿using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
@@ -11,14 +12,14 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
         private readonly IMessageBrokerDispatcher _brokerDispatcher;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IIdentityContext _identityContext;
-        private readonly ServiceBusNaming _serviceBusNaming;
+        private readonly IServiceBusNaming _serviceBusNaming;
 
         public ServiceBus(ILogger<ServiceBus> logger,
             IServiceBusMediator localMediator,
             IMessageBrokerDispatcher brokerDispatcher,
             IMessageRegistry<IRequest> registry,
             IIdentityContext identityContext,
-            ServiceBusNaming serviceBusNaming) {
+            IServiceBusNaming serviceBusNaming) {
 
             _logger = logger;
             _localMediator = localMediator;

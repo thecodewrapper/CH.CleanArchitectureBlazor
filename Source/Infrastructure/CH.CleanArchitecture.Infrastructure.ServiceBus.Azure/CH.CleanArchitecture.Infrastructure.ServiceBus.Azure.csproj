@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
+    <PackageReference Include="Azure.ResourceManager.ServiceBus" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.13.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CH.CleanArchitecture.Core.Application\CH.CleanArchitecture.Core.Application.csproj" />
+    <ProjectReference Include="..\CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions\CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,5 @@
-﻿using System.Data.Common;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using RabbitMQ.Client;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
@@ -7,13 +7,13 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
     internal class RabbitMQConnectionManager
     {
         private readonly ILogger<RabbitMQConnectionManager> _logger;
-        private readonly ServiceBusNaming _serviceBusNaming;
+        private readonly IServiceBusNaming _serviceBusNaming;
         private readonly ConnectionFactory _factory;
 
         private IConnection? _connection;
         private readonly SemaphoreSlim _connectionLock = new(1, 1);
 
-        public RabbitMQConnectionManager(string hostUrl, ILogger<RabbitMQConnectionManager> logger, ServiceBusNaming serviceBusNaming) {
+        public RabbitMQConnectionManager(string hostUrl, ILogger<RabbitMQConnectionManager> logger, IServiceBusNaming serviceBusNaming) {
             _logger = logger;
             _serviceBusNaming = serviceBusNaming;
             _factory = new ConnectionFactory

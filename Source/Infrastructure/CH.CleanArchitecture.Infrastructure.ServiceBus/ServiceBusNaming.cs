@@ -1,9 +1,10 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using System.Reflection;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
-    internal class ServiceBusNaming
+    internal class ServiceBusNaming : IServiceBusNaming
     {
         private readonly string _subscriptionName;
         private readonly string _replyQueueName;

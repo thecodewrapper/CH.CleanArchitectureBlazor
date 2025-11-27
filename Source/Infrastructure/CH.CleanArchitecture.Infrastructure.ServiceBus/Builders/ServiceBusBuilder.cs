@@ -1,9 +1,11 @@
-﻿using System.Reflection;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Application;
-using CH.Messaging.Abstractions;
+﻿using CH.Messaging.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
+using CH.CleanArchitecture.Common;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Azure;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ;
+using System.Reflection;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus
 {
@@ -76,6 +78,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
                 consumers = resolved.ToList();
             }
 
+            _services.AddServiceBusCore(producers, consumers);
             switch (provider.ToLower()) {
                 case "azure":
                     _services.AddAzureServiceBusMessaging(hostUrl, producers, consumers);

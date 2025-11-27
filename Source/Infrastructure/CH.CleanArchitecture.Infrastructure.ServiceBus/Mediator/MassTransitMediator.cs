@@ -1,7 +1,7 @@
-﻿using CH.CleanArchitecture.Core.Application;
-using CH.Messaging.Abstractions;
+﻿using CH.Messaging.Abstractions;
 using MassTransit.Mediator;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Core.Application;
 using Polly;
 using Polly.Retry;
 
@@ -36,6 +36,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus
             try {
                 return await GetRetryPolicy().ExecuteAsync(async () =>
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
                     _logger.LogDebug("Sending message ({MessageType}) via MEDIATOR with correlation id {CorrelationId}. IsBus: {IsBus}", baseMessage.GetType().Name, baseMessage.CorrelationId, baseMessage.IsBus);
 
                     var response = await client.GetResponse<TResponse>(baseMessage, cancellationToken);

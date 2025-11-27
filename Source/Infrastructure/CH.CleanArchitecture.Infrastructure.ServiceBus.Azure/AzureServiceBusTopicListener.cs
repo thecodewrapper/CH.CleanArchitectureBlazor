@@ -1,10 +1,13 @@
 ﻿using Azure.Messaging.ServiceBus;
-using CH.CleanArchitecture.Core.Application;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 {
@@ -15,6 +18,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
     internal class AzureServiceBusTopicListener : BackgroundService
     {
         private readonly ServiceBusClient _client;
+        private readonly ITopicNameFormatter _topicNameFormatter;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageBrokerManager _manager;
@@ -30,7 +34,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             IConfiguration configuration,
             IServiceScopeFactory serviceScopeFactory,
             ServiceBusClient serviceBusClient,
-            ServiceBusNaming serviceBusNaming) {
+            IServiceBusNaming serviceBusNaming,
+            ITopicNameFormatter topicNameFormatter) {
 
             _registry = registry;
             _serializer = serializer;
@@ -39,6 +44,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             _serviceScopeFactory = serviceScopeFactory;
 
             _client = serviceBusClient;
+            _topicNameFormatter = topicNameFormatter;
             _subscriptionName = serviceBusNaming.GetSubscriptionName();
         }
 
@@ -47,15 +53,16 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
 
             IEnumerable<Type> consumableMessageTypes = _registry.GetConsumableTypes();
 
-            List<string> consumableTopicNames = consumableMessageTypes.Select(TopicNameHelper.GetTopicName).ToList();
-            List<string> producableTopicNames = _registry.GetProducableTypes().Select(TopicNameHelper.GetTopicName).ToList();
+            List<string> consumableTopicNames = consumableMessageTypes.Select(_topicNameFormatter.GetTopicName).ToList();
+            List<string> producableTopicNames = _registry.GetProducableTypes().Select(_topicNameFormatter.GetTopicName).ToList();
 
             await EnsureTopicsExist(producableTopicNames);
             await EnsureTopicsExist(consumableTopicNames);
             await EnsureSubscriptionsExist(consumableTopicNames);
 
+            //Start listening to consumable types
             foreach (var messageType in consumableMessageTypes) {
-                var topicName = TopicNameHelper.GetTopicName(messageType);
+                var topicName = _topicNameFormatter.GetTopicName(messageType);
 
                 try {
                     await StartProcessingTopicAsync(topicName, messageType, cancellationToken);

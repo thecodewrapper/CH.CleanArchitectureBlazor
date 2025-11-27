@@ -1,8 +1,9 @@
-﻿using CH.CleanArchitecture.Core.Application;
-using CH.Messaging.Abstractions;
+﻿using CH.Messaging.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -17,6 +18,7 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
         private readonly IMessageSerializer _serializer;
         private readonly IMessageRegistry<IRequest> _registry;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly ITopicNameFormatter _topicNameFormatter;
         private readonly string _subscriptionQueue;
 
         private readonly Dictionary<string, IChannel> _channels = new();
@@ -28,13 +30,15 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             IMessageSerializer serializer,
             IMessageRegistry<IRequest> registry,
             IServiceScopeFactory scopeFactory,
-            ServiceBusNaming naming) {
+            IServiceBusNaming naming,
+            ITopicNameFormatter topicNameFormatter) {
             _logger = logger;
             _connection = connectionManager.GetOrCreateConnectionAsync().GetAwaiter().GetResult();
             _manager = manager;
             _serializer = serializer;
             _registry = registry;
             _scopeFactory = scopeFactory;
+            _topicNameFormatter = topicNameFormatter;
             _subscriptionQueue = naming.GetSubscriptionName();
         }
 
@@ -44,14 +48,14 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.RabbitMQ
             var consumableTypes = _registry.GetConsumableTypes();
             var producableTypes = _registry.GetProducableTypes();
 
-            var consumableTopics = consumableTypes.Select(TopicNameHelper.GetTopicName).ToList();
-            var producableTopics = producableTypes.Select(TopicNameHelper.GetTopicName).ToList();
+            var consumableTopics = consumableTypes.Select(_topicNameFormatter.GetTopicName).ToList();
+            var producableTopics = producableTypes.Select(_topicNameFormatter.GetTopicName).ToList();
 
             await EnsureTopicsExist(producableTopics.Concat(consumableTopics).Distinct());
             await EnsureSubscriptionsExist(consumableTopics);
 
             foreach (var messageType in consumableTypes) {
-                var topicName = TopicNameHelper.GetTopicName(messageType);
+                var topicName = _topicNameFormatter.GetTopicName(messageType);
                 await StartProcessingTopicAsync(topicName, messageType, cancellationToken);
             }
 

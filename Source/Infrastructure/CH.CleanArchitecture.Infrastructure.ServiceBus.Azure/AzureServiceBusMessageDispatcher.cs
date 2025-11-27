@@ -1,5 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 using CH.CleanArchitecture.Core.Application;
+using CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions;
 using CH.Messaging.Abstractions;
 using Microsoft.Extensions.Logging;
 
@@ -15,7 +16,8 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         private readonly ServiceBusClient _client;
         private readonly IMessageSerializer _serializer;
         private readonly IMessageResponseTracker _tracker;
-        private readonly ServiceBusNaming _serviceBusNaming;
+        private readonly IServiceBusNaming _serviceBusNaming;
+        private readonly ITopicNameFormatter _topicNameFormatter;
         private readonly string _replyTo;
 
         private const int WAIT_FOR_RESPONSE_TIMEOUT_SECONDS = 10;
@@ -25,18 +27,21 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
             ServiceBusClient client,
             IMessageSerializer serializer,
             IMessageResponseTracker tracker,
-            ServiceBusNaming serviceBusNaming) {
+            IServiceBusNaming serviceBusNaming,
+            ITopicNameFormatter topicNameFormatter) {
             _logger = logger;
             _client = client;
             _serializer = serializer;
             _tracker = tracker;
             _serviceBusNaming = serviceBusNaming;
-
+            _topicNameFormatter = topicNameFormatter;
             _replyTo = serviceBusNaming.GetReplyQueueName();
         }
 
         public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse : class {
-            string topicName = TopicNameHelper.GetTopicName(request.GetType());
+            cancellationToken.ThrowIfCancellationRequested();
+
+            string topicName = _topicNameFormatter.GetTopicName(request.GetType());
             var baseMessage = request as BaseMessage;
             Guid correlationId = baseMessage?.CorrelationId ?? Guid.NewGuid();
             string? recipient = baseMessage?.Recipient;
@@ -50,7 +55,9 @@ namespace CH.CleanArchitecture.Infrastructure.ServiceBus.Azure
         }
 
         public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : class, IRequest {
-            string topicName = TopicNameHelper.GetTopicName(@event.GetType());
+            cancellationToken.ThrowIfCancellationRequested();
+
+            string topicName = _topicNameFormatter.GetTopicName(@event.GetType());
 
             ServiceBusMessage message = ConstructServiceBusMessage(@event, topicName);
             ServiceBusSender sender = _client.CreateSender(topicName);
