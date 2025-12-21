@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
-    <PackageReference Include="CH.Domain.Abstractions" Version="1.1.0" />
+    <PackageReference Include="Ardalis.GuardClauses" />
+    <PackageReference Include="CH.Domain.Abstractions" />
   </ItemGroup>
 
 </Project>

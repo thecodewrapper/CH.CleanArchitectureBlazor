@@ -9,6 +9,7 @@ using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs.Notifications;
 using CH.CleanArchitecture.Core.Application.Queries;
 using CH.CleanArchitecture.Core.Application.ReadModels;
+using CH.CleanArchitecture.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
@@ -41,21 +42,7 @@ namespace CH.CleanArchitecture.Infrastructure.Handlers.Queries
             var data = _mapper.ProjectTo<NotificationReadModel>(allEntities);
 
             int allRecordCount = await data.CountAsync();
-            var options = query.Options;
-            if (!string.IsNullOrWhiteSpace(options?.SearchTerm)) {
-                data = data.Where(c => EF.Functions.Like(c.Title.ToLower(), $"%{options.SearchTerm.ToLower()}%"));
-            }
-
-            //if (!string.IsNullOrWhiteSpace(options?.OrderBy)) {
-            //    data = data.OrderBy(options.OrderBy);
-            //}
-
-            data = data.OrderByDescending(n => n.DateCreated);
-
-            if (options?.Skip != null && options?.PageSize != null) {
-                data = data.Skip(options.Skip);
-                data = data.Take(options.PageSize);
-            }
+            data = data.ApplyQueryOptions(query.Options, c => c.Title);
 
             result.Succeed().WithData(await data.ToListAsync());
             result.AddMetadata("RecordCount", data.Count());

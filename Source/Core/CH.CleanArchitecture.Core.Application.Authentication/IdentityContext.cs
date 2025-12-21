@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text.Json.Serialization;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Core.Application
 {
@@ -17,8 +13,9 @@ namespace CH.CleanArchitecture.Core.Application
         public string ProfilePicture { get; set; }
         public string Culture { get; set; }
         public string UiCulture { get; set; }
-        public List<RoleEnum> Roles { get; set; } = new();
-        public ThemeEnum Theme { get; set; }
+        public List<string> Roles { get; set; } = new();
+        public string Theme { get; set; }
+        public string ClientId { get; set; }
         public List<ClaimData> Claims { get; set; } = new();
 
         [JsonIgnore]
@@ -44,7 +41,8 @@ namespace CH.CleanArchitecture.Core.Application
             Name = user.FindFullName() ?? null;
             Culture = user.FindCulture() ?? null;
             UiCulture = user.FindUiCulture() ?? null;
-            Theme = user.FindTheme()?.ToEnum<ThemeEnum>() ?? default;
+            Theme = user.FindTheme() ?? null;
+            ClientId = user.FindClientId() ?? null;
 
             var profilePictureClaim = user.FindProfilePicture();
             if (profilePictureClaim != null) {
@@ -53,19 +51,7 @@ namespace CH.CleanArchitecture.Core.Application
 
             var roles = user.Claims.Where(c => c.Type == ClaimTypes.Role);
             if (roles != null)
-                Roles = roles.Select(r => r.Value.ToEnum<RoleEnum>()).ToList();
-        }
-    }
-
-    public class ClaimData
-    {
-        public string Type { get; set; }
-        public string Value { get; set; }
-
-        public ClaimData() { }
-        public ClaimData(string type, string value) {
-            Type = type;
-            Value = value;
+                Roles = roles.Select(r => r.Value).ToList();
         }
     }
 }

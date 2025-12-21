@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using CH.CleanArchitecture.Common;
-using CH.CleanArchitecture.Core.Domain.User;
+﻿using System.Security.Claims;
 
 namespace CH.CleanArchitecture.Core.Application
 {
@@ -12,8 +9,9 @@ namespace CH.CleanArchitecture.Core.Application
         public string Name { get; }
         public string Culture { get; }
         public string UiCulture { get; }
-        public List<RoleEnum> Roles { get; }
-        public ThemeEnum Theme { get; }
+        public List<string> Roles { get; }
+        public string Theme { get; }
+        public string ClientId { get; }
         public List<ClaimData> Claims { get; }
         public ClaimsPrincipal User { get; }
 

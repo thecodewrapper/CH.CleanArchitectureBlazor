@@ -25,5 +25,12 @@ namespace CH.CleanArchitecture.Infrastructure
 
             return smsSenderOptions;
         }
+
+        public static IdentityProviderOptions GetIdentityProviderOptions(IConfiguration configuration) {
+            IdentityProviderOptions options = new IdentityProviderOptions();
+            configuration.GetSection("IdentityProvider").Bind(options);
+
+            return options;
+        }
     }
 }

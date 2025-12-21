@@ -50,6 +50,26 @@ namespace CH.CleanArchitecture.Infrastructure.Extensions
             services.AddTransient<IAuditHistoryService, AuditHistoryService>();
         }
 
+        public static void AddIdPServices(this IServiceCollection services, IConfiguration configuration) {
+            var options = OptionsHelper.GetIdentityProviderOptions(configuration);
+            services.Configure<IdentityProviderOptions>(o =>
+            {
+                o.AccessTokenLifetimeMinutes = options.AccessTokenLifetimeMinutes;
+                o.Issuer = options.Issuer;
+                o.Audience = options.Audience;
+            });
+            services.AddTransient<IAccessTokenService, JwtAccessTokenService>();
+            services.AddSigningKeyProvider();
+        }
+
+        public static void AddSigningKeyProvider(this IServiceCollection services) {
+#if DEBUG
+            services.AddSingleton<ISigningKeyProvider, DevRsaSigningKeyProvider>();
+#else
+            //Add a production implementation here (i.e Azure Key Vault based)
+#endif
+        }
+
         public static void AddServiceBus(this IServiceCollection services, Action<ServiceBusBuilder> configure) {
             var builder = new ServiceBusBuilder(services);
             configure(builder);

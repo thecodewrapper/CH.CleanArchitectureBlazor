@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace CH.CleanArchitecture.Core.Application
 {
@@ -9,7 +8,7 @@ namespace CH.CleanArchitecture.Core.Application
     {
         event CurrentUserChangedHandler CurrentUserChanged;
 
-        Task<ClaimsPrincipal> GetCurrentUserAsync();
+        Task<ClaimsPrincipal?> GetCurrentUserAsync();
 
         Task SetCurrentUserAsync(ClaimsPrincipal user);
     }

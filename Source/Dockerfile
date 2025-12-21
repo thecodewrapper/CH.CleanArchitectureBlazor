@@ -11,6 +11,8 @@ COPY ["Presentation/CH.CleanArchitecture.Presentation.WebApp/CH.CleanArchitectur
 COPY ["Presentation/CH.CleanArchitecture.Presentation.Framework/CH.CleanArchitecture.Presentation.Framework.csproj", "Presentation/CH.CleanArchitecture.Presentation.Framework/"]
 COPY ["Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/CH.CleanArchitecture.Presentation.EmailTemplates.csproj", "Presentation/CH.CleanArchitecture.Presentation.EmailTemplates/"]
 COPY ["Core/CH.CleanArchitecture.Core.Application/CH.CleanArchitecture.Core.Application.csproj", "Core/CH.CleanArchitecture.Core.Application/"]
+COPY ["Core/CH.CleanArchitecture.Core.Application.Authentication/CH.CleanArchitecture.Core.Application.Authentication.csproj", "Core/CH.CleanArchitecture.Core.Application.Authentication/"]
+COPY ["Core/CH.CleanArchitecture.Core.Application.Authentication.Abstractions/CH.CleanArchitecture.Core.Application.Authentication.Abstractions.csproj", "Core/CH.CleanArchitecture.Core.Application.Authentication.Abstractions/"]
 COPY ["Core/CH.CleanArchitecture.Core.Domain/CH.CleanArchitecture.Core.Domain.csproj", "Core/CH.CleanArchitecture.Core.Domain/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure/CH.CleanArchitecture.Infrastructure.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure/"]
 COPY ["Infrastructure/CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions/CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions.csproj", "Infrastructure/CH.CleanArchitecture.Infrastructure.ServiceBus.Abstractions/"]

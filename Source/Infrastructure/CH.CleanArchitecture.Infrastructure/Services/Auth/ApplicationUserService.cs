@@ -12,8 +12,10 @@ using CH.CleanArchitecture.Common;
 using CH.CleanArchitecture.Core.Application;
 using CH.CleanArchitecture.Core.Application.DTOs;
 using CH.CleanArchitecture.Core.Domain.User;
+using CH.CleanArchitecture.Infrastructure.Extensions;
 using CH.CleanArchitecture.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.Amqp.Framing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -261,19 +263,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             var serviceResult = new Result<IList<User>>();
             try {
                 var query = _userManager.Users.AsNoTracking().Include(u => u.Roles).ThenInclude(ur => ur.Role).AsQueryable();
-
-                if (!string.IsNullOrWhiteSpace(options?.SearchTerm)) {
-                    query = query.Where(c => EF.Functions.Like(c.Name, $"%{options.SearchTerm}%"));
-                }
-
-                if (!string.IsNullOrWhiteSpace(options?.OrderBy)) {
-                    query = query.OrderBy(options.OrderBy);
-                }
-
-                if (options?.Skip != null && options?.PageSize != null) {
-                    query = query.Skip(options.Skip);
-                    query = query.Take(options.PageSize);
-                }
+                query = query.ApplyQueryOptions(options, c => c.Name);
 
                 serviceResult.Data = await _mapper.ProjectTo<User>(query).ToListAsync();
                 serviceResult.Succeed();
@@ -489,6 +479,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
 
                 user.EmailConfirmed = true;
                 await _userManager.UpdateAsync(user);
+                serviceResult.Succeed();
             }
             catch (Exception ex) {
                 ServicesHelper.HandleServiceError(ref serviceResult, _logger, ex, "Error while trying to manually confirm user email.");

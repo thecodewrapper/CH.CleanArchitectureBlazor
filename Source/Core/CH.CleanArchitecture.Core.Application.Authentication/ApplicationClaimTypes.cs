@@ -13,5 +13,15 @@
             public const string UiCulture = "localization:uiculture";
             public const string Id = "user:id";
         }
+
+        public static class Client
+        {
+            public const string Id = "client:id";
+            public const string Active = "client:active";
+            public const string Email = "client:email";
+            public const string Origin = "client:origin";
+            public const string Name = "client:name";
+            public const string SignInMethod = "client:signinmethod";
+        }
     }
 }

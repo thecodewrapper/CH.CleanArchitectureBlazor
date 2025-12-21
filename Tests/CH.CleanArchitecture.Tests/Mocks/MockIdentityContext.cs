@@ -5,27 +5,27 @@ using CH.CleanArchitecture.Core.Domain.User;
 
 namespace CH.CleanArchitecture.Tests.Mocks
 {
-    internal class MockIdentityContext : IIdentityContext
+    internal class MockIdentityContext : IdentityContext, IIdentityContext
     {
-        public string UserId => "TestingUser";
+        public new string UserId => "TestingUser";
 
-        public string Username => "Mr.Tester";
+        public new string Username => "Mr.Tester";
 
-        public string Name => "Tester Tester";
+        public new string Name => "Tester Tester";
 
-        public List<RoleEnum> Roles => new();
+        public new List<RoleEnum> Roles => new();
 
-        public string Culture => "en-GB";
+        public new string Culture => "en-GB";
 
-        public string UiCulture => "en-GB";
+        public new string UiCulture => "en-GB";
 
-        public ThemeEnum Theme => ThemeEnum.Dark;
+        public new ThemeEnum Theme => ThemeEnum.Dark;
 
-        public ClaimsPrincipal User => new();
+        public new ClaimsPrincipal User => new();
 
-        public List<ClaimData> Claims => new();
+        public new List<ClaimData> Claims => new();
 
-        public void Initialize(List<ClaimData> claimData) {
+        public new void Initialize(List<ClaimData> claimData) {
             return;
         }
     }
