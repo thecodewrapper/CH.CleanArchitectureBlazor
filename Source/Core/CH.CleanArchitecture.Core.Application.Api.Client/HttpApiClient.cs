@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
@@ -33,75 +34,99 @@ public sealed class HttpApiClient : IApiClient
     public async Task<ApiResponse<TResponse>> SendAsync<TResponse, TRequest>(TRequest request, CancellationToken cancellationToken = default) where TRequest : class, IApiRequest {
         if (request is null) throw new ArgumentNullException(nameof(request));
 
-        var route = ResolveRoute<TRequest>();
-        var usedRouteKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        try {
+            var route = ResolveRoute<TRequest>();
+            var usedRouteKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        var path = ApplyRouteTokens(route.Template, request!, usedRouteKeys);
+            var path = ApplyRouteTokens(route.Template, request!, usedRouteKeys);
 
-        if (route.Method == HttpMethod.Get) {
-            path = AppendQueryString(path, request!, usedRouteKeys);
-        }
+            if (route.Method == HttpMethod.Get) {
+                path = AppendQueryString(path, request!, usedRouteKeys);
+            }
 
-        using var msg = new HttpRequestMessage(route.Method, path);
+            using var msg = new HttpRequestMessage(route.Method, path);
 
-        if (route.Method != HttpMethod.Get && route.Method != HttpMethod.Delete) {
-            msg.Content = new StringContent(
-                JsonSerializer.Serialize(request, _json),
-                Encoding.UTF8,
-                "application/json");
-        }
+            if (route.Method != HttpMethod.Get && route.Method != HttpMethod.Delete) {
+                msg.Content = new StringContent(
+                    JsonSerializer.Serialize(request, _json),
+                    Encoding.UTF8,
+                    "application/json");
+            }
 
-        using var resp = await _http.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-        var statusCode = (int)resp.StatusCode;
+            using var resp = await _http.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            var statusCode = (int)resp.StatusCode;
 
-        // IMPORTANT: read body once
-        var content = await resp.Content.ReadAsStringAsync(cancellationToken);
+            // IMPORTANT: read body once
+            var content = await resp.Content.ReadAsStringAsync(cancellationToken);
 
-        // 1) Try envelope first (both success and failure)
-        var envelope = TryDeserialize<ApiResponsePayload<TResponse>>(content, _json);
-        if (envelope is not null) {
-            return new ApiResponse<TResponse>(envelope, statusCode);
-        }
+            // 1) Try envelope first (both success and failure)
+            var envelope = TryDeserialize<ApiResponsePayload<TResponse>>(content, _json);
+            if (envelope is not null) {
+                return new ApiResponse<TResponse>(envelope, statusCode);
+            }
 
-        // 2) If not envelope and HTTP is failure -> return generic failure payload
-        if (!resp.IsSuccessStatusCode) {
+            // 2) If not envelope and HTTP is failure -> return generic failure payload
+            if (!resp.IsSuccessStatusCode) {
+                return Fail<TResponse>(
+                    statusCode: statusCode,
+                    message: $"HTTP {statusCode} {resp.ReasonPhrase}",
+                    code: "http_error",
+                    detail: Truncate(content));
+            }
+
+            // 3) Success HTTP but raw body (not envelope): treat as TResponse directly
+            var raw = TryDeserialize<TResponse>(content, _json);
+            if (raw is null) {
+                return Fail<TResponse>(
+                    statusCode: statusCode,
+                    message: "Could not deserialize response as ApiResponsePayload<T> or as the expected response type.",
+                    code: "deserialize_failed",
+                    detail: Truncate(content));
+            }
+
             return new ApiResponse<TResponse>(
                 new ApiResponsePayload<TResponse>
                 {
-                    Status = false,
-                    Message = $"HTTP {statusCode} {resp.ReasonPhrase}",
-                    Errors = new List<ApiErrorDto>
-                    {
-                        new ApiErrorDto { Code = "http_error", Error = Truncate(content) }
-                    }
+                    Status = true,
+                    Message = "Success",
+                    Data = raw
                 },
                 statusCode);
         }
-
-        // 3) Success HTTP but raw body (not envelope): treat as TResponse directly
-        var raw = TryDeserialize<TResponse>(content, _json);
-        if (raw is null) {
-            return new ApiResponse<TResponse>(
-                new ApiResponsePayload<TResponse>
-                {
-                    Status = false,
-                    Message = "Could not deserialize response as ApiResponsePayload<T> or as the expected response type.",
-                    Errors = new List<ApiErrorDto>
-                    {
-                        new ApiErrorDto { Code = "deserialize_failed", Error = Truncate(content) }
-                    }
-                },
-                statusCode);
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) {
+            // user/navigation canceled
+            return Fail<TResponse>(
+                statusCode: 499, // Client Closed Request (non-standard but common)
+                message: "Request was cancelled.",
+                code: "canceled",
+                detail: null);
         }
+        catch (TaskCanceledException ex) {
+            // timeout (or cancel w/out token); treat as timeout
+            return Fail<TResponse>(
+                statusCode: (int)HttpStatusCode.RequestTimeout, // 408
+                message: "Request timed out.",
+                code: "timeout",
+                detail: Truncate(ex.Message));
+        }
+        catch (HttpRequestException ex) {
+            // DNS/connection refused/TLS/etc.
+            // ex.StatusCode exists on newer frameworks; if null, use 0 or 503
+            var status = ex.StatusCode.HasValue ? (int)ex.StatusCode.Value : 0;
 
-        return new ApiResponse<TResponse>(
-            new ApiResponsePayload<TResponse>
-            {
-                Status = true,
-                Message = "Success",
-                Data = raw
-            },
-            statusCode);
+            return Fail<TResponse>(
+                statusCode: status,
+                message: "Network error while calling API.",
+                code: "network_error",
+                detail: Truncate(ex.Message));
+        }
+        catch (Exception ex) {
+            return Fail<TResponse>(
+                statusCode: 0,
+                message: "Unexpected error while calling API.",
+                code: "unexpected_error",
+                detail: Truncate(ex.ToString()));
+        }
     }
 
     public Task<ApiResponse<TResponse>> GetAsync<TResponse, TRequest>(TRequest request, CancellationToken cancellationToken) where TRequest : class, IApiRequest
@@ -110,40 +135,45 @@ public sealed class HttpApiClient : IApiClient
     public async Task<ApiBinaryResponse> GetBinaryAsync<TRequest>(TRequest request, CancellationToken cancellationToken = default) where TRequest : class, IApiRequest {
         if (request is null) throw new ArgumentNullException(nameof(request));
 
-        var route = ResolveRoute<TRequest>();
-        if (route.Method != HttpMethod.Get)
-            throw new InvalidOperationException($"GetBinaryAsync only supports GET routes. '{typeof(TRequest).Name}' is configured as {route.Method}.");
+        try {
+            var route = ResolveRoute<TRequest>();
+            if (route.Method != HttpMethod.Get)
+                throw new InvalidOperationException($"GetBinaryAsync only supports GET routes. '{typeof(TRequest).Name}' is configured as {route.Method}.");
 
-        var usedRouteKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var usedRouteKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        var path = ApplyRouteTokens(route.Template, request!, usedRouteKeys);
-        path = AppendQueryString(path, request!, usedRouteKeys);
+            var path = ApplyRouteTokens(route.Template, request!, usedRouteKeys);
+            path = AppendQueryString(path, request!, usedRouteKeys);
 
-        using var msg = new HttpRequestMessage(HttpMethod.Get, path);
-        using var resp = await _http.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            using var msg = new HttpRequestMessage(HttpMethod.Get, path);
+            using var resp = await _http.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
-        if (!resp.IsSuccessStatusCode) {
-            var content = await resp.Content.ReadAsStringAsync(cancellationToken);
+            if (!resp.IsSuccessStatusCode) {
+                var content = await resp.Content.ReadAsStringAsync(cancellationToken);
 
-            // best-effort: parse your error envelope
-            var err = TryDeserialize<ApiResponsePayload<object>>(content, _json);
-            var message = err?.Message ?? $"HTTP {(int)resp.StatusCode} {resp.ReasonPhrase}";
-            throw new HttpRequestException($"{message}. Body: {Truncate(content)}");
+                // best-effort: parse your error envelope
+                var err = TryDeserialize<ApiResponsePayload<object>>(content, _json);
+                var message = err?.Message ?? $"HTTP {(int)resp.StatusCode} {resp.ReasonPhrase}";
+                throw new HttpRequestException($"{message}. Body: {Truncate(content)}");
+            }
+
+            var bytes = await resp.Content.ReadAsByteArrayAsync(cancellationToken);
+
+            var contentType = resp.Content.Headers.ContentType?.MediaType;
+            var contentLength = resp.Content.Headers.ContentLength;
+
+            string? fileName = null;
+            if (resp.Content.Headers.ContentDisposition is not null) {
+                fileName = resp.Content.Headers.ContentDisposition.FileNameStar
+                           ?? resp.Content.Headers.ContentDisposition.FileName;
+                fileName = fileName?.Trim('"');
+            }
+
+            return new ApiBinaryResponse(bytes, contentType, fileName, contentLength);
         }
-
-        var bytes = await resp.Content.ReadAsByteArrayAsync(cancellationToken);
-
-        var contentType = resp.Content.Headers.ContentType?.MediaType;
-        var contentLength = resp.Content.Headers.ContentLength;
-
-        string? fileName = null;
-        if (resp.Content.Headers.ContentDisposition is not null) {
-            fileName = resp.Content.Headers.ContentDisposition.FileNameStar
-                       ?? resp.Content.Headers.ContentDisposition.FileName;
-            fileName = fileName?.Trim('"');
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) {
+            throw; // for binary, cancellation should probably remain cancellation
         }
-
-        return new ApiBinaryResponse(bytes, contentType, fileName, contentLength);
     }
 
     private static ApiRouteAttribute ResolveRoute<TRequest>() {
@@ -245,4 +275,16 @@ public sealed class HttpApiClient : IApiClient
             i = end;
         }
     }
+
+    private static ApiResponse<T> Fail<T>(int statusCode, string message, string code, string? detail)
+    => new(
+        new ApiResponsePayload<T>
+        {
+            Status = false,
+            Message = message,
+            Errors = new List<ApiErrorDto> {
+                    new ApiErrorDto { Code = code, Error = detail ?? message }
+            }
+        },
+        statusCode);
 }
