@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using CH.CleanArchitecture.Core.Application;
 using Microsoft.Extensions.Logging;
 
@@ -120,7 +121,7 @@ namespace CH.CleanArchitecture.Infrastructure.Services
                 var containerClient = _azureStorageService.GetBlobContainerClient(blobServiceClient, container);
 
                 var blobNames = new List<string>();
-                await foreach (var blobItem in containerClient.GetBlobsAsync(prefix: prefix)) {
+                await foreach (var blobItem in containerClient.GetBlobsAsync(traits: BlobTraits.None, states: BlobStates.None, prefix: prefix, cancellationToken: default)) {
                     blobNames.Add(blobItem.Name);
                 }
 
