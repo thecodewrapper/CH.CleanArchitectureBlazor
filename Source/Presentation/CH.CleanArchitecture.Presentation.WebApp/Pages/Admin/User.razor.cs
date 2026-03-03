@@ -154,11 +154,11 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Pages.Admin
             }
         }
 
-        private void SelectedRolesChanged(IEnumerable<string> values) {
+        private async Task SelectedRolesChanged(IEnumerable<string> values) {
             _selectedRoles = values.ToList();
-            _rolesMultiSelect.ResetValidation();
+            await _rolesMultiSelect.ResetValidationAsync();
             if (!values.Any()) {
-                _rolesMultiSelect.Validate();
+                await _rolesMultiSelect.ValidateAsync();
             }
             StateHasChanged();
         }

@@ -14,16 +14,16 @@ namespace CH.CleanArchitecture.Presentation.Framework.Services
             _dialogService = dialogService;
         }
 
-        public IDialogReference ShowModal<T>(string title, Dictionary<string, object> parameters) where T : ComponentBase {
+        public Task<IDialogReference> ShowModal<T>(string title, Dictionary<string, object> parameters) where T : ComponentBase {
             DialogParameters dialogParams = new DialogParameters();
             foreach (var param in parameters) {
                 dialogParams.Add(param.Key, param.Value);
             }
-            return _dialogService.Show<T>(title, dialogParams);
+            return _dialogService.ShowAsync<T>(title, dialogParams);
         }
 
-        public IDialogReference ShowModal<T>(string title) where T : ComponentBase {
-            return _dialogService.Show<T>(title);
+        public Task<IDialogReference> ShowModal<T>(string title) where T : ComponentBase {
+            return _dialogService.ShowAsync<T>(title);
         }
 
         public async Task<bool> ShowConfirmationModalAsync(string title, string contentText, string successButtonText, Color successButtonColor = default) {
@@ -33,7 +33,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Services
                 { "ButtonText", successButtonText },
                 { "Color", successButtonColor }
             };
-            var modalRef = ShowModal<ConfirmationDialog>(title, parameters);
+            var modalRef = await ShowModal<ConfirmationDialog>(title, parameters);
             bool? returnValue = await modalRef.GetReturnValueAsync<bool?>();
 
             return returnValue ?? false;
@@ -47,7 +47,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Services
                 { "Color", successButtonColor },
                 { "InputDescriptionText", inputDescriptionText },
             };
-            var modalRef = ShowModal<ConfirmationInputDialog>(title, parameters);
+            var modalRef = await ShowModal<ConfirmationInputDialog>(title, parameters);
             string returnValue = await modalRef.GetReturnValueAsync<string>();
 
             return returnValue;
@@ -61,7 +61,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Services
                 { "Color", successButtonColor },
                 { "ConfirmationPhrase", confirmationPhrase }
             };
-            var modalRef = ShowModal<ConfirmationDialog>(title, parameters);
+            var modalRef = await ShowModal<ConfirmationDialog>(title, parameters);
             bool? returnValue = await modalRef.GetReturnValueAsync<bool?>();
 
             return returnValue ?? false;

@@ -14,7 +14,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Interfaces
         /// <param name="title"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        IDialogReference ShowModal<T>(string title, Dictionary<string, object> parameters) where T : ComponentBase;
+        Task<IDialogReference> ShowModal<T>(string title, Dictionary<string, object> parameters) where T : ComponentBase;
 
         /// <summary>
         /// Shows the modal and returns an <see cref="object"/>
@@ -22,7 +22,7 @@ namespace CH.CleanArchitecture.Presentation.Framework.Interfaces
         /// <typeparam name="T"></typeparam>
         /// <param name="title"></param>
         /// <returns></returns>
-        IDialogReference ShowModal<T>(string title) where T : ComponentBase;
+        Task<IDialogReference> ShowModal<T>(string title) where T : ComponentBase;
 
         /// <summary>
         /// Shows a confirmation modal

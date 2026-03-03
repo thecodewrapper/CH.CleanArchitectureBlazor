@@ -9,11 +9,11 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
     {
         MudSelect<string> _rolesMultiSelect;
 
-        private void SelectedRolesChanged(IEnumerable<string> values) {
+        private async Task SelectedRolesChanged(IEnumerable<string> values) {
             _formModel.Roles = values.ToList();
-            _rolesMultiSelect.ResetValidation();
+            await _rolesMultiSelect.ResetValidationAsync();
             if (!values.Any()) {
-                _rolesMultiSelect.Validate();
+                await _rolesMultiSelect.ValidateAsync();
             }
             StateHasChanged();
         }

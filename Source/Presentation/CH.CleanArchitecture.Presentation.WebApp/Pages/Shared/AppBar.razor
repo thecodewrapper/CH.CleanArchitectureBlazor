@@ -10,7 +10,7 @@
                 <MudIconButton Icon="@(ThemeProvider.IsDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode)" OnClick="async () => await OnDarkModeToggled.InvokeAsync()" />
                 <!-- Language Selector -->
                 <MudMenu AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopRight" OffsetY="true">
-                    <ActivatorContent>
+                    <ActivatorContent Context="menuContext">
                         <MudButton Variant="Variant.Text">
                             <MudImage Width="25" Src="@($"images/{CurrentLanguageFlag}.png")" />
                         </MudButton>

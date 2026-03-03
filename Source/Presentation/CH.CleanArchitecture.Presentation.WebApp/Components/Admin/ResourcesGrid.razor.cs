@@ -41,7 +41,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
         }
 
         private async Task AddNewAsync() {
-            IDialogReference modalRef = ModalService.ShowModal<ResourceForm>(LocalizationService.GetLocalizedString(ResourceKeys.Messages_AddResource));
+            IDialogReference modalRef = await ModalService.ShowModal<ResourceForm>(LocalizationService.GetLocalizedString(ResourceKeys.Messages_AddResource));
             Result result = await modalRef.GetReturnValueAsync<Result>();
 
             if (result?.IsSuccessful ?? false) {

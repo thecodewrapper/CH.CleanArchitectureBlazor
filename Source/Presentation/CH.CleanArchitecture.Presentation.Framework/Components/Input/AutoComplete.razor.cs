@@ -136,10 +136,6 @@ namespace CH.CleanArchitecture.Presentation.Framework.Components.Input
             }
         }
 
-        public Task ForceUpdate() {
-            return _autoComplete.ForceUpdate();
-        }
-
         public Task SelectOption(T value) {
             return _autoComplete.SelectOptionAsync(value);
         }

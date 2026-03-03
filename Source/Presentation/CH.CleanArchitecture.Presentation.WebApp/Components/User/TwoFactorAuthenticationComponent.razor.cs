@@ -64,7 +64,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.User
 
             Logger.LogInformation("User with name '{UserId}' has disabled 2fa.", userId);
             ToastService.ShowSuccess("2fa has been disabled. You can reenable 2fa when you setup an authenticator app");
-            _tabs.ActivatePanel(0, true);
+            await _tabs.ActivatePanelAsync(0, true);
             Loader.Hide();
             await StateHasChangedAsync();
         }

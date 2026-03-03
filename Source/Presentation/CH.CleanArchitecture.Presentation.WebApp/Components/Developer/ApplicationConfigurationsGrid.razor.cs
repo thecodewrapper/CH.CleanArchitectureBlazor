@@ -39,7 +39,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Developer
         }
 
         private async Task AddNew() {
-            IDialogReference modalRef = ModalService.ShowModal<ApplicationConfigurationForm>("Add application configuration");
+            IDialogReference modalRef = await ModalService.ShowModal<ApplicationConfigurationForm>("Add application configuration");
             Result result = await modalRef.GetReturnValueAsync<Result>();
 
             if (result != null && result.IsSuccessful) {
@@ -53,7 +53,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Developer
             {
                 { nameof(ApplicationConfigurationForm.Model), appConfig }
             };
-            IDialogReference modalRef = ModalService.ShowModal<ApplicationConfigurationForm>($"Editing application configuration '{appConfigId}'", parameters);
+            IDialogReference modalRef = await ModalService.ShowModal<ApplicationConfigurationForm>($"Editing application configuration '{appConfigId}'", parameters);
             Result result = await modalRef.GetReturnValueAsync<Result>();
 
             if (result != null && result.IsSuccessful) {

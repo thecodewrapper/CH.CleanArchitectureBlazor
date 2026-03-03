@@ -45,7 +45,7 @@ namespace CH.CleanArchitecture.Presentation.WebApp.Components.Admin
         }
 
         private async Task AddNewAsync() {
-            IDialogReference modalRef = ModalService.ShowModal<UserForm>("Add user");
+            IDialogReference modalRef = await ModalService.ShowModal<UserForm>("Add user");
             Result result = await modalRef.GetReturnValueAsync<Result>();
 
             if (result?.IsSuccessful ?? false) {
