@@ -18,7 +18,6 @@ namespace CH.CleanArchitecture.Infrastructure.Services
         private readonly string _fromEmail;
         private readonly string _bccEmail;
         private readonly bool _useBcc;
-        private readonly SmtpClient _client;
         private readonly ILogger<EmailSMTPService> _logger;
 
         #endregion Private Fields
@@ -36,7 +35,6 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             _fromEmail = _applicationConfigurationService.GetValue(AppConfigKeys.EMAIL.FROM_ADDRESS).Unwrap().Trim();
             _bccEmail = _applicationConfigurationService.GetValue(AppConfigKeys.EMAIL.BCC_ADDRESS).Unwrap().Trim();
             _useBcc = _applicationConfigurationService.GetValueBool(AppConfigKeys.EMAIL.USE_BCC).Unwrap();
-            _client = GetClient();
         }
 
         #endregion Public Constructors
@@ -56,7 +54,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             try {
                 _logger.LogDebug($"Sending email from {from} to {to}. Subject: {subject}");
                 var mailMessage = ConstructMail(from, to, subject, message);
-                await _client.SendMailAsync(mailMessage);
+                SmtpClient client = GetClient();
+                await client.SendMailAsync(mailMessage);
                 _logger.LogDebug($"Email dispatched from {from} to {to}. Subject: {subject}");
                 result.Succeed();
             }
@@ -90,7 +89,8 @@ namespace CH.CleanArchitecture.Infrastructure.Services
             try {
                 _logger.LogDebug($"Sending email from {from} to {tos.Count} recipients. Subject: {subject}");
                 var mailMessage = ConstructMail(from, tos, subject, message);
-                await _client.SendMailAsync(mailMessage);
+                SmtpClient client = GetClient();
+                await client.SendMailAsync(mailMessage);
                 _logger.LogDebug($"Email dispatched from {from} to {tos.Count} recipients. Subject: {subject}");
                 result.Succeed();
             }
